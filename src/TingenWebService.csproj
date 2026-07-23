@@ -68,6 +68,15 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\NsDoc.cs" />
+    <Compile Include="Configuration\RuntimeConfig.cs" />
+    <Compile Include="Configuration\TngnWsvcConfig.cs" />
+    <Compile Include="Core\NsDoc.cs" />
+    <Compile Include="Core\Framework.cs" />
+    <Compile Include="Du\DuConvert.cs" />
+    <Compile Include="Du\DuDirectory.cs" />
+    <Compile Include="Du\DuFile.cs" />
+    <Compile Include="Du\NsDoc.cs" />
     <Compile Include="NsDoc.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +85,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Session\NsDoc.cs" />
+    <Compile Include="Session\TngnWsvcSession.cs" />
     <Compile Include="TingenWebService.asmx.cs">
       <DependentUpon>TingenWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -100,6 +111,7 @@
       <Name>ScriptLinkStandard</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

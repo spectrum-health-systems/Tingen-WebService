@@ -1,11 +1,11 @@
 ﻿// 260723_code
 // 260723_documentation
 
-namespace TingenWebService
+namespace TingenWebService.Du
 {
     public class NsDoc
     {
-        /// <summary>Main namespace of the Tingen Web Service</summary>
+        /// <summary>Du</summary>
         [System.Runtime.CompilerServices.CompilerGenerated()]
         class NamespaceDoc
         {

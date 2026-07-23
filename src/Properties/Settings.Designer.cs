@@ -35,18 +35,27 @@ namespace TingenWebService.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Tingen_Data")]
-        public string DataRoot {
+        public string HostDataRoot {
             get {
-                return ((string)(this["DataRoot"]));
+                return ((string)(this["HostDataRoot"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("C:\\Tingen_www")]
-        public string WwwRoot {
+        public string HostWwwRoot {
             get {
-                return ((string)(this["WwwRoot"]));
+                return ((string)(this["HostWwwRoot"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("260723")]
+        public string TngnWsvcBuild {
+            get {
+                return ((string)(this["TngnWsvcBuild"]));
             }
         }
     }
