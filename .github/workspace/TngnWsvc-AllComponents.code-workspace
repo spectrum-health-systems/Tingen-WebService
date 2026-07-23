@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "Y:/"
+		},
+		{
+			"path": "Z:/"
+		},
+		{
+			"path": "../../../Tingen-WebService-CommunityRelease"
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "SynthWave '84"
+	}
+}

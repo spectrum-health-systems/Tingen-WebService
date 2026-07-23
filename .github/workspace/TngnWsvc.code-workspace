@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "Y:/"
+		},
+		{
+			"path": "Z:/"
+		}
+	],
+	"settings": {
+		"workbench.colorTheme": "SynthWave '84"
+	}
+}
