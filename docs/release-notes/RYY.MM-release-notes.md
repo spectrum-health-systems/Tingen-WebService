@@ -1,0 +1,49 @@
+<div align="center">
+
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/ReleaseNotes.png">
+    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/Tingen-WebService-Logo-Light-256x256.png">
+    <img alt="Fallback image description" src="../../.github/logo/Tingen-WebService-Logo-Light-256x256.png">
+  </picture>
+
+  <h1>RYY.MM Release Notes</h1>
+
+</div>
+
+| CONTENTS              |
+|:----------------------|
+| [NEW](#new)           |
+| [UPDATED](#updated)   |
+| [FIXED](#fixed)       |
+| [REMOVED](#removed)   |
+| [SECURITY](#security) |
+
+***
+
+Description of release goes here.
+
+## NEW
+
+***
+
+## UPDATED
+
+None.
+
+***
+
+## FIXED
+
+None.
+
+***
+
+## REMOVED
+
+None.
+
+***
+
+## SECURITY
+
+None.
