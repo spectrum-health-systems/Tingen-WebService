@@ -25,10 +25,46 @@ namespace TingenWebService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("260723")]
+        public string TngnWscvBuild {
+            get {
+                return ((string)(this["TngnWscvBuild"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("UAT")]
         public string AvatarSystem {
             get {
                 return ((string)(this["AvatarSystem"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Tingen_Data")]
+        public string HostDataPath {
+            get {
+                return ((string)(this["HostDataPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Tingen_www")]
+        public string HostWwwPath {
+            get {
+                return ((string)(this["HostWwwPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("260723")]
+        public string TngnWsvcBuild {
+            get {
+                return ((string)(this["TngnWsvcBuild"]));
             }
         }
         
@@ -47,15 +83,6 @@ namespace TingenWebService.Properties {
         public string HostWwwRoot {
             get {
                 return ((string)(this["HostWwwRoot"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("260723")]
-        public string TngnWsvcBuild {
-            get {
-                return ((string)(this["TngnWsvcBuild"]));
             }
         }
     }

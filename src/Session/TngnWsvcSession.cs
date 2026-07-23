@@ -12,6 +12,7 @@ namespace TingenWebService.Session
         internal static void StartSession(OptionObject2015 sentOptObj, string sentScriptParam)
         {
         }
+
         internal static TngnWsvcSession Load(OptionObject2015 sentOptObj, string sentScriptParam)
         {
             return new TngnWsvcSession()

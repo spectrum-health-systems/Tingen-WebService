@@ -61,8 +61,6 @@ If Visual Studio Community 2022 isn't installed on your system, you'll need to d
 
   * .NET Framework 4.8 SDK
   * .NET Framework 4.8 targeting pack
-  * .NET Framework 4.8.1 SDK
-  * .NET Framework 4.8.1 targeting pack
   * .NET Framework project and item templates
 
 ## Create a new ASP.NET Web Application project
@@ -91,7 +89,7 @@ Which will bring up the configuration page, where you should:
 
 8. Change the Project name to the name of your project (e.g., "CustomAvatarWebService")
 9. Verify that the Location where you want your sourcecode is correct
-10. Verify that the framework is `.NET Framework 4.8.1`
+10. Verify that the framework is `.NET Framework 4.8`
 11. Click **Create**
 12. On the Create a new ASP.NET Web Application window, choose **Empty**
 13.Click **Create**.

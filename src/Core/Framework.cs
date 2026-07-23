@@ -28,7 +28,7 @@ namespace TingenWebService.Core
             public string SessionRoot { get; set; }
         }
 
-        internal class WwwPaths
+        public class WwwPaths
         {
             public string AppDataRoot { get; set; }
             public string BlueprintRoot { get; set; }
@@ -36,30 +36,38 @@ namespace TingenWebService.Core
             public string TranslationTableRoot { get; set; }
         }
 
-        internal static Framework Load(string hostDataPath, string hostWwwPath)
+        /// <summary>Loads the framework with the specified paths and avatar system.</summary>
+        /// <param name="hostDataPath">The root path for data storage.</param>
+        /// <param name="hostWwwPath">The root path for web resources.</param>
+        /// <param name="avatarSystem">The avatar system identifier.</param>
+        /// <returns>A <see cref="Framework"/> instance with the specified paths.</returns>
+        internal static Framework Load(string hostDataPath, string hostWwwPath, string avatarSystem)
         {
+            var dataPath = Path.Combine(hostDataPath, "WebService", avatarSystem);
+            var wwwPath  = Path.Combine(hostWwwPath, "WebService", avatarSystem);
+
             return new Framework()
             {
                 DataPath = new DataPaths()
                 {
-                    AvatarGeneratedDataRoot = Path.Combine(hostDataPath, "AvatarGeneratedData"),
-                    AppDataRoot             = Path.Combine(hostDataPath, "AppData"),
-                    BlueprintRoot           = Path.Combine(hostDataPath, "Blueprints"),
-                    ConfigRoot              = Path.Combine(hostDataPath, "Config"),
-                    ExportRoot              = Path.Combine(hostDataPath, "Export"),
-                    HistoryRoot             = Path.Combine(hostDataPath, "History"),
-                    ImportRoot              = Path.Combine(hostDataPath, "Import"),
-                    LogRoot                 = Path.Combine(hostDataPath, "Log"),
-                    OptObjErrorRoot         = Path.Combine(hostDataPath, "OptObjError"),
-                    TranslationTableRoot    = Path.Combine(hostDataPath, "TranslationTables"),
-                    SessionRoot             = Path.Combine(hostDataPath, "Session")
+                    AvatarGeneratedDataRoot = Path.Combine(dataPath, "AvatarGeneratedData"),
+                    AppDataRoot             = Path.Combine(dataPath, "AppData"),
+                    BlueprintRoot           = Path.Combine(dataPath, "Blueprints"),
+                    ConfigRoot              = Path.Combine(dataPath, "Config"),
+                    ExportRoot              = Path.Combine(dataPath, "Export"),
+                    HistoryRoot             = Path.Combine(dataPath, "History"),
+                    ImportRoot              = Path.Combine(dataPath, "Import"),
+                    LogRoot                 = Path.Combine(dataPath, "Log"),
+                    OptObjErrorRoot         = Path.Combine(dataPath, "OptObjError"),
+                    TranslationTableRoot    = Path.Combine(dataPath, "TranslationTables"),
+                    SessionRoot             = Path.Combine(dataPath, "Session")
                 },
                 WwwPath = new WwwPaths()
                 {
-                    AppDataRoot          = Path.Combine(hostWwwPath, "App_Data"),
-                    BlueprintRoot        = Path.Combine(hostWwwPath, "Blueprints"),
-                    OptObjErrorRoot      = Path.Combine(hostWwwPath, "OptObjError"),
-                    TranslationTableRoot = Path.Combine(hostWwwPath, "TranslationTables")
+                    AppDataRoot          = Path.Combine(wwwPath, "App_Data"),
+                    BlueprintRoot        = Path.Combine(wwwPath, "Blueprints"),
+                    OptObjErrorRoot      = Path.Combine(wwwPath, "OptObjError"),
+                    TranslationTableRoot = Path.Combine(wwwPath, "TranslationTables")
                 }
             };
         }
@@ -68,12 +76,38 @@ namespace TingenWebService.Core
         /// <param name="twsFramework">The framework instance containing the paths to verify.</param>
         internal static void Verify(Framework twsFramework)
         {
-            foreach (var path in DuConvert.ObjectToStringArray(twsFramework))
+            foreach (var path in FrameworkPaths(twsFramework))
             {
-                DuDirectory.EnsureDirectoryExists(path);
+                try
+                {
+                    DuDirectory.EnsureDirectoryExists(path);
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogEvent.Primeval($"ErrorCreatingPath-{path}", $"Error [3876]: {ex.Message}");
+                }
             }
+        }
 
-            DuFile.DeadDrop(Path.Combine(twsFramework.DataPath.LogRoot, $"framework-verified.{DateTime.Now:yyyyMMddHHmmss}"), "Framework verified.");
+        /// <summary>Gets all the framework paths.</summary>
+        /// <param name="twsFramework">The framework instance containing the paths.</param>
+        /// <returns>An array of all framework paths.</returns>
+        private static string[] FrameworkPaths(Framework twsFramework)
+        {
+            return new string[]
+            {
+                twsFramework.DataPath.AvatarGeneratedDataRoot,
+                twsFramework.DataPath.AppDataRoot,
+                twsFramework.DataPath.BlueprintRoot,
+                twsFramework.DataPath.ConfigRoot,
+                twsFramework.DataPath.ExportRoot,
+                twsFramework.DataPath.HistoryRoot,
+                twsFramework.DataPath.ImportRoot,
+                twsFramework.DataPath.LogRoot,
+                twsFramework.DataPath.OptObjErrorRoot,
+                twsFramework.DataPath.TranslationTableRoot,
+                twsFramework.DataPath.SessionRoot
+            };
         }
     }
 }

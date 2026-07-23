@@ -11,21 +11,23 @@ namespace TingenWebService.Configuration
     {
         public string SessionDate { get; set; }
         public string SessionTime { get; set; }
-        public string TngnWsvcBuild { get; set; }
+        public string WsvcBuild { get; set; }
         public string AvatarSystem { get; set; }
-        public string HostDataRoot { get; set; }
-        public string HostWwwRoot { get; set; }
+        public string DataRoot { get; set; }
+        public string WwwRoot { get; set; }
 
+        /// <summary>Loads the runtime configuration.</summary>
+        /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
         internal static RuntimeConfig Load()
         {
             return new RuntimeConfig()
             {
                 SessionDate   = DateTime.Now.ToString("yyMMdd"),
                 SessionTime   = DateTime.Now.ToString("HHmmss"),
-                TngnWsvcBuild = Settings.Default.TngnWsvcBuild,
+                WsvcBuild     = Settings.Default.TngnWsvcBuild,
                 AvatarSystem  = Settings.Default.AvatarSystem,
-                HostDataRoot  = Settings.Default.HostDataRoot,
-                HostWwwRoot   = Settings.Default.HostWwwRoot
+                DataRoot      = Settings.Default.HostDataRoot,
+                WwwRoot       = Settings.Default.HostWwwRoot
             };
         }
     }

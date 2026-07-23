@@ -8,6 +8,11 @@ namespace TingenWebService.Du
         // [260723]
         /// <summary>Ensures that the specified directory exists. If it does not exist, it will be created.</summary>
         /// <param name="path">The path of the directory to check or create.</param>
+        /// <example>
+        /// <code>
+        /// DuDirectory.EnsureDirectoryExists("C:\\Tingen_Data");
+        /// </code>
+        /// </example>
         public static void EnsureDirectoryExists(string path)
         {
             if (!System.IO.Directory.Exists(path))

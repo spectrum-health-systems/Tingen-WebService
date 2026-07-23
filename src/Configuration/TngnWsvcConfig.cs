@@ -10,6 +10,7 @@ namespace TingenWebService.Configuration
         public string TraceLogLevel { get; set; }
 
         public string LogDelay { get; set; }
+
         //internal static TngnWsvcConfig Load()
         //{
         //}
