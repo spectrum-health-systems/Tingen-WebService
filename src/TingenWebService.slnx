@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Dependencies/">
+    <Project Path="Dependencies/ScriptLinkStandard/ScriptLinkStandard/ScriptLinkStandard.csproj" />
+    <Project Path="Dependencies/SHFB-TingenWebService/SHFB-TingenWebService.shfbproj" Type="7cf6df6d-3b04-46f8-a40b-537d21bca0b4" Id="e7cdb67c-dd88-41ba-a222-4934fccafd05" />
+  </Folder>
+  <Project Path="TingenWebService.csproj" Id="009c28ff-3189-4cde-87a8-b032cadf6700" />
+</Solution>
