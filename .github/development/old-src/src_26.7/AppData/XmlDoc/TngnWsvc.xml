@@ -1,0 +1,99 @@
+﻿<!-- 260707 -->
+
+<TngnWsvc>
+
+    <Class name ="Project">
+
+        <!-- <include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Project"]/About/*'/> -->
+        <About>
+            <note type="information" title="About the Tingen Web Service">
+                Netsmart's <see href="https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar">AvatarNX™</see> is a
+                behavioral health Electronic Health Records application that offers a recovery-focused suite of
+                solutions that leverage real-time analytics and clinical decision support to drive value-based care.<br/>
+                <br/>
+                While AvatarNX™ is a robust platform, it isn't perfect. The good news is that you can extend AvatarNX™
+                functionality via Netsmart's Web Services and/or <i>custom web services</i> that are written by other
+                AvatarNX™ users.<br/>
+                <br/>
+                The <b>Tingen Web Service</b> is one such custom web service which includes various tools and utilities for
+                AvatarNX™ that aren't included in the official release, and provides a solid foundation for building
+                additional functionality quickly and efficiently.<br/>
+                <br/>
+                Please see the Tingen Web
+                Service <see href="https://github.com/spectrum-health-systems/Tingen-WebService">GitHub repository</see> for more information.
+            </note>
+        </About>
+
+        <!-- <include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Project"]/Documentation/*'/> -->
+        <Documentation>
+            <note type="information" title="Tingen Web Service documentation">
+                <see href = "https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/README.md">Manual</see>
+                <br/>
+                <see href = "https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm">API Documentation</see>
+                <br/>
+                <see href = "https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/devman/README.md">Development Manual</see>
+                <br/>
+                <see href = "https://github.com/spectrum-health-systems/Tingen-WebService/tree/development/docs/appendix">Appendix</see>
+                <br/>
+                <see href = "https://github.com/spectrum-health-systems/Tingen-WebService/tree/development/docs/glossary">Glossary</see>
+            </note>
+        </Documentation>
+
+        <!-- Currently not used -->
+        <SourceCodeComments>
+            <note type="information" title="Source code comments">
+            </note>
+        </SourceCodeComments>
+
+        <!-- Currently not used -->
+        <WorkflowDiagrams>
+            <note type="information" title="Workflow diagrams">
+            </note>
+        </WorkflowDiagrams>
+
+    </Class>
+
+    <Class name="Definition">
+
+        <!-- <include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Definition"]/AvatarEnvironment/*'/> -->
+        <AvatarEnvironment>
+            <note type="information" title="About Avatar Environments">
+                An <b>Avatar environment</b> consists of two components: the Avatar <i>System</i> and Avatar <i>System Code</i>.<br/>
+                <br/>
+                You can read more about Avatar Environments <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/appendix/AvatarEnvironment.md">here</see>.
+            </note>
+        </AvatarEnvironment>
+
+        <!-- <include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Definition"]/OptionObject/*'/> -->
+        <OptionObject>
+            <note type="information" title="About Avatar OptionObjects">
+                An Avatar <see cref="OptionObject2015"/> defines the XML contract required for use with myAvatar ScriptLink.<br/>
+                    <br/>
+                    The Tingen Web Services uses three different OptionObjects:
+                    <list type="bullet">
+                        <item>
+                        <see cref="Original"/>: The original OptionObject that is passed from myAvatar, and is never modified
+                    </item>
+                    <item>
+                        <see cref="Worker"/>: The working copy of the OptionObject that is used for processing, and may be modified as needed
+                    </item>
+                    <item>
+                        <see cref="Completed"/>: The completed OptionObject that is returned to myAvatar
+                    </item>
+                </list>
+                You can read more about OptionObjects <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/appendix/OptionObject.md">here</see>.
+            </note>
+        </OptionObject>
+
+        <!-- <include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Definition"]/ScriptParameter/*'/> -->
+        <ScriptParameter>
+            <note type="information" title="About the Avatar ScriptParameter">
+                The Avatar <see cref="ScriptParameter"/> tells the Tingen Web Service what action(s) to perform.<br/>
+                <br/>
+                You can read more about the Script Parameter <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/appendix/ScriptParameter.md">here</see>.
+            </note>
+        </ScriptParameter>
+
+    </Class>
+
+</TngnWsvc>

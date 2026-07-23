@@ -1,0 +1,261 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TingenWebService</RootNamespace>
+    <AssemblyName>TingenWebService</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44375</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>AppData\XmlDocumentation\Generated.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\tingen-documentation\sfhb\generated-xml\tingen-web-service.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\XmlDoc\Generated.xml" />
+    <Content Include="AppData\XmlDoc\TngnWsvc.xml" />
+    <Content Include="TingenWebService.asmx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Avatar\NsDoc.cs" />
+    <Compile Include="Core\Catalog\NsDoc.cs" />
+    <Compile Include="Core\Configuration\NsDoc.cs" />
+    <Compile Include="Core\Configuration\RuntimeConfig.cs" />
+    <Compile Include="Core\Du\NsDoc.cs" />
+    <Compile Include="Core\Framework\NsDoc.cs" />
+    <Compile Include="Core\Logger\NsDoc.cs" />
+    <Compile Include="Core\Maintenance\DailyMaintenance.cs" />
+    <Compile Include="Core\Maintenance\NsDoc.cs" />
+    <Compile Include="Core\Maintenance\SessionMaintenance.cs" />
+    <Compile Include="Core\Operation\NsDoc.cs" />
+    <Compile Include="Core\Parse\NsDoc.cs" />
+    <Compile Include="Core\Query\NsDoc.cs" />
+    <Compile Include="Core\TingenWsvcSession\NsDoc.cs" />
+    <Compile Include="Core\Translation\FormId.cs" />
+    <Compile Include="Core\Translation\NsDoc.cs" />
+    <Compile Include="Core\Translation\UserId.cs" />
+    <Compile Include="Module\DoseChangeEvaluationOtp\DoseChangeEvaluationOtpConfig.cs" />
+    <Compile Include="Module\DoseChangeEvaluationOtp\DoseChangeEvaluationOtpEvent.cs" />
+    <Compile Include="Module\DoseChangeEvaluationOtp\DoseChangeEvaluationOtpLogic.cs" />
+    <Compile Include="Module\DoseChangeEvaluationOtp\DoseChangeEvaluationOtpQuery.cs" />
+    <Compile Include="Module\DoseChangeEvaluationOtp\NsDoc.cs" />
+    <Compile Include="Module\OpenIncident\NsDoc.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentConfig.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentEvent.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentLogic.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentQuery.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentRequest.cs" />
+    <Compile Include="Module\TngnWsvc\Deployer.cs" />
+    <Compile Include="Module\TngnWsvc\NsDoc.cs" />
+    <Compile Include="Module\TngnWsvc\OptObjUtility.cs" />
+    <Compile Include="NsDoc.cs" />
+    <Compile Include="NtstWsvcLiveQuery\Query.cs" />
+    <Compile Include="NtstWsvcSboxQuery\Query.cs" />
+    <Compile Include="NtstWsvcUatNxQuery\Query.cs" />
+    <Compile Include="NtstWsvcUatQuery\Query.cs" />
+    <Compile Include="ProjectInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SuperLive\Query.cs" />
+    <Compile Include="TingenWebService.asmx.cs">
+      <DependentUpon>TingenWebService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\Avatar\AvatarEnvironment.cs" />
+    <Compile Include="Core\Avatar\AvatarOptionObject.cs" />
+    <Compile Include="Core\Avatar\AvatarScriptParameter.cs" />
+    <Compile Include="Core\Catalog\log_DoseChangeEval.cs" />
+    <Compile Include="Core\Catalog\msg_Framework.cs" />
+    <Compile Include="Core\Catalog\msg_Maintenance.cs" />
+    <Compile Include="Core\Catalog\msg_TngnWscv.cs" />
+    <Compile Include="Core\Du\DuJson.cs" />
+    <Compile Include="Core\Framework\TngnWsvcDataFolders.cs" />
+    <Compile Include="Core\Framework\TngnWsvcFramework.cs" />
+    <Compile Include="Core\Framework\TngnWsvcWwwFolders.cs" />
+    <Compile Include="Core\Logger\CriticalLog.cs" />
+    <Compile Include="Core\Logger\DebugLog.cs" />
+    <Compile Include="Core\Logger\ErrorLog.cs" />
+    <Compile Include="Core\Logger\HistoryLog.cs" />
+    <Compile Include="Core\Logger\LogComponents.cs" />
+    <Compile Include="Core\Logger\LogEvent.cs" />
+    <Compile Include="Core\Logger\LogSettings.cs" />
+    <Compile Include="Core\Logger\LogUtility.cs" />
+    <Compile Include="Core\Logger\SessionLog.cs" />
+    <Compile Include="Core\Logger\TraceLog.cs" />
+    <Compile Include="Core\Operation\AvatarField.cs" />
+    <Compile Include="Core\Parse\Request.cs" />
+    <Compile Include="Core\Query\QueryUserId.cs" />
+    <Compile Include="Core\TingenWsvcSession\TngnWsvcRuntime.cs" />
+    <Compile Include="Core\TingenWsvcSession\TngnWsvcSession.cs" />
+    <Compile Include="Core\TingenWsvcSession\TngnWsvcSessionError.cs" />
+    <Compile Include="Web References\NtstWsvcQueryUat\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppData\Blueprint\critical-error.blueprint">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\Blueprint\error.blueprint">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\Blueprint\session-log.blueprint">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\OptObjErrorMessage\unknown-parameter.ooem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\OptObjErrorMessage\tngnwsvc-test-complete.ooem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AppData\TranslationTable\form_id-form_name.trans">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\PublishToUAT.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\NtstWsvcQueryUat\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\NtstWsvcQueryUat\WEBSVC.wsdl" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ThirdParty\SandcastleHelpFileBuilder\" />
+    <Folder Include="ThirdParty\ScriptLinkStandard\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://spectrumnxuat.netsmartcloud.com/csp/spectrumuat/avpm/WEBSVC.Query.CLS%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\NtstWsvcQueryUat\</RelPath>
+      <UpdateFromURL>https://spectrumnxuat.netsmartcloud.com/csp/spectrumuat/avpm/WEBSVC.Query.CLS%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TingenWebService_NtstWsvcQueryUat_Query</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="ThirdParty\ScriptLinkStandard\ScriptLinkStandard.csproj">
+      <Project>{02280850-8b40-587b-e82b-43c3ab021b2b}</Project>
+      <Name>ScriptLinkStandard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62240</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44341/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

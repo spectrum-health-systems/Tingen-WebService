@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.1.11312.151
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TingenWebService", "TingenWebService.csproj", "{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptLinkStandard", "ThirdParty\ScriptLinkStandard\ScriptLinkStandard.csproj", "{02280850-8B40-587B-E82B-43C3AB021B2B}"
+EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "shfb-Tingen-WebService", "ThirdParty\SandcastleHelpFileBuilder\shfb-Tingen-WebService.shfbproj", "{0206B946-4C96-4501-BC05-B3366089F28F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A3CB650-07A8-43A3-B20C-743FEB8C7A8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02280850-8B40-587B-E82B-43C3AB021B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02280850-8B40-587B-E82B-43C3AB021B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02280850-8B40-587B-E82B-43C3AB021B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02280850-8B40-587B-E82B-43C3AB021B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0206B946-4C96-4501-BC05-B3366089F28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0206B946-4C96-4501-BC05-B3366089F28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0206B946-4C96-4501-BC05-B3366089F28F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {703B9C13-B087-4CB5-854D-946C9AE885BD}
+	EndGlobalSection
+EndGlobal

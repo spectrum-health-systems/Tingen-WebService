@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TingenWebService.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AvatarSystem" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">UAT</Value>
+    </Setting>
+    <Setting Name="Mode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Enabled</Value>
+    </Setting>
+    <Setting Name="TraceLogLimit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ServerWwwPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Tingen_www\WebService</Value>
+    </Setting>
+    <Setting Name="ServerDataPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Tingen_Data\WebService</Value>
+    </Setting>
+    <Setting Name="NtstWsvcUserName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">unassigned</Value>
+    </Setting>
+    <Setting Name="NtstWsvcUserPass" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">unassigned</Value>
+    </Setting>
+    <Setting Name="BuildNumber" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">260722</Value>
+    </Setting>
+    <Setting Name="SessionLogLimit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="TingenWebService_NtstWsvcQueryUat_Query" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://spectrumnxuat.netsmartcloud.com/csp/spectrumuat/avpm/WEBSVC.Query.cls</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

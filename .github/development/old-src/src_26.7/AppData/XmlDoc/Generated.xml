@@ -1,0 +1,2737 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TingenWebService</name>
+    </assembly>
+    <members>
+        <member name="T:TingenWebService.Core.Avatar.NamespaceDoc">
+            <summary>Logic related to Avatar-specific data.</summary>
+            <remarks>
+            Avatar-specific data is any data that is sent to or received from the Avatar system, including
+            <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject"> OptionObjects</see>, the <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter"> Script Parameter</see>,
+            and <see cref="T:TingenWebService.Core.Avatar.AvatarEnvironment"> Avatar environment details</see>.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Avatar.md">TingenWebService.Core.Avatar namespace documentation</seealso> 
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:TingenWebService.Core.Avatar.AvatarEnvironment" -->
+        <member name="P:TingenWebService.Core.Avatar.AvatarEnvironment.AvatarSystem">
+            <summary>The Avatar <i>System</i> that will interface with the Tingen Web Service.</summary>
+            <value>The Avatar system name (example: <c>SBOX</c>, <c>UAT</c>, or <c>LIVE</c>).</value>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarEnvironment.md#avatar-system">Glossary: Avatar System</seealso>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarEnvironment.AvatarSystemCode">
+            <summary>The <i>System Code</i> that identifies the Avatar system.</summary>
+            <value>The Avatar system code (example: <c>LIVE</c>), that often mirrors <see cref="P:TingenWebService.Core.Avatar.AvatarEnvironment.AvatarSystem"/>.</value>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarEnvironment.md#avatar-system-code">Glossary: Avatar System Code</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Avatar.AvatarOptionObject">
+            <summary>Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"> OptionObject</see> logic.</summary>
+            <remarks>
+            <note type="information" title="About Avatar OptionObjects">
+                An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> defines the XML contract required for use with myAvatar ScriptLink.<br />
+                <br />
+                The Tingen Web Services uses three different OptionObjects:
+                <list type="bullet">
+                    <item>
+                        <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.Original" />: The original OptionObject that is passed from myAvatar, and is never modified
+                    </item>
+                    <item>
+                        <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.Worker" />: The working copy of the OptionObject that is used for processing, and may be modified as needed
+                    </item>
+                    <item>
+                        <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.Completed" />: The completed OptionObject that is returned to myAvatar
+                    </item>
+                </list>
+                You can read more about OptionObjects <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarOptionObject.md">here</see>.
+            </note>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.ExeAsm">
+            <summary>The name of the executing assembly, used for logging purposes.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.Original">
+            <summary>The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> received from Avatar.</summary>
+            <remarks>
+            This is <i>never</i> modified by the Tingen Web Service.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarOptionObject.md">Glossary: OptionObjects</seealso>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.Worker">
+            <summary>The working copy of the <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> used during processing.</summary>
+            <remarks>
+            This is <i>potentially</i> modified during processing.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarOptionObject.md">Glossary: OptionObjects</seealso>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.Completed">
+            <summary>The completed <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> ready to be returned to Avatar.</summary>
+            <remarks>
+            This is the <i>final</i> version of the <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> that is returned to Avatar.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarOptionObject.md">Glossary: OptionObjects</seealso>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.VerifyExistence(ScriptLinkStandard.Objects.OptionObject2015)">
+            <summary>Verify whether an <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> was received from Avatar.</summary>
+            <param name="origOptObj">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to verify.</param>
+            <returns>A message indicating whether an <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> was sent.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ToReturn(System.Object,System.Int32,System.String)">
+             <summary>Finalize the <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> so it can be returned to Avatar.</summary>
+             <remarks>
+             Two things are done here:
+             <list type="number">
+             <item>The <c>working</c> <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> is cloned into the <c>completed</c> object.</item>
+             <item>The <c>completed</c> object is finalized by calling the <c>ToReturnOptionObject</c> ScriptLinkStandard method.</item>
+             </list>
+             <note type="tip" title="OptionObject Error Codes">
+                You can read more about OptionObject Error Codes <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/OptionObject.md#Error-Codes">here</see>. <br />
+            </note>
+             </remarks>
+             <param name="tngnWsvcSession">The current Tingen Web Service session.</param>
+             <param name="errCode">The error code that is returned with the <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" />.</param>
+             <param name="errMsg">An optional error message that is returned with the <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" />.</param>
+             <example>
+             <code>
+             // Return successfully:
+             AvatarOptionObject.ToReturn(tngnWsvcSession, 0);
+            
+             // Return with an error:
+             AvatarOptionObject.ToReturn(tngnWsvcSession, 1, "You shall not pass!");
+             </code>
+             </example>
+             <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/glossary/AvatarOptionObject.md">Glossary: OptionObjects</seealso>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptObj(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Export a <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to HTML and JSON files.</summary>
+            <remarks>
+            Writes the <paramref name="origOptObj"/> contents to HTML/JSON files.<br/>
+            <br/>
+            This is primarily used for troubleshooting.
+            </remarks>
+            <param name="origOptObj">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to export.</param>
+            <param name="exportPath">The directory path where the exported files will be saved.</param>
+            <example>
+            <code>
+            AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\exports");
+            // Produces:
+            //   C:\Tingen_Data\exports\exported-optionobject-20260515_103045.html
+            //   C:\Tingen_Data\exports\exported-optionobject-20260515_103045.json
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Avatar.AvatarScriptParameter">
+            <summary>Avatar Script Parameter logic.</summary>
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ScriptParameter/*" />
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarScriptParameter.ExeAsm">
+            <summary>The name of the executing assembly, used for logging purposes.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Avatar.AvatarScriptParameter.OriginalScriptParameter">
+            <summary>The original script parameter sent by Avatar.</summary>
+            <value>A string that tells the Tingen Web Service which action(s) to perform.</value>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.VerifyExistence(System.String)">
+             <summary>Verify whether a script parameter was sent from Avatar.</summary>
+             <remarks>Pretty straight forward.</remarks>
+             <param name="origScriptParam">The original script parameter to verify.</param>
+             <returns>A message indicating whether the script parameter exists.</returns>
+             <example>
+             <code>
+             var message = AvatarScriptParameter.VerifyExistence("_OpenIncident");
+             Console.WriteLine(message);
+             // Output: "The sent script parameter ('_OpenIncident') does exist."
+            
+             var missing = AvatarScriptParameter.VerifyExistence("");
+             Console.WriteLine(missing);
+             // Output: "The sent script parameter ('') does not exist."
+             </code>
+             </example>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.Parse(System.Object)">
+             <summary>Route the request.</summary>
+             <remarks>
+             Routes to <see cref="M:TingenWebService.Core.Avatar.AvatarScriptParameter.SpecificFormRequest(System.String,System.Object)"/> when the original script parameter starts with an underscore;
+             otherwise routes to <see cref="M:TingenWebService.Core.Avatar.AvatarScriptParameter.StandAloneRequest(System.Object)"/>.
+             </remarks>
+             <param name="tngnWsvcSession">The session object containing script parameter and request information.</param>
+             <example>
+             <code>
+             // Routes to SpecificFormRequest when prefixed with "_":
+             tngnWsvcSession.ScriptParameter.OriginalScriptParameter = "_OpenIncident";
+             AvatarScriptParameter.Parse(tngnWsvcSession);
+            
+             // Routes to StandAloneRequest otherwise:
+             tngnWsvcSession.ScriptParameter.OriginalScriptParameter = "catchoptionobject";
+             AvatarScriptParameter.Parse(tngnWsvcSession);
+             </code>
+             </example>
+             <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/TheScriptParameter.md">The Script Parameter</seealso>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.SpecificFormRequest(System.String,System.Object)">
+            <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
+            <remarks>
+            Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
+            translation table.<br/>
+            <br/>
+            Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
+            respective event parsers.
+            </remarks>
+            <param name="specificFormName">The name of the specific form to handle.</param>
+            <param name="tngnWsvcSession">The web service session object containing form data and module event parsers.</param>
+            <example>
+            <code>
+            AvatarScriptParameter.SpecificFormRequest("OpenIncident", tngnWsvcSession);
+            AvatarScriptParameter.SpecificFormRequest("DoseChangeEvaluationOtp", tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.StandAloneRequest(System.Object)">
+            <summary>Handles stand-alone requests by routing to the appropriate module or generating an error.</summary>
+            <remarks>
+            Reserves script parameters that start with <c>tngnwsvc</c> for administrative requests, dispatches
+            <c>catchoptionobject</c> to the option object utility, and otherwise emits a hard error indicating the
+            script parameter was not found in the translation table.
+            </remarks>
+            <param name="tngnWsvcSession">The web service session object containing request information.</param>
+            <example>
+            <code>
+            // Dispatches to OptObjUtility.CatchOptionObject:
+            tngnWsvcSession.ScriptParameter.OriginalScriptParameter = "catchoptionobject";
+            AvatarScriptParameter.StandAloneRequest(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.GetFormName(System.Object)">
+            <summary>Gets the form name from the translation table based on the original option ID sent by Avatar.</summary>
+            <param name="tngnWsvcSession">The session object containing the original option ID and translation table.</param>
+            <returns>The name of the form corresponding to the original option ID.</returns>
+            <example>
+            <code>
+            var formName = AvatarScriptParameter.GetFormName(tngnWsvcSession);
+            Console.WriteLine($"Resolved form name: {formName}");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Catalog.NamespaceDoc">
+            <summary>Message catalog helpers used throughout the Tingen Web Service</summary>
+            <remarks>
+            This namespace contains helper types that build consistent user-facing and log messages for common
+            Tingen Web Service scenarios, such as maintenance tasks, framework events, and service status updates.<br/>
+            <br/>
+            This information is used to build messages and other informational content in a consistent way across the
+            Tingen Web Service codebase. By centralizing this information, we can ensure that log messages are uniform and
+            easily maintainable.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Catalog.md">TingenWebService.Core.Catalog namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Catalog.log_DoseChangeEval">
+            <summary>Log message catalog for Dose Change Evaluation OTP functionality.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.log_DoseChangeEval.PrescriberIsAuthorizing(System.String,System.String,System.String)">
+            <summary>Build the log message used when the prescriber is authorizing an order.</summary>
+            <remarks>
+            Helps identify whether the prescriber or a pharmacist is authorizing an order, which assists with
+            troubleshooting issues in the order authorization process.
+            </remarks>
+            <param name="callerInfo">Information about the calling class, method, and line.</param>
+            <param name="staffMemberIdQuery">The staff member ID query string used for the lookup.</param>
+            <param name="physicianApprover">The physician or approver associated with the order.</param>
+            <returns>An array of log message lines describing the prescriber authorization event.</returns>
+            <example>
+            <code>
+            var callerInfo = LogComponents.GetCallerInfo();
+            var logLines   = log_DoseChangeEval.PrescriberIsAuthorizing(callerInfo, "SELECT * FROM staff WHERE Id = '12345'", "Dr. Jane Smith");
+            foreach (var line in logLines)
+            {
+                Console.WriteLine(line);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Catalog.msg_Framework">
+            <summary>User message catalog for Framework functionality.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_Framework.CreateFolder(System.String)">
+            <summary>Build the user message for when a framework-related folder is created.</summary>
+            <param name="folderName">The name of the folder that was created.</param>
+            <returns>A formatted, timestamped user message describing the folder creation.</returns>
+            <example>
+            <code>
+            var userMessage = msg_Framework.CreateFolder(@"C:\Tingen_Data\Logs");
+            Console.WriteLine(userMessage);
+            // Output:
+            // [2026-05-15 10:30:45.12345] Folder "C:\Tingen_Data\Logs" did not exist, and was created...
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Catalog.msg_Maintenance">
+            <summary>User message catalog for Maintenance functionality.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_Maintenance.RefreshTranslations(System.String)">
+             <summary>Build the user message for refreshing translation tables.</summary>
+             <remarks>
+             Returns a "start" message when <paramref name="tableName"/> is supplied, or a "complete" message when it is
+             omitted or empty.
+             </remarks>
+             <param name="tableName">The name of the translation table being refreshed, or empty to indicate completion.</param>
+             <returns>A timestamped user message describing the translation refresh status.</returns>
+             <example>
+             <code>
+             // Start message:
+             Console.WriteLine(msg_Maintenance.RefreshTranslations("FormId"));
+             // Output: [2026-05-15 10:30:45.12345] Refreshing the FormId translation table...
+            
+             // Completion message:
+             Console.WriteLine(msg_Maintenance.RefreshTranslations());
+             // Output: complete. [2026-05-15 10:30:46.54321]
+             </code>
+             </example>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_Maintenance.RefreshBlueprints(System.String)">
+             <summary>Build the user message emitted while refreshing blueprints.</summary>
+             <remarks>
+             Returns a "start" message when <paramref name="tableName"/> is supplied, or a "complete" message when it is
+             omitted or empty.
+             </remarks>
+             <param name="tableName">The name of the blueprint table being refreshed, or empty to indicate completion.</param>
+             <returns>A timestamped user message describing the blueprint refresh status.</returns>
+             <example>
+             <code>
+             // Start message:
+             Console.WriteLine(msg_Maintenance.RefreshBlueprints("ErrorMessages"));
+             // Output: [2026-05-15 10:30:45.12345] Refreshing the ErrorMessages translation table...
+            
+             // Completion message:
+             Console.WriteLine(msg_Maintenance.RefreshBlueprints());
+             // Output: complete. [2026-05-15 10:30:46.54321]
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Catalog.msg_TngnWscv">
+            <summary>Provides Tingen Web Service log message catalogs.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_TngnWscv.MissingComponent(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Builds the log message emitted when a required request component is missing.</summary>
+            <param name="origOptObj">The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> received with the request.</param>
+            <param name="origScriptParam">The original script parameter received with the request.</param>
+            <returns>A formatted log message describing the missing component(s).</returns>
+            <example>
+            <code>
+            var logMessage = msg_TngnWscv.MissingComponent(sentOptionObject, "_OpenIncident");
+            Console.WriteLine(logMessage);
+            // Output:
+            // The OptionObject ("ScriptLinkStandard.Objects.OptionObject2015") and/or Script Parameter ("_OpenIncident") are missing.
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_TngnWscv.DisabledMode">
+            <summary>Builds the log message emitted when the Tingen Web Service is disabled.</summary>
+            <returns>A log message indicating that the Tingen Web Service is disabled.</returns>
+            <example>
+            <code>
+            Console.WriteLine(msg_TngnWscv.DisabledMode());
+            // Output: The Tingen Web Service is disabled
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Catalog.msg_TngnWscv.UnknownMode">
+            <summary>Builds the log message emitted when the Tingen Web Service is in an unknown mode.</summary>
+            <returns>A log message indicating that the Tingen Web Service is in an unknown state.</returns>
+            <example>
+            <code>
+            Console.WriteLine(msg_TngnWscv.UnknownMode());
+            // Output: The Tingen Web Service is in an unknown state
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Configuration.NamespaceDoc">
+            <summary>Configuration values and runtime settings for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains types that load, validate, and expose application configuration values used
+            by the Tingen Web Service at runtime.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Configuration.md">TingenWebService.Core.Configuration namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Configuration.RuntimeConfig">
+            <summary>Runtime configuration logic.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Configuration.RuntimeConfig.Load(TingenWebService.Properties.Settings,System.String)">
+             <summary>Load the runtime configuration values from the Web.config settings.</summary>
+             <remarks>
+             When a new setting is added to the Web.config file, it must also be added to this method.
+             </remarks>
+             <param name="webConfig">The strongly-typed <see cref="T:TingenWebService.Properties.Settings"/> instance representing Web.config values.</param>
+             <param name="tngnWsvcVersion">The current version string of the Tingen Web Service.</param>
+             <returns>A dictionary containing the runtime configuration settings keyed by setting name.</returns>
+             <example>
+             <code>
+             var runtimeConfig = RuntimeConfig.Load(Settings.Default, "1.2.3");
+             var avatarSystem  = runtimeConfig["AvatarSystem"];
+             var mode          = runtimeConfig["Mode"];
+            
+             Console.WriteLine($"Avatar system: {avatarSystem}, Mode: {mode}");
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Du.NamespaceDoc">
+            <summary>Data utility helpers used by the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains helper types for working with local data operations, including JSON file
+            export and import support.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Du.md">TingenWebService.Core.Du namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Du.DuJson">
+            <summary>JSON data logic.</summary>
+            <remarks>Logging is disabled.</remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Du.DuJson.ExportToLocalFile``1(``0,System.String,System.Boolean)">
+             <summary>Export an object to a local JSON file.</summary>
+             <remarks>
+             The JSON is written with indentation by default; pass <c>false</c> for <paramref name="formatJson"/> to
+             disable formatting.<br/>
+             <br/>
+             .NET Framework 4.8 does not support <c>System.Text.Json</c>, so the object's
+             <see cref="M:System.Object.ToString"/> representation is written to the file.
+             </remarks>
+             <typeparam name="JsonObject">The type of the object to be serialized to JSON.</typeparam>
+             <param name="jsonObject">The object to be serialized to JSON.</param>
+             <param name="filePath">The path of the file to which the JSON will be written.</param>
+             <param name="formatJson">Indicates whether the JSON should be formatted with indentation.</param>
+             <example>
+             <code>
+             var settings = new { AvatarSystem = "LIVE", Mode = "enabled" };
+            
+             // Write with indentation:
+             DuJson.ExportToLocalFile(settings, @"C:\Tingen_Data\config\settings.json");
+            
+             // Write without indentation:
+             DuJson.ExportToLocalFile(settings, @"C:\Tingen_Data\config\settings.json", formatJson: false);
+             </code>
+             </example>
+        </member>
+        <member name="M:TingenWebService.Core.Du.DuJson.ImportFromLocalFile``1(System.String)">
+            <summary>Import a local JSON file and deserialize it into an object of the specified type.</summary>
+            <typeparam name="JsonObject">The type of the object to be deserialized from JSON.</typeparam>
+            <param name="filePath">The path of the file from which the JSON will be read.</param>
+            <returns>The deserialized object from the JSON file, or the default value of <typeparamref name="JsonObject"/>.</returns>
+            <example>
+            <code>
+            var settings = DuJson.ImportFromLocalFile&lt;AppSettings&gt;(@"C:\Tingen_Data\config\settings.json");
+            if (settings != null)
+            {
+                Console.WriteLine(settings.AvatarSystem);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Framework.NamespaceDoc">
+            <summary>Core framework support for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains types that initialize and verify the Tingen Web Service runtime framework,
+            including data and WWW folder structures.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Framework.md">TingenWebService.Core.Framework namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Framework.TngnWsvcDataFolders">
+            <summary>Data folder paths used by the Tingen Web Service.</summary>
+            <remarks>
+            Each property holds an absolute path to a specific folder in the server data directory structure.<br/>
+            <br/>
+            Use <see cref="M:TingenWebService.Core.Framework.TngnWsvcDataFolders.Load(System.String,System.String,System.String,System.String,System.String)"/> to create a populated instance for a given session context.
+            </remarks>
+            <seealso href="TngnWsvcDataFolders"/>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AvatarGeneratedData">
+            <summary>Avatar-generated data.</summary>
+            <remarks>
+            Avatar-generated data is data that is generated by Avatar (duh), and used by the Tingen Web Service.<br/>
+            <br/>
+            This is the only folder that is not under <c>%DataRoot%</c>, since it is shared across all Avatar systems.<br/>
+            </remarks>
+            <value>ex. <c>C:\Tingen_Data\AvatarGeneratedData</c></value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.DataRoot">
+            <summary>A specific Avatar system's data.</summary>
+            <remarks>
+            Each Avatar system (e.g. LIVE, UAT) has its own <c>%DataRoot%</c> folder.<br/>
+            </remarks>
+            <value>ex. <c>C:\Tingen_Data\LIVE</c></value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot">
+            <summary>Application data root folder.</summary>
+            <value>An absolute path to the <c>AppData</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.DataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Blueprint">
+            <summary>The path to the Blueprint folder.</summary>
+            <value>An absolute path to the <c>Blueprint</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Config">
+            <summary>The path to the Config folder.</summary>
+            <value>An absolute path to the <c>Config</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Export">
+            <summary>The path to the Export folder.</summary>
+            <value>An absolute path to the <c>Export</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.History">
+            <summary>The path to the History folder.</summary>
+            <value>An absolute path to the <c>History</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Import">
+            <summary>The path to the Import folder.</summary>
+            <value>An absolute path to the <c>Import</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Log">
+            <summary>The path to the Log folder.</summary>
+            <value>An absolute path to the <c>Log</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.OptObjErrorMessage">
+            <summary>The path to the OptObjErrorMessage folder.</summary>
+            <value>An absolute path to the <c>OptObjErrorMessage</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.TranslationTable">
+            <summary>The path to the TranslationTable folder.</summary>
+            <value>An absolute path to the <c>TranslationTable</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.AppDataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.ArchiveRoot">
+            <summary>The path to the archive root folder.</summary>
+            <value>An absolute path to the <c>Archive</c> subdirectory under <see cref="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.DataRoot"/>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcDataFolders.Session">
+            <summary>The path to the session-specific folder.</summary>
+            <value>An absolute path scoped to the current user, session date, and session start time.</value>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.TngnWsvcDataFolders.Load(System.String,System.String,System.String,System.String,System.String)">
+             <summary>Creates a fully populated <see cref="T:TingenWebService.Core.Framework.TngnWsvcDataFolders"/> instance for the given session context.</summary>
+             <remarks>
+             All paths are constructed as absolute paths rooted at <paramref name="serverDataPath"/> and the
+             supplied <paramref name="avatarSystem"/>.
+             </remarks>
+             <param name="avatarSystem">The name of the Avatar system, used as a subfolder under <paramref name="serverDataPath"/>.</param>
+             <param name="avatarUserId">The Avatar user ID, used to scope the session path to a specific user.</param>
+             <param name="serverDataPath">The root server data path from which all folder paths are derived.</param>
+             <param name="sessionDate">The date of the session, used as a subfolder in the session path.</param>
+             <param name="sessionStartTime">The start time of the session, used as the innermost subfolder in the session path.</param>
+             <returns>A new <see cref="T:TingenWebService.Core.Framework.TngnWsvcDataFolders"/> instance with all folder paths populated.</returns>
+             <example>
+             <code>
+             var folders = TngnWsvcDataFolders.Load(
+                 avatarSystem:     "LIVE",
+                 avatarUserId:     "jsmith",
+                 serverDataPath:   @"C:\Tingen_Data",
+                 sessionDate:      "2026-05-15",
+                 sessionStartTime: "103045");
+            
+             Console.WriteLine(folders.DataRoot);
+             // Output: C:\Tingen_Data\LIVE
+            
+             Console.WriteLine(folders.AppDataRoot);
+             // Output: C:\Tingen_Data\LIVE\AppData
+            
+             Console.WriteLine(folders.Session);
+             // Output: C:\Tingen_Data\LIVE\Session\2026-05-15\jsmith\103045
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Framework.TngnWsvcFramework">
+            <summary>Provides core framework initialization and verification for the Tingen web service.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcFramework.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="../../AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcFramework.TngnWsvcDataFolder">
+            <summary>The data folder paths for the Tingen web service.</summary>
+            <value>A <see cref="T:TingenWebService.Core.Framework.TngnWsvcDataFolders"/> instance containing all relevant data folder paths.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcFramework.TngnWsvcWwwFolder">
+            <summary>The WWW folder paths for the Tingen web service.</summary>
+            <value>A <see cref="T:TingenWebService.Core.Framework.TngnWsvcWwwFolders"/> instance containing all relevant WWW folder paths.</value>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.TngnWsvcFramework.Load(System.String,System.String,System.String,System.String,System.String,System.String)">
+             <summary>Creates and returns a fully initialized <see cref="T:TingenWebService.Core.Framework.TngnWsvcFramework"/> instance.</summary>
+             <remarks>Loads both the data and WWW folder structures for the current session.</remarks>
+             <param name="avatarSystem">The Avatar system identifier.</param>
+             <param name="avatarUserId">The Avatar user ID for the current session.</param>
+             <param name="serverDataPath">The root server path for data storage.</param>
+             <param name="serverWwwPath">The root server path for WWW content.</param>
+             <param name="sessionDate">The date of the current session.</param>
+             <param name="sessionStartTime">The start time of the current session.</param>
+             <returns>A new <see cref="T:TingenWebService.Core.Framework.TngnWsvcFramework"/> instance with all folder paths initialized.</returns>
+             <example>
+             <code>
+             var framework = TngnWsvcFramework.Load(
+                 avatarSystem:     "LIVE",
+                 avatarUserId:     "jsmith",
+                 serverDataPath:   @"C:\Tingen_Data",
+                 serverWwwPath:    @"C:\inetpub\wwwroot",
+                 sessionDate:      "2026-05-15",
+                 sessionStartTime: "103045");
+            
+             Console.WriteLine(framework.TngnWsvcDataFolder.Log);
+             // Output: C:\Tingen_Data\LIVE\AppData\Log
+            
+             Console.WriteLine(framework.TngnWsvcWwwFolder.WwwRoot);
+             // Output: C:\inetpub\wwwroot\LIVE
+             </code>
+             </example>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.TngnWsvcFramework.Verify(TingenWebService.Core.Framework.TngnWsvcFramework,System.Int32,System.String,System.String)">
+             <summary>Verifies the framework state and ensures required data folders exist.</summary>
+             <remarks>
+             Iterates over all properties of <see cref="T:TingenWebService.Core.Framework.TngnWsvcDataFolders"/> and creates any missing directories whose
+             paths contain the <paramref name="avatarSystem"/> identifier.
+             </remarks>
+             <param name="tngnWsvcFramework">The <see cref="T:TingenWebService.Core.Framework.TngnWsvcFramework"/> instance to verify.</param>
+             <param name="traceLogLimit">The trace log limit used during verification.</param>
+             <param name="avatarSystem">The Avatar system identifier used to filter relevant folder paths.</param>
+             <param name="sessionDate">The date of the current session.</param>
+             <example>
+             <code>
+             var framework = TngnWsvcFramework.Load(
+                 "LIVE", "jsmith", @"C:\Tingen_Data", @"C:\inetpub\wwwroot",
+                 "2026-05-15", "103045");
+            
+             // Ensure all "LIVE" data folders exist on disk:
+             TngnWsvcFramework.Verify(framework, traceLogLimit: 3, avatarSystem: "LIVE", sessionDate: "2026-05-15");
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Framework.TngnWsvcWwwFolders">
+            <summary>Represents the WWW folder paths used by the Tingen Web Service.</summary>
+            <remarks>
+            Each property holds an absolute path to a specific folder under the server's WWW root for a given
+            Avatar system.<br/>
+            <br/>
+            Use <see cref="M:TingenWebService.Core.Framework.TngnWsvcWwwFolders.Load(System.String,System.String)"/> to create a populated instance.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.WwwRoot">
+            <summary>The root WWW folder for the Avatar system.</summary>
+            <value>An absolute path in the form <c>{serverWwwPath}\{avatarSystem}</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.AppDataRoot">
+            <summary>The application data root folder under the Avatar system's <c>bin</c> directory.</summary>
+            <value>An absolute path in the form <c>{serverWwwPath}\{avatarSystem}\bin\AppData</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.Blueprint">
+            <summary>The Blueprint folder under <see cref="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.AppDataRoot"/>.</summary>
+            <value>An absolute path in the form <c>{serverWwwPath}\{avatarSystem}\bin\AppData\Blueprint</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.OptObjErrorMessage">
+            <summary>The OptObjErrorMessage folder under <see cref="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.AppDataRoot"/>.</summary>
+            <value>An absolute path in the form <c>{serverWwwPath}\{avatarSystem}\bin\AppData\OptObjErrorMessage</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.TranslationTable">
+            <summary>The TranslationTable folder under <see cref="P:TingenWebService.Core.Framework.TngnWsvcWwwFolders.AppDataRoot"/>.</summary>
+            <value>An absolute path in the form <c>{serverWwwPath}\{avatarSystem}\bin\AppData\TranslationTable</c>.</value>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.TngnWsvcWwwFolders.Load(System.String,System.String)">
+             <summary>Creates a fully populated <see cref="T:TingenWebService.Core.Framework.TngnWsvcWwwFolders"/> instance for the given Avatar system.</summary>
+             <remarks>
+             All paths are constructed by combining <paramref name="serverWwwPath"/> and
+             <paramref name="avatarSystem"/>.
+             </remarks>
+             <param name="avatarSystem">The name of the Avatar system subdirectory under the WWW root.</param>
+             <param name="serverWwwPath">The absolute path to the server's WWW root directory.</param>
+             <returns>A new <see cref="T:TingenWebService.Core.Framework.TngnWsvcWwwFolders"/> instance with all folder paths populated.</returns>
+             <example>
+             <code>
+             var wwwFolders = TngnWsvcWwwFolders.Load("LIVE", @"C:\inetpub\wwwroot");
+            
+             Console.WriteLine(wwwFolders.WwwRoot);
+             // Output: C:\inetpub\wwwroot\LIVE
+            
+             Console.WriteLine(wwwFolders.AppDataRoot);
+             // Output: C:\inetpub\wwwroot\LIVE\bin\AppData
+            
+             Console.WriteLine(wwwFolders.Blueprint);
+             // Output: C:\inetpub\wwwroot\LIVE\bin\AppData\Blueprint
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.NamespaceDoc">
+            <summary>Logging support for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains helpers for creating debug, history, session, trace, error, and critical log
+            entries, along with shared logging settings and file-path utilities.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Logger.md">TingenWebService.Core.Logger namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.Logger.CriticalLog">
+            <summary>Provides helpers for creating critical error log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.CriticalLog.Create(System.String,System.Object,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Creates critical log files for the current user session and the shared log folder.</summary>
+            <remarks>
+            This method loads the critical error blueprint, formats the log content, and writes the resulting log file
+            to both the session-specific log folder and the shared log folder.
+            </remarks>
+            <param name="avatarUserId">The Avatar user identifier used when building the log file name.</param>
+            <param name="tngnWsvcDataFolder">The data folder object that provides the blueprint, session, and log paths.</param>
+            <param name="logTitle">The title prefix used when building the log file name.</param>
+            <param name="logMsg">The message to include in the critical log entry.</param>
+            <param name="exeAsm">The assembly name associated with the log entry.</param>
+            <param name="classPath">The full class path associated with the log entry.</param>
+            <param name="methodName">The method name associated with the log entry.</param>
+            <param name="lineNumber">The source line number associated with the log entry.</param>
+            <example>
+            <code>
+            CriticalLog.Create(
+                avatarUserId:       "jsmith",
+                tngnWsvcDataFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder,
+                logTitle:           "WSVC9999",
+                logMsg:             "Unhandled exception while processing request.",
+                exeAsm:             AvatarOptionObject.ExeAsm,
+                classPath:          "Core/Avatar/AvatarOptionObject.cs",
+                methodName:         "ToReturn",
+                lineNumber:         57);
+            // Writes:
+            //   {Session}\WSVC9999-jsmith.critical
+            //   {Log}\WSVC9999-jsmith.critical
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.CriticalLog.LogContent(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+             <summary>Builds the critical log content by replacing blueprint tokens with runtime values.</summary>
+             <remarks>
+             The returned string is created from <paramref name="logBlueprint"/> by replacing the standard log
+             placeholders with the provided message, assembly, class, method, and line values.
+             </remarks>
+             <param name="logBlueprint">The blueprint template containing the placeholders to replace.</param>
+             <param name="logMsg">The message to insert into the log content.</param>
+             <param name="exeAsm">The assembly name to insert into the log content.</param>
+             <param name="classPath">The full class path used to derive the class name for the log content.</param>
+             <param name="methodName">The method name to insert into the log content.</param>
+             <param name="lineNumber">The source line number to insert into the log content.</param>
+             <returns>A formatted critical log entry string.</returns>
+             <example>
+             <code>
+             var blueprint =
+                 "[~SESSION~DATE~TIME~] ~ASSEMBLY~::~CLASS~.~METHOD~ (line ~LINE~): ~LOG~MESSAGE~";
+            
+             var content = CriticalLog.LogContent(
+                 logBlueprint: blueprint,
+                 logMsg:       "Database connection failed.",
+                 exeAsm:       "TingenWebService",
+                 classPath:    "Core/Avatar/AvatarOptionObject.cs",
+                 methodName:   "ToReturn",
+                 lineNumber:   57);
+            
+             Console.WriteLine(content);
+             // Example output:
+             // [05/15/2026-10:30:45] TingenWebService::AvatarOptionObject.ToReturn (line 57): Database connection failed.
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.DebugLog">
+            <summary>Provides helpers for writing development debug log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.DebugLog.Create(System.String,System.String,System.String,System.Int32)">
+            <summary>Creates a debug log file for the supplied message and source location.</summary>
+            <remarks>
+            This method pauses briefly before writing the log entry and stores the file in the local development debug
+            folder using a timestamp-based file name.
+            </remarks>
+            <param name="logMsg">The debug message to write to the log file.</param>
+            <param name="classPath">The full class path used to derive the class name in the log file name.</param>
+            <param name="methodName">The method name included in the log file name.</param>
+            <param name="lineNumber">The source line number included in the log file name.</param>
+            <example>
+            <code>
+            DebugLog.Create(
+                logMsg:     "Reached validation step with value = 42",
+                classPath:  "Core/Avatar/AvatarOptionObject.cs",
+                methodName: "ToReturn",
+                lineNumber: 57);
+            // Writes a file similar to:
+            //   C:\Tingen_Data\.development\debug\3045-12345-AvatarOptionObject-ToReturn-57.debug
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.ErrorLog">
+            <summary>Provides helpers for creating error log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.ErrorLog.Create(System.String,System.Object,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Creates error log files for the current user session and the shared log folder.</summary>
+            <remarks>
+            This method loads the error blueprint, formats the log content, and writes the resulting log file to both
+            the session-specific log folder and the shared log folder.
+            </remarks>
+            <param name="avatarUserId">The Avatar user identifier used when building the log file name.</param>
+            <param name="tngnWsvcDataFolder">The data folder object that provides the blueprint, session, and log paths.</param>
+            <param name="exeAsm">The assembly name associated with the error entry.</param>
+            <param name="errCode">The application-specific error code used when building the log file name.</param>
+            <param name="errMsg">The error message to include in the log entry.</param>
+            <param name="classPath">The full class path associated with the error entry.</param>
+            <param name="methodName">The method name associated with the error entry.</param>
+            <param name="lineNumber">The source line number associated with the error entry.</param>
+            <example>
+            <code>
+            ErrorLog.Create(
+                avatarUserId:       "jsmith",
+                tngnWsvcDataFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder,
+                exeAsm:             AvatarOptionObject.ExeAsm,
+                errCode:            "WSVC2491",
+                errMsg:             "The form ID was not found in the translation table.",
+                classPath:          "Core/Avatar/AvatarScriptParameter.cs",
+                methodName:         "SpecificFormRequest",
+                lineNumber:         62);
+            // Writes:
+            //   {Session}\WSVC2491-jsmith.error
+            //   {Log}\WSVC2491-jsmith.error
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.ErrorLog.LogContent(System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+             <summary>Builds the error log content by replacing blueprint tokens with runtime values.</summary>
+             <remarks>
+             The returned string is created from <paramref name="logBlueprint"/> by replacing the standard log
+             placeholders with the provided error, assembly, class, method, and line values.
+             </remarks>
+             <param name="logBlueprint">The blueprint template containing the placeholders to replace.</param>
+             <param name="errCode">The error code to insert into the log content.</param>
+             <param name="errMsg">The error message to insert into the log content.</param>
+             <param name="exeAsm">The assembly name to insert into the log content.</param>
+             <param name="classPath">The full class path used to derive the class name for the log content.</param>
+             <param name="methodName">The method name to insert into the log content.</param>
+             <param name="lineNumber">The source line number to insert into the log content.</param>
+             <returns>A formatted error log entry string.</returns>
+             <example>
+             <code>
+             var blueprint =
+                 "[~SESSION~DATE~TIME~] [~ERROR~CODE~] ~ASSEMBLY~::~CLASS~.~METHOD~ (line ~LINE~): ~ERROR~MESSAGE~";
+            
+             var content = ErrorLog.LogContent(
+                 logBlueprint: blueprint,
+                 errCode:      "WSVC2491",
+                 errMsg:       "The form ID was not found in the translation table.",
+                 exeAsm:       "TingenWebService",
+                 classPath:    "Core/Avatar/AvatarScriptParameter.cs",
+                 methodName:   "SpecificFormRequest",
+                 lineNumber:   62);
+            
+             Console.WriteLine(content);
+             // Example output:
+             // [05/15/2026-10:30:45] [WSVC2491] TingenWebService::AvatarScriptParameter.SpecificFormRequest (line 62): The form ID was not found in the translation table.
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.HistoryLog">
+            <summary>Provides helpers for writing history log entries.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.HistoryLog.Create(System.String,System.String,System.String)">
+            <summary>Appends a history log entry to the session's history log file.</summary>
+            <remarks>
+            This method builds the history log file path from <paramref name="logFolder"/> and
+            <paramref name="sessionDate"/>, then appends <paramref name="logMsg"/> to that file.
+            </remarks>
+            <param name="logFolder">The folder that contains the history log file.</param>
+            <param name="sessionDate">The session date portion used to build the history log file name.</param>
+            <param name="logMsg">The message to append to the history log file.</param>
+            <example>
+            <code>
+            HistoryLog.Create(
+                logFolder:   @"C:\Tingen_Data\LIVE\AppData\History",
+                sessionDate: "2026-05-15",
+                logMsg:      $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
+            // Appends to:
+            //   C:\Tingen_Data\LIVE\AppData\History\2026-05-15.history
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.HistoryLog.Timestamp">
+            <summary>Returns the current timestamp formatted for history log output.</summary>
+            <remarks>This method formats the current local date and time using the history log timestamp pattern.</remarks>
+            <returns>A timestamp string in the format <c>yyyy-MM-dd HH:mm:ss.fffff</c>.</returns>
+            <example>
+            <code>
+            var timestamp = HistoryLog.Timestamp();
+            Console.WriteLine(timestamp);
+            // Example output: 2026-05-15 10:30:45.12345
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogComponents">
+            <summary>Provides reusable building blocks used to compose log entries.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogComponents.GetCallerInfo(System.String,System.String,System.Int32)">
+            <summary>Returns a formatted caller information string built from the calling source location.</summary>
+            <remarks>
+            Uses caller-info attributes to capture the source file, member name, and line number, then returns them in
+            the form <c>{class}-{method}-{line}</c>.
+            </remarks>
+            <param name="className">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <returns>A string in the form <c>{class}-{method}-{line}</c>.</returns>
+            <example>
+            <code>
+            // Called from AvatarOptionObject.ToReturn at line 57:
+            var info = LogComponents.GetCallerInfo();
+            Console.WriteLine(info);
+            // Output: AvatarOptionObject-ToReturn-57
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogComponents.FormatXml(System.String)">
+            <summary>Formats raw XML content into a Markdown-style XML code block for log output.</summary>
+            <param name="rawXml">The raw XML string to format.</param>
+            <returns>A Markdown-formatted XML code block representing the supplied XML.</returns>
+            <example>
+            <code>
+            var rawXml    = "&lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;";
+            var formatted = LogComponents.FormatXml(rawXml);
+            Console.WriteLine(formatted);
+            // Output:
+            // ```xml
+            //     &lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;
+            // ```
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogEvent">
+            <summary>Provides a unified facade for raising log events of different severities and types.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Debug(System.String,System.String,System.String,System.Int32)">
+            <summary>Writes a debug log entry that captures the supplied message and the calling source location.</summary>
+            <remarks>
+            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="logMsg">The debug message to record.</param>
+            <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <example>
+            <code>
+            LogEvent.Debug("Reached validation step.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(System.Object)">
+            <summary>Writes a session log entry for the current Tingen Web Service session.</summary>
+            <param name="wsvcSession">The current Tingen Web Service session object.</param>
+            <example>
+            <code>
+            LogEvent.Session(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Critical(System.String,System.Object,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Writes a critical log entry to the session and shared log folders.</summary>
+            <remarks>
+            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="avatarUserId">The Avatar user identifier used when building the log file name.</param>
+            <param name="tngnWsvcDataFolder">The data folder object that provides the blueprint, session, and log paths.</param>
+            <param name="exeAsm">The assembly name associated with the log entry.</param>
+            <param name="logTitle">The title prefix used when building the log file name.</param>
+            <param name="logMsg">The critical message to record.</param>
+            <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <example>
+            <code>
+            LogEvent.Critical(
+                avatarUserId:       "jsmith",
+                tngnWsvcDataFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder,
+                exeAsm:             AvatarOptionObject.ExeAsm,
+                logTitle:           "WSVC9999",
+                logMsg:             "Unhandled exception while processing request.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Error(System.String,System.Object,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Writes an error log entry to the session and shared log folders.</summary>
+            <remarks>
+            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="avatarUserId">The Avatar user identifier used when building the log file name.</param>
+            <param name="tngnWsvcDataFolder">The data folder object that provides the blueprint, session, and log paths.</param>
+            <param name="exeAsm">The assembly name associated with the error entry.</param>
+            <param name="errCode">The application-specific error code used when building the log file name.</param>
+            <param name="errMsg">The error message to record.</param>
+            <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <example>
+            <code>
+            LogEvent.Error(
+                avatarUserId:       "jsmith",
+                tngnWsvcDataFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder,
+                exeAsm:             AvatarOptionObject.ExeAsm,
+                errCode:            "WSVC2491",
+                errMsg:             "The form ID was not found in the translation table.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
+            <remarks>
+            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="traceLevel">The trace level for this log entry.</param>
+            <param name="traceLogLimit">The configured maximum trace level that should be written.</param>
+            <param name="sessionFolder">The session folder where the trace log file will be written.</param>
+            <param name="exeAsm">The assembly name associated with the trace entry.</param>
+            <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <example>
+            <code>
+            LogEvent.Trace(
+                traceLevel:    1,
+                traceLogLimit: tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                exeAsm:        AvatarOptionObject.ExeAsm);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.History(System.String,System.String,System.String)">
+            <summary>Appends a history log entry to the session's history log file.</summary>
+            <param name="logFolder">The folder that contains the history log file.</param>
+            <param name="sessionDate">The session date portion used to build the history log file name.</param>
+            <param name="logMsg">The message to append to the history log file.</param>
+            <example>
+            <code>
+            LogEvent.History(
+                logFolder:   tngnWsvcSession.Framework.TngnWsvcDataFolder.History,
+                sessionDate: "2026-05-15",
+                logMsg:      $"[{HistoryLog.Timestamp()}] Service started.{System.Environment.NewLine}");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogSettings">
+            <summary>Represents the logging configuration values used by the Tingen Web Service.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Logger.LogSettings.TraceLogLimit">
+            <summary>Gets or sets the maximum trace level that should be written to the trace log.</summary>
+            <value>An integer trace level limit; trace entries above this level are skipped.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Logger.LogSettings.SessionLogLimit">
+            <summary>Gets or sets the maximum number of session log entries that should be retained.</summary>
+            <value>An integer that controls the session log size limit.</value>
+        </member>
+        <member name="P:TingenWebService.Core.Logger.LogSettings.LogMsec">
+            <summary>Gets or sets the millisecond delay applied between log writes.</summary>
+            <value>An integer number of milliseconds to wait between writes.</value>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogSettings.Load(System.String,System.String)">
+            <summary>Creates a populated <see cref="T:TingenWebService.Core.Logger.LogSettings"/> instance from string configuration values.</summary>
+            <remarks>
+            Parses <paramref name="traceLogLimit"/> and <paramref name="sessionLogLimit"/> as integers and assigns them
+            to the corresponding properties.
+            </remarks>
+            <param name="traceLogLimit">The trace log limit, as a string, parsed into <see cref="P:TingenWebService.Core.Logger.LogSettings.TraceLogLimit"/>.</param>
+            <param name="sessionLogLimit">The session log limit, as a string, parsed into <see cref="P:TingenWebService.Core.Logger.LogSettings.SessionLogLimit"/>.</param>
+            <returns>A new <see cref="T:TingenWebService.Core.Logger.LogSettings"/> instance with the parsed limit values.</returns>
+            <example>
+            <code>
+            var logSettings = LogSettings.Load(traceLogLimit: "3", sessionLogLimit: "100");
+            Console.WriteLine(logSettings.TraceLogLimit);   // 3
+            Console.WriteLine(logSettings.SessionLogLimit); // 100
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogUtility">
+            <summary>Provides shared file and path helpers used by the logging components.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.GetClassName(System.String)">
+            <summary>Extracts the class name (without extension) from a full source file path.</summary>
+            <remarks>
+            Splits <paramref name="classPath"/> on path separators, takes the final segment, and removes the
+            trailing <c>.cs</c> extension.
+            </remarks>
+            <param name="classPath">The full source file path of the class.</param>
+            <returns>The class name with the <c>.cs</c> extension removed.</returns>
+            <example>
+            <code>
+            var name = LogUtility.GetClassName(@"C:\src\Core\Avatar\AvatarOptionObject.cs");
+            Console.WriteLine(name);
+            // Output: AvatarOptionObject
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.WriteLocal(System.String,System.String)">
+            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
+            <param name="filePath">The absolute path of the file to write.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log\example.log", "Service started.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.AppendLocal(System.String,System.String)">
+            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
+            <param name="filePath">The absolute path of the file to append to.</param>
+            <param name="fileContent">The content to append to the file.</param>
+            <example>
+            <code>
+            LogUtility.AppendLocal(
+                @"C:\Tingen_Data\LIVE\AppData\History\2026-05-15.history",
+                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.SessionLog">
+            <summary>Provides helpers for building and writing session log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.SessionLog.Create(System.Object)">
+            <summary>Creates the session log file for the current Tingen Web Service session.</summary>
+            <remarks>
+            Loads the session log blueprint, fills it with values from <paramref name="wsvcSession"/>, and writes the
+            resulting content to the session-specific folder.
+            </remarks>
+            <param name="wsvcSession">The current Tingen Web Service session object that supplies runtime, framework, and script parameter data.</param>
+            <example>
+            <code>
+            SessionLog.Create(tngnWsvcSession);
+            // Writes:
+            //   {Session}\jsmith.session
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.SessionLog.Outline(System.String,System.Object,System.String)">
+            <summary>Builds the session log content by replacing blueprint tokens with runtime session values.</summary>
+            <remarks>
+            Replaces the standard session placeholders, including session date/start/end/duration, Avatar system,
+            script parameter, and the accumulated running log.
+            </remarks>
+            <param name="logBlueprint">The blueprint template containing the session placeholders to replace.</param>
+            <param name="sessionDetail">The runtime session details, exposing <c>SessionDate</c>, <c>SessionTime</c>, <c>AvatarUserId</c>, <c>AvatarSystem</c>, and <c>RunningLog</c>.</param>
+            <param name="sessionScriptParameter">The original script parameter for the current session.</param>
+            <returns>A formatted session log entry string.</returns>
+            <example>
+            <code>
+            var blueprint = File.ReadAllText(blueprintPath);
+            var content   = SessionLog.Outline(
+                logBlueprint:           blueprint,
+                sessionDetail:          tngnWsvcSession.Runtime,
+                sessionScriptParameter: tngnWsvcSession.ScriptParameter.OriginalScriptParameter);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.SessionLog.AddToRunningLog(System.Object,System.String,System.String,System.String)">
+            <summary>Appends a timestamped, free-form entry to the session's running log.</summary>
+            <param name="wsvcSession">The current Tingen Web Service session whose <c>Runtime.RunningLog</c> is appended to.</param>
+            <param name="callerInfo">A short identifier for the calling source location, typically from <see cref="M:TingenWebService.Core.Logger.LogComponents.GetCallerInfo(System.String,System.String,System.Int32)"/>.</param>
+            <param name="runningTitle">The title line for the running log entry.</param>
+            <param name="runningBody">The body text for the running log entry.</param>
+            <example>
+            <code>
+            SessionLog.AddToRunningLog(
+                tngnWsvcSession,
+                LogComponents.GetCallerInfo(),
+                "Validation",
+                "All required fields are present.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.SessionLog.AddToSessionLog(System.Object,System.String[])">
+             <summary>Appends a structured catalog entry to the session's running log.</summary>
+             <remarks>
+             Expects <paramref name="logContents"/> to contain three elements: caller info, title, and body —  matching
+             the convention produced by message catalog helpers.
+             </remarks>
+             <param name="wsvcSession">The current Tingen Web Service session whose <c>Runtime.RunningLog</c> is appended to.</param>
+             <param name="logContents">A three-element array containing caller info, title, and body for the log entry.</param>
+             <example>
+             <code>
+             var entry = log_DoseChangeEval.PrescriberIsAuthorizing(
+                 LogComponents.GetCallerInfo(),
+                 staffMemberIdQuery,
+                 physicianApprover);
+            
+             SessionLog.AddToSessionLog(tngnWsvcSession, entry);
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.TraceLog">
+            <summary>Provides helpers for writing trace log files for the current session.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.TraceLog.Create(System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>Creates a trace log file in the session folder when the trace level is within the configured limit.</summary>
+            <remarks>
+            Skips writing when <paramref name="traceLogLimit"/> is <c>0</c> or when <paramref name="traceLevel"/>
+            exceeds <paramref name="traceLogLimit"/>.<br/>
+            <br/>
+            When a trace is written, this method sleeps briefly so successive trace files have unique timestamp-based
+            file names.
+            </remarks>
+            <param name="traceLevel">The trace level for this entry.</param>
+            <param name="traceLogLimit">The configured maximum trace level that should be written; <c>0</c> disables tracing.</param>
+            <param name="sessionFolder">The session folder where the trace file will be written.</param>
+            <param name="exeAsm">The assembly name included in the trace file name.</param>
+            <param name="classPath">The full class path used to derive the class name in the trace file name.</param>
+            <param name="methodName">The method name included in the trace file name.</param>
+            <param name="lineNumber">The source line number included in the trace file name.</param>
+            <example>
+            <code>
+            TraceLog.Create(
+                traceLevel:    1,
+                traceLogLimit: tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                exeAsm:        AvatarOptionObject.ExeAsm,
+                classPath:     "Core/Avatar/AvatarOptionObject.cs",
+                methodName:    "ToReturn",
+                lineNumber:    57);
+            // Writes a file similar to:
+            //   {Session}\3045-12345-TingenWebService-AvatarOptionObject-ToReturn-57.trace
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Maintenance.DailyMaintenance">
+            <summary>Performs daily maintenance tasks for the Tingen Web Service.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Maintenance.DailyMaintenance.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.QuickCheck(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Performs a quick daily-maintenance check for the current session.</summary>
+            <remarks>
+            Runs the full <see cref="M:TingenWebService.Core.Maintenance.DailyMaintenance.VerifyTingenWebService(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)"/> sequence when the day's history file does not
+            yet exist; otherwise returns without performing maintenance.
+            </remarks>
+            <param name="tngnWsvcSession">The Tingen Web Service session that exposes runtime, framework, and log settings.</param>
+            <example>
+            <code>
+            DailyMaintenance.QuickCheck(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.VerifyTingenWebService(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Verifies the Tingen Web Service framework and refreshes its supporting data.</summary>
+            <remarks>
+            Verifies the framework folder structure, then refreshes the translation tables and blueprints
+            for the current session.
+            </remarks>
+            <param name="tngnWsvcSession">The Tingen Web Service session that exposes framework, runtime, and log settings.</param>
+            <example>
+            <code>
+            DailyMaintenance.VerifyTingenWebService(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.CreateHistoryPath(System.String,System.Int32,System.String)">
+            <summary>Ensures the history folder exists, creating it when missing.</summary>
+            <param name="historyPath">The absolute path to the history folder.</param>
+            <param name="traceLogLimit">The configured trace log limit used while tracing this operation.</param>
+            <param name="sessionFolder">The current session folder used for trace output.</param>
+            <example>
+            <code>
+            DailyMaintenance.CreateHistoryPath(
+                historyPath:   tngnWsvcSession.Framework.TngnWsvcDataFolder.History,
+                traceLogLimit: tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.DailyLogPathExists(System.String)">
+            <summary>Determines whether the daily log path exists.</summary>
+            <param name="dailyLogPath">The absolute path to the daily logs folder.</param>
+            <returns><c>true</c> if the daily log path exists; otherwise, <c>false</c>.</returns>
+            <example>
+            <code>
+            if (!DailyMaintenance.DailyLogPathExists(@"C:\Tingen_Data\LIVE\AppData\Log\Daily"))
+            {
+                // create the folder, etc.
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.CreateDailyLogPath(System.String,System.Int32,System.String)">
+            <summary>Creates the daily log folder when it does not already exist.</summary>
+            <param name="dailyLogPath">The absolute path to the daily logs folder.</param>
+            <param name="traceLogLimit">The configured trace log limit used while tracing this operation.</param>
+            <param name="sessionFolder">The current session folder used for trace output.</param>
+            <example>
+            <code>
+            DailyMaintenance.CreateDailyLogPath(
+                dailyLogPath:  @"C:\Tingen_Data\LIVE\AppData\Log\Daily",
+                traceLogLimit: tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.CreateDailyLog(System.String,System.String,System.Int32,System.String)">
+            <summary>Creates the daily log file for the supplied date when it does not already exist.</summary>
+            <param name="dailyLogPath">The absolute path to the daily logs folder.</param>
+            <param name="currentDate">The current date string used to build the daily log file name.</param>
+            <param name="traceLogLimit">The configured trace log limit used while tracing this operation.</param>
+            <param name="sessionFolder">The current session folder used for trace output.</param>
+            <example>
+            <code>
+            DailyMaintenance.CreateDailyLog(
+                dailyLogPath:  @"C:\Tingen_Data\LIVE\AppData\Log\Daily",
+                currentDate:   "2026-05-15",
+                traceLogLimit: tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.RefreshTranslationTables(System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>Refreshes the translation tables by recreating files from the latest generated data.</summary>
+            <remarks>
+            Deletes the existing <c>USERID_UserDescription_Active.translation</c> file when present, then
+            regenerates it from the current Avatar-generated data and records history entries describing the
+            refresh.
+            </remarks>
+            <param name="generatedDataPath">The directory containing the Avatar-generated source data files.</param>
+            <param name="translationPath">The directory where translation files are stored.</param>
+            <param name="traceLogLimit">The configured trace log limit used while tracing this operation.</param>
+            <param name="sessionFolder">The current session folder used for trace output.</param>
+            <param name="historyFolder">The history folder where refresh events are appended.</param>
+            <param name="sessionDate">The session date used when building the history log file name.</param>
+            <example>
+            <code>
+            DailyMaintenance.RefreshTranslationTables(
+                generatedDataPath: tngnWsvcSession.Framework.TngnWsvcDataFolder.AvatarGeneratedData,
+                translationPath:   tngnWsvcSession.Framework.TngnWsvcDataFolder.TranslationTable,
+                traceLogLimit:     tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder:     tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                historyFolder:     tngnWsvcSession.Framework.TngnWsvcDataFolder.History,
+                sessionDate:       tngnWsvcSession.Runtime.SessionDate);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.DailyMaintenance.RefreshBlueprints(System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>Refreshes blueprint files in the target folder from the source folder.</summary>
+            <remarks>
+            Copies each blueprint from <paramref name="blueprintSource"/> to <paramref name="blueprintTarget"/>
+            when the target file is missing or older than the source, and appends a history entry for each
+            refreshed blueprint.<br/>
+            <br/>
+            Returns immediately if either folder does not exist.
+            </remarks>
+            <param name="blueprintSource">The source folder that contains the master blueprint files.</param>
+            <param name="blueprintTarget">The target folder that receives the refreshed blueprint files.</param>
+            <param name="traceLogLimit">The configured trace log limit used while tracing this operation.</param>
+            <param name="sessionFolder">The current session folder used for trace output.</param>
+            <param name="historyFolder">The history folder where refresh events are appended.</param>
+            <param name="sessionDate">The session date used when building the history log file name.</param>
+            <example>
+            <code>
+            DailyMaintenance.RefreshBlueprints(
+                blueprintSource: tngnWsvcSession.Framework.TngnWsvcWwwFolder.Blueprint,
+                blueprintTarget: tngnWsvcSession.Framework.TngnWsvcDataFolder.Blueprint,
+                traceLogLimit:   tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder:   tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                historyFolder:   tngnWsvcSession.Framework.TngnWsvcDataFolder.History,
+                sessionDate:     tngnWsvcSession.Runtime.SessionDate);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Maintenance.NamespaceDoc">
+            <summary>Maintenance routines for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains daily and session-scoped maintenance helpers that verify framework state,
+            manage supporting folders, and refresh service data during runtime.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Maintenance.md">TingenWebService.Core.Maintenance namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.Maintenance.SessionMaintenance">
+            <summary>Provides per-session maintenance operations for the Tingen Web Service.</summary>
+            <remarks>
+            <para>
+            <c>SessionMaintenance</c> is the counterpart to <see cref="T:TingenWebService.Core.Maintenance.DailyMaintenance"/> and is invoked  once per Tingen
+            Web Service session. It is responsible for lightweight housekeeping that must run on a per-request/per-session
+            cadence rather than once per day, such as enforcing trace log retention limits inside the active session folder.
+            </para>
+            <para>
+            This class is a port of <c>Outpost31.Maintenance.SessionMaintenance</c> and is intended to be extended with
+            additional session-scoped maintenance routines as the service evolves.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Maintenance.SessionMaintenance.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.SessionMaintenance.QuickCheck(System.Int32,System.String)">
+             <summary>Performs a quick session-level maintenance check against the active session folder.</summary>
+             <param name="traceLogLimit">The maximum number of trace log files retained in the session folder.</param>
+             <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+             <remarks>
+             <para>
+             In production this method validates the contents of <paramref name="sessionFolder"/>, prunes trace logs that
+             exceed <paramref name="traceLogLimit"/>, and writes diagnostic entries describing the work performed. The
+             current implementation is a stub and performs no work; it exists so that callers (for example, the
+             per-session pipeline in <c>TngnWsvcFramework</c>) can be wired up while the production logic is being ported
+             from <c>Outpost31.Maintenance.SessionMaintenance</c>.
+             </para>
+             </remarks>
+             <example>
+             The following example shows how a session pipeline calls <c>QuickCheck</c> after the
+             session folder has been resolved:
+             <code>
+             int traceLogLimit = runtimeConfig.TraceLogLimit;
+             string sessionFolder = tngnWsvcDataFolders.CurrentSession;
+            
+             SessionMaintenance.QuickCheck(traceLogLimit, sessionFolder);
+             </code>
+             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Operation.NamespaceDoc">
+            <summary>Operations for working with Avatar field values.</summary>
+            <remarks>
+            This namespace contains helper routines for comparing, reading, and evaluating Avatar field data, along with
+            other small operation-focused utilities used by the Tingen Web Service.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Operation.md">TingenWebService.Core.Operation namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.Parse.NamespaceDoc">
+            <summary>Request parsing and dispatch logic for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains types that interpret inbound Avatar requests, route them to the correct handler, and
+            build fallback responses for unrecognized commands.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Parse.md">TingenWebService.Core.Parse namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.Parse.Request">
+            <summary>Parses inbound Tingen Web Service requests and dispatches them to the appropriate handler.</summary>
+            <remarks>
+            <para>
+            <c>Request</c> inspects the active session's script parameter and routes the request to the correct internal
+            workflow (for example, the Tingen Web Service self-test or deployment pipelines). When an unrecognized command
+            is received, it builds a templated response from the <c>UnknownParameter.blueprint</c> file so the calling
+            Avatar form receives a predictable error payload instead of a runtime failure.
+            </para>
+            <para>
+            All routing decisions are recorded through <see cref="!:LogEvent.Trace(int, int, string, string)"/> so the request
+            pipeline can be reconstructed from the per-session trace log.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Parse.Request.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Parse.Request.Prototype(System.Object)">
+            <summary>Reserved entry point for prototype request handling.</summary>
+            <param name="tngnWsvcSession">The active Tingen Web Service session object.</param>
+            <remarks>
+            <para>
+            This method currently performs no work beyond emitting a trace log entry. It exists as a stable hook for
+            experimental request flows so they can be wired into the dispatcher without requiring downstream callers to
+            change their signatures.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Parse.Request.TngnWsvc(System.Object)">
+            <summary>Dispatches a Tingen Web Service request based on the session's original script parameter.</summary>
+            <param name="tngnWsvcSession">The active Tingen Web Service session object that exposes the script parameter, runtime, framework, and Avatar option object.</param>
+            <remarks>
+            <para>
+            The dispatcher recognizes the following script parameters (case-insensitive):
+            </para>
+            <list type="bullet">
+              <item><description><c>TngnWsvcTest</c> &#8212; runs the web service self-test pipeline and returns a "Testing complete." message.</description></item>
+              <item><description><c>TngnWsvcDeploy</c> &#8212; runs the deployment pipeline for the active Avatar system and returns a deployment confirmation message.</description></item>
+              <item><description>Any other value &#8212; loads the <c>UnknownParameter.blueprint</c> template, substitutes the command, version, and error code tokens, and returns the resulting content.</description></item>
+            </list>
+            <para>
+            The response is delivered back to Avatar through <c>tngnWsvcSession.Avatar.AvatarOptionObject.ToReturn(...)</c>,
+            and additional trace entries are emitted at each branch so the dispatch path can be inspected after the fact.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            // Inside the request pipeline:
+            Request.TngnWsvc(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Query.NamespaceDoc">
+            <summary>Database query helpers for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains routines that resolve Avatar user identities against the supported Netsmart systems
+            and generate translation files used by other parts of the service.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Query.md">TingenWebService.Core.Query namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.Query.QueryUserId">
+            <summary>Resolves Avatar user identifiers by querying the appropriate Netsmart system database.</summary>
+            <remarks>
+            <para>
+            <c>QueryUserId</c> translates an Avatar user id (the value supplied by the Avatar form at runtime) into a
+            Netsmart <c>Staff_Member_ID</c> by issuing a <c>SELECT</c> against the <c>RADplus_users</c> table. The target
+            system (LIVE, UAT, or SBOX) is chosen from the active session's runtime configuration so the same code path can
+            be used in any deployment environment.
+            </para>
+            <para>
+            This class also exposes a hook for generating Avatar-to-Tingen translation files, which is used by daily
+            maintenance to keep cached lookups in sync with the source database.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Query.QueryUserId.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Query.QueryUserId.ToStaffMemberId(System.Object)">
+            <summary>Returns the Netsmart <c>Staff_Member_ID</c> that corresponds to the session's Avatar user id.</summary>
+            <param name="tngnWsvcSession">The active Tingen Web Service session object that exposes runtime credentials, the active Avatar system, and logging configuration.</param>
+            <returns>The <c>Staff_Member_ID</c> returned by the target Avatar system, or the literal error code <c>"[WSVC4274]"</c> when the active system is not recognized.</returns>
+            <remarks>
+            <para>
+            The Avatar user id is upper-cased before being embedded in the SQL statement so that lookups match the
+            casing convention used by Netsmart. The query is executed against one of three systems based
+            on <c>tngnWsvcSession.Runtime.AvatarSystem</c>:
+            </para>
+            <list type="bullet">
+              <item><description><c>LIVE</c> &#8212; uses <c>SuperLive.Query</c>.</description></item>
+              <item><description><c>UAT</c> &#8212; uses <c>NtstWsvcUatNxQuery.Query</c>.</description></item>
+              <item><description><c>SBOX</c> &#8212; uses <c>NtstWsvcSboxQuery.Query</c>.</description></item>
+            </list>
+            <para>
+            Diagnostic information (the query, credentials, and result) is written to the debug log so that
+            authentication or syntax issues can be reproduced from the captured session data.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            string staffMemberId = QueryUserId.ToStaffMemberId(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Query.QueryUserId.CreateTranslationFile(System.String,System.String,System.Int32,System.String)">
+            <summary>Generates an Avatar-to-Tingen user id translation file from a source listing.</summary>
+            <param name="generatedUserIdPath">The absolute path to the source file that lists generated Avatar user ids.</param>
+            <param name="translationPath">The absolute path where the resulting translation file should be written.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <remarks>
+            <para>
+            In production this method parses the file at <paramref name="generatedUserIdPath"/> and writes a translation
+            table to <paramref name="translationPath"/> so other Tingen components can resolve Avatar user ids without
+            re-querying the source database. The current implementation is a stub that performs no work; it exists so
+            callers (for example, <c>DailyMaintenance.RefreshTranslationTables</c>) can be wired up while the production
+            logic is being ported.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            QueryUserId.CreateTranslationFile(
+                generatedUserIdPath: @"C:\Tingen_Data\Cache\GeneratedUserIds.txt",
+                translationPath:     @"C:\Tingen_Data\Translation\UserId.translation",
+                traceLogLimit:       traceLogLimit,
+                sessionFolder:       sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.TingenWsvcSession.NamespaceDoc">
+            <summary>Per-session runtime and bootstrap logic for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains the types that build, initialize, and manage request-specific session state,
+            including runtime values, session composition, and session-level error handling for Avatar calls.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-TingenWsvcSession.md">TingenWebService.Core.TingenWsvcSession namespace documentation</seealso> 
+        </member>
+        <member name="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime">
+            <summary>Represents the per-session runtime state for the Tingen Web Service.</summary>
+            <remarks>
+            <para>
+            <c>TngnWsvcRuntime</c> captures the values that vary from one Tingen Web Service request to the next: the
+            session timestamp, the running version, the operating mode, the active Avatar system and user, and the Netsmar
+            service credentials used to query that system. An instance is built once per session
+            via <see cref="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.Load(System.String,System.String,System.String,System.String,System.String,System.String)"/> and then carried on the session object so
+            downstream components can read consistent runtime information without
+            re-evaluating <see cref="P:System.DateTime.Now"/> or re-parsing inputs.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.SessionDate">
+            <summary>The session date in <c>yyMMdd</c> format.</summary>
+            <value>The session date in <c>yyMMdd</c> format.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.SessionTime">
+            <summary>The session time in <c>HHmmss</c> format.</summary>
+            <value>The session time in <c>HHmmss</c> format.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.Version">
+            <summary>The Tingen Web Service version string for this session.</summary>
+            <value>The Tingen Web Service version string for this session.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.Mode">
+            <summary>The operating mode (for example <c>"live"</c>, <c>"uat"</c>, or <c>"sbox"</c>), normalized to lowercase.</summary>
+            <value>The operating mode (for example <c>"live"</c>, <c>"uat"</c>, or <c>"sbox"</c>), normalized to lowercase.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.AvatarSystem">
+            <summary>The target Avatar system identifier (for example <c>"LIVE"</c>, <c>"UAT"</c>, or <c>"SBOX"</c>).</summary>
+            <value>The target Avatar system identifier (for example <c>"LIVE"</c>, <c>"UAT"</c>, or <c>"SBOX"</c>).</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.AvatarUserId">
+            <summary>The Avatar user id associated with the session, normalized to lowercase.</summary>
+            <value>The Avatar user id associated with the session, normalized to lowercase.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.NtstWsvcUserName">
+            <summary>The Netsmart service account user name used to issue queries against the Avatar system.</summary>
+            <value>The Netsmart service account user name used to issue queries against the Avatar system.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.NtstWsvcUserPass">
+            <summary>The Netsmart service account password used to issue queries against the Avatar system.</summary>
+            <value>The Netsmart service account password used to issue queries against the Avatar system.</value>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.RunningLog">
+            <summary>The in-memory running log accumulated over the lifetime of the session.</summary>
+            <value>The in-memory running log accumulated over the lifetime of the session.</value>
+        </member>
+        <member name="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.Load(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>Creates and initializes a <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime"/> instance for the current session.</summary>
+            <param name="version">The Tingen Web Service version string for this session.</param>
+            <param name="mode">The operating mode for the session; the value is stored in lowercase.</param>
+            <param name="avatarSystem">The target Avatar system identifier (for example <c>"LIVE"</c>, <c>"UAT"</c>, or <c>"SBOX"</c>).</param>
+            <param name="avatarUserId">The Avatar user id for the session; the value is stored in lowercase.</param>
+            <param name="ntstWsvcUserName">The Netsmart service account user name used for Avatar queries.</param>
+            <param name="ntstWsvcUserPass">The Netsmart service account password used for Avatar queries.</param>
+            <returns>A fully populated <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime"/> with the session date and time captured from <see cref="P:System.DateTime.Now"/>.</returns>
+            <remarks>
+            <para>
+            <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.SessionDate"/> and <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.SessionTime"/> are sampled at construction so every component that
+            inspects the runtime sees the same timestamp for the duration of the session. <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.RunningLog"/> is
+            initialized to an empty string and is intended to be appended to as the session progresses.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            var runtime = TngnWsvcRuntime.Load(
+                version:          "1.0.0",
+                mode:             "LIVE",
+                avatarSystem:     "LIVE",
+                avatarUserId:     "JDOE",
+                ntstWsvcUserName: "tngn_svc",
+                ntstWsvcUserPass: "********");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession">
+            <summary>Represents a single Tingen Web Service session and the state required to process it.</summary>
+            <remarks>
+            <para>
+            <c>TngnWsvcSession</c> aggregates everything a single Avatar request needs in one place: the
+            per-session runtime values (<see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Runtime"/>), the resolved framework folder layout
+            (<see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Framework"/>), the active logging configuration (<see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.LogSetting"/>), the
+            inbound and working <c>OptionObject</c> data (<see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.OptObj"/>), and the script parameter
+            supplied by Avatar (<see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.ScriptParameter"/>).
+            </para>
+            <para>
+            A session is created by calling <see cref="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Start(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.Collections.Generic.Dictionary{System.String,System.String})"/>,
+            which loads all dependent state, runs the per-session and daily maintenance quick checks, and
+            parses the script parameter before returning the populated session to the caller.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Runtime">
+            <summary>The per-session runtime values (timestamps, version, mode, Avatar system, and credentials).</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Framework">
+            <summary>The resolved Tingen Web Service framework, including data and web folder paths.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.LogSetting">
+            <summary>The logging configuration (trace and session log limits) for this session.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.OptObj">
+            <summary>The original, working, and completed Avatar <c>OptionObject</c> instances for this session.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.ScriptParameter">
+            <summary>The parsed Avatar script parameter associated with this session.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Start(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>Starts a new Tingen Web Service session and runs the standard per-session bootstrap.</summary>
+            <param name="origOptObj">The original Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> received from the calling form.</param>
+            <param name="origScriptParam">The original script parameter string supplied by Avatar.</param>
+            <param name="runtimeConfig">The runtime configuration dictionary loaded for the active environment.</param>
+            <returns>A fully initialized <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession"/> ready to be handed to the request pipeline.</returns>
+            <remarks>
+            <para>
+            This entry point performs three steps in order: it builds the session via
+            <see cref="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Load(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.Collections.Generic.Dictionary{System.String,System.String})"/>, runs
+            <see cref="M:TingenWebService.Core.Maintenance.SessionMaintenance.QuickCheck(System.Int32,System.String)"/> and
+            <see cref="!:DailyMaintenance.QuickCheck(dynamic)"/> to enforce log retention and folder integrity, and then
+            parses the script parameter through <see cref="M:TingenWebService.Core.Avatar.AvatarScriptParameter.Parse(System.Object)"/> so downstream
+            dispatchers can route on the parsed values.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            var session = TngnWsvcSession.Start(optionObject, scriptParameter, runtimeConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Load(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>Builds a <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession"/> from the inbound Avatar request and runtime configuration.</summary>
+            <param name="origOptObj">The original Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> received from the calling form.</param>
+            <param name="origScriptParam">The original script parameter string supplied by Avatar.</param>
+            <param name="runtimeConfig">The runtime configuration dictionary providing version, mode, Avatar system, server paths, log limits, and Netsmart service credentials.</param>
+            <returns>A populated <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession"/> with <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Runtime"/>, <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.Framework"/>, <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.LogSetting"/>, <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.OptObj"/>, and <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.ScriptParameter"/> initialized.</returns>
+            <remarks>
+            <para>
+            <see cref="P:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession.OptObj"/> is constructed with the original <c>OptionObject2015</c> preserved as
+            <c>Original</c>, a <c>Clone</c> assigned to <c>Worker</c> for safe mutation, and
+            <c>Completed</c> initialized to <c>null</c>. The session date and time captured by
+            <see cref="M:TingenWebService.Core.TingenWsvcSession.TngnWsvcRuntime.Load(System.String,System.String,System.String,System.String,System.String,System.String)"/> are
+            reused when resolving framework folder paths so all per-session artifacts share the same
+            timestamp.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:TingenWebService.Core.Translation.FormId">
+            <summary>Translates Avatar form (option) identifiers into human-readable form names.</summary>
+            <remarks>
+            <para>
+            <c>FormId</c> performs lookups against the <c>form_id-form_name.trans</c> translation file,
+            which maps Avatar option ids to the form names used throughout Tingen logging and reporting.
+            Centralizing the lookup here keeps the translation file format (one <c>id=name</c> entry per
+            line) hidden from callers and ensures that every read is captured in the per-session trace
+            log.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Translation.FormId.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Translation.FormId.GetFormName(System.String,System.String,System.String,System.Int32)">
+            <summary>Returns the form name associated with the supplied Avatar option id.</summary>
+            <param name="optionId">The Avatar option id (form id) to look up.</param>
+            <param name="translationPath">The absolute path to the folder that contains <c>form_id-form_name.trans</c>.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <returns>The form name that matches <paramref name="optionId"/>, or the literal error code <c>"WSVC2491"</c> when no match is found.</returns>
+            <remarks>
+            <para>
+            The translation file is expected to contain one <c>optionId=formName</c> entry per line.
+            Blank lines are skipped, and the first matching entry wins. Trace entries are emitted on
+            entry, on every line scanned, and again when a match is returned so that lookup behavior
+            can be reconstructed from the session trace log.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            string formName = FormId.GetFormName(
+                optionId:        "1234",
+                translationPath: tngnWsvcSession.Framework.TngnWsvcDataFolder.Translation,
+                sessionFolder:   tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                traceLogLimit:   tngnWsvcSession.LogSetting.TraceLogLimit);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Translation.NamespaceDoc">
+            <summary>Translation helpers for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains types that read, generate, and manage translation files used to map Avatar
+            identifiers to human-readable values such as form names and user descriptions.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Core-Translation.md">TingenWebService.Core.Translation namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Core.Translation.UserId">
+            <summary>Translates Avatar user identifiers into human-readable user descriptions.</summary>
+            <remarks>
+            <para>
+            <c>UserId</c> performs lookups against the <c>USERID_UserDescription_Active.translation</c>
+            file, which maps Avatar user names to friendly user descriptions. The file is generated from
+            a source listing by <see cref="M:TingenWebService.Core.Translation.UserId.CreateTranslationFile(System.String,System.String,System.Int32,System.String)"/> during
+            daily maintenance, and is then read at request time by
+            <see cref="M:TingenWebService.Core.Translation.UserId.GetUserDescription(System.String,System.Int32,System.String,System.String)"/>.
+            </para>
+            <para>
+            Each entry in the translation file uses the caret character (<c>^</c>) as a delimiter between
+            the user name and the user description.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Translation.UserId.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Core.Translation.UserId.GetUserDescription(System.String,System.Int32,System.String,System.String)">
+            <summary>Returns the user description associated with the supplied Avatar user name.</summary>
+            <param name="avatarUserName">The Avatar user name to look up; leading and trailing whitespace is ignored.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="currentSessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <param name="translationPath">The absolute path to the folder that contains <c>USERID_UserDescription_Active.translation</c>.</param>
+            <returns>The user description that matches <paramref name="avatarUserName"/>, or the literal error code <c>"WSVC4274"</c> when no match is found.</returns>
+            <remarks>
+            <para>
+            Each line in the translation file is split on the caret character (<c>^</c>); the portion
+            to the left is the Avatar user name and the portion to the right is the user description.
+            The first matching entry wins. If no entry matches, the error code <c>"WSVC4274"</c> is
+            returned to indicate that the user name is not present in the translation file.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            string description = UserId.GetUserDescription(
+                avatarUserName:       "JDOE",
+                traceLogLimit:        tngnWsvcSession.LogSetting.TraceLogLimit,
+                currentSessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session,
+                translationPath:      tngnWsvcSession.Framework.TngnWsvcDataFolder.Translation);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Translation.UserId.CreateTranslationFile(System.String,System.String,System.Int32,System.String)">
+            <summary>Generates the active user-description translation file from a source listing.</summary>
+            <param name="originalFilePath">The absolute path to the source file that contains the raw user-description entries.</param>
+            <param name="translationPath">The absolute path to the folder where <c>USERID_UserDescription_Active.translation</c> should be written.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="currentSessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <remarks>
+            <para>
+            The source file is read line by line; blank lines are skipped, and each remaining line is
+            trimmed and appended to the output buffer with a trailing newline. The accumulated content
+            is then written to <c>USERID_UserDescription_Active.translation</c> under
+            <paramref name="translationPath"/>.
+            </para>
+            <para>
+            Trace logging inside the loop uses a high limit (<c>9</c>) so that high-volume per-line
+            trace entries do not flood the session trace log unless trace logging has been explicitly
+            raised to that level.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            UserId.CreateTranslationFile(
+                originalFilePath:     @"C:\Tingen_Data\Cache\USERID_UserDescription.txt",
+                translationPath:      tngnWsvcSession.Framework.TngnWsvcDataFolder.Translation,
+                traceLogLimit:        tngnWsvcSession.LogSetting.TraceLogLimit,
+                currentSessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig">
+            <summary>Represents configuration settings for the dose change evaluation OTP module.</summary>
+            <remarks>
+            This type stores the allowlist, review list, denylist, field identifiers, and user-facing message values
+            used when evaluating whether an order may be authorized within the module.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.Mode">
+            <summary>Gets or sets the module operating mode.</summary>
+            <value>The configured mode value, such as <c>enabled</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.Whitelist">
+            <summary>Gets or sets the list of providers explicitly allowed to authorize orders.</summary>
+            <value>A collection of identifiers that are allowed to authorize orders.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.Greylist">
+            <summary>Gets or sets the list of providers that require additional review.</summary>
+            <value>A collection of identifiers that should be handled as greylisted providers.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.Blacklist">
+            <summary>Gets or sets the list of providers explicitly denied from authorizing orders.</summary>
+            <value>A collection of identifiers that are not allowed to authorize orders.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.ProviderIsAuthorizingOrderFieldId">
+            <summary>Gets or sets the field identifier used to determine the authorizing provider.</summary>
+            <value>The Avatar field identifier that indicates whether the provider is authorizing the order.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.PhysicianApproverFieldId">
+            <summary>Gets or sets the field identifier used for the physician approver.</summary>
+            <value>The Avatar field identifier associated with the physician approver value.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.NotAllowedToAuthorizeOptObjMsg">
+            <summary>Gets or sets the message returned when authorization is not allowed.</summary>
+            <value>The user-facing message shown when the current user cannot authorize the order.</value>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.NotAllowedToAuthorizeOptObjErrCode">
+            <summary>Gets or sets the error code returned when authorization is not allowed.</summary>
+            <value>The numeric error code associated with a failed authorization check.</value>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.Load(System.String,System.Int32,System.String)">
+            <summary>Loads the module configuration from the specified path.</summary>
+            <remarks>
+            If the configuration file does not exist, a new default configuration file is created before the file is
+            loaded and returned.
+            </remarks>
+            <param name="configPath">The full path to the configuration file.</param>
+            <param name="traceLogLimit">The maximum trace logging level to write.</param>
+            <param name="sessionFolder">The session folder where trace output is written.</param>
+            <returns>The loaded <see cref="T:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig"/> instance.</returns>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpConfig config =
+                DoseChangeEvaluationOtpConfig.Load(configPath, traceLogLimit, sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig.New(System.String,System.Int32,System.String)">
+            <summary>Creates a new configuration file with default module values.</summary>
+            <remarks>
+            This method initializes a new <see cref="T:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig"/> instance and writes it to the
+            path specified by <paramref name="configPath"/>.
+            </remarks>
+            <param name="configPath">The full path where the configuration file should be written.</param>
+            <param name="traceLogLimit">The maximum trace logging level to write.</param>
+            <param name="sessionFolder">The session folder where trace output is written.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpConfig.New(configPath, traceLogLimit, sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent">
+            <summary>Handles Dose Change Evaluation OTP module events for the current Tingen Web Service session.</summary>
+            <remarks>
+            This type dispatches module actions based on the current script parameter and evaluates provider
+            authorization rules for supported event phases.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Parses the current module event and routes processing to the matching handler.</summary>
+            <remarks>
+            This method loads the module configuration and executes the appropriate handler when the module is
+            enabled for the current session.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpEvent.Parse(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.FormLoad(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig)">
+            <summary>Handles the module logic for the form load script event.</summary>
+            <remarks>
+            This method currently records trace logging for the form load phase and accepts the active module
+            configuration for future event-specific processing.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="moduleConfig">The loaded module configuration for the current session.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpEvent.FormLoad(tngnWsvcSession, moduleConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.PreFile(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig)">
+            <summary>Handles the module logic for the pre-file script event.</summary>
+            <remarks>
+            This method currently records trace logging for the pre-file phase and accepts the active module
+            configuration for future event-specific processing.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="moduleConfig">The loaded module configuration for the current session.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpEvent.PreFile(tngnWsvcSession, moduleConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.PostFile(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig)">
+            <summary>Handles the module logic for the post-file script event.</summary>
+            <remarks>
+            This method currently records trace logging for the post-file phase and accepts the active module
+            configuration for future event-specific processing.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="moduleConfig">The loaded module configuration for the current session.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpEvent.PostFile(tngnWsvcSession, moduleConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.PrescriberIsAuthorizing(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpConfig)">
+            <summary>Determines whether the current prescriber is the authorized provider for the order.</summary>
+            <remarks>
+            This method compares the current staff member identifier with the physician approver value stored on
+            the option object and returns the appropriate authorization response.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="moduleConfig">The loaded module configuration for the current session.</param>
+            <example>
+            <code>
+            DoseChangeEvaluationOtpEvent.PrescriberIsAuthorizing(tngnWsvcSession, moduleConfig);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.DoseChangeEvaluationOtp.NamespaceDoc">
+            <summary>Dose Change Evaluation OTP module logic.</summary>
+            <remarks>
+            This namespace contains the configuration, event handlers, and supporting types used to evaluate
+            dose change authorization rules for the current Tingen Web Service session.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Module-DoseChangeEvaluationOtp.md">TingenWebService.Module.DoseChangeEvaluationOtp namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.NamespaceDoc">
+            <summary>Open incident workflow logic for the Tingen Web Service.</summary>
+            <remarks>
+            This namespace contains the configuration, event, request, and supporting types used to load an incident,
+            validate access, and process OpenIncident form activity during the Avatar request lifecycle.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Module-OpenIncident.md">TingenWebService.Module.OpenIncident namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.OpenIncidentConfig">
+            <summary>OpenIncident Module configuration logic.</summary>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Mode">
+            <summary>Gets or sets the module operating mode.</summary>
+            <value>The configured mode value, such as <c>enabled</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Whitelist">
+            <summary>Gets or sets the list of users explicitly allowed to access the module.</summary>
+            <value>A collection of user identifiers that are allowed to access the module.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Greylist">
+            <summary>Gets or sets the list of users requiring conditional handling.</summary>
+            <value>A collection of user identifiers that should be treated as greylisted users.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Blacklist">
+            <summary>Gets or sets the list of users explicitly denied access to the module.</summary>
+            <value>A collection of user identifiers that are not allowed to access the module.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles">
+            <summary>Gets or sets the authorized user roles permitted to view incidents.</summary>
+            <value>A collection of role names that are allowed to open incidents.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.BriefIncidentDescriptionFieldId">
+            <summary>Gets or sets the field identifier for the brief incident description.</summary>
+            <value>The Avatar field identifier that stores the brief incident description.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.ProgramOfIncidentFieldId">
+            <summary>Gets or sets the field identifier for the program of incident.</summary>
+            <value>The Avatar field identifier that stores the program of incident value.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.PersonCompletingIncidentFormFieldId">
+            <summary>Gets or sets the field identifier for the person completing the incident form.</summary>
+            <value>The Avatar field identifier that stores the user who completed the incident form.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleMsg">
+            <summary>Gets or sets the message returned when the user lacks an authorized role.</summary>
+            <value>The user-facing message shown when the current user is not authorized to view the incident.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleErrCode">
+            <summary>Gets or sets the error code returned when the user lacks an authorized role.</summary>
+            <value>The numeric error code associated with an unauthorized role check result.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenMsg">
+            <summary>Gets or sets the message returned when a non-author opens an incident.</summary>
+            <value>The user-facing message shown when the current user opens an incident they did not author.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenErrCode">
+            <summary>Gets or sets the error code returned when a non-author opens an incident.</summary>
+            <value>The numeric error code associated with opening an incident as a non-original author.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitMsg">
+            <summary>Gets or sets the message returned when a non-author attempts to submit an incident.</summary>
+            <value>The user-facing message shown when the current user cannot submit incident changes.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitErrCode">
+            <summary>Gets or sets the error code returned when a non-author attempts to submit an incident.</summary>
+            <value>The numeric error code associated with submitting an incident as a non-original author.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentMsg">
+            <summary>Gets or sets the message returned when the program of incident is invalid.</summary>
+            <value>The user-facing message shown when the selected program of incident is not valid.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentErrCode">
+            <summary>Gets or sets the error code returned when the program of incident is invalid.</summary>
+            <value>The numeric error code associated with an invalid program of incident value.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionMsg">
+            <summary>Gets or sets the message returned when the user description cannot be resolved.</summary>
+            <value>The user-facing message shown when the current username is missing from the translation table.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionErrCode">
+            <summary>Gets or sets the error code returned when the user description cannot be resolved.</summary>
+            <value>The numeric error code associated with an unknown user description result.</value>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Load(System.String,System.Int32,System.String)">
+            <summary>Loads the module configuration from the specified path.</summary>
+            <remarks>
+            If the configuration file does not exist, a new default configuration file is created before the file is
+            loaded and returned.
+            </remarks>
+            <param name="configPath">The full path to the configuration file.</param>
+            <param name="traceLogLimit">The maximum trace logging level to write.</param>
+            <param name="sessionFolder">The session folder where trace output is written.</param>
+            <returns>The loaded <see cref="T:TingenWebService.Module.OpenIncident.OpenIncidentConfig"/> instance.</returns>
+            <example>
+            <code>
+            OpenIncidentConfig config =
+                OpenIncidentConfig.Load(configPath, traceLogLimit, sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.New(System.String,System.Int32,System.String)">
+            <summary>Creates a new configuration file with default OpenIncident module values.</summary>
+            <remarks>
+            This method initializes a new <see cref="T:TingenWebService.Module.OpenIncident.OpenIncidentConfig"/> instance and writes it to the path
+            specified by <paramref name="configPath"/>.
+            </remarks>
+            <param name="configPath">The full path where the configuration file should be written.</param>
+            <param name="traceLogLimit">The maximum trace logging level to write.</param>
+            <param name="sessionFolder">The session folder where trace output is written.</param>
+            <example>
+            <code>
+            OpenIncidentConfig.New(configPath, traceLogLimit, sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.OpenIncidentEvent">
+            <summary>Handles OpenIncident Module events.</summary>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentEvent.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentEvent.Parse(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Parses the current OpenIncident event and routes processing to the matching handler.</summary>
+            <remarks>
+            This method loads the OpenIncident module configuration and executes the appropriate event handler
+            when the module is enabled for the current session.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <example>
+            <code>
+            OpenIncidentEvent.Parse(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentEvent.FormLoad(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Handles the OpenIncident form load event.</summary>
+            <remarks>
+            This method determines whether the current incident is new or existing. New incidents are logged and
+            allowed to continue, while existing incidents may trigger access verification when the option object
+            has not yet been completed.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="openIncidentConfig">The loaded OpenIncident module configuration.</param>
+            <example>
+            <code>
+            OpenIncidentEvent.FormLoad(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentEvent.PreFile(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Handles the OpenIncident pre-file event.</summary>
+            <remarks>
+            This method validates the program of incident and verifies whether the current user is the original
+            author before allowing the incident to be submitted.
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <param name="openIncidentConfig">The loaded OpenIncident module configuration.</param>
+            <example>
+            <code>
+            OpenIncidentEvent.PreFile(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.OpenIncidentLogic">
+            <summary>Contains business logic for OpenIncident module authorization and validation checks.</summary>
+            <remarks>
+            Provides helper methods used by event handlers to determine whether the current user may open or
+            submit an incident and to build human-readable running log bodies used for diagnostics.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentLogic.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.VerifyAccess(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Verifies access for the current session and returns an appropriate option object response.</summary>
+            <remarks>
+            Uses translation table and role membership checks to determine whether the current user may open
+            the incident as-is, view it only, or is entirely unauthorized.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <example>
+            <code>
+            OpenIncidentLogic.VerifyAccess(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.IsOriginalAuthor(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Determines whether the current session user is the original author of the incident.</summary>
+            <remarks>
+            First attempts to match the original author via the translation table, then falls back to an Avatar
+            query if the translation match fails.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <returns><c>true</c> if the current user is the original author; otherwise <c>false</c>.</returns>
+            <example>
+            <code>
+            bool isAuthor = OpenIncidentLogic.IsOriginalAuthor(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.IsMemberOfAuthorizedUserRole(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Determines whether the current user is a member of an authorized user role.</summary>
+            <remarks>
+            Compares the configured authorized roles with the current user's roles returned from the query.
+            Adds a running log entry describing the result.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <returns><c>true</c> if the user is a member of an authorized role; otherwise <c>false</c>.</returns>
+            <example>
+            <code>
+            bool isMember = OpenIncidentLogic.IsMemberOfAuthorizedUserRole(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.GetAuthorizedUserRolesAsString(TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Returns the configured authorized user roles as a comma-separated string.</summary>
+            <remarks>
+            Useful for logging; returns an empty string when no roles are configured.
+            </remarks>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <returns>A comma-separated list of authorized roles, or an empty string.</returns>
+            <example>
+            <code>
+            string roles = OpenIncidentLogic.GetAuthorizedUserRolesAsString(openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.MatchFoundInTranslationTable(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig,System.String)">
+            <summary>Checks whether the original author matches the current user using the translation table.</summary>
+            <remarks>
+            Logs diagnostic running entries describing whether the translation table could be used to match the user.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <param name="originalAuthorFullName">The original author full name read from the option object.</param>
+            <returns><c>true</c> when a translation-table match is found; otherwise <c>false</c>.</returns>
+            <example>
+            <code>
+            bool found = OpenIncidentLogic.MatchFoundInTranslationTable(tngnWsvcSession, openIncidentConfig, originalAuthorFullName);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.MatchFoundInAvatarQuery(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig,System.String)">
+            <summary>Checks whether the original author matches the current user via an Avatar user query.</summary>
+            <remarks>
+            Executes a query to obtain user descriptions and inspects the response for a matching original author
+            value. Adds diagnostic running log entries describing the result.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <param name="originalAuthorFullName">The original author full name read from the option object.</param>
+            <returns><c>true</c> when the query contains a matching entry; otherwise <c>false</c>.</returns>
+            <example>
+            <code>
+            bool found = OpenIncidentLogic.MatchFoundInAvatarQuery(tngnWsvcSession, openIncidentConfig, originalAuthorFullName);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.IsOriginalAuthorSubmitting(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Validates that the submitting user is the original author and returns an option object result.</summary>
+            <remarks>
+            Compares the original author stored on the option object to the session user description obtained from
+            the translation table and returns an appropriate Avatar option response.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <example>
+            <code>
+            OpenIncidentLogic.IsOriginalAuthorSubmitting(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.IsProgramOfIncidentValid(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Validates that the Program of Incident field contains a value.</summary>
+            <remarks>
+            Returns <c>false</c> and logs a running entry when the Program of Incident value is empty or null;
+            otherwise returns <c>true</c>.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The OpenIncident module configuration.</param>
+            <returns><c>true</c> when the Program of Incident is present; otherwise <c>false</c>.</returns>
+            <example>
+            <code>
+            bool valid = OpenIncidentLogic.IsProgramOfIncidentValid(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.BodyUserRoles(System.String,System.String)">
+            <summary>Builds a running log body describing authorized and current user roles.</summary>
+            <remarks>Returns a formatted string suitable for inclusion in running log entries.</remarks>
+            <param name="authorizedUserRoles">Comma-separated authorized user roles.</param>
+            <param name="currentUserRoles">The raw query response of current user roles.</param>
+            <returns>A formatted running log body string.</returns>
+            <example>
+            <code>
+            string body = OpenIncidentLogic.BodyUserRoles(authorizedUserRoles, currentUserRoles);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.BodyAuthorTranslation(System.String,System.String,System.String)">
+            <summary>Builds a running log body describing translation table author match diagnostics.</summary>
+            <remarks>Returns a formatted string that includes the avatar user id, original author, and translation result.</remarks>
+            <param name="avatarUserId">The Avatar user identifier for the current session.</param>
+            <param name="originalAuthor">The original author full name read from the option object.</param>
+            <param name="translatedUserDescription">The translation table user description value.</param>
+            <returns>A formatted running log body string.</returns>
+            <example>
+            <code>
+            string body = OpenIncidentLogic.BodyAuthorTranslation(avatarUserId, originalAuthor, translatedUserDescription);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentLogic.BodyAuthorQuery(System.String,System.String,System.String)">
+            <summary>Builds a running log body describing Avatar query author match diagnostics.</summary>
+            <remarks>Returns a formatted string that includes the avatar user id, original author, and query response.</remarks>
+            <param name="avatarUserId">The Avatar user identifier for the current session.</param>
+            <param name="originalAuthor">The original author full name read from the option object.</param>
+            <param name="queryiedUserDescription">The raw Avatar query response used to match authorship.</param>
+            <returns>A formatted running log body string.</returns>
+            <example>
+            <code>
+            string body = OpenIncidentLogic.BodyAuthorQuery(avatarUserId, originalAuthor, queryiedUserDescription);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.OpenIncidentQuery">
+            <summary>Provides query helpers used by the OpenIncident module to obtain user role and description data.</summary>
+            <remarks>
+            This class encapsulates logic for submitting system-specific queries and formatting XML responses used
+            by the OpenIncident authorization and validation workflows.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentQuery.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentQuery.GetCurrentUserRoles(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Retrieves the current user's roles from the backend user store.</summary>
+            <remarks>
+            Builds and submits a role lookup query against the appropriate environment (LIVE, UAT, SBOX)
+            based on the runtime Avatar system and returns the raw XML query result.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session containing runtime and credential data.</param>
+            <returns>The raw XML response containing user role information or an error token when unsupported.</returns>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentQuery.FormatXmlQuery(System.String)">
+            <summary>Formats a raw XML query response into a prettified XML string.</summary>
+            <param name="xmlResult">The raw XML string returned by a query.</param>
+            <returns>A formatted, indented XML string.</returns>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentQuery.UserDescription(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Retrieves the current user's description value from the backend user store.</summary>
+            <remarks>
+            Builds and submits a user description lookup against the appropriate environment (LIVE, UAT, SBOX)
+            based on the runtime Avatar system and returns the raw XML or token result.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session containing runtime and credential data.</param>
+            <returns>The raw XML response containing the user description or an error token when unsupported.</returns>
+        </member>
+        <member name="T:TingenWebService.Module.OpenIncident.OpenIncidentRequest">
+            <summary>Processes OpenIncident module request-related actions for the current session.</summary>
+            <remarks>
+            Contains request handlers invoked by the OpenIncident event dispatcher. Handlers produce appropriate
+            Avatar option object responses and may record running/session log entries as needed.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentRequest.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentRequest.PostFileEvent(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession,TingenWebService.Module.OpenIncident.OpenIncidentConfig)">
+            <summary>Handles post-file processing for the OpenIncident module.</summary>
+            <remarks>
+            Executed during the post-file script phase. Implementations should validate and perform any actions
+            required after the option object has been posted.
+            </remarks>
+            <param name="tngnWsvcSession">The active Tingen Web Service session.</param>
+            <param name="openIncidentConfig">The loaded OpenIncident module configuration.</param>
+            <example>
+            <code>
+            OpenIncidentRequest.PostFileEvent(tngnWsvcSession, openIncidentConfig);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Module.TngnWsvc.NamespaceDoc">
+            <summary>Tingen Web Service module support.</summary>
+            <remarks>
+            This namespace contains shared module helpers used by Tingen Web Service features, including option-object
+            utilities and administrative deployment-related functionality.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_Module-TngnWsvc.md">TingenWebService.Module.TngnWsvc namespace documentation</seealso>
+        </member>
+        <member name="T:TingenWebService.Module.TngnWsvc.OptObjUtility">
+            <summary>Utility helpers for working with option objects in Tingen Web Service modules.</summary>
+            <remarks>
+            Provides lightweight helpers used by module code to export or manipulate the option object payload
+            for diagnostic or integration purposes.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.TngnWsvc.OptObjUtility.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebService.Module.TngnWsvc.OptObjUtility.CatchOptionObject(TingenWebService.Core.TingenWsvcSession.TngnWsvcSession)">
+            <summary>Exports the current option object original payload to the configured export folder.</summary>
+            <remarks>
+            This method writes the session's original option object using <see cref="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptObj(ScriptLinkStandard.Objects.OptionObject2015,System.String)"/>,
+            allowing external inspection or archiving of the option object contents.
+            </remarks>
+            <param name="wsvcSession">The active Tingen Web Service session containing the option object and folder settings.</param>
+            <example>
+            <code>
+            OptObjUtility.CatchOptionObject(tngnWsvcSession);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.NamespaceDoc">
+            <summary>Main namespace of the Tingen Web Service</summary>
+            <remarks>
+            This namespace doesn't contain a great deal, just enough to get things going.
+            </remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/ns_TingenWebService.md">TingenWebService namespace</seealso>
+        </member>
+        <member name="T:TingenWebService.ProjectInfo">
+            <summary>Provides additional information about the Tingen Web Service.</summary>
+            <remarks>
+              <note type="information" title="About the Tingen Web Service">
+                Netsmart's <see href="https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar">AvatarNX™</see> is a
+                behavioral health Electronic Health Records application that offers a recovery-focused suite of
+                solutions that leverage real-time analytics and clinical decision support to drive value-based care.<br />
+                <br />
+                While AvatarNX™ is a robust platform, it isn't perfect. The good news is that you can extend AvatarNX™
+                functionality via Netsmart's Web Services and/or <i>custom web services</i> that are written by other
+                AvatarNX™ users.<br />
+                <br />
+                The <b>Tingen Web Service</b> is one such custom web service which includes various tools and utilities for
+                AvatarNX™ that aren't included in the official release, and provides a solid foundation for building
+                additional functionality quickly and efficiently.<br />
+                <br />
+                Please see the Tingen Web
+                Service <see href="https://github.com/spectrum-health-systems/Tingen-WebService">GitHub repository</see> for more information.
+            </note><br />
+              <note type="information" title="Tingen Web Service documentation">
+                <see href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/README.md">Tingen Web Service Manual</see>
+                <br />
+                <see href="https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm">API Documentation</see>
+            </note><br />
+            </remarks>
+        </member>
+        <member name="T:TingenWebService.TingenWebService">
+            <summary>The entry class for the Tingen Web Service.</summary>
+        </member>
+        <member name="P:TingenWebService.TingenWebService.TngnWsvcVersion">
+            <summary>The current version of the Tingen Web Service.</summary>
+            <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
+            <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/src/Asmx.md">TingenWebService.asmx.cs</seealso>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.GetVersion">
+            <summary>Get the current version of the Tingen Web Service.</summary>
+            <remarks>This method is required by Avatar.</remarks>
+            <returns>The current <see cref="P:TingenWebService.TingenWebService.TngnWsvcVersion"/> of the Tingen Web Service.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.RunScript(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Determines what the Tingen Web Service will do, if anything.</summary>
+            <remarks>
+            This method is required by Avatar.<br/>
+            <br/>
+            <note type="C#" title="What might happen">
+            One of three things will occur when this method is called:
+            <list type="bullet">
+            <item>If a <b>critical failure</b> is detected, an empty <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> is returned immediately.</item>
+            <item>If the mode is <c>enabled</c> or <c>passthrough</c>, a <see cref="T:TingenWebService.Core.TingenWsvcSession.TngnWsvcSession"/> is started and the completed option object is returned.</item>
+            <item>In all other cases, an empty <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> is returned as a fallback.</item>
+            </list>
+            </note>
+            </remarks>
+            <param name="origOptObj">The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> passed by Avatar.</param>
+            <param name="origScriptParam">The original ScriptParameter passed by Avatar.</param>
+            <returns>A completed <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to be returned to Avatar.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.CriticalFailureOccurred(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.String)">
+            <summary>Determines whether a critical failure has occurred.</summary>
+            <remarks>
+            If a critical failure is <i>not</i> detected, <c>false</c> is returned and the request <i>is</i> processed.<br/>
+            <br/>
+            If a critical failure <i>is</i> detected, <c>true</c> is returned and the request will <i>not</i> be processed.<br/>
+            <br/>
+            <note type="tip" title="What is a 'critical failure'?">
+            A critical failure occurs when one of the following conditions is met:
+            <list type="bullet">
+            <item>The <paramref name="origOptObj"/> is <c>null</c>, or <paramref name="origScriptParam"/> is null or whitespace.</item>
+            <item>The <paramref name="tngnWsvcMode"/> is <c>"disabled"</c>.</item>
+            <item>The <paramref name="tngnWsvcMode"/> is an unrecognized value.</item>
+            </list>
+            </note>
+            </remarks>
+            <param name="origOptObj">The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> received from the caller.</param>
+            <param name="origScriptParam">The script parameter string passed with the request.</param>
+            <param name="tngnWsvcMode">The current operating mode of the Tingen web service (e.g., <c>"enabled"</c>, <c>"disabled"</c>, <c>"passthrough"</c>).</param>
+            <returns><c>true</c> if a critical failure condition is detected; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="T:TingenWebService.NtstWsvcQueryUat.Query">
+            <remarks/>
+        </member>
+        <member name="M:TingenWebService.NtstWsvcQueryUat.Query.#ctor">
+            <remarks/>
+        </member>
+        <member name="E:TingenWebService.NtstWsvcQueryUat.Query.SubmitQueryCompleted">
+            <remarks/>
+        </member>
+        <member name="M:TingenWebService.NtstWsvcQueryUat.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:TingenWebService.NtstWsvcQueryUat.Query.SubmitQueryAsync(System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:TingenWebService.NtstWsvcQueryUat.Query.SubmitQueryAsync(System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:TingenWebService.NtstWsvcQueryUat.Query.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="T:TingenWebService.NtstWsvcQueryUat.SubmitQueryCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:TingenWebService.NtstWsvcQueryUat.SubmitQueryCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:TingenWebService.NtstWsvcQueryUat.SubmitQueryCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:NtstWsvcLiveQuery.Query">
+            <summary>Provides query submission functionality for the LIVE environment.</summary>
+            <remarks>
+            This is a lightweight stub implementation used for testing or when the LIVE query provider is
+            not available. A production implementation should submit the provided SQL to the specified system
+            using the supplied credentials and return the service's XML response.
+            </remarks>
+        </member>
+        <member name="M:NtstWsvcLiveQuery.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <summary>Submits a SQL query to the specified system and returns the raw XML result.</summary>
+            <param name="system">Target system name, for example <c>LIVE</c>, <c>UAT</c>, or <c>SBOX</c>.</param>
+            <param name="user">Username used to authenticate with the query service.</param>
+            <param name="pass">Password used to authenticate with the query service.</param>
+            <param name="query">The SQL query string to execute.</param>
+            <returns>A raw XML string containing the query result.</returns>
+            <example>
+            <code>
+            var q = new Query();
+            string xml = q.SubmitQuery("LIVE", "user", "pass", "SELECT * FROM RADplus_users");
+            </code>
+            </example>
+        </member>
+        <member name="T:NtstWsvcSboxQuery.Query">
+            <summary>Provides query submission functionality for the SBOX environment.</summary>
+            <remarks>
+            This is a lightweight stub implementation used for testing or when the SBOX query provider is not
+            available. A production implementation should submit the provided SQL to the specified system using
+            the supplied credentials and return the service's XML response.
+            </remarks>
+        </member>
+        <member name="M:NtstWsvcSboxQuery.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <summary>Submits a SQL query to the specified system and returns the raw XML result.</summary>
+            <param name="system">Target system name, for example <c>SBOX</c>, <c>UAT</c>, or <c>LIVE</c>.</param>
+            <param name="user">Username used to authenticate with the query service.</param>
+            <param name="pass">Password used to authenticate with the query service.</param>
+            <param name="query">The SQL query string to execute.</param>
+            <returns>A raw XML string containing the query result.</returns>
+            <example>
+            <code>
+            var q = new Query();
+            string xml = q.SubmitQuery("SBOX", "user", "pass", "SELECT * FROM RADplus_users");
+            </code>
+            </example>
+        </member>
+        <member name="T:NtstWsvcUatNxQuery.Query">
+            <summary>Provides query submission functionality for the UAT NX environment.</summary>
+            <remarks>
+            This is a lightweight stub implementation used for testing or when the UAT NX query provider is not
+            available. A production implementation should submit the provided SQL to the specified system using
+            the supplied credentials and return the service's XML response.
+            </remarks>
+        </member>
+        <member name="M:NtstWsvcUatNxQuery.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <summary>Submits a SQL query to the specified system and returns the raw XML result.</summary>
+            <param name="system">Target system name, for example <c>UAT</c>, <c>SBOX</c>, or <c>LIVE</c>.</param>
+            <param name="user">Username used to authenticate with the query service.</param>
+            <param name="pass">Password used to authenticate with the query service.</param>
+            <param name="query">The SQL query string to execute.</param>
+            <returns>A raw XML string containing the query result.</returns>
+            <example>
+            <code>
+            var q = new Query();
+            string xml = q.SubmitQuery("UAT", "user", "pass", "SELECT * FROM RADplus_users");
+            </code>
+            </example>
+        </member>
+        <member name="T:NtstWsvcUatQuery.Query">
+            <summary>Provides query submission functionality for the UAT environment.</summary>
+            <remarks>
+            This is a lightweight stub implementation used for testing or when the UAT query provider is not
+            available. A production implementation should submit the provided SQL to the specified system using
+            the supplied credentials and return the service's XML response.
+            </remarks>
+        </member>
+        <member name="M:NtstWsvcUatQuery.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <summary>Submits a SQL query to the specified system and returns the raw XML result.</summary>
+            <param name="system">Target system name, for example <c>UAT</c>, <c>SBOX</c>, or <c>LIVE</c>.</param>
+            <param name="user">Username used to authenticate with the query service.</param>
+            <param name="pass">Password used to authenticate with the query service.</param>
+            <param name="query">The SQL query string to execute.</param>
+            <returns>A raw XML string containing the query result.</returns>
+            <example>
+            <code>
+            var q = new Query();
+            string xml = q.SubmitQuery("UAT", "user", "pass", "SELECT * FROM RADplus_users");
+            </code>
+            </example>
+        </member>
+        <member name="T:SuperLive.Query">
+            <summary>Provides query submission functionality for the LIVE SuperLive provider.</summary>
+            <remarks>
+            This is a lightweight stub implementation used for testing or when the SuperLive query provider is
+            not available. A production implementation should submit the provided SQL to the specified system
+            using the supplied credentials and return the service's XML response.
+            </remarks>
+        </member>
+        <member name="M:SuperLive.Query.SubmitQuery(System.String,System.String,System.String,System.String)">
+            <summary>Submits a SQL query to the specified system and returns the raw XML result.</summary>
+            <param name="system">Target system name, for example <c>LIVE</c>, <c>UAT</c>, or <c>SBOX</c>.</param>
+            <param name="user">Username used to authenticate with the query service.</param>
+            <param name="pass">Password used to authenticate with the query service.</param>
+            <param name="query">The SQL query string to execute.</param>
+            <returns>A raw XML string containing the query result.</returns>
+            <example>
+            <code>
+            var q = new Query();
+            string xml = q.SubmitQuery("LIVE", "user", "pass", "SELECT * FROM RADplus_users");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebServiceCore.Operation.AvatarField">
+            <summary>Provides helper operations for inspecting and comparing Avatar field values.</summary>
+            <remarks>
+            <para>
+            <c>AvatarField</c> centralizes the small, frequently-reused routines that work with individual Avatar fields
+            exposed through a <see cref="T:ScriptLinkStandard.Objects.OptionObject"/>. The helpers normalize comparisons, retrieve field values by
+            identifier, and report whether a field is empty so that calling code does not have to repeat null/whitespace
+            checks or case-sensitivity logic.
+            </para>
+            <para>
+            Every public entry point emits a trace log entry through <see cref="!:LogEvent.Trace(int, int, string, string)"/>
+            so that field-level operations can be correlated with the originating Tingen Web Service session.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebServiceCore.Operation.AvatarField.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebServiceCore.Operation.AvatarField.AreEqual(System.String,System.String,System.Int32,System.String)">
+            <summary>Determines whether two Avatar string field values are equal using a case-insensitive comparison.</summary>
+            <param name="field01">The first Avatar field value to compare.</param>
+            <param name="field02">The second Avatar field value to compare.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <returns><c>true</c> if the two values are equal ignoring case; otherwise, <c>false</c>.</returns>
+            <remarks>
+            <para>
+            The comparison uses <see cref="F:System.StringComparison.OrdinalIgnoreCase"/>, which matches Avatar's 
+            case-insensitive treatment of most character-based field values without incurring the cost of
+            culture-sensitive comparisons.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            bool match = AvatarField.AreEqual("Yes", "yes", traceLogLimit, sessionFolder);
+            // match == true
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebServiceCore.Operation.AvatarField.AreEqual(System.Int32,System.Int32,System.Int32,System.String)">
+            <summary>Determines whether two Avatar integer field values are equal.</summary>
+            <param name="field01">The first Avatar field value to compare.</param>
+            <param name="field02">The second Avatar field value to compare.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <returns><c>true</c> if the two values are equal; otherwise, <c>false</c>.</returns>
+            <example>
+            <code>
+            bool match = AvatarField.AreEqual(42, 42, traceLogLimit, sessionFolder);
+            // match == true
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebServiceCore.Operation.AvatarField.GetValue(ScriptLinkStandard.Objects.OptionObject,System.String,System.Int32,System.String)">
+            <summary>Retrieves the value of a single Avatar field from the supplied <see cref="T:ScriptLinkStandard.Objects.OptionObject"/>.</summary>
+            <param name="optObj">The Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject"/> that contains the field.</param>
+            <param name="fieldId">The Avatar field identifier (FieldNumber) whose value should be returned.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <returns>The value of the requested field as returned by <see cref="M:ScriptLinkStandard.Objects.OptionObject.GetFieldValue(System.String)"/>.</returns>
+            <remarks>
+            <para>
+            This is a thin wrapper over <see cref="M:ScriptLinkStandard.Objects.OptionObject.GetFieldValue(System.String)"/> that adds session
+            trace logging so field reads can be diagnosed through the standard Tingen log pipeline.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            string firstName = AvatarField.GetValue(optionObject, "12345", traceLogLimit, sessionFolder);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebServiceCore.Operation.AvatarField.IsEmpty(System.String,System.Int32,System.String)">
+            <summary>Reports whether an Avatar field value is empty as a lowercase Avatar-friendly string.</summary>
+            <param name="fieldValue">The Avatar field value to test.</param>
+            <param name="traceLogLimit">The maximum number of trace log files retained for the active session.</param>
+            <param name="sessionFolder">The absolute path to the current Tingen Web Service session folder.</param>
+            <returns>The literal string <c>"true"</c> when <paramref name="fieldValue"/> is null, empty, or whitespace; otherwise <c>"false"</c>.</returns>
+            <remarks>
+            <para>
+            Avatar scripts typically expect boolean-style answers as the lowercase strings <c>"true"</c>
+            and <c>"false"</c> rather than .NET <see cref="T:System.Boolean"/> values. This helper performs the
+            null/empty/whitespace check and returns the value in the form Avatar expects.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            string isEmpty = AvatarField.IsEmpty(optionObject.GetFieldValue("12345"), traceLogLimit, sessionFolder);
+            // isEmpty == "true" when the field has no value
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebServiceCore.TingenWsvcSession.TngnWsvcSessionError">
+            <summary>Provides error-handling helpers for an active Tingen Web Service session.</summary>
+            <remarks>
+            <para>
+            <c>TngnWsvcSessionError</c> centralizes the way unrecoverable ("hard") errors are reported back
+            to Avatar. Routing all hard errors through a single helper guarantees that the running log,
+            the session log, and the response payload returned to the calling Avatar form remain
+            consistent regardless of where the error originated in the request pipeline.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebServiceCore.TingenWsvcSession.TngnWsvcSessionError.ExeAsm">
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDocumentation/TngnWsvc.xml" path="TngnWsvc/Class[@name=&quot;CommonDefinition&quot;]/ExecutingAssembly/*" />
+        </member>
+        <member name="M:TingenWebServiceCore.TingenWsvcSession.TngnWsvcSessionError.HardError(System.Object,System.Int32,System.String)">
+            <summary>Records a hard error against the active session and returns it to the Avatar caller.</summary>
+            <param name="wsvcSession">The active Tingen Web Service session object that exposes the script parameter and Avatar option object.</param>
+            <param name="errCode">The numeric error code that should be sent back to the Avatar form.</param>
+            <param name="errMsg">The human-readable error message describing what failed.</param>
+            <remarks>
+            <para>
+            The error message and the original script parameter are appended to the session's running
+            log via <see cref="M:TingenWebService.Core.Logger.SessionLog.AddToRunningLog(System.Object,System.String,System.String,System.String)"/> with the
+            <c>"HARD ERROR"</c> category, and then
+            <see cref="M:TingenWebService.Core.Avatar.AvatarOptionObject.ToReturn(System.Object,System.Int32,System.String)"/> is invoked to deliver the
+            error payload to the Avatar form. This method does not throw; it is intended to be the
+            final step before control returns to Avatar.
+            </para>
+            </remarks>
+            <example>
+            <code>
+            TngnWsvcSessionError.HardError(
+                wsvcSession: tngnWsvcSession,
+                errCode:     3,
+                errMsg:      "Unable to resolve the requested Avatar user.");
+            </code>
+            </example>
+        </member>
+    </members>
+</doc>
