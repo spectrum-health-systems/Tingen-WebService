@@ -25,13 +25,13 @@ namespace TingenWebService.Trove
             $"================================================================================{Environment.NewLine}" +
             $"Tingen Web Service Error Log{Environment.NewLine}" +
             $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}`" +
-            $"================================================================================" +
+            $"================================================================================{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"~LOG~MESSAGE~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"--------------------------------------------------------------------------------" +
+            $"--------------------------------------------------------------------------------{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
             $"[CLASS] ~CLASS~{Environment.NewLine}" +
@@ -47,7 +47,7 @@ namespace TingenWebService.Trove
             $"{Environment.NewLine}" +
             $"~LOG~MESSAGE~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"--------------------------------------------------------------------------------" +
+            $"--------------------------------------------------------------------------------{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
             $"[CLASS] ~CLASS~{Environment.NewLine}" +
