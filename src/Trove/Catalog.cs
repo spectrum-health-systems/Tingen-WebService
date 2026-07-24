@@ -7,7 +7,7 @@ namespace TingenWebService.Core
         /// <summary>Gets all the framework paths.</summary>
         /// <param name="twsFramework">The framework instance containing the paths.</param>
         /// <returns>An array of all framework paths.</returns>
-        internal static string[] FrameworkPaths(Framework twsFramework) =>
+        internal static string[] FrameworkPathList(Framework twsFramework) =>
             new string[]
             {
                 twsFramework.DataPath.AvatarGeneratedDataRoot,
@@ -22,5 +22,11 @@ namespace TingenWebService.Core
                 twsFramework.DataPath.TranslationTableRoot,
                 twsFramework.DataPath.SessionRoot
             };
+
+        internal static string TestingCompleteMessage() =>
+            "Tingen Web Service testing complete!";
+
+        internal static string trans_FormId() =>
+            "INCIDENT1=OpenIncident";
     }
 }

@@ -76,7 +76,7 @@ namespace TingenWebService.Core
         /// <param name="twsFramework">The framework instance containing the paths to verify.</param>
         internal static void Verify(Framework twsFramework)
         {
-            foreach (var path in Catalog.FrameworkPaths(twsFramework))
+            foreach (var path in Catalog.FrameworkPathList(twsFramework))
             {
                 try
                 {
