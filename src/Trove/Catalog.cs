@@ -7,7 +7,7 @@ namespace TingenWebService.Trove
 {
     /// <summary>Provides catalog information for the Tingen Web Service.</summary>
     /// <remarks>
-    /// Preset values.
+    /// Preset collections.
     /// </remarks>
     internal class Catalog
     {
@@ -29,9 +29,6 @@ namespace TingenWebService.Trove
                 twsFramework.DataPath.TranslationTableRoot,
                 twsFramework.DataPath.SessionRoot
             };
-
-        internal static string TngnWsvcTestingCompleteMessage() =>
-            "Tingen Web Service testing complete!";
 
         internal static string FormIdToFormNameTranslation() =>
             "INCIDENT1=OpenIncident";
