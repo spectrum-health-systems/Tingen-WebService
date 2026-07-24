@@ -14,8 +14,8 @@ TingenWebService.NsDoc.cs
 
 ## Error codes
 
-3876 - Error creating framework path
-7622
+3876 - Missing Avatar data
+7622 - Error creating framework path
 7516
 4694
 5285
