@@ -62,8 +62,10 @@ namespace TingenWebService
         {
             if (sentOptObj == null || string.IsNullOrWhiteSpace(sentScriptParam))
             {
-                // TODO - Potentially send an email in addition to the error log.
+                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
+                 */
                 Logger.LogEvent.Primeval("ERROR-MissingAvatarData", $"[3876]: Missing OptionObject and/or Script Parameter");
+                // TODO - Potentially send an email in addition to the error log.
 
                 return true;
             }

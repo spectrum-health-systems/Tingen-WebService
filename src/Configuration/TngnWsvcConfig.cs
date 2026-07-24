@@ -1,5 +1,5 @@
-﻿// 260723_code
-// 260723_documentation
+﻿// 260724_code
+// 260724_documentation
 
 namespace TingenWebService.Configuration
 {
@@ -10,6 +10,17 @@ namespace TingenWebService.Configuration
         public string TraceLogLevel { get; set; }
 
         public string LogDelay { get; set; }
+
+        public string EmailAddress { get; set; }
+
+        public string EmailPassword { get; set; }
+
+        public string NtstWsvcUserName { get; set; }
+
+        public string NtstWsvcPassword { get; set; }
+
+        public string CriticalErrorMessage { get; set; } //TODO - Elsewhere?
+        public string ErrorMessage { get; set; } //TODO - Elsewhere?
 
         //internal static TngnWsvcConfig Load()
         //{

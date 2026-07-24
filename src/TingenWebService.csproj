@@ -74,6 +74,8 @@
     <Compile Include="Configuration\NsDoc.cs" />
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
+    <Compile Include="Core\Blueprint.cs" />
+    <Compile Include="Core\Catalog.cs" />
     <Compile Include="Core\Framework.cs" />
     <Compile Include="Core\Maintenance.cs" />
     <Compile Include="Core\NsDoc.cs" />

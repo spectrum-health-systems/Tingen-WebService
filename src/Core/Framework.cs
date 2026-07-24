@@ -1,5 +1,5 @@
-﻿// 260723_code
-// 260723_documentation
+﻿// 260724_code
+// 260724_documentation
 
 using System;
 using System.IO;
@@ -28,7 +28,7 @@ namespace TingenWebService.Core
             public string SessionRoot { get; set; }
         }
 
-        public class WwwPaths
+        public class WwwPaths //TODO - may not need.
         {
             public string AppDataRoot { get; set; }
             public string BlueprintRoot { get; set; }
@@ -76,7 +76,7 @@ namespace TingenWebService.Core
         /// <param name="twsFramework">The framework instance containing the paths to verify.</param>
         internal static void Verify(Framework twsFramework)
         {
-            foreach (var path in FrameworkPaths(twsFramework))
+            foreach (var path in Catalog.FrameworkPaths(twsFramework))
             {
                 try
                 {
@@ -84,30 +84,32 @@ namespace TingenWebService.Core
                 }
                 catch (Exception ex)
                 {
+                    /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
+                     */
                     Logger.LogEvent.Primeval($"ERROR-CreatingPath-{path}", $"[7622]: {ex.Message}");
                 }
             }
         }
 
-        /// <summary>Gets all the framework paths.</summary>
-        /// <param name="twsFramework">The framework instance containing the paths.</param>
-        /// <returns>An array of all framework paths.</returns>
-        private static string[] FrameworkPaths(Framework twsFramework)
-        {
-            return new string[]
-            {
-                twsFramework.DataPath.AvatarGeneratedDataRoot,
-                twsFramework.DataPath.AppDataRoot,
-                twsFramework.DataPath.BlueprintRoot,
-                twsFramework.DataPath.ConfigRoot,
-                twsFramework.DataPath.ExportRoot,
-                twsFramework.DataPath.HistoryRoot,
-                twsFramework.DataPath.ImportRoot,
-                twsFramework.DataPath.LogRoot,
-                twsFramework.DataPath.OptObjErrorRoot,
-                twsFramework.DataPath.TranslationTableRoot,
-                twsFramework.DataPath.SessionRoot
-            };
-        }
+        ///// <summary>Gets all the framework paths.</summary>
+        ///// <param name="twsFramework">The framework instance containing the paths.</param>
+        ///// <returns>An array of all framework paths.</returns>
+        //private static string[] FrameworkPaths(Framework twsFramework)
+        //{
+        //    return new string[]
+        //    {
+        //        twsFramework.DataPath.AvatarGeneratedDataRoot,
+        //        twsFramework.DataPath.AppDataRoot,
+        //        twsFramework.DataPath.BlueprintRoot,
+        //        twsFramework.DataPath.ConfigRoot,
+        //        twsFramework.DataPath.ExportRoot,
+        //        twsFramework.DataPath.HistoryRoot,
+        //        twsFramework.DataPath.ImportRoot,
+        //        twsFramework.DataPath.LogRoot,
+        //        twsFramework.DataPath.OptObjErrorRoot,
+        //        twsFramework.DataPath.TranslationTableRoot,
+        //        twsFramework.DataPath.SessionRoot
+        //    };
+        //}
     }
 }
