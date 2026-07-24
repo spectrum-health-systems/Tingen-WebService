@@ -88,13 +88,12 @@ namespace TingenWebService
             }
             else
             {
+                Du.DuFile.DeadDrop(historyFile, Epistle.HistoryStart());
                 Framework.Verify(TwsFramework);
-                Du.DuFile.DeadDropAppend(historyFile, $"Framework verified{Environment.NewLine}");
+                Du.DuFile.DeadDropAppend(historyFile, Epistle.FrameworkVerified());
                 Blueprint.ExportAllToHost(TwsFramework.BlueprintRoot);
-                Du.DuFile.DeadDropAppend(historyFile, $"Blueprints exported{Environment.NewLine}");
+                Du.DuFile.DeadDropAppend(historyFile, Epistle.BlueprintsExported());
             }
         }
-
-
     }
 }
