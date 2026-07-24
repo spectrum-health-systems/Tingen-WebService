@@ -4,37 +4,33 @@
 using System;
 using System.IO;
 using TingenWebService.Du;
+using TingenWebService.Trove;
 
 namespace TingenWebService.Core
 {
     internal class Framework
     {
-        public DataPaths DataPath { get; set; }
+        public string AvatarGeneratedDataRoot { get; set; }
 
-        public WwwPaths WwwPath { get; set; }
+        public string AppDataRoot { get; set; }
 
-        public class DataPaths
-        {
-            public string AvatarGeneratedDataRoot { get; set; }
-            public string AppDataRoot { get; set; }
-            public string BlueprintRoot { get; set; }
-            public string ConfigRoot { get; set; }
-            public string ExportRoot { get; set; }
-            public string HistoryRoot { get; set; }
-            public string ImportRoot { get; set; }
-            public string LogRoot { get; set; }
-            public string OptObjErrorRoot { get; set; }
-            public string TranslationTableRoot { get; set; }
-            public string SessionRoot { get; set; }
-        }
+        public string ConfigRoot { get; set; }
 
-        public class WwwPaths //TODO - may not need.
-        {
-            public string AppDataRoot { get; set; }
-            public string BlueprintRoot { get; set; }
-            public string OptObjErrorRoot { get; set; }
-            public string TranslationTableRoot { get; set; }
-        }
+        public string ExportRoot { get; set; }
+
+        public string HistoryRoot { get; set; }
+
+        public string ImportRoot { get; set; }
+
+        public string LogRoot { get; set; }
+
+        public string BlueprintRoot { get; set; }
+
+        public string EpistleRoot { get; set; }
+
+        public string SessionRoot { get; set; }
+
+        public string TranslationTableRoot { get; set; }
 
         /// <summary>Loads the framework with the specified paths and avatar system.</summary>
         /// <param name="hostDataPath">The root path for data storage.</param>
@@ -43,32 +39,19 @@ namespace TingenWebService.Core
         /// <returns>A <see cref="Framework"/> instance with the specified paths.</returns>
         internal static Framework Load(string hostDataPath, string hostWwwPath, string avatarSystem)
         {
-            var dataPath = Path.Combine(hostDataPath, "WebService", avatarSystem);
-            var wwwPath  = Path.Combine(hostWwwPath, "WebService", avatarSystem);
-
             return new Framework()
             {
-                DataPath = new DataPaths()
-                {
-                    AvatarGeneratedDataRoot = Path.Combine(dataPath, "AvatarGeneratedData"),
-                    AppDataRoot             = Path.Combine(dataPath, "AppData"),
-                    BlueprintRoot           = Path.Combine(dataPath, "Blueprints"),
-                    ConfigRoot              = Path.Combine(dataPath, "Config"),
-                    ExportRoot              = Path.Combine(dataPath, "Export"),
-                    HistoryRoot             = Path.Combine(dataPath, "History"),
-                    ImportRoot              = Path.Combine(dataPath, "Import"),
-                    LogRoot                 = Path.Combine(dataPath, "Log"),
-                    OptObjErrorRoot         = Path.Combine(dataPath, "OptObjError"),
-                    TranslationTableRoot    = Path.Combine(dataPath, "TranslationTables"),
-                    SessionRoot             = Path.Combine(dataPath, "Session")
-                },
-                WwwPath = new WwwPaths()
-                {
-                    AppDataRoot          = Path.Combine(wwwPath, "App_Data"),
-                    BlueprintRoot        = Path.Combine(wwwPath, "Blueprints"),
-                    OptObjErrorRoot      = Path.Combine(wwwPath, "OptObjError"),
-                    TranslationTableRoot = Path.Combine(wwwPath, "TranslationTables")
-                }
+                AvatarGeneratedDataRoot = Path.Combine(hostDataPath, "WebService", "AvatarGeneratedData"),
+                AppDataRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "AppData"),
+                ConfigRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Config"),
+                ExportRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Export"),
+                HistoryRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "History"),
+                ImportRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Import"),
+                LogRoot                 = Path.Combine(hostDataPath, "WebService", avatarSystem, "Log"),
+                BlueprintRoot           = Path.Combine(hostDataPath, "WebService", avatarSystem, "Blueprints"),
+                EpistleRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "Epistle"),
+                SessionRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "Session"),
+                TranslationTableRoot    = Path.Combine(hostDataPath, "WebService", avatarSystem, "TranslationTables")
             };
         }
 

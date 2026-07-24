@@ -89,9 +89,9 @@ namespace TingenWebService
             else
             {
                 Framework.Verify(TwsFramework);
-                Du.DuFile.DeadDropAppend(historyFile, "Framework verified.");
+                Du.DuFile.DeadDropAppend(historyFile, $"Framework verified{Environment.NewLine}");
                 Blueprint.ExportAllToHost(TwsFramework.DataPath.BlueprintRoot);
-                Du.DuFile.DeadDropAppend(historyFile, "Blueprints exported.");
+                Du.DuFile.DeadDropAppend(historyFile, $"Blueprints exported{Environment.NewLine}");
             }
         }
 

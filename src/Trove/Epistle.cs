@@ -11,7 +11,5 @@ namespace TingenWebService.Trove
     {
         internal static string TngnWsvcTestingCompleteMessage() =>
             "Tingen Web Service testing complete!";
-
-
     }
 }
