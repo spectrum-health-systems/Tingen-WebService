@@ -43,6 +43,7 @@ namespace TingenWebService.Trove
             $"Tingen Web Service Critical Error Log{Environment.NewLine}" +
             $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
             $"================================================================================{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
             $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"~LOG~MESSAGE~{Environment.NewLine}" +
@@ -64,6 +65,7 @@ namespace TingenWebService.Trove
             $"Avatar system: ~AVATAR~SYSTEM~{Environment.NewLine}" +
             $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}" +
             $"================================================================================{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
             $"Detail{Environment.NewLine}" +
             $"--------{Environment.NewLine}" +
             $"~RUNNING~LOG~";
