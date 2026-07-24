@@ -6,9 +6,7 @@ using TingenWebService.Core;
 namespace TingenWebService.Trove
 {
     /// <summary>Provides catalog information for the Tingen Web Service.</summary>
-    /// <remarks>
-    /// Preset collections.
-    /// </remarks>
+    /// <remarks>Catalogs are preset collections that cannot be modified.</remarks>
     internal class Catalog
     {
         /// <summary>Gets all the framework paths.</summary>
@@ -30,6 +28,8 @@ namespace TingenWebService.Trove
                 twsFramework.TranslationTableRoot
             };
 
+        /// <summary>Gets the translation for a form ID to its corresponding form name.</summary>
+        /// <returns>A string representing the form ID to form name translation.</returns>
         internal static string FormIdToFormNameTranslation() =>
             "INCIDENT1=OpenIncident";
     }

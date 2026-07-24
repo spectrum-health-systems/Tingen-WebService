@@ -10,26 +10,37 @@ namespace TingenWebService.Core
 {
     internal class Framework
     {
+        /// <summary>Avatar generated data.</summary>
         public string AvatarGeneratedDataRoot { get; set; }
 
+        /// <summary>Application data.</summary>
         public string AppDataRoot { get; set; }
 
+        /// <summary>Configuration data.</summary>
         public string ConfigRoot { get; set; }
 
+        /// <summary>Export data.</summary>
         public string ExportRoot { get; set; }
 
+        /// <summary>History data.</summary>
         public string HistoryRoot { get; set; }
 
+        /// <summary>Import data.</summary>
         public string ImportRoot { get; set; }
 
+        /// <summary>Log data.</summary>
         public string LogRoot { get; set; }
 
+        /// <summary>Blueprint data.</summary>
         public string BlueprintRoot { get; set; }
 
+        /// <summary>Epistle data.</summary>
         public string EpistleRoot { get; set; }
 
+        /// <summary>Session data.</summary>
         public string SessionRoot { get; set; }
 
+        /// <summary>Translation table data.</summary>
         public string TranslationTableRoot { get; set; }
 
         /// <summary>Loads the framework with the specified paths and avatar system.</summary>
@@ -73,26 +84,5 @@ namespace TingenWebService.Core
                 }
             }
         }
-
-        ///// <summary>Gets all the framework paths.</summary>
-        ///// <param name="twsFramework">The framework instance containing the paths.</param>
-        ///// <returns>An array of all framework paths.</returns>
-        //private static string[] FrameworkPaths(Framework twsFramework)
-        //{
-        //    return new string[]
-        //    {
-        //        twsFramework.DataPath.AvatarGeneratedDataRoot,
-        //        twsFramework.DataPath.AppDataRoot,
-        //        twsFramework.DataPath.BlueprintRoot,
-        //        twsFramework.DataPath.ConfigRoot,
-        //        twsFramework.DataPath.ExportRoot,
-        //        twsFramework.DataPath.HistoryRoot,
-        //        twsFramework.DataPath.ImportRoot,
-        //        twsFramework.DataPath.LogRoot,
-        //        twsFramework.DataPath.OptObjErrorRoot,
-        //        twsFramework.DataPath.TranslationTableRoot,
-        //        twsFramework.DataPath.SessionRoot
-        //    };
-        //}
     }
 }

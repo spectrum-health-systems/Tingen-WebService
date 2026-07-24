@@ -49,7 +49,7 @@ namespace TingenWebService
             {
                 StartApp();
 
-                // Route
+                // Route to the appropriate place.
 
                 return sentOptObj.ToReturnOptionObject(0, ""); //TODO - Placeholder
             }
@@ -84,10 +84,12 @@ namespace TingenWebService
 
             if (File.Exists(historyFile))
             {
+                // TODO - Initialize the session.
                 //TwsSession = TngnWsvcSession.Load(sentOptObj, sentScriptParam, TwsFramework);
             }
             else
             {
+                // TODO - Move this somewhere history-specific
                 Framework.Verify(TwsFramework);
                 Du.DuFile.DeadDrop(historyFile, Epistle.HistoryStart());
                 Du.DuFile.DeadDropAppend(historyFile, Epistle.FrameworkVerified());
