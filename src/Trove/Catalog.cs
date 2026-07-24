@@ -1,7 +1,14 @@
-﻿
+﻿// 260724_code
+// 260724_documentation
 
-namespace TingenWebService.Core
+using TingenWebService.Core;
+
+namespace TingenWebService.Trove
 {
+    /// <summary>Provides catalog information for the Tingen Web Service.</summary>
+    /// <remarks>
+    /// Preset values.
+    /// </remarks>
     internal class Catalog
     {
         /// <summary>Gets all the framework paths.</summary>
@@ -23,10 +30,10 @@ namespace TingenWebService.Core
                 twsFramework.DataPath.SessionRoot
             };
 
-        internal static string TestingCompleteMessage() =>
+        internal static string TngnWsvcTestingCompleteMessage() =>
             "Tingen Web Service testing complete!";
 
-        internal static string trans_FormId() =>
+        internal static string FormIdToFormNameTranslation() =>
             "INCIDENT1=OpenIncident";
     }
 }

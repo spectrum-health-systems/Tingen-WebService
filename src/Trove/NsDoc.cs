@@ -1,11 +1,11 @@
 ﻿// 260723_code
 // 260723_documentation
 
-namespace TingenWebService.Core
+namespace TingenWebService.Trove
 {
     public class NsDoc
     {
-        /// <summary>Namespace for various logic.</summary>
+        /// <summary>Namespace for Trove logic.</summary>
         [System.Runtime.CompilerServices.CompilerGenerated()]
         class NamespaceDoc
         {

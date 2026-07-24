@@ -1,21 +1,27 @@
 ﻿// 260724_code
 // 260724_documentation
+
 using System;
 using System.IO;
 using TingenWebService.Du;
 
-namespace TingenWebService.Core
+namespace TingenWebService.Trove
 {
+    /// <summary>Provides blueprint templates for various logs in the Tingen Web Service.</summary>
+    /// <remarks>
+    /// Blueprints are templates.
+    /// </remarks>
     internal class Blueprint
     {
         internal static void ExportAllToHost(string blueprintRoot)
         {
-            DuFile.DeadDrop(Path.Combine(blueprintRoot, "ErrorMessage.blueprint"), blpt_Error());
-            DuFile.DeadDrop(Path.Combine(blueprintRoot, "CriticalErrorMessage.blueprint"), blpt_CriticalError());
-            DuFile.DeadDrop(Path.Combine(blueprintRoot, "SessionLog.blueprint"), blpt_SessionLog());
+            DuFile.DeadDrop(Path.Combine(blueprintRoot, "ErrorMessage.blueprint"), ErrorLogBlueprint());
+            DuFile.DeadDrop(Path.Combine(blueprintRoot, "CriticalErrorMessage.blueprint"), CriticalErrorLogBlueprint());
+            DuFile.DeadDrop(Path.Combine(blueprintRoot, "SessionLog.blueprint"), SessionLogBlueprint());
+            DuFile.DeadDrop(Path.Combine(blueprintRoot, "UnknownParameter.blueprint"), OptObjUnknownParameterBlueprint());
         }
 
-        internal static string blpt_Error() =>
+        internal static string ErrorLogBlueprint() =>
             "================================================================================" +
             "Tingen Web Service Error Log" +
             "Date/Time: ~SESSION~DATE~TIME~" +
@@ -32,7 +38,7 @@ namespace TingenWebService.Core
             "[METHOD] ~METHOD~" +
             "[LINE] ~LINE~";
 
-        internal static string blpt_CriticalError() =>
+        internal static string CriticalErrorLogBlueprint() =>
             "================================================================================" +
             "Tingen Web Service Critical Error Log" +
             "Date/Time: ~SESSION~DATE~TIME~" +
@@ -49,7 +55,7 @@ namespace TingenWebService.Core
             "[METHOD] ~METHOD~" +
             "[LINE] ~LINE~";
 
-        internal static string blpt_SessionLog() =>
+        internal static string SessionLogBlueprint() =>
             "================================================================================" +
             "Tingen Web Service Session Log" +
             "Date: ~SESSION~DATE~" +
@@ -64,7 +70,7 @@ namespace TingenWebService.Core
             "--------" +
             "~RUNNING~LOG~";
 
-        internal static string blpt_OptObjUnknownParameter() =>
+        internal static string OptObjUnknownParameterBlueprint() =>
             "Unknown parameter: ~COMMAND~ [v~VERSION~ e~ERROR~CODE~]";
 
     }

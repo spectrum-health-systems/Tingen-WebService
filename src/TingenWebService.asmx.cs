@@ -9,6 +9,7 @@ using ScriptLinkStandard.Objects;
 using TingenWebService.Configuration;
 using TingenWebService.Core;
 using TingenWebService.Session;
+using TingenWebService.Trove;
 
 namespace TingenWebService
 {
