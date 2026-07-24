@@ -17,17 +17,17 @@ namespace TingenWebService.Trove
         internal static string[] FrameworkPathList(Framework twsFramework) =>
             new string[]
             {
-                twsFramework.DataPath.AvatarGeneratedDataRoot,
-                twsFramework.DataPath.AppDataRoot,
-                twsFramework.DataPath.BlueprintRoot,
-                twsFramework.DataPath.ConfigRoot,
-                twsFramework.DataPath.ExportRoot,
-                twsFramework.DataPath.HistoryRoot,
-                twsFramework.DataPath.ImportRoot,
-                twsFramework.DataPath.LogRoot,
-                twsFramework.DataPath.OptObjErrorRoot,
-                twsFramework.DataPath.TranslationTableRoot,
-                twsFramework.DataPath.SessionRoot
+                twsFramework.AvatarGeneratedDataRoot,
+                twsFramework.AppDataRoot,
+                twsFramework.ConfigRoot,
+                twsFramework.ExportRoot,
+                twsFramework.HistoryRoot,
+                twsFramework.ImportRoot,
+                twsFramework.LogRoot,
+                twsFramework.BlueprintRoot,
+                twsFramework.EpistleRoot,
+                twsFramework.SessionRoot,
+                twsFramework.TranslationTableRoot
             };
 
         internal static string FormIdToFormNameTranslation() =>
