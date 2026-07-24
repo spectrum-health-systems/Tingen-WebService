@@ -1,5 +1,5 @@
-﻿// 260723_code
-// 260723_documentation
+﻿// 260724_code
+// 260724_documentation
 
 using System;
 using System.IO;
@@ -22,7 +22,8 @@ namespace TingenWebService
         /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
         private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        internal Configuration.RuntimeConfig RtSetting { get; set; }
+        /// <summary>The runtime configuration for the Tingen Web Service.</summary>
+        internal RuntimeConfig RtSetting { get; set; }
 
         /// <summary>The framework instance for the Tingen Web Service.</summary>
         internal Framework TwsFramework { get; set; }
@@ -36,7 +37,7 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* For debugging purposes. Disable in production. */
+            /* For debugging purposes - Disable in production. */
             //Logger.LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
@@ -61,9 +62,8 @@ namespace TingenWebService
         {
             if (sentOptObj == null || string.IsNullOrWhiteSpace(sentScriptParam))
             {
-                Logger.LogEvent.Primeval("MissingAvatarData", $"Missing OptionObject and/or Script Parameter");
-
-                // TODO - Potentially send an email.
+                // TODO - Potentially send an email in addition to the error log.
+                Logger.LogEvent.Primeval("ERROR-MissingAvatarData", $"[3876]: Missing OptionObject and/or Script Parameter");
 
                 return true;
             }
@@ -71,15 +71,15 @@ namespace TingenWebService
             return false;
         }
 
-        /// <summary>Start the Tingen Web Service application.</summary>
+        /// <summary>Start the Tingen Web Service.</summary>
         internal void StartApp()
         {
             RtSetting    = RuntimeConfig.Load();
             TwsFramework = Framework.Load(RtSetting.DataRoot, RtSetting.WwwRoot, RtSetting.AvatarSystem);
 
-            var historyPath = Path.Combine(RtSetting.DataRoot, "WebService", RtSetting.AvatarSystem, "History");
+            var historyFile = Path.Combine(RtSetting.DataRoot, "WebService", RtSetting.AvatarSystem, "History", DateTime.Now.ToString("yyyyMMdd"));
 
-            if (File.Exists(Path.Combine(historyPath, DateTime.Now.ToString("yyyyMMdd"))))
+            if (File.Exists(historyFile))
             {
                 //TwsSession = TngnWsvcSession.Load(sentOptObj, sentScriptParam, TwsFramework);
             }
@@ -87,8 +87,10 @@ namespace TingenWebService
             {
                 Framework.Verify(TwsFramework);
 
-                Du.DuFile.DeadDrop(Path.Combine(historyPath, DateTime.Now.ToString("yyyyMMdd")));
+                Du.DuFile.DeadDrop(historyFile);
             }
         }
+
+
     }
 }

@@ -84,7 +84,7 @@ namespace TingenWebService.Core
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogEvent.Primeval($"ErrorCreatingPath-{path}", $"Error [3876]: {ex.Message}");
+                    Logger.LogEvent.Primeval($"ERROR-CreatingPath-{path}", $"[7622]: {ex.Message}");
                 }
             }
         }
