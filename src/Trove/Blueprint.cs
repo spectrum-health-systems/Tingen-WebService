@@ -22,53 +22,51 @@ namespace TingenWebService.Trove
         }
 
         internal static string ErrorLogBlueprint() =>
-            "================================================================================" +
-            "Tingen Web Service Error Log" +
-            "Date/Time: ~SESSION~DATE~TIME~" +
-            "================================================================================" +
-            Environment.NewLine +
-            "[Error code] ~ERROR~CODE~" +
-            Environment.NewLine +
-            "~LOG~MESSAGE~" +
-            Environment.NewLine +
-            "--------------------------------------------------------------------------------" +
-            Environment.NewLine +
-            "[ASSEMBLY] ~ASSEMBLY~" +
-            "[CLASS] ~CLASS~" +
-            "[METHOD] ~METHOD~" +
-            "[LINE] ~LINE~";
+            $"================================================================================{Environment.NewLine}" +
+            $"Tingen Web Service Error Log{Environment.NewLine}" +
+            $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}`" +
+            $"================================================================================" +
+            $"{Environment.NewLine}" +
+            $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"~LOG~MESSAGE~{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"--------------------------------------------------------------------------------" +
+            $"{Environment.NewLine}" +
+            $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
+            $"[CLASS] ~CLASS~{Environment.NewLine}" +
+            $"[METHOD] ~METHOD~{Environment.NewLine}" +
+            $"[LINE] ~LINE~{Environment.NewLine}";
 
         internal static string CriticalErrorLogBlueprint() =>
-            "================================================================================" +
-            "Tingen Web Service Critical Error Log" +
-            "Date/Time: ~SESSION~DATE~TIME~" +
-            "================================================================================" +
-            Environment.NewLine +
-            "[Error code] ~ERROR~CODE~" +
-            Environment.NewLine +
-            "~LOG~MESSAGE~" +
-            Environment.NewLine +
-            "--------------------------------------------------------------------------------" +
-            Environment.NewLine +
-            "[ASSEMBLY] ~ASSEMBLY~" +
-            "[CLASS] ~CLASS~" +
-            "[METHOD] ~METHOD~" +
-            "[LINE] ~LINE~";
+            $"================================================================================{Environment.NewLine}" +
+            $"Tingen Web Service Critical Error Log{Environment.NewLine}" +
+            $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
+            $"================================================================================{Environment.NewLine}" +
+            $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"~LOG~MESSAGE~{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"--------------------------------------------------------------------------------" +
+            $"{Environment.NewLine}" +
+            $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
+            $"[CLASS] ~CLASS~{Environment.NewLine}" +
+            $"[METHOD] ~METHOD~{Environment.NewLine}" +
+            $"[LINE] ~LINE~{Environment.NewLine}";
 
         internal static string SessionLogBlueprint() =>
-            "================================================================================" +
-            "Tingen Web Service Session Log" +
-            "Date: ~SESSION~DATE~" +
-            "Time: ~SESSION~START~-~SESSION~END~" +
-            "Duration: ~SESSION~DURATION~" +
-            "Logged in as: ~OPTIONID~" +
-            "Avatar system: ~AVATAR~SYSTEM~" +
-            "Script parameter: ~SCRIPT~PARAMETER~" +
-            "================================================================================" +
-            Environment.NewLine +
-            "Detail" +
-            "--------" +
-            "~RUNNING~LOG~";
+            $"================================================================================{Environment.NewLine}" +
+            $"Tingen Web Service Session Log{Environment.NewLine}" +
+            $"Date: ~SESSION~DATE~{Environment.NewLine}" +
+            $"Time: ~SESSION~START~-~SESSION~END~{Environment.NewLine}" +
+            $"Duration: ~SESSION~DURATION~{Environment.NewLine}" +
+            $"Logged in as: ~OPTIONID~{Environment.NewLine}" +
+            $"Avatar system: ~AVATAR~SYSTEM~{Environment.NewLine}" +
+            $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}" +
+            $"================================================================================{Environment.NewLine}" +
+            $"Detail{Environment.NewLine}" +
+            $"--------{Environment.NewLine}" +
+            $"~RUNNING~LOG~";
 
         internal static string OptObjUnknownParameterBlueprint() =>
             "Unknown parameter: ~COMMAND~ [v~VERSION~ e~ERROR~CODE~]";
