@@ -1,5 +1,7 @@
-﻿// 260723_code
+﻿// 260725_code
 // 260723_documentation
+
+using System.IO;
 
 namespace TingenWebService.Du
 {
@@ -15,9 +17,9 @@ namespace TingenWebService.Du
         /// </example>
         public static void EnsureDirectoryExists(string path)
         {
-            if (!System.IO.Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
-                System.IO.Directory.CreateDirectory(path);
+                Directory.CreateDirectory(path);
             }
         }
     }

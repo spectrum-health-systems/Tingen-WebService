@@ -1,5 +1,7 @@
-﻿// 260723_code
+﻿// 260725_code
 // 260723_documentation
+
+using System.IO;
 
 namespace TingenWebService.Du
 {
@@ -16,7 +18,7 @@ namespace TingenWebService.Du
         /// </example>
         public static void DeadDrop(string filePath, string fileContent = "")
         {
-            System.IO.File.WriteAllText(filePath, fileContent);
+            File.WriteAllText(filePath, fileContent);
         }
 
         // [260725]
@@ -30,7 +32,7 @@ namespace TingenWebService.Du
         /// </example>
         public static void DeadDropAppend(string filePath, string fileContent = "")
         {
-            System.IO.File.AppendAllText(filePath, fileContent);
+            File.AppendAllText(filePath, fileContent);
         }
     }
 }

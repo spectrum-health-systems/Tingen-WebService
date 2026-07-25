@@ -36,6 +36,9 @@ namespace TingenWebService.Configuration
         /// <summary>The NTST web service password.</summary>
         public string NtstWsvcPassword { get; set; }
 
+        /// <summary>Load the Tingen Web Service configuration from a file.</summary>
+        /// <param name="configPath">The path to the configuration file.</param>
+        /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static TngnWsvcConfig Load(string configPath)
         {
             if (!File.Exists(configPath))
@@ -46,10 +49,10 @@ namespace TingenWebService.Configuration
             return DuJson.ImportFile<TngnWsvcConfig>(configPath);
         }
 
+        /// <summary>Create a new Tingen Web Service configuration file.</summary>
+        /// <param name="configPath">The path to the configuration file.</param>
         private static void CreateNew(string configPath)
         {
-            //Logger.LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
-
             TngnWsvcConfig newConfig = new TngnWsvcConfig()
             {
                 Mode             = "enabled",
