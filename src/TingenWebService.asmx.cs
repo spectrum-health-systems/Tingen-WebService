@@ -1,4 +1,4 @@
-﻿// 260724_code
+﻿// 260725_code
 // 260724_documentation
 
 using System;
@@ -47,7 +47,7 @@ namespace TingenWebService
             }
             else
             {
-                StartApp();
+                StartApp(sentOptObj, sentScriptParam);
 
                 // Route to the appropriate place.
 
@@ -75,19 +75,14 @@ namespace TingenWebService
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
-        internal void StartApp()
+        internal void StartApp(OptionObject2015 sentOptObj, string sentScriptParam)
         {
             RtSetting    = RuntimeConfig.Load();
             TwsFramework = Framework.Load(RtSetting.DataRoot, RtSetting.WwwRoot, RtSetting.AvatarSystem);
 
             var historyFile = Path.Combine(RtSetting.DataRoot, "WebService", RtSetting.AvatarSystem, "History", DateTime.Now.ToString("yyyyMMdd"));
 
-            if (File.Exists(historyFile))
-            {
-                // TODO - Initialize the session.
-                //TwsSession = TngnWsvcSession.Load(sentOptObj, sentScriptParam, TwsFramework);
-            }
-            else
+            if (!File.Exists(historyFile))
             {
                 // TODO - Move this somewhere history-specific
                 Framework.Verify(TwsFramework);
@@ -96,6 +91,8 @@ namespace TingenWebService
                 Framework.ExportBlueprints(TwsFramework.BlueprintRoot);
                 Du.DuFile.DeadDropAppend(historyFile, Epistle.BlueprintsExported());
             }
+
+            TwsSession = TngnWsvcSession.StartSession(sentOptObj, sentScriptParam, RtSetting, TwsFramework);
         }
     }
 }

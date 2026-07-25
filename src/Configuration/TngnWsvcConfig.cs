@@ -1,6 +1,9 @@
 ﻿// 260724_code
 // 260724_documentation
 
+using System.IO;
+using TingenWebService.Du;
+
 namespace TingenWebService.Configuration
 {
     internal class TngnWsvcConfig
@@ -33,8 +36,32 @@ namespace TingenWebService.Configuration
         /// <summary>The NTST web service password.</summary>
         public string NtstWsvcPassword { get; set; }
 
-        //internal static TngnWsvcConfig Load()
-        //{
-        //}
+        internal static TngnWsvcConfig Load(string configPath)
+        {
+            if (!File.Exists(configPath))
+            {
+                CreateNew(configPath);
+            }
+
+            return DuJson.ImportFile<TngnWsvcConfig>(configPath);
+        }
+
+        private static void CreateNew(string configPath)
+        {
+            //Logger.LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
+
+            TngnWsvcConfig newConfig = new TngnWsvcConfig()
+            {
+                Mode             = "enabled",
+                TraceLogLevel    = "0",
+                LogDelay         = "0",
+                EmailAddress     = "unassigned",
+                EmailPassword    = "unassigned",
+                NtstWsvcUserName = "unassigned",
+                NtstWsvcPassword = "unassigned"
+            };
+
+            DuJson.ExportFile(newConfig, configPath, true);
+        }
     }
 }

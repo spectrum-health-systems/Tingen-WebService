@@ -1,24 +1,45 @@
-﻿// 260723_code
-// 260723_documentation
+﻿// 260725_code
+// 260725_documentation
 
+using System.IO;
 using ScriptLinkStandard.Objects;
+using TingenWebService.Configuration;
+using TingenWebService.Core;
 
 namespace TingenWebService.Session
 {
     internal class TngnWsvcSession
     {
-        public Configuration.RuntimeConfig RuntimeSetting { get; set; }
+        public RuntimeConfig RtSetting { get; set; }
 
-        internal static void StartSession(OptionObject2015 sentOptObj, string sentScriptParam)
-        {
-        }
+        public Framework TwsFramework { get; set; }
 
-        internal static TngnWsvcSession Load(OptionObject2015 sentOptObj, string sentScriptParam)
+        public TngnWsvcConfig TwsConfig { get; set; }
+
+        internal static TngnWsvcSession StartSession(OptionObject2015 sentOptObj, string sentScriptParam, RuntimeConfig rtSetting, Framework twsFramwork)
         {
-            return new TngnWsvcSession()
+            TngnWsvcSession twsSession = new TngnWsvcSession()
             {
-                RuntimeSetting = Configuration.RuntimeConfig.Load()
+                RtSetting = rtSetting,
+                TwsFramework = twsFramwork,
+                TwsConfig = TngnWsvcConfig.Load(Path.Combine(twsFramwork.ConfigRoot, "TngnWsvc.config"))
             };
+
+            return twsSession;
+
+
+
+
         }
+
+        //private static void CreateNew(OptionObject2015 sentOptObj, string sentScriptParam, RuntimeConfig rtSetting, Framework twsFramwork)
+        //{
+        //    TngnWsvcSession twsSession = new TngnWsvcSession()
+        //    {
+        //        RtSetting = rtSetting,
+        //        TwsFramework = twsFramwork,
+        //        TwsConfig = TngnWsvcConfig.Load(Path.Combine(twsFramwork.ConfigRoot, "TngnWsvc.config"))
+        //    };
+        //}
     }
 }
