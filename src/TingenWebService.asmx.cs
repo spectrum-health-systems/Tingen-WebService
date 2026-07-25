@@ -93,7 +93,7 @@ namespace TingenWebService
                 Framework.Verify(TwsFramework);
                 Du.DuFile.DeadDrop(historyFile, Epistle.HistoryStart());
                 Du.DuFile.DeadDropAppend(historyFile, Epistle.FrameworkVerified());
-                Blueprint.ExportAllToHost(TwsFramework.BlueprintRoot);
+                Framework.ExportBlueprints(TwsFramework.BlueprintRoot);
                 Du.DuFile.DeadDropAppend(historyFile, Epistle.BlueprintsExported());
             }
         }

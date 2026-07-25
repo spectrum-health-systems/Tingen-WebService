@@ -84,5 +84,40 @@ namespace TingenWebService.Core
                 }
             }
         }
+
+        /// <summary>Exports all blueprint templates to the specified host directory.</summary>
+        /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
+        internal static void ExportBlueprints(string blueprintRoot)
+        {
+            // TODO - There is a better way to do this.
+
+            var errorLogBlueprintPath = Path.Combine(blueprintRoot, "ErrorLog.blueprint");
+
+            if (!File.Exists(errorLogBlueprintPath))
+            {
+                DuFile.DeadDrop(errorLogBlueprintPath, Blueprint.ErrorLogBlueprint());
+            }
+
+            var criticalErrorLogBlueprintPath = Path.Combine(blueprintRoot, "CriticalErrorLog.blueprint");
+
+            if (!File.Exists(criticalErrorLogBlueprintPath))
+            {
+                DuFile.DeadDrop(criticalErrorLogBlueprintPath, Blueprint.CriticalErrorLogBlueprint());
+            }
+
+            var sessionLogBlueprintPath = Path.Combine(blueprintRoot, "SessionLog.blueprint");
+
+            if (!File.Exists(sessionLogBlueprintPath))
+            {
+                DuFile.DeadDrop(sessionLogBlueprintPath, Blueprint.SessionLogBlueprint());
+            }
+
+            var unknownParameterLogBlueprintPath = Path.Combine(blueprintRoot, "UnknownParameterLog.blueprint");
+
+            if (!File.Exists(unknownParameterLogBlueprintPath))
+            {
+                DuFile.DeadDrop(Path.Combine(blueprintRoot, "UnknownParameterLog.blueprint"), Blueprint.OptObjUnknownParameterBlueprint());
+            }
+        }
     }
 }
