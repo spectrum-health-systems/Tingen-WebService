@@ -21,7 +21,12 @@ namespace TingenWebService.Core
         /// <param name="twsFramework">The framework instance.</param>
         internal static void SessionMaintenance(RuntimeConfig rtConfig, Framework twsFramework)
         {
-            var dailyLogPath = Path.Combine(rtConfig.DataRoot, "WebService", rtConfig.AvatarSystem, "Log", $"{DateTime.Now:yyMMdd}");
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            //LogEvent.Primeval("SessionMaintenance");
+
+            var dailyLogPath = Path.Combine(twsFramework.SysLogRoot, $"{DateTime.Now:yyMMdd}");
 
             try
             {
@@ -31,7 +36,7 @@ namespace TingenWebService.Core
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                LogEvent.Primeval($"ERROR-CreatingPath-{dailyLogPath}", $"[7516]: {ex.Message}");
+                LogEvent.Primeval($"[CR7516]Maintenance", ErrorMessage.Error7516(dailyLogPath, ex.Message));
             }
 
             var dailyStartFile = Path.Combine(dailyLogPath, $"{DateTime.Now:yyMMdd}.start");
@@ -43,16 +48,22 @@ namespace TingenWebService.Core
         }
 
         /// <summary>Verify the components for the session.</summary>
-        /// <param name="startLogFile">The path to the start log file.</param>
+        /// <param name="dailyStartFile">The path to the start log file.</param>
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework instance.</param>
         private static void VerifyComponents(string dailyStartFile, RuntimeConfig rtConfig, Framework twsFramework)
         {
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            //LogEvent.Primeval("VerifyComponents");
+
             if (!File.Exists(dailyStartFile))
             {
                 Framework.Verify(twsFramework);
                 DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
                 DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
+
                 Framework.ExportBlueprints(twsFramework.BlueprintRoot);
                 DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
             }

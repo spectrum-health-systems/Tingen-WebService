@@ -1,5 +1,5 @@
-﻿// 260725_code
-// 260725_documentation
+﻿// 260726_code
+// 260726_documentation
 
 using System.Reflection;
 using System.Web.Services;
@@ -8,6 +8,7 @@ using TingenWebService.Configuration;
 using TingenWebService.Core;
 using TingenWebService.Logger;
 using TingenWebService.Session;
+using TingenWebService.Trove;
 
 namespace TingenWebService
 {
@@ -21,17 +22,31 @@ namespace TingenWebService
         /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
         private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        /// <summary>The session instance for the Tingen Web Service.</summary>
+        /// <summary>Tingen Web Servic session instance.</summary>
         internal TngnWsvcSession TwsSession { get; set; }
 
+        /// <summary>Get the current version of the Tingen Web Service.</summary>
+        /// <remarks>
+        /// This method is required by Avatar.
+        /// </remarks>
+        /// <returns>A string representing the current version.</returns>
         [WebMethod]
         public string GetVersion() => $"VERSION {_twsRelease}";
 
+        /// <summary>Main entry method.</summary>
+        /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
+        /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
+        /// <remarks>
+        /// This method is required by Avatar.
+        /// </remarks>
+        /// <returns>A completed OptionObject, which has potentially been modified.</returns>
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* For debugging purposes - Disable in production. */
-            LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            //LogEvent.Primeval("TingenWebServiceStarted", Epistle.DebugStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
@@ -41,9 +56,7 @@ namespace TingenWebService
             {
                 StartApp(sentOptObj, sentScriptParam); // Initializes the session
 
-                int traceLevelLimit = TwsSession.TwsConfig.TraceLevelLimit;
-                string sessionFolder  = TwsSession.SessionFolder;
-                LogEvent.Trace(1, traceLevelLimit, sessionFolder);
+                LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
 
                 // TODO - Route to the appropriate place.
 
@@ -63,7 +76,7 @@ namespace TingenWebService
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                LogEvent.Primeval("ERROR-MissingAvatarData", $"[3876]: Missing OptionObject and/or Script Parameter");
+                LogEvent.Primeval("[CR3876]MissingData", ErrorMessage.Error3876());
                 // TODO - Potentially send an email in addition to the error log.
 
                 return true;
@@ -77,7 +90,13 @@ namespace TingenWebService
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            //LogEvent.Primeval("StartApp");
+
             RuntimeConfig rtConfig = RuntimeConfig.Load(_twsRelease);
+
             Framework twsFramework = Framework.Load(rtConfig.DataRoot, rtConfig.AvatarSystem);
 
             Maintenance.SessionMaintenance(rtConfig, twsFramework);

@@ -27,6 +27,13 @@ namespace TingenWebService.Trove
         /// <returns>A string representing the blueprints exported message.</returns>
         internal static string BlueprintsExported() => $"> Blueprints exported.{Environment.NewLine}";
 
-        // TODO - Error message / Critical error message
+        internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
+
+
+
+
+
+
+
     }
 }

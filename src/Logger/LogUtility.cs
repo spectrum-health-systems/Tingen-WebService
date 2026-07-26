@@ -65,8 +65,5 @@ namespace TingenWebService.Logger
             DuDirectory.EnsureDirectoryExists(fileFolder);
             File.AppendAllText(Path.Combine(fileFolder, fileName), fileContent);
         }
-
-
-
     }
 }

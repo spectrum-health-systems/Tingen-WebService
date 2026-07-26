@@ -45,6 +45,11 @@ namespace TingenWebService.Session
         /// <returns>A new Tingen Web Service session.</returns>
         internal static TngnWsvcSession StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig rtConfig, Framework twsFramework)
         {
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            //LogEvent.Primeval("StartSession");
+
             return new TngnWsvcSession()
             {
                 RtConfig              = rtConfig,

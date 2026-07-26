@@ -16,13 +16,11 @@ namespace TingenWebService.Trove
             new string[]
             {
                 twsFramework.AvatarGeneratedDataRoot,
-                twsFramework.AppDataRoot,
                 twsFramework.ConfigRoot,
                 twsFramework.ExportRoot,
                 twsFramework.ImportRoot,
-                twsFramework.LogRoot,
+                twsFramework.SysLogRoot,
                 twsFramework.BlueprintRoot,
-                twsFramework.EpistleRoot,
                 twsFramework.SessionRoot,
                 twsFramework.TranslationTableRoot
             };

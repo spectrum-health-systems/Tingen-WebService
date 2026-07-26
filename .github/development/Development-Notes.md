@@ -17,7 +17,7 @@ TingenWebService.NsDoc.cs
 3876 - Missing Avatar data
 7622 - Error creating framework path
 7516 - Error creating dailyLogPath
-4694
+4694 - Missing TngnWsvc.config
 5285
 7362
 7540

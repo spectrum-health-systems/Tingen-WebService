@@ -100,9 +100,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvatarOptionObject\CompletedOptionObject.cs" />
-    <Compile Include="AvatarOptionObject\OriginalOptionObject.cs" />
-    <Compile Include="AvatarOptionObject\WorkerOptionObject.cs" />
+    <Compile Include="AvatarComponent\CompletedOptionObject.cs" />
+    <Compile Include="AvatarComponent\OriginalOptionObject.cs" />
+    <Compile Include="AvatarComponent\ScriptParameter.cs" />
+    <Compile Include="AvatarComponent\WorkerOptionObject.cs" />
     <Compile Include="Configuration\NsDoc.cs" />
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
@@ -137,6 +138,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trove\Epistle.cs" />
+    <Compile Include="Trove\ErrorMessage.cs" />
     <Compile Include="Trove\NsDoc.cs" />
   </ItemGroup>
   <ItemGroup>

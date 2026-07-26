@@ -2,6 +2,7 @@
 // 260725_documentation
 
 using System;
+using System.IO;
 using System.Xml.Linq;
 
 namespace TingenWebService.Logger
@@ -26,7 +27,8 @@ namespace TingenWebService.Logger
         /// </example>
         internal static string GetCallerInfo([System.Runtime.CompilerServices.CallerFilePath] string className = "", [System.Runtime.CompilerServices.CallerMemberName] string methodName = "", [System.Runtime.CompilerServices.CallerLineNumber] int lineNumber = 0)
         {
-            var classOnly = System.IO.Path.GetFileNameWithoutExtension(className);
+            var classOnly = Path.GetFileNameWithoutExtension(className);
+
             return $"{classOnly}-{methodName}-{lineNumber}";
         }
 
