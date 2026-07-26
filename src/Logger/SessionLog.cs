@@ -8,10 +8,15 @@ using TingenWebService.Session;
 
 namespace TingenWebService.Logger
 {
+    /// <summary>Session log logic.</summary>
     internal class SessionLog
     {
+        /// <summary>Creates a session log for the given Tingen Web Service session.</summary>
+        /// <param name="twsSession">The Tingen Web Service session.</param>
         internal static void Create(TngnWsvcSession twsSession)
         {
+            // TODO - Clean this up.
+
             var sessionRoot = twsSession.TwsFramework.SessionRoot;
             var sessionDate = twsSession.RtConfig.CurrentDate;
             var sessionUser = twsSession.SentOptionObject.OptionUserId;

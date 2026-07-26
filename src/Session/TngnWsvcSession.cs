@@ -20,15 +20,20 @@ namespace TingenWebService.Session
         /// <summary>Web service configuration settings.</summary>
         public TngnWsvcConfig TwsConfig { get; set; }
 
+        /// <summary>The option object sent to the session.</summary>
         public OptionObject2015 SentOptionObject { get; set; }
 
+        /// <summary>The option object currently being worked on in the session.</summary>  
         public OptionObject2015 WorkingOptionObject { get; set; }
 
+        /// <summary>The option object that has been completed in the session.</summary>
         public OptionObject2015 CompletedOptionObject { get; set; }
 
-        public string SessionDetails { get; set; }
-
+        /// <summary>The script parameter sent to the session.</summary>
         public string SentScriptParameter { get; set; }
+
+        /// <summary>Details about the session.</summary>
+        public string SessionDetails { get; set; }
 
         /// <summary>Starts a new Tingen Web Service session.</summary>
         /// <param name="sentOptionObject">The option object.</param>
