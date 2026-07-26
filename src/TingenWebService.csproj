@@ -107,7 +107,10 @@
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
+    <Compile Include="Logger\LogComponents.cs" />
     <Compile Include="Logger\SessionLog.cs" />
+    <Compile Include="Logger\TraceLog.cs" />
+    <Compile Include="Logger\LogUtility.cs" />
     <Compile Include="Trove\Blueprint.cs" />
     <Compile Include="Trove\Catalog.cs" />
     <Compile Include="Core\Framework.cs" />

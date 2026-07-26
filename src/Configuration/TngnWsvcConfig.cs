@@ -18,8 +18,8 @@ namespace TingenWebService.Configuration
         /// </remarks>
         public string Mode { get; set; }
 
-        /// <summary>Trace log level.</summary>
-        public int TraceLogLevel { get; set; }
+        /// <summary>Trace level limit.</summary>
+        public int TraceLevelLimit { get; set; }
 
         /// <summary>Log delay.</summary>
         public int LogDelay { get; set; }
@@ -56,7 +56,7 @@ namespace TingenWebService.Configuration
             TngnWsvcConfig tngnWsvcConfig = new TngnWsvcConfig()
             {
                 Mode              = "enabled",
-                TraceLogLevel     = 0,
+                TraceLevelLimit   = 0,
                 LogDelay          = 0,
                 EmailAddress      = "unassigned",
                 EmailPassword     = "unassigned",

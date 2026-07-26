@@ -9,7 +9,7 @@ The following should be created:
 - The framework
 - The Blueprints
 - The config files
-- The history file
+- The dailyLog file
 
 ## Step 2
 

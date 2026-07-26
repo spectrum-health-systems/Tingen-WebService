@@ -22,11 +22,11 @@ namespace TingenWebService.Logger
             var sessionUser = twsSession.SentOptionObject.OptionUserId;
             var sessionTime = twsSession.RtConfig.CurrentTime;
 
-            var sessionPath = Path.Combine(sessionRoot, sessionDate, sessionUser, sessionTime);
+            var sessionFolder = Path.Combine(sessionRoot, sessionDate, sessionUser, sessionTime);
 
-            DuDirectory.EnsureDirectoryExists(sessionPath);
+            DuDirectory.EnsureDirectoryExists(sessionFolder);
 
-            var logName = Path.Combine(sessionPath, $"{twsSession.SentOptionObject.OptionUserId}.session");
+            var logName = Path.Combine(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session");
 
             var logBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
 
@@ -34,16 +34,16 @@ namespace TingenWebService.Logger
             var duration = (DateTime.ParseExact(endTime, "HHmmss", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
 
             var logContent = logBlueprint.Replace("~RELEASE~BUILD~", twsSession.RtConfig.ReleaseBuild)
-                        .Replace("~SESSION~DATE~", twsSession.RtConfig.CurrentDate)
-                               .Replace("~SESSION~START~", twsSession.RtConfig.CurrentTime)
-                               .Replace("~SESSION~END~", endTime)
-                               .Replace("~SESSION~DURATION~", duration)
-                               .Replace("~AVATAR~USER~NAME~", twsSession.SentOptionObject.OptionUserId.ToUpper())
-                               .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
-                               .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
-                               .Replace("~SESSION~DETAILS~", twsSession.SessionDetails);
+                                         .Replace("~SESSION~DATE~", twsSession.RtConfig.CurrentDate)
+                                         .Replace("~SESSION~START~", twsSession.RtConfig.CurrentTime)
+                                         .Replace("~SESSION~END~", endTime)
+                                         .Replace("~SESSION~DURATION~", duration)
+                                         .Replace("~AVATAR~USER~NAME~", twsSession.SentOptionObject.OptionUserId.ToUpper())
+                                         .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
+                                         .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
+                                         .Replace("~SESSION~DETAILS~", twsSession.SessionDetails);
 
-            DuFile.DeadDropAppend(logName, logContent);
+            LogUtility.WriteLocal(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session", logContent);
         }
     }
 }

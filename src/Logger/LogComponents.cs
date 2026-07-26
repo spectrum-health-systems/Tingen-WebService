@@ -1,12 +1,11 @@
-// 251112_code
-// 260515_documentation.
+﻿// 260725_code
+// 260725_documentation
 
 using System;
 using System.Xml.Linq;
 
-namespace TingenWebService.Core.Logger
+namespace TingenWebService.Logger
 {
-    /// <summary>Provides reusable building blocks used to compose log entries.</summary>
     internal class LogComponents
     {
         /// <summary>Returns a formatted caller information string built from the calling source location.</summary>
@@ -20,7 +19,6 @@ namespace TingenWebService.Core.Logger
         /// <returns>A string in the form <c>{class}-{method}-{line}</c>.</returns>
         /// <example>
         /// <code>
-        /// // Called from AvatarOptionObject.ToReturn at line 57:
         /// var info = LogComponents.GetCallerInfo();
         /// Console.WriteLine(info);
         /// // Output: AvatarOptionObject-ToReturn-57

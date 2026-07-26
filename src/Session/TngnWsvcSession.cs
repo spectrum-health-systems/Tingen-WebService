@@ -32,14 +32,16 @@ namespace TingenWebService.Session
         /// <summary>The script parameter sent to the session.</summary>
         public string SentScriptParameter { get; set; }
 
+        public string SessionFolder { get; set; }
+
         /// <summary>Details about the session.</summary>
         public string SessionDetails { get; set; }
 
         /// <summary>Starts a new Tingen Web Service session.</summary>
         /// <param name="sentOptionObject">The option object.</param>
         /// <param name="sentScriptParameter">The script parameter.</param>
-        /// <param name="rtSetting">The runtime configuration settings.</param>
-        /// <param name="twsFramwork">The framework instance.</param>
+        /// <param name="rtConfig">The runtime configuration settings.</param>
+        /// <param name="twsFramework">The framework instance.</param>
         /// <returns>A new Tingen Web Service session.</returns>
         internal static TngnWsvcSession StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig rtConfig, Framework twsFramework)
         {
@@ -52,6 +54,7 @@ namespace TingenWebService.Session
                 WorkingOptionObject   = sentOptionObject.Clone(),
                 CompletedOptionObject = null,
                 SentScriptParameter   = sentScriptParameter,
+                SessionFolder         = Path.Combine(twsFramework.SessionRoot, rtConfig.CurrentDate, sentOptionObject.OptionUserId, rtConfig.CurrentTime),
                 SessionDetails        = string.Empty
 
             };

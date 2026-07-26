@@ -6,6 +6,7 @@ using System.Web.Services;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Configuration;
 using TingenWebService.Core;
+using TingenWebService.Logger;
 using TingenWebService.Session;
 
 namespace TingenWebService
@@ -30,7 +31,7 @@ namespace TingenWebService
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
             /* For debugging purposes - Disable in production. */
-            //Logger.LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
+            LogEvent.Primeval("TingenWebServiceStarted", $"RunScript called with script parameter: {sentScriptParam}");
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
@@ -38,11 +39,15 @@ namespace TingenWebService
             }
             else
             {
-                StartApp(sentOptObj, sentScriptParam);
+                StartApp(sentOptObj, sentScriptParam); // Initializes the session
 
-                // Route to the appropriate place.
+                int traceLevelLimit = TwsSession.TwsConfig.TraceLevelLimit;
+                string sessionFolder  = TwsSession.SessionFolder;
+                LogEvent.Trace(1, traceLevelLimit, sessionFolder);
 
-                Logger.SessionLog.Create(TwsSession);
+                // TODO - Route to the appropriate place.
+
+                LogEvent.Session(TwsSession);
 
                 return sentOptObj.ToReturnOptionObject(0, ""); //TODO - Placeholder
             }
@@ -58,7 +63,7 @@ namespace TingenWebService
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                Logger.LogEvent.Primeval("ERROR-MissingAvatarData", $"[3876]: Missing OptionObject and/or Script Parameter");
+                LogEvent.Primeval("ERROR-MissingAvatarData", $"[3876]: Missing OptionObject and/or Script Parameter");
                 // TODO - Potentially send an email in addition to the error log.
 
                 return true;

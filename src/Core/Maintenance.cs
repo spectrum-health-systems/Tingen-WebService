@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using TingenWebService.Configuration;
 using TingenWebService.Du;
+using TingenWebService.Logger;
 using TingenWebService.Trove;
 
 namespace TingenWebService.Core
@@ -30,10 +31,10 @@ namespace TingenWebService.Core
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                Logger.LogEvent.Primeval($"ERROR-CreatingPath-{dailyLogPath}", $"[7516]: {ex.Message}");
+                LogEvent.Primeval($"ERROR-CreatingPath-{dailyLogPath}", $"[7516]: {ex.Message}");
             }
 
-            var dailyStartFile = Path.Combine(dailyLogPath, $"{DateTime.Now:HHmmss}.start");
+            var dailyStartFile = Path.Combine(dailyLogPath, $"{DateTime.Now:yyMMdd}.start");
 
             if (!File.Exists(dailyStartFile))
             {
