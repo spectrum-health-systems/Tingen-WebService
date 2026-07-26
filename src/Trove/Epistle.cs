@@ -1,4 +1,4 @@
-﻿// 260724_code
+﻿// 260725_code
 // 260724_documentation
 
 using System;
@@ -15,7 +15,10 @@ namespace TingenWebService.Trove
 
         /// <summary>Gets the message indicating the start of the history log.</summary>
         /// <returns>A string representing the history start message.</returns>
-        internal static string HistoryStart() => $"> {DateTime.Now.ToString("yyyyMMdd-HH:mm:ss")}{Environment.NewLine}";
+        internal static string HistoryStart(string twsRelease, string twsBuild) =>
+            $"> {DateTime.Now.ToString("yyyyMMdd-HH:mm:ss")}{Environment.NewLine}" +
+            $"> Release {twsRelease}{Environment.NewLine}" +
+            $"> Build {twsBuild}{Environment.NewLine}";
 
         /// <summary>Gets the message indicating that the framework has been verified.</summary>
         /// <returns>A string representing the framework verified message.</returns>

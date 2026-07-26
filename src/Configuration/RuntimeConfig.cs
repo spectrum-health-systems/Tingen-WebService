@@ -1,4 +1,4 @@
-﻿// 260723_code
+﻿// 260725_code
 // 260724_documentation
 
 using System;
@@ -10,10 +10,12 @@ namespace TingenWebService.Configuration
     internal class RuntimeConfig
     {
         /// <summary>Current date.</summary>
-        public string SessionDate { get; set; }
+        public string CurrentDate { get; set; }
 
         /// <summary>Current time.</summary>
-        public string SessionTime { get; set; }
+        public string CurrentTime { get; set; }
+
+        public string WsvcRelease { get; set; }
 
         /// <summary>Current web service build.</summary>
         public string WsvcBuild { get; set; }
@@ -29,16 +31,16 @@ namespace TingenWebService.Configuration
 
         /// <summary>Loads the runtime configuration.</summary>
         /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
-        internal static RuntimeConfig Load()
+        internal static RuntimeConfig Load(string twsRelease)
         {
             return new RuntimeConfig()
             {
-                SessionDate   = DateTime.Now.ToString("yyMMdd"),
-                SessionTime   = DateTime.Now.ToString("HHmmss"),
-                WsvcBuild     = Settings.Default.TngnWsvcBuild,
-                AvatarSystem  = Settings.Default.AvatarSystem,
-                DataRoot      = Settings.Default.HostDataRoot,
-                WwwRoot       = Settings.Default.HostWwwRoot
+                CurrentDate  = DateTime.Now.ToString("yyMMdd"),
+                CurrentTime  = DateTime.Now.ToString("HHmmss"),
+                WsvcRelease  = twsRelease,
+                WsvcBuild    = Settings.Default.TngnWsvcBuild,
+                AvatarSystem = Settings.Default.AvatarSystem,
+                DataRoot     = Settings.Default.HostDataRoot,
             };
         }
     }

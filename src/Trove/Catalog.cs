@@ -19,7 +19,6 @@ namespace TingenWebService.Trove
                 twsFramework.AppDataRoot,
                 twsFramework.ConfigRoot,
                 twsFramework.ExportRoot,
-                twsFramework.HistoryRoot,
                 twsFramework.ImportRoot,
                 twsFramework.LogRoot,
                 twsFramework.BlueprintRoot,

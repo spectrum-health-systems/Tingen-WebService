@@ -1,15 +1,12 @@
 ﻿// 260725_code
-// 260724_documentation
+// 260725_documentation
 
-using System;
-using System.IO;
 using System.Reflection;
 using System.Web.Services;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Configuration;
 using TingenWebService.Core;
 using TingenWebService.Session;
-using TingenWebService.Trove;
 
 namespace TingenWebService
 {
@@ -22,12 +19,6 @@ namespace TingenWebService
         /// <summary>Current Tingen Web Service release.</summary>
         /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
         private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-        /// <summary>The runtime configuration for the Tingen Web Service.</summary>
-        internal RuntimeConfig RtSetting { get; set; }
-
-        /// <summary>The framework instance for the Tingen Web Service.</summary>
-        internal Framework TwsFramework { get; set; }
 
         /// <summary>The session instance for the Tingen Web Service.</summary>
         internal TngnWsvcSession TwsSession { get; set; }
@@ -56,12 +47,12 @@ namespace TingenWebService
         }
 
         /// <summary>Determine if the Avatar data is missing based.</summary>
-        /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
-        /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
+        /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
+        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
-        private static bool IsMissingAvatarData(OptionObject2015 sentOptObj, string sentScriptParam)
+        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            if (sentOptObj == null || string.IsNullOrWhiteSpace(sentScriptParam))
+            if (sentOptionObject == null || string.IsNullOrWhiteSpace(sentScriptParameter))
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
@@ -75,24 +66,16 @@ namespace TingenWebService
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
-        internal void StartApp(OptionObject2015 sentOptObj, string sentScriptParam)
+        /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
+        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+        internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            RtSetting    = RuntimeConfig.Load();
-            TwsFramework = Framework.Load(RtSetting.DataRoot, RtSetting.WwwRoot, RtSetting.AvatarSystem);
+            RuntimeConfig rtConfig = RuntimeConfig.Load(_twsRelease);
+            Framework twsFramework = Framework.Load(rtConfig.DataRoot, rtConfig.AvatarSystem);
 
-            var historyFile = Path.Combine(RtSetting.DataRoot, "WebService", RtSetting.AvatarSystem, "History", DateTime.Now.ToString("yyyyMMdd"));
+            Maintenance.SessionMaintenance(rtConfig, twsFramework);
 
-            if (!File.Exists(historyFile))
-            {
-                // TODO - Move this somewhere history-specific
-                Framework.Verify(TwsFramework);
-                Du.DuFile.DeadDrop(historyFile, Epistle.HistoryStart());
-                Du.DuFile.DeadDropAppend(historyFile, Epistle.FrameworkVerified());
-                Framework.ExportBlueprints(TwsFramework.BlueprintRoot);
-                Du.DuFile.DeadDropAppend(historyFile, Epistle.BlueprintsExported());
-            }
-
-            TwsSession = TngnWsvcSession.StartSession(sentOptObj, sentScriptParam, RtSetting, TwsFramework);
+            TwsSession = TngnWsvcSession.StartSession(sentOptionObject, sentScriptParameter, rtConfig, twsFramework);
         }
     }
 }

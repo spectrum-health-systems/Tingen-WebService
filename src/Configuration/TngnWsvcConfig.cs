@@ -53,7 +53,7 @@ namespace TingenWebService.Configuration
         /// <param name="configPath">The path to the configuration file.</param>
         private static void CreateNew(string configPath)
         {
-            TngnWsvcConfig newConfig = new TngnWsvcConfig()
+            TngnWsvcConfig tngnWsvcConfig = new TngnWsvcConfig()
             {
                 Mode             = "enabled",
                 TraceLogLevel    = "0",
@@ -64,7 +64,7 @@ namespace TingenWebService.Configuration
                 NtstWsvcPassword = "unassigned"
             };
 
-            DuJson.ExportFile(newConfig, configPath, true);
+            DuJson.ExportFile(tngnWsvcConfig, configPath, true);
         }
     }
 }

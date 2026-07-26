@@ -22,9 +22,6 @@ namespace TingenWebService.Core
         /// <summary>Export data.</summary>
         public string ExportRoot { get; set; }
 
-        /// <summary>History data.</summary>
-        public string HistoryRoot { get; set; }
-
         /// <summary>Import data.</summary>
         public string ImportRoot { get; set; }
 
@@ -48,7 +45,7 @@ namespace TingenWebService.Core
         /// <param name="hostWwwPath">The root path for web resources.</param>
         /// <param name="avatarSystem">The avatar system identifier.</param>
         /// <returns>A <see cref="Framework"/> instance with the specified paths.</returns>
-        internal static Framework Load(string hostDataPath, string hostWwwPath, string avatarSystem)
+        internal static Framework Load(string hostDataPath, string avatarSystem)
         {
             return new Framework()
             {
@@ -56,7 +53,6 @@ namespace TingenWebService.Core
                 AppDataRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "AppData"),
                 ConfigRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Config"),
                 ExportRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Export"),
-                HistoryRoot             = Path.Combine(hostDataPath, "WebService", avatarSystem, "History"),
                 ImportRoot              = Path.Combine(hostDataPath, "WebService", avatarSystem, "Import"),
                 LogRoot                 = Path.Combine(hostDataPath, "WebService", avatarSystem, "Log"),
                 BlueprintRoot           = Path.Combine(hostDataPath, "WebService", avatarSystem, "Blueprints"),
