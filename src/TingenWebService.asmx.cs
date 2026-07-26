@@ -42,6 +42,8 @@ namespace TingenWebService
 
                 // Route to the appropriate place.
 
+                Logger.SessionLog.Create(TwsSession);
+
                 return sentOptObj.ToReturnOptionObject(0, ""); //TODO - Placeholder
             }
         }

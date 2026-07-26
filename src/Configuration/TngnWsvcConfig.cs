@@ -19,10 +19,10 @@ namespace TingenWebService.Configuration
         public string Mode { get; set; }
 
         /// <summary>Trace log level.</summary>
-        public string TraceLogLevel { get; set; }
+        public int TraceLogLevel { get; set; }
 
         /// <summary>Log delay.</summary>
-        public string LogDelay { get; set; }
+        public int LogDelay { get; set; }
 
         /// <summary>Email address the web services uses.</summary>
         public string EmailAddress { get; set; }
@@ -55,13 +55,13 @@ namespace TingenWebService.Configuration
         {
             TngnWsvcConfig tngnWsvcConfig = new TngnWsvcConfig()
             {
-                Mode             = "enabled",
-                TraceLogLevel    = "0",
-                LogDelay         = "0",
-                EmailAddress     = "unassigned",
-                EmailPassword    = "unassigned",
-                NtstWsvcUserName = "unassigned",
-                NtstWsvcPassword = "unassigned"
+                Mode              = "enabled",
+                TraceLogLevel     = 0,
+                LogDelay          = 0,
+                EmailAddress      = "unassigned",
+                EmailPassword     = "unassigned",
+                NtstWsvcUserName  = "unassigned",
+                NtstWsvcPassword  = "unassigned"
             };
 
             DuJson.ExportFile(tngnWsvcConfig, configPath, true);

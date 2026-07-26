@@ -15,10 +15,7 @@ namespace TingenWebService.Configuration
         /// <summary>Current time.</summary>
         public string CurrentTime { get; set; }
 
-        public string WsvcRelease { get; set; }
-
-        /// <summary>Current web service build.</summary>
-        public string WsvcBuild { get; set; }
+        public string ReleaseBuild { get; set; }
 
         /// <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
         public string AvatarSystem { get; set; }
@@ -37,8 +34,7 @@ namespace TingenWebService.Configuration
             {
                 CurrentDate  = DateTime.Now.ToString("yyMMdd"),
                 CurrentTime  = DateTime.Now.ToString("HHmmss"),
-                WsvcRelease  = twsRelease,
-                WsvcBuild    = Settings.Default.TngnWsvcBuild,
+                ReleaseBuild = $"{twsRelease} b{Settings.Default.TngnWsvcBuild}",
                 AvatarSystem = Settings.Default.AvatarSystem,
                 DataRoot     = Settings.Default.HostDataRoot,
             };

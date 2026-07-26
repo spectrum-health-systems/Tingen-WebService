@@ -5,7 +5,6 @@ using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Configuration;
 using TingenWebService.Core;
-using TingenWebService.Logger;
 
 namespace TingenWebService.Session
 {
@@ -21,13 +20,13 @@ namespace TingenWebService.Session
         /// <summary>Web service configuration settings.</summary>
         public TngnWsvcConfig TwsConfig { get; set; }
 
-        public LoggerConfig TwsLogConfig { get; set; }
-
         public OptionObject2015 SentOptionObject { get; set; }
 
         public OptionObject2015 WorkingOptionObject { get; set; }
 
         public OptionObject2015 CompletedOptionObject { get; set; }
+
+        public string SessionDetails { get; set; }
 
         public string SentScriptParameter { get; set; }
 
@@ -44,11 +43,12 @@ namespace TingenWebService.Session
                 RtConfig              = rtConfig,
                 TwsFramework          = twsFramework,
                 TwsConfig             = TngnWsvcConfig.Load(Path.Combine(twsFramework.ConfigRoot, "TngnWsvc.config")),
-                TwsLogConfig          = LoggerConfig.Load(Path.Combine(twsFramework.ConfigRoot, "Logger.config")),
                 SentOptionObject      = sentOptionObject,
                 WorkingOptionObject   = sentOptionObject.Clone(),
                 CompletedOptionObject = null,
-                SentScriptParameter   = sentScriptParameter
+                SentScriptParameter   = sentScriptParameter,
+                SessionDetails        = string.Empty
+
             };
         }
     }

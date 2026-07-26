@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using TingenWebService.Configuration;
+using TingenWebService.Du;
 using TingenWebService.Trove;
 
 namespace TingenWebService.Core
@@ -21,9 +22,15 @@ namespace TingenWebService.Core
         {
             var dailyLogPath = Path.Combine(rtConfig.DataRoot, "WebService", rtConfig.AvatarSystem, "Log", $"{DateTime.Now:yyMMdd}");
 
-            if (!Directory.Exists(dailyLogPath))
+            try
             {
-                Directory.CreateDirectory(dailyLogPath);
+                DuDirectory.EnsureDirectoryExists(dailyLogPath);
+            }
+            catch (Exception ex)
+            {
+                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
+                 */
+                Logger.LogEvent.Primeval($"ERROR-CreatingPath-{dailyLogPath}", $"[7516]: {ex.Message}");
             }
 
             var dailyStartFile = Path.Combine(dailyLogPath, $"{DateTime.Now:HHmmss}.start");
@@ -43,10 +50,10 @@ namespace TingenWebService.Core
             if (!File.Exists(dailyStartFile))
             {
                 Framework.Verify(twsFramework);
-                Du.DuFile.DeadDrop(dailyStartFile, Epistle.HistoryStart(rtConfig.WsvcRelease, rtConfig.WsvcBuild));
-                Du.DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
+                DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
+                DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
                 Framework.ExportBlueprints(twsFramework.BlueprintRoot);
-                Du.DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
+                DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
             }
         }
     }

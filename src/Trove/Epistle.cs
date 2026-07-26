@@ -13,12 +13,11 @@ namespace TingenWebService.Trove
         /// <returns>A string representing the testing complete message.</returns>
         internal static string TngnWsvcTestingComplete() => "Tingen Web Service testing complete!";
 
-        /// <summary>Gets the message indicating the start of the history log.</summary>
-        /// <returns>A string representing the history start message.</returns>
-        internal static string HistoryStart(string twsRelease, string twsBuild) =>
+        /// <summary>Gets the message indicating the start of the daily log.</summary>
+        /// <returns>A string representing the daily start message.</returns>
+        internal static string DailyStart(string releaseBuild) =>
             $"> {DateTime.Now.ToString("yyyyMMdd-HH:mm:ss")}{Environment.NewLine}" +
-            $"> Release {twsRelease}{Environment.NewLine}" +
-            $"> Build {twsBuild}{Environment.NewLine}";
+            $"> Release {releaseBuild}{Environment.NewLine}";
 
         /// <summary>Gets the message indicating that the framework has been verified.</summary>
         /// <returns>A string representing the framework verified message.</returns>

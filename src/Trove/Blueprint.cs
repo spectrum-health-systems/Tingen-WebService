@@ -51,18 +51,22 @@ namespace TingenWebService.Trove
         /// <returns>A string representing the session log blueprint.</returns>
         internal static string SessionLogBlueprint() =>
             $"================================================================================{Environment.NewLine}" +
-            $"Tingen Web Service Session Log{Environment.NewLine}" +
-            $"Date: ~SESSION~DATE~{Environment.NewLine}" +
-            $"Time: ~SESSION~START~-~SESSION~END~{Environment.NewLine}" +
-            $"Duration: ~SESSION~DURATION~{Environment.NewLine}" +
-            $"Logged in as: ~OPTIONID~{Environment.NewLine}" +
-            $"Avatar system: ~AVATAR~SYSTEM~{Environment.NewLine}" +
+            $"Tingen Web Service Session Log                               [~RELEASE~BUILD~]  {Environment.NewLine}" +
+            $"--------------------------------------------------------------------------------{Environment.NewLine}" +
+            $"            Date: ~SESSION~DATE~{Environment.NewLine}" +
+            $"           Start: ~SESSION~START~{Environment.NewLine}" +
+            $"             End: ~SESSION~END~{Environment.NewLine}" +
+            $"        Duration: ~SESSION~DURATION~{Environment.NewLine}" +
+            $"    Logged in as: ~AVATAR~USER~NAME~{Environment.NewLine}" +
+            $"   Avatar system: ~AVATAR~SYSTEM~{Environment.NewLine}" +
             $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}" +
             $"================================================================================{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"Detail{Environment.NewLine}" +
-            $"--------{Environment.NewLine}" +
-            $"~RUNNING~LOG~";
+            $"--------------{Environment.NewLine}" +
+            $"Session Detail{Environment.NewLine}" +
+            $"--------------{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"~SESSION~DETAILS~";
 
         /// <summary>Gets the blueprint template for unknown parameter logs.</summary>
         /// <returns>A string representing the unknown parameter log blueprint.</returns>
