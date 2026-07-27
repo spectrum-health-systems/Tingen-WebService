@@ -104,11 +104,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvatarComponent\CompletedOptionObject.cs" />
+    <Compile Include="AvatarComponent\CompleteOptionObject.cs" />
     <Compile Include="AvatarComponent\SentOptionObject.cs" />
-    <Compile Include="AvatarComponent\ScriptParameter.cs" />
+    <Compile Include="AvatarComponent\SentScriptParameter.cs" />
     <Compile Include="AvatarComponent\WorkerOptionObject.cs" />
-    <Compile Include="Configuration\NsDoc.cs" />
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
@@ -119,12 +118,10 @@
     <Compile Include="Trove\Catalog.cs" />
     <Compile Include="Core\Framework.cs" />
     <Compile Include="Core\Maintenance.cs" />
-    <Compile Include="Core\NsDoc.cs" />
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Du\NsDoc.cs" />
     <Compile Include="Logger\LogEvent.cs" />
-    <Compile Include="Logger\NsDoc.cs" />
     <Compile Include="Logger\PrimevalLog.cs" />
     <Compile Include="NsDoc.cs" />
     <Compile Include="ProjectInfo.cs" />
@@ -134,7 +131,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Session\NsDoc.cs" />
     <Compile Include="Session\TngnWsvcSession.cs" />
     <Compile Include="TingenWebService.asmx.cs">
       <DependentUpon>TingenWebService.asmx</DependentUpon>

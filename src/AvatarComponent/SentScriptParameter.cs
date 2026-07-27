@@ -3,7 +3,7 @@
 
 namespace TingenWebService.AvatarComponent
 {
-    public class CompletedOptionObject
+    public class SentScriptParameter
     {
     }
 }

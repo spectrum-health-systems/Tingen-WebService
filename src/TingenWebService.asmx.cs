@@ -80,7 +80,7 @@ namespace TingenWebService
         /// Avatar sends two pieces of data to the Tingen Web Service:
         /// <list type="number">
         /// <item>The <see cref="AvatarComponent.SentOptionObject"/></item>
-        /// <item>The <see cref="AvatarComponent.ScriptParameter"/> </item>
+        /// <item>The <see cref="AvatarComponent.SentScriptParameter"/> </item>
         /// </list>
         /// If either of these components are missing, the Tingen Web Service cannot function properly. This method
         /// checks for the presence of both components and logs an error if either is missing.</note>
@@ -92,7 +92,7 @@ namespace TingenWebService
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">
-        /// The <see cref="AvatarComponent.ScriptParameter"/> sent from Avatar.
+        /// The <see cref="AvatarComponent.SentScriptParameter"/> sent from Avatar.
         /// </param>
         /// <remarks>
         /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
