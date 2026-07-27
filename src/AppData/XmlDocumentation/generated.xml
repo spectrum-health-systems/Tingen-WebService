@@ -307,6 +307,13 @@
             <summary>Gets the message indicating that blueprints have been exported.</summary>
             <returns>A string representing the blueprints exported message.</returns>
         </member>
+        <member name="T:TingenWebService.Trove.NsDoc">
+            <summary>The Tingen Web Service Trove</summary>
+            <remarks>
+            The Tingen Web Service Trove is a collection templates, preset values, and other resources used by the
+            Tingen Web Service to format data in a consistent manner.
+            </remarks>
+        </member>
         <member name="T:TingenWebService.Core.Framework">
             <summary>Framework logic.</summary>
             <remarks>
