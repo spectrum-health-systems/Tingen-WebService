@@ -18,6 +18,9 @@ namespace TingenWebService.Trove
     /// </remarks>
     public class NsDoc
     {
+
+
+        /// <summary>TETTESTST</summary>
         [System.Runtime.CompilerServices.CompilerGenerated()]
         public class NamespaceDoc
         {
