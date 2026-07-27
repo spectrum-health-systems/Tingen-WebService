@@ -1,12 +1,18 @@
-﻿<doc>
-    <Tingen-WebService>
-        <name>Tingen-WebService</name>
-    </Tingen-WebService>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+    <!-- Assembly name must match your compiled DLL name exactly (without .dll) -->
+    <assembly>
+        <name>TingenWebService</name>
+    </assembly>
+
     <members>
+        <!-- Document a namespace -->
         <member name="N:TingenWebService.Trove">
             <summary>
-                This namespace contains classes for handling XYZ operations.
+                This namespace contains the core classes and interfaces for handling
+                XYZ operations in the application.
             </summary>
         </member>
+
     </members>
 </doc>
