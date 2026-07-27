@@ -25,22 +25,6 @@ namespace TingenWebService.Core
              */
             //LogEvent.Primeval("SessionMaintenance");
 
-            //var startDate      = DateTime.Now.ToString("yyMMdd");
-            //var dailyStartFile = Path.Combine(twsFramework.SysLogRoot, $"{startDate}.start");
-
-            //try
-            //{
-            //    DuDirectory.EnsureDirectoryExists(dailyLogFolder);
-            //}
-            //catch (Exception ex)
-            //{
-            //    /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-            //     */
-            //    LogEvent.Primeval($"[CR7516]Maintenance", ErrorMessage.Error7516(dailyLogFolder, ex.Message));
-            //}
-
-            //var dailyStartFile = Path.Combine(dailyLogFolder, $"{DateTime.Now:yyMMdd}.start");
-
             var startDate = DateTime.Now.ToString("yyMMdd");
 
             if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{startDate}.start")))
@@ -63,26 +47,14 @@ namespace TingenWebService.Core
 
             var runningLog = string.Empty;
 
-            //var dailyStartFile = Path.Combine(twsFramework.SysLogRoot, dailyStartFileName);
-
-            //if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, dailyStartFileName)))
-            //{
             var verificationStart = DateTime.Now.ToString("HHmmss");
-
-            //var logName = $"{verificationStart}-DailyLog.log";
 
             runningLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
             Framework.Verify(twsFramework);
             runningLog += Epistle.FrameworkVerified();
-            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(rtConfig.ReleaseBuild));
-            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(Epistle.FrameworkVerified()));
-            //DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
-            //DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
 
             Framework.ExportBlueprints(twsFramework.BlueprintRoot);
             runningLog += Epistle.BlueprintsExported();
-            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(Epistle.BlueprintsExported()));
-            //DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
 
             var verificationEnd = DateTime.Now.ToString("HHmmss");
 
@@ -91,8 +63,7 @@ namespace TingenWebService.Core
             runningLog += $"Start: {verificationStart} | End: {verificationEnd} | Duration: {verificationDuration}";
 
             LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, runningLog);
-            //DuFile.DeadDropAppend(dailyStartFile, runningLog);
-            //}
+
         }
     }
 }

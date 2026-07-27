@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TingenWebService.Du;
 using TingenWebService.Session;
 
 namespace TingenWebService.Logger
@@ -13,6 +14,13 @@ namespace TingenWebService.Logger
     {
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
+            /* For debugging prior to logging functionality being initialized.
+             * Disable in production.
+             */
+            LogEvent.Primeval("SystemLogFileInitialized");
+
+
+
             if (File.Exists(Path.Combine(logFolder, logName)))
             {
                 LogWriter.AppendLocal(logFolder, logName, logContent);
@@ -34,7 +42,38 @@ namespace TingenWebService.Logger
         }
 
 
-        internal static void Session(TngnWsvcSession twsSession) => SessionLog.Create(twsSession);
+        internal static void Session(TngnWsvcSession twsSession)
+        {
+            // TODO - Clean this up.
+
+            var sessionRoot = twsSession.TwsFramework.SessionRoot;
+            var sessionDate = twsSession.RtConfig.CurrentDate;
+            var sessionUser = twsSession.SentOptionObject.OptionUserId;
+            var sessionTime = twsSession.RtConfig.CurrentTime;
+
+            var sessionFolder = Path.Combine(sessionRoot, sessionDate, sessionUser, sessionTime);
+
+            DuDirectory.EnsureDirectoryExists(sessionFolder);
+
+            var logName = Path.Combine(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session");
+
+            var logBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
+
+            var endTime  = DateTime.Now.ToString("HHmmss");
+            var duration = (DateTime.ParseExact(endTime, "HHmmss", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+
+            var logContent = logBlueprint.Replace("~RELEASE~BUILD~", twsSession.RtConfig.ReleaseBuild)
+                                         .Replace("~SESSION~DATE~", twsSession.RtConfig.CurrentDate)
+                                         .Replace("~SESSION~START~", twsSession.RtConfig.CurrentTime)
+                                         .Replace("~SESSION~END~", endTime)
+                                         .Replace("~SESSION~DURATION~", duration)
+                                         .Replace("~AVATAR~USER~NAME~", twsSession.SentOptionObject.OptionUserId.ToUpper())
+                                         .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
+                                         .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
+                                         .Replace("~SESSION~DETAILS~", twsSession.SessionDetails);
+
+            LogWriter.WriteLocal(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session", logContent);
+        }
 
         /// <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
         /// <remarks>
