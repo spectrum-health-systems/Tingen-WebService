@@ -10,8 +10,7 @@
         <member name="N:TingenWebService.Trove">
             <summary>A collection of resources used by the Tingen Web Service.</summary>
             <remarks>
-                The Tingen Web Service Trove is a collection templates, preset values, and other resources used by the
-                Tingen Web Service to format data in a consistent manner.<br>
+                The is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.<br>
                 </br>
                 The Trove contains:
                 <list type="bullet">
@@ -19,23 +18,16 @@
                         <term><b><see cref="Blueprint"/></b></term>
                         <description>User-modifiable templates (e.g., log files, error messages)</description>
                     </item>
-                    <item><b>
-                            <see cref="Catalog"/>
-                        </b> - Preset components (e.g, list of required directories)
+                    <item>
+                        <term><b><see cref="Catalog"/></b></term>
+                        <description>Preset components (e.g, list of required directories)</description>
                     </item>
                     <item>
-                        <b>
-                            <see cref="Epistle"/>
-                        </b> - Preset messages (e.g., welcome messages, notifications)
-                    </item>
-                    <item>
-                        <b>
-                            <see cref="ErrorMessage"/>
-                        </b> - Error messages used by the Tingen Web Service
+                        <term><b><see cref="Epistle"/></b></term>
+                        <description>Preset messages (e.g., welcome messages, notifications)</description>
                     </item>
                 </list>
             </remarks>
         </member>
-
     </members>
 </doc>
