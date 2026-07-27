@@ -1,0 +1,12 @@
+﻿<doc>
+    <Tingen-WebService>
+        <name>Tingen-WebService</name>
+    </Tingen-WebService>
+    <members>
+        <member name="N:TingenWebService.Trove">
+            <summary>
+                This namespace contains classes for handling XYZ operations.
+            </summary>
+        </member>
+    </members>
+</doc>

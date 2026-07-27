@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppData\XmlDocumentation\NamespaceDocumentation.xml" />
     <Content Include="TingenWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -159,9 +160,7 @@
       <Name>ScriptLinkStandard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AppData\XmlDocumentation\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

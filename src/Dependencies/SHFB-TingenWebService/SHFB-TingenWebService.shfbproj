@@ -54,6 +54,7 @@ Please see the &amp;lt%3ba href=&amp;quot%3bhttps://github.com/spectrum-health-s
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\..\TingenWebService.csproj" />
+      <DocumentationSource sourceFile="..\..\AppData\XmlDocumentation\NamespaceDocumentation.xml" />
     </DocumentationSources>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
   </PropertyGroup>
