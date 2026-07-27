@@ -21,7 +21,7 @@ namespace TingenWebService.Trove
 
 
         /// <summary>TETTESTST</summary>
-        [System.Runtime.CompilerServices.CompilerGenerated()]
+        //[System.Runtime.CompilerServices.CompilerGenerated()]
         public class NamespaceDoc
         {
             //TODO - Add seealso to source-code documentation for this namespace.
