@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <doc>
-    <!-- Assembly name must match your compiled DLL name exactly (without .dll) -->
+
     <assembly>
         <name>TingenWebService</name>
     </assembly>
-
     <members>
-        <!-- Document a namespace -->
+
+        <!-- N:TingenWebService.Trove -->
         <member name="N:TingenWebService.Trove">
             <summary>A collection of resources used by the Tingen Web Service.</summary>
             <remarks>
@@ -30,5 +30,7 @@
                 </list>
             </remarks>
         </member>
+
     </members>
+
 </doc>
