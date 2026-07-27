@@ -1,0 +1,474 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TingenWebService</name>
+    </assembly>
+    <members>
+        <member name="T:TingenWebService.Configuration.NsDoc.NamespaceDoc">
+            <summary>Namespace for configuration logic.</summary>
+        </member>
+        <member name="T:TingenWebService.Configuration.RuntimeConfig">
+            <summary>Runtime configuration/settings logic.</summary>
+            <remarks>
+            The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
+            It contains information that the web service needs to know before anything else can be loaded.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Configuration.RuntimeConfig.CurrentDate">
+            <summary>Format is yyMMdd.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.RuntimeConfig.CurrentTime">
+            <summary>Format is HHmmss.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.RuntimeConfig.ReleaseBuild">
+            <summary>Release and build information.</summary>
+            <remarks>
+            These two pieces of information are combined to form a single string that is used to identify the version of
+            the Tingen Web Service that is running.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Configuration.RuntimeConfig.AvatarSystem">
+            <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.RuntimeConfig.DataRoot">
+            <summary>The root directory for Tingen Web Service data.</summary>
+        </member>
+        <member name="M:TingenWebService.Configuration.RuntimeConfig.Load(System.String)">
+            <summary>Load the runtime configuration.</summary>
+            <returns>A <see cref="T:TingenWebService.Configuration.RuntimeConfig"/> instance with the current settings.</returns>
+        </member>
+        <member name="T:TingenWebService.Configuration.TngnWsvcConfig">
+            <summary>Tingen Web Service configuration/settings logic.</summary>
+            <remarks>
+            The TngnWsvcConfiguration contains configuration and setting information that the Tingen Web Service needs to
+            know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
+            other configuration components.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.Mode">
+            <summary>Tingen Web Service mode</summary>
+            <remarks>
+            <list type="bullet">
+            <item><c>enabled</c> - All web service functionality is enabled.</item>
+            <item><c>disabled</c> - All web service functionality is disabled.</item>
+            <item><c>passthrough</c> - The web service operates in passthrough mode.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.TraceLevelLimit">
+            <summary>Trace level limit.</summary>
+            <remarks>
+            LINKTO Logging/TraceLevelLimit documentation
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.LogDelay">
+            <summary>Log delay.</summary>
+            <remarks>
+            In some cases the Tingen Web Service may create a large number of log entries in a short period of time. The
+            LogDelay setting ensures that each event is logged with a unique timestamp.<br>
+            </br>
+            The LogDelay setting is the number of milliseconds to wait before logging the next event.
+            </remarks>
+            <value>Default: 10</value>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.EmailAddress">
+            <summary>Email address the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.EmailPassword">
+            <summary>Email password the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.NtstWsvcUserName">
+            <summary>The username used to authenticate with NTST web services.</summary>
+        </member>
+        <member name="P:TingenWebService.Configuration.TngnWsvcConfig.NtstWsvcPassword">
+            <summary>The password used to authenticate with NTST web services.</summary>
+        </member>
+        <member name="M:TingenWebService.Configuration.TngnWsvcConfig.Load(System.String)">
+            <summary>Load the Tingen Web Service configuration from a file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+            <remarks>
+            If the configuration file does not exist, a new configuration file is created with default values.
+            </remarks>
+            <returns>The loaded Tingen Web Service configuration.</returns>
+        </member>
+        <member name="M:TingenWebService.Configuration.TngnWsvcConfig.CreateNew(System.String)">
+            <summary>Create a new Tingen Web Service configuration file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+        </member>
+        <member name="M:TingenWebService.Du.DuJson.ExportFile``1(``0,System.String,System.Boolean)">
+            <summary> Exports a JSON object to a file.</summary>
+            <typeparam name="T">The type of the JSON object.</typeparam>
+            <param name="jsonObject">The JSON object to export.</param>
+            <param name="filePath">The file path to export the JSON object to.</param>
+            <param name="prettyJson">Determines if the JSON data is formatted.</param>
+            <example>
+            To export a nicely formatted JSON object to a file:
+            <code>
+            var myObject = new MyObject();
+            DuJson.ExportFile(myObject, "path/to/file.json");
+            </code>
+            To export a compact JSON object to a file:
+            <code>
+            var myObject = new MyObject();
+            DuJson.ExportFile(myObject, "path/to/file.json", false);
+            </code>
+            </example>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:TingenWebService.Du.DuJson.ImportFile``1(System.String)" -->
+        <member name="M:TingenWebService.Du.DuDirectory.EnsureDirectoryExists(System.String)">
+            <summary>Ensures that the specified directory exists. If it does not exist, it will be created.</summary>
+            <param name="path">The path of the directory to check or create.</param>
+            <example>
+            <code>
+            DuDirectory.EnsureDirectoryExists("C:\\Tingen_Data");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Du.DuFile.DeadDrop(System.String,System.String)">
+            <summary>Writes the specified content to a file at the given path. If the file already exists, it will be overwritten.</summary>
+            <param name="filePath">The path of the file to write to.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            DuFile.DeadDrop("C:\\Tingen_Data\\example.txt", "Hello, World!");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Du.DuFile.DeadDropAppend(System.String,System.String)">
+            <summary>Writes the specified content to a file at the given path. If the file already exists, it will be overwritten.</summary>
+            <param name="filePath">The path of the file to write to.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            DuFile.DeadDrop("C:\\Tingen_Data\\example.txt", "Hello, World!");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Du.NsDoc.NamespaceDoc">
+            <summary>Du</summary>
+        </member>
+        <member name="M:TingenWebService.Logger.LogComponents.GetCallerInfo(System.String,System.String,System.Int32)">
+            <summary>Returns a formatted caller information string built from the calling source location.</summary>
+            <remarks>
+            Uses caller-info attributes to capture the source file, member name, and line number, then returns them in
+            the form <c>{class}-{method}-{line}</c>.
+            </remarks>
+            <param name="className">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <returns>A string in the form <c>{class}-{method}-{line}</c>.</returns>
+            <example>
+            <code>
+            var info = LogComponents.GetCallerInfo();
+            Console.WriteLine(info);
+            // Output: AvatarOptionObject-ToReturn-57
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Logger.LogComponents.FormatXml(System.String)">
+            <summary>Formats raw XML content into a Markdown-style XML code block for log output.</summary>
+            <param name="rawXml">The raw XML string to format.</param>
+            <returns>A Markdown-formatted XML code block representing the supplied XML.</returns>
+            <example>
+            <code>
+            var rawXml    = "&lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;";
+            var formatted = LogComponents.FormatXml(rawXml);
+            Console.WriteLine(formatted);
+            // Output:
+            // ```xml
+            //     &lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;
+            // ```
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Logger.SessionLog">
+            <summary>Session log logic.</summary>
+        </member>
+        <member name="M:TingenWebService.Logger.SessionLog.Create(TingenWebService.Session.TngnWsvcSession)">
+            <summary>Creates a session log for the given Tingen Web Service session.</summary>
+            <param name="twsSession">The Tingen Web Service session.</param>
+        </member>
+        <member name="M:TingenWebService.Logger.LogWriter.GetClassName(System.String)">
+            <summary>Extracts the class name (without extension) from a full source file path.</summary>
+            <remarks>
+            Splits <paramref name="classPath"/> on path separators, takes the final segment, and removes the
+            trailing <c>.cs</c> extension.
+            </remarks>
+            <param name="classPath">The full source file path of the class.</param>
+            <returns>The class name with the <c>.cs</c> extension removed.</returns>
+            <example>
+            <code>
+            var name = LogUtility.GetClassName(@"C:\src\Core\Avatar\AvatarOptionObject.cs");
+            Console.WriteLine(name);
+            // Output: AvatarOptionObject
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Logger.LogWriter.WriteLocal(System.String,System.String,System.String)">
+            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to write.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Logger.LogWriter.AppendLocal(System.String,System.String,System.String)">
+            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to append to.</param>
+            <param name="fileContent">The content to append to the file.</param>
+            <example>
+            <code>
+            LogUtility.AppendLocal(
+                @"C:\Tingen_Data\LIVE\AppData\History",
+                "2026-05-15.history",
+                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Logger.LogEvent.Primeval(System.String,System.String)">
+            <summary>Logs a primeval event with the specified name and content.</summary>
+            <param name="logName">The name of the log file.</param>
+            <param name="logContent">The content of the log file.</param>
+        </member>
+        <member name="M:TingenWebService.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
+            <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
+            <remarks>
+            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="traceLevel">The trace level for this log entry.</param>
+            <param name="traceLogLimit">The configured maximum trace level that should be written.</param>
+            <param name="sessionFolder">The session folder where the trace log file will be written.</param>
+            <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <example>
+            <code>
+            LogEvent.Trace(
+                traceLevel:    1,
+                traceLevelLimit:    tngnWsvcSession.LogSetting.TraceLogLimit,
+                sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Logger.NsDoc.NamespaceDoc">
+            <summary>Main namespace of the Tingen Web Service Logger</summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:TingenWebService.Trove.Blueprint" -->
+        <member name="T:TingenWebService.Trove.Catalog">
+            <summary>Provides catalog information for the Tingen Web Service.</summary>
+            <remarks>Catalogs are preset collections that cannot be modified.</remarks>
+        </member>
+        <member name="M:TingenWebService.Trove.Catalog.FrameworkPathList(TingenWebService.Core.Framework)">
+            <summary>Gets all the framework paths.</summary>
+            <param name="twsFramework">The framework instance containing the paths.</param>
+            <returns>An array of all framework paths.</returns>
+        </member>
+        <member name="M:TingenWebService.Trove.Catalog.FormIdToFormNameTranslation">
+            <summary>Gets the translation for a form ID to its corresponding form name.</summary>
+            <returns>A string representing the form ID to form name translation.</returns>
+        </member>
+        <member name="T:TingenWebService.Trove.Epistle">
+            <summary>Provides predefined messages for the Tingen Web Service.</summary>
+            <remarks>Epistles are preset messages that cannot be modified.</remarks>
+        </member>
+        <member name="M:TingenWebService.Trove.Epistle.TngnWsvcTestingComplete">
+            <summary>Gets the message indicating that Tingen Web Service testing is complete.</summary>
+            <returns>A string representing the testing complete message.</returns>
+        </member>
+        <member name="M:TingenWebService.Trove.Epistle.DailyStart(System.String)">
+            <summary>Gets the message indicating the start of the daily log.</summary>
+            <returns>A string representing the daily start message.</returns>
+        </member>
+        <member name="M:TingenWebService.Trove.Epistle.FrameworkVerified">
+            <summary>Gets the message indicating that the framework has been verified.</summary>
+            <returns>A string representing the framework verified message.</returns>
+        </member>
+        <member name="M:TingenWebService.Trove.Epistle.BlueprintsExported">
+            <summary>Gets the message indicating that blueprints have been exported.</summary>
+            <returns>A string representing the blueprints exported message.</returns>
+        </member>
+        <member name="T:TingenWebService.Trove.NsDoc.NamespaceDoc">
+            <summary>Namespace for Trove logic.</summary>
+            <remarks>
+            Description of blueprints, catalogs, and other Trove logic.
+            </remarks>
+        </member>
+        <member name="T:TingenWebService.Core.Framework">
+            <summary>Framework logic.</summary>
+            <remarks>
+            TBD
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.AvatarGeneratedDataRoot">
+            <summary>Avatar generated data.</summary>
+            <remarks>
+            Any data that is generated by Avatar is stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.ConfigRoot">
+            <summary>Configuration data.</summary>
+            <remarks>
+            All *.config files are stored here.<br>
+            </br>
+            Please note that this folder is available to all Tingen Web Services.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.ExportRoot">
+            <summary>Export data.</summary>
+            <remarks>
+            All exported data is stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.ImportRoot">
+            <summary>Import data.</summary>
+            <remarks>
+            All imported data is stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.SysLogRoot">
+            <summary>Log data.</summary>
+            <remarks>
+            All system logs are stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.BlueprintRoot">
+            <summary>Blueprint data.</summary>
+            <remarks>
+            All blueprint data is stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.SessionRoot">
+            <summary>Session data.</summary>
+            <remarks>
+            All session data is stored here.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Framework.TranslationTableRoot">
+            <summary>Translation table data.</summary>
+            <remarks>
+            All translation table data is stored here.
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.Load(System.String,System.String)">
+            <summary>Load the Tingen Web Service framework.</summary>
+            <param name="hostDataPath">The root path for data storage.</param>
+            <param name="avatarSystem">The avatar system identifier.</param>
+            <returns>A <see cref="T:TingenWebService.Core.Framework"/> instance with the specified paths.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.Verify(TingenWebService.Core.Framework)">
+            <summary>Verify the Tingen Web Service framework.</summary>
+            <param name="twsFramework">The framework instance containing the paths to verify.</param>
+            <remarks>
+            The framework is verified daily.
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.ExportBlueprints(System.String)">
+            <summary>Exports all blueprint templates to the specified host directory.</summary>
+            <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
+        </member>
+        <member name="T:TingenWebService.Core.Maintenance">
+            <summary>Maintenance operations.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.SessionMaintenance(TingenWebService.Configuration.RuntimeConfig,TingenWebService.Core.Framework)">
+            <summary>Session maintenance.</summary>
+            <remarks>
+            This maintenance is done for every session.
+            </remarks>
+            <param name="rtConfig">The runtime configuration.</param>
+            <param name="twsFramework">The framework instance.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Maintenance.VerifyComponents(System.String,TingenWebService.Configuration.RuntimeConfig,TingenWebService.Core.Framework)">
+            <summary>Verify the components for the session.</summary>
+            <param name="sysLogRoot">The root directory for system logs.</param>
+            <param name="dailyStartFileName">The name of the start log file.</param>
+            <param name="rtConfig">The runtime configuration.</param>
+            <param name="twsFramework">The framework instance.</param>
+        </member>
+        <member name="T:TingenWebService.Core.NsDoc.NamespaceDoc">
+            <summary>Namespace for various logic.</summary>
+        </member>
+        <member name="T:TingenWebService.NsDoc.NamespaceDoc">
+            <summary>Main namespace of the Tingen Web Service</summary>
+        </member>
+        <member name="T:TingenWebService.Session.NsDoc.NamespaceDoc">
+            <summary>Namespace for session logic.</summary>
+        </member>
+        <member name="T:TingenWebService.Session.TngnWsvcSession">
+            <summary>Tingen Web Service session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.RtConfig">
+            <summary>Runtime configuration settings for the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.TwsFramework">
+            <summary>Framework instance associated with the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.TwsConfig">
+            <summary>Web service configuration settings.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.SentOptionObject">
+            <summary>The option object sent to the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.WorkingOptionObject">
+            <summary>The option object currently being worked on in the session.</summary>  
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.CompletedOptionObject">
+            <summary>The option object that has been completed in the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.SentScriptParameter">
+            <summary>The script parameter sent to the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Session.TngnWsvcSession.SessionDetails">
+            <summary>Details about the session.</summary>
+        </member>
+        <member name="M:TingenWebService.Session.TngnWsvcSession.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Configuration.RuntimeConfig,TingenWebService.Core.Framework)">
+            <summary>Starts a new Tingen Web Service session.</summary>
+            <param name="sentOptionObject">The option object.</param>
+            <param name="sentScriptParameter">The script parameter.</param>
+            <param name="rtConfig">The runtime configuration settings.</param>
+            <param name="twsFramework">The framework instance.</param>
+            <returns>A new Tingen Web Service session.</returns>
+        </member>
+        <member name="T:TingenWebService.TingenWebService">
+            <summary>The entry class for the Tingen Web Service.</summary>
+        </member>
+        <member name="P:TingenWebService.TingenWebService._twsRelease">
+            <summary>Current Tingen Web Service release.</summary>
+            <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
+        </member>
+        <member name="P:TingenWebService.TingenWebService.TwsSession">
+            <summary>Tingen Web Servic session instance.</summary>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.GetVersion">
+            <summary>Get the current version of the Tingen Web Service.</summary>
+            <remarks>
+            This method is required by Avatar.
+            </remarks>
+            <returns>A string representing the current version.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.RunScript(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Main entry method.</summary>
+            <param name="sentOptObj">The OptionObject sent from Avatar.</param>
+            <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
+            <remarks>
+            This method is required by Avatar.
+            </remarks>
+            <returns>A completed OptionObject, which has potentially been modified.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.IsMissingAvatarData(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Determine if the Avatar data is missing based.</summary>
+            <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
+            <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+            <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.StartApp(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Start the Tingen Web Service.</summary>
+            <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
+            <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+        </member>
+    </members>
+</doc>

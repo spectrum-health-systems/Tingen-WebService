@@ -53,7 +53,7 @@ Please see the &amp;lt%3ba href=&amp;quot%3bhttps://github.com/spectrum-health-s
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <DocumentationSources>
-      <DocumentationSource sourceFile="SHFB-TingenWebService.shfbproj" xmlns="" />
+      <DocumentationSource sourceFile="..\..\TingenWebService.csproj" />
     </DocumentationSources>
     <WarnOnMissingSourceContext>False</WarnOnMissingSourceContext>
   </PropertyGroup>
