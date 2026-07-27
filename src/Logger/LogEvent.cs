@@ -11,26 +11,26 @@ namespace TingenWebService.Logger
 {
     internal class LogEvent
     {
-        internal static void Daily(string path, string logContent)
+        internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            if (File.Exists(path))
+            if (File.Exists(Path.Combine(logFolder, logName)))
             {
-                LogUtility.AppendLocal(path, $"{DateTime.Now:fffffff}-DailyLog.log", logContent);
+                LogWriter.AppendLocal(logFolder, logName, logContent);
             }
             else
             {
-                DailyLog.Create(logContent);
+                LogWriter.WriteLocal(logFolder, logName, logContent);
             }
         }
 
         /// <summary>Logs a primeval event with the specified name and content.</summary>
-        /// <param name="logName">The name of the log.</param>
-        /// <param name="logContent">The content of the log.</param>
+        /// <param name="logName">The name of the log file.</param>
+        /// <param name="logContent">The content of the log file.</param>
         internal static void Primeval(string logName, string logContent = "")
         {
             Thread.Sleep(5); // Ensure unique timestamp for log file name
 
-            LogUtility.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
+            LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
         }
 
 
@@ -61,9 +61,9 @@ namespace TingenWebService.Logger
             {
                 Thread.Sleep(levelLimit);
 
-                var logName = $"{DateTime.Now:ssff-fffff}-{LogUtility.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
+                var logName = $"{DateTime.Now:ssff-fffff}-{LogWriter.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
 
-                LogUtility.WriteLocal(sessionFolder, logName, "");
+                LogWriter.WriteLocal(sessionFolder, logName);
             }
         }
     }

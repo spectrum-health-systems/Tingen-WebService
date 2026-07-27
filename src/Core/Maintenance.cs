@@ -4,7 +4,6 @@
 using System;
 using System.IO;
 using TingenWebService.Configuration;
-using TingenWebService.Du;
 using TingenWebService.Logger;
 using TingenWebService.Trove;
 
@@ -26,57 +25,74 @@ namespace TingenWebService.Core
              */
             //LogEvent.Primeval("SessionMaintenance");
 
-            var dailyLogPath = Path.Combine(twsFramework.SysLogRoot, $"{DateTime.Now:yyMMdd}");
+            //var startDate      = DateTime.Now.ToString("yyMMdd");
+            //var dailyStartFile = Path.Combine(twsFramework.SysLogRoot, $"{startDate}.start");
 
-            try
-            {
-                DuDirectory.EnsureDirectoryExists(dailyLogPath);
-            }
-            catch (Exception ex)
-            {
-                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-                 */
-                LogEvent.Primeval($"[CR7516]Maintenance", ErrorMessage.Error7516(dailyLogPath, ex.Message));
-            }
+            //try
+            //{
+            //    DuDirectory.EnsureDirectoryExists(dailyLogFolder);
+            //}
+            //catch (Exception ex)
+            //{
+            //    /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
+            //     */
+            //    LogEvent.Primeval($"[CR7516]Maintenance", ErrorMessage.Error7516(dailyLogFolder, ex.Message));
+            //}
 
-            var dailyStartFile = Path.Combine(dailyLogPath, $"{DateTime.Now:yyMMdd}.start");
+            //var dailyStartFile = Path.Combine(dailyLogFolder, $"{DateTime.Now:yyMMdd}.start");
 
-            if (!File.Exists(dailyStartFile))
+            var startDate = DateTime.Now.ToString("yyMMdd");
+
+            if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{startDate}.start")))
             {
-                VerifyComponents(dailyStartFile, rtConfig, twsFramework);
+                VerifyComponents($"{startDate}.start", rtConfig, twsFramework);
             }
         }
 
         /// <summary>Verify the components for the session.</summary>
-        /// <param name="dailyStartFile">The path to the start log file.</param>
+        /// <param name="sysLogRoot">The root directory for system logs.</param>
+        /// <param name="dailyStartFileName">The name of the start log file.</param>
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework instance.</param>
-        private static void VerifyComponents(string dailyStartFile, RuntimeConfig rtConfig, Framework twsFramework)
+        private static void VerifyComponents(string sysLogFileName, RuntimeConfig rtConfig, Framework twsFramework)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
             //LogEvent.Primeval("VerifyComponents");
 
-            if (!File.Exists(dailyStartFile))
-            {
-                var verificationStart = DateTime.Now.ToString("HH:mm:ss");
+            var runningLog = string.Empty;
 
-                Framework.Verify(twsFramework);
-                DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
-                DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
+            //var dailyStartFile = Path.Combine(twsFramework.SysLogRoot, dailyStartFileName);
 
-                Framework.ExportBlueprints(twsFramework.BlueprintRoot);
-                DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
+            //if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, dailyStartFileName)))
+            //{
+            var verificationStart = DateTime.Now.ToString("HHmmss");
 
-                var verificationEnd = DateTime.Now.ToString("HH:mm:ss");
+            //var logName = $"{verificationStart}-DailyLog.log";
 
-                var verificationDuration = (DateTime.ParseExact(verificationEnd, "HH:mm:ss", null) - DateTime.ParseExact(verificationStart, "HH:mm:ss", null)).ToString(@"hh\:mm\:ss");
+            runningLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
+            Framework.Verify(twsFramework);
+            runningLog += Epistle.FrameworkVerified();
+            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(rtConfig.ReleaseBuild));
+            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(Epistle.FrameworkVerified()));
+            //DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
+            //DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
 
-                var msg = $"[CR7516]Maintenance: Session maintenance completed. Duration: {verificationDuration}";
+            Framework.ExportBlueprints(twsFramework.BlueprintRoot);
+            runningLog += Epistle.BlueprintsExported();
+            //LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, Epistle.DailyStart(Epistle.BlueprintsExported()));
+            //DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
 
-                DuFile.DeadDropAppend(dailyStartFile, msg);
-            }
+            var verificationEnd = DateTime.Now.ToString("HHmmss");
+
+            var verificationDuration = (DateTime.ParseExact(verificationEnd, "HHmmss", null) - DateTime.ParseExact(verificationStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+
+            runningLog += $"Start: {verificationStart} | End: {verificationEnd} | Duration: {verificationDuration}";
+
+            LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, runningLog);
+            //DuFile.DeadDropAppend(dailyStartFile, runningLog);
+            //}
         }
     }
 }

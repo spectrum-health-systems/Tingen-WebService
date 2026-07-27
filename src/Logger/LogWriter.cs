@@ -8,7 +8,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Logger
 {
-    internal class LogUtility
+    internal class LogWriter
     {
         /// <summary>Extracts the class name (without extension) from a full source file path.</summary>
         /// <remarks>
@@ -40,13 +40,12 @@ namespace TingenWebService.Logger
         /// LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
         /// </code>
         /// </example>
-        internal static void WriteLocal(string fileFolder, string fileName, string fileContent)
+        internal static void WriteLocal(string fileFolder, string fileName, string fileContent = null)
         {
             DuDirectory.EnsureDirectoryExists(fileFolder);
 
             File.WriteAllText(Path.Combine(fileFolder, fileName), fileContent);
         }
-
 
         /// <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
         /// <param name="fileFolder">The folder where the file is located.</param>

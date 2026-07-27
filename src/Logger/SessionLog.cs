@@ -43,7 +43,7 @@ namespace TingenWebService.Logger
                                          .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
                                          .Replace("~SESSION~DETAILS~", twsSession.SessionDetails);
 
-            LogUtility.WriteLocal(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session", logContent);
+            LogWriter.WriteLocal(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session", logContent);
         }
     }
 }
