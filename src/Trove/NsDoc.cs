@@ -19,7 +19,7 @@ namespace TingenWebService.Trove
         /// </list>
         /// </remarks>
         [System.Runtime.CompilerServices.CompilerGenerated()]
-        class NamespaceDoc
+        public class NamespaceDoc
         {
             //TODO - Add seealso to source-code documentation for this namespace.
         }
