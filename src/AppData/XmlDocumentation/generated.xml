@@ -307,12 +307,6 @@
             <summary>Gets the message indicating that blueprints have been exported.</summary>
             <returns>A string representing the blueprints exported message.</returns>
         </member>
-        <member name="T:TingenWebService.Trove.NsDoc.NamespaceDoc">
-            <summary>
-            Contains the core business logic classes for MyProduct. This namespace includes services, managers, and
-            domain models that implement the main application functionality.
-            </summary>
-        </member>
         <member name="T:TingenWebService.Core.Framework">
             <summary>Framework logic.</summary>
             <remarks>
