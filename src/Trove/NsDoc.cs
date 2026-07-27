@@ -6,6 +6,9 @@ namespace TingenWebService.Trove
     public class NsDoc
     {
         /// <summary>Namespace for Trove logic.</summary>
+        /// <remarks>
+        /// Description of blueprints, catalogs, and other Trove logic.
+        /// </remarks>
         [System.Runtime.CompilerServices.CompilerGenerated()]
         class NamespaceDoc
         {
