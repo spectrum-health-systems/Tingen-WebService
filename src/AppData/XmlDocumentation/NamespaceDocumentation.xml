@@ -6,11 +6,59 @@
     </assembly>
     <members>
 
+        <!-- N:TingenWebService -->
+        <member name="N:TingenWebService">
+            <summary>The Tingen Web Service.</summary>
+            <remarks>
+                The Tingen Web Service.
+            </remarks>
+        </member>
+
         <!-- N:TingenWebService.AvatarComponent -->
         <member name="N:TingenWebService.AvatarComponent">
             <summary>Avatar-specific components.</summary>
             <remarks>
                 These components are either sent directly <i>from Avatar</i>, or involved in data being <i>returned to Avatar</i>.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Configuration -->
+        <member name="N:TingenWebService.Configuration">
+            <summary>Configuration logic.</summary>
+            <remarks>
+                Configuration logic for the Tingen Web Service.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core -->
+        <member name="N:TingenWebService.Core">
+            <summary>Core logic for the Tingen Web Service.</summary>
+            <remarks>
+                Core logic for the Tingen Web Service.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Du -->
+        <member name="N:TingenWebService.Du">
+            <summary>DU logic for the Tingen Web Service.</summary>
+            <remarks>
+                DU logic for the Tingen Web Service.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Logger -->
+        <member name="N:TingenWebService.Logger">
+            <summary>Logging logic for the Tingen Web Service.</summary>
+            <remarks>
+                Logging logic for the Tingen Web Service.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Session -->
+        <member name="N:TingenWebService.Session">
+            <summary>Session management logic for the Tingen Web Service.</summary>
+            <remarks>
+                Session management logic for the Tingen Web Service.
             </remarks>
         </member>
 

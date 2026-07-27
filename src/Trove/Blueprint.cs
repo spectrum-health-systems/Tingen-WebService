@@ -21,7 +21,8 @@ namespace TingenWebService.Trove
     /// </remarks>
     internal static class Blueprint
     {
-        /// <summary>Error log template.</summary>
+        /// <summary>Build the error log template.</summary>
+        /// <returns>The error log template string.</returns>
         internal static string ErrorLogBlueprint() =>
             $"================================================================================{Environment.NewLine}" +
             $"Tingen Web Service Error Log{Environment.NewLine}" +
@@ -39,7 +40,8 @@ namespace TingenWebService.Trove
             $"[METHOD] ~METHOD~{Environment.NewLine}" +
             $"[LINE] ~LINE~{Environment.NewLine}";
 
-        /// <summary>Critical error log template.</summary>
+        /// <summary>Build the critical error log template.</summary>
+        /// <returns>The critical error log template string.</returns>
         internal static string CriticalErrorLogBlueprint() =>
             $"================================================================================{Environment.NewLine}" +
             $"Tingen Web Service Critical Error Log{Environment.NewLine}" +
@@ -57,7 +59,8 @@ namespace TingenWebService.Trove
             $"[METHOD] ~METHOD~{Environment.NewLine}" +
             $"[LINE] ~LINE~{Environment.NewLine}";
 
-        /// <summary>Session log template.</summary>
+        /// <summary>Build the session log template.</summary>
+        /// <returns>The session log template string.</returns>
         internal static string SessionLogBlueprint() =>
             $"================================================================================{Environment.NewLine}" +
             $"Tingen Web Service Session Log                               [~RELEASE~BUILD~]  {Environment.NewLine}" +

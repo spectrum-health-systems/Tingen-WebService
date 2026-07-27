@@ -100,7 +100,7 @@ namespace TingenWebService.Core
              */
             //LogEvent.Primeval("VerifyFrameworkComponents");
 
-            foreach (var path in Catalog.FrameworkPathList(twsFramework))
+            foreach (var path in Catalog.RequiredFrameworkFolders(twsFramework))
             {
                 try
                 {

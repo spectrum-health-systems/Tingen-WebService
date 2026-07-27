@@ -12,49 +12,55 @@ using TingenWebService.Trove;
 
 namespace TingenWebService
 {
-    /// <summary>The entry class for the Tingen Web Service.</summary>
+    /// <summary>The Tingen Web Service entry class.</summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    public class TingenWebService : System.Web.Services.WebService
+    public class TingenWebService : WebService
     {
-        /// <summary>Current Tingen Web Service release.</summary>
+        /// <summary>The current Tingen Web Service release.</summary>
         /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
+        /// <returns>A string representing the current release.</returns>
         private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        /// <summary>Tingen Web Servic session instance.</summary>
+        /// <summary>The Tingen Web Service session instance.</summary>
+        /// <remarks>
+        /// This property is used to maintain the session state for the Tingen Web Service. It is initialized in the
+        /// StartApp method and is used throughout the service to access session-specific data and configurations.
+        /// </remarks>
+        /// <returns>The (empty) Tingen Web Service session instance.</returns>
         internal TngnWsvcSession TwsSession { get; set; }
 
         /// <summary>Get the current version of the Tingen Web Service.</summary>
-        /// <remarks>
-        /// This method is required by Avatar.
-        /// </remarks>
+        /// <remarks>This method is required by Avatar.</remarks>
         /// <returns>A string representing the current version.</returns>
         [WebMethod]
         public string GetVersion() => $"VERSION {_twsRelease}";
 
-        /// <summary>Main entry method.</summary>
+        /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
-        /// <remarks>
-        /// This method is required by Avatar.
-        /// </remarks>
+        /// <remarks>This method is where the magic happens (and is required by Avatar).</remarks>
         /// <returns>A completed OptionObject, which has potentially been modified.</returns>
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
+            /* For debugging prior to logging functionality being initialized - Disable in production.
              */
             //LogEvent.Primeval("TingenWebServiceStarted", Epistle.DebugStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
+                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
+                 */
+                LogEvent.Primeval("[CR3876]MissingAvatarData", Epistle.Error3876());
+                // TODO - Potentially send an email in addition to the error log.
+
                 return sentOptObj.ToReturnOptionObject(0, "");
             }
             else
             {
-                StartApp(sentOptObj, sentScriptParam); // Initializes the session
+                StartApp(sentOptObj, sentScriptParam);
 
                 LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
 
@@ -66,28 +72,32 @@ namespace TingenWebService
             }
         }
 
-        /// <summary>Determine if the Avatar data is missing based.</summary>
+        /// <summary>Determines if the Avatar data is missing.</summary>
         /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+        /// <remarks>
+        /// <note type="note" title="About Avatar data">
+        /// Avatar sends two pieces of data to the Tingen Web Service:
+        /// <list type="number">
+        /// <item>The <see cref="AvatarComponent.SentOptionObject"/></item>
+        /// <item>The <see cref="AvatarComponent.ScriptParameter"/> </item>
+        /// </list>
+        /// If either of these components are missing, the Tingen Web Service cannot function properly. This method
+        /// checks for the presence of both components and logs an error if either is missing.</note>
+        /// </remarks>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
-        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
-        {
-            if (sentOptionObject == null || string.IsNullOrWhiteSpace(sentScriptParameter))
-            {
-                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-                 */
-                LogEvent.Primeval("[CR3876]MissingData", Epistle.Error3876());
-                // TODO - Potentially send an email in addition to the error log.
-
-                return true;
-            }
-
-            return false;
-        }
+        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter) =>
+            sentOptionObject == null || string.IsNullOrWhiteSpace(sentScriptParameter);
 
         /// <summary>Start the Tingen Web Service.</summary>
-        /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
-        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+        /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>
+        /// <param name="sentScriptParameter">
+        /// The <see cref="AvatarComponent.ScriptParameter"/> sent from Avatar.
+        /// </param>
+        /// <remarks>
+        /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
+        /// validating requirements, and initializing the session state.
+        /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
             /* For debugging prior to logging functionality being initialized.

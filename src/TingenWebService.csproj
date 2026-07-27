@@ -105,7 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AvatarComponent\CompletedOptionObject.cs" />
-    <Compile Include="AvatarComponent\OriginalOptionObject.cs" />
+    <Compile Include="AvatarComponent\SentOptionObject.cs" />
     <Compile Include="AvatarComponent\ScriptParameter.cs" />
     <Compile Include="AvatarComponent\WorkerOptionObject.cs" />
     <Compile Include="Configuration\NsDoc.cs" />
