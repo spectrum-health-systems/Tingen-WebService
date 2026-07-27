@@ -5,9 +5,18 @@ namespace TingenWebService.Trove
 {
     public class NsDoc
     {
-        /// <summary>Namespace for Trove logic.</summary>
+        /// <summary>The Tingen Web Service Trove</summary>
         /// <remarks>
-        /// Description of blueprints, catalogs, and other Trove logic.
+        /// The Tingen Web Service Trove is a collection templates, preset values, and other resources used by the
+        /// Tingen Web Service to format data in a consistent manner.<br>
+        /// </br>
+        /// The Trove contains:
+        /// <list type="bullet">
+        /// <item><b><see cref="Blueprint"/></b> - User-modifiable templates for formatting logs and error messages</item>
+        /// <item><b><see cref="Catalog"/></b> - Preset values for various configurations</item>
+        /// <item><b><see cref="Epistle"/></b> - Other resources used by the Tingen Web Service</item>
+        /// <item><b><see cref="ErrorMessage"/></b> - Error messages used by the Tingen Web Service</item>
+        /// </list>
         /// </remarks>
         [System.Runtime.CompilerServices.CompilerGenerated()]
         class NamespaceDoc
