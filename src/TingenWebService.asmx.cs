@@ -76,7 +76,7 @@ namespace TingenWebService
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                LogEvent.Primeval("[CR3876]MissingData", ErrorMessage.Error3876());
+                LogEvent.Primeval("[CR3876]MissingData", Epistle.Error3876());
                 // TODO - Potentially send an email in addition to the error log.
 
                 return true;

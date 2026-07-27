@@ -71,7 +71,7 @@ namespace TingenWebService.Configuration
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                LogEvent.Primeval("[CR4694]MissingConfig", ErrorMessage.Error4694());
+                LogEvent.Primeval("[CR4694]MissingConfig", Epistle.Error4694());
                 //TODO - Probably send an email (since it should not happen)
 
                 CreateNew(configPath);

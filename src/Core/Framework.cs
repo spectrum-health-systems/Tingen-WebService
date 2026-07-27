@@ -110,7 +110,7 @@ namespace TingenWebService.Core
                 {
                     /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                      */
-                    Logger.LogEvent.Primeval("[CR7622]Framework", ErrorMessage.Error7622(path, ex.Message));
+                    Logger.LogEvent.Primeval("[CR7622]Framework", Epistle.Error7622(path, ex.Message));
                     //TODO - Should probably send an email notification.
                 }
             }

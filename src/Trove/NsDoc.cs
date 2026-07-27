@@ -12,9 +12,9 @@ namespace TingenWebService.Trove
         /// </br>
         /// The Trove contains:
         /// <list type="bullet">
-        /// <item><b><see cref="Blueprint"/></b> - User-modifiable templates for formatting logs and error messages</item>
-        /// <item><b><see cref="Catalog"/></b> - Preset values for various configurations</item>
-        /// <item><b><see cref="Epistle"/></b> - Other resources used by the Tingen Web Service</item>
+        /// <item><b><see cref="Blueprint"/></b> - User-modifiable templates (e.g., log files, error messages)</item>
+        /// <item><b><see cref="Catalog"/></b> - Preset components (e.g, list of required directories)</item>
+        /// <item><b><see cref="Epistle"/></b> - Preset messages (e.g., welcome messages, notifications)</item>
         /// <item><b><see cref="ErrorMessage"/></b> - Error messages used by the Tingen Web Service</item>
         /// </list>
         /// </remarks>
