@@ -3,14 +3,16 @@
 
 using System.Runtime.CompilerServices;
 
+/// <summary>The Tingen Web Service Trove</summary>
+/// <remarks>
+/// The Tingen Web Service Trove is a collection templates, preset values, and other resources used by the
+/// Tingen Web Service to format data in a consistent manner.<br>
+/// </br>
+/// </remarks>
 namespace TingenWebService.Trove
 {
     public class NsDoc
     {
-        /// <summary>
-        /// Contains the core business logic classes for MyProduct. This namespace includes services, managers, and
-        /// domain models that implement the main application functionality.
-        /// </summary>
         [CompilerGenerated()]
         internal class NamespaceDoc
         {
