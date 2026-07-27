@@ -8,30 +8,9 @@
 
         <!-- N:TingenWebService.AvatarComponent -->
         <member name="N:TingenWebService.AvatarComponent">
-            <summary>Avatar components.</summary>
+            <summary>Avatar-specific components.</summary>
             <remarks>
-                Avartar components are:
-                <list type="bullet">
-                    <item>
-                        <term><b><see cref="CompletedObjectOption"/></b></term>
-                        <description>Thing</description>
-                    </item>
-                    <item>
-                        <term>
-                            <b>
-                                <see cref="WorkingObjectOption"/>
-                            </b>
-                        </term>
-                        <description>Thing2</description>
-                    </item>
-                    <term>
-                        <b>
-                            <see cref="CompletedObjectOption"/>
-                        </b>
-                    </term>
-                    <description>Thing3</description>
-                    <item><see cref="ScriptParameter"/> - Preset messages (e.g., welcome messages, notifications)</item>
-                </list>
+                These components are either sent directly <i>from Avatar</i>, or involved in data being <i>returned to Avatar</i>.
             </remarks>
         </member>
 
@@ -39,38 +18,7 @@
         <member name="N:TingenWebService.Trove">
             <summary>A collection of resources used by the Tingen Web Service.</summary>
             <remarks>
-                The <b>Trove</b> is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.<br>
-                </br>
-                The Trove contains:
-                <list type="bullet">
-                    <item>
-                        <term>
-                            <b>
-                                <see cref="Blueprint"/>
-                            </b>
-                        </term>
-                        <description>User-modifiable templates (e.g., log files, error messages)</description>
-                    </item>
-                    <item>
-                        <term>
-                            <b>
-                                <see cref="Catalog"/>
-                            </b>
-                        </term>
-                        <description>Preset components (e.g, list of required directories)</description>
-                    </item>
-                    <item>
-                        <term>
-                            <b>
-                                <see cref="Epistle"/>
-                            </b>
-                        </term>
-                        <description>Preset messages (e.g., welcome messages, notifications)</description>
-                    </item>
-                    <item>
-                        <see cref="Epistle"/> - Preset messages (e.g., welcome messages, notifications)
-                    </item>
-                </list>
+                The <b>Trove</b> is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.
             </remarks>
         </member>
 
