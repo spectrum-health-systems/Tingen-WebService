@@ -51,7 +51,7 @@
 Please see the &amp;lt%3ba href=&amp;quot%3bhttps://github.com/spectrum-health-systems/Tingen-WebService&amp;quot%3b&amp;gt%3bTingen Web Service&amp;lt%3b/a&amp;gt%3b for more information.
 &amp;lt%3b/div&amp;gt%3b</FooterText>
     <SdkLinkTarget>Blank</SdkLinkTarget>
-    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
+    <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Internals, Privates, PrivateFields, Protected, SealedProtected, ProtectedInternalAsProtected, NonBrowsable</VisibleItems>
     <DocumentationSources>
       <DocumentationSource sourceFile="..\..\TingenWebService.csproj" />
     </DocumentationSources>

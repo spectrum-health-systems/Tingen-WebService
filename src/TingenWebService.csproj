@@ -138,7 +138,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Trove\Epistle.cs" />
-    <Compile Include="Trove\ErrorMessage.cs" />
     <Compile Include="Trove\NsDoc.cs" />
   </ItemGroup>
   <ItemGroup>
