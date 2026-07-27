@@ -10,7 +10,7 @@
         <member name="N:TingenWebService.Trove">
             <summary>A collection of resources used by the Tingen Web Service.</summary>
             <remarks>
-                The is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.<br>
+                The <b>Trove</b> is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.<br>
                 </br>
                 The Trove contains:
                 <list type="bullet">
@@ -26,6 +26,7 @@
                         <term><b><see cref="Epistle"/></b></term>
                         <description>Preset messages (e.g., welcome messages, notifications)</description>
                     </item>
+                    <item><see cref="Epistle"/> - Preset messages (e.g., welcome messages, notifications)</item>
                 </list>
             </remarks>
         </member>
