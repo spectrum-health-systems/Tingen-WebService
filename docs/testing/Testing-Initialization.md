@@ -1,21 +1,22 @@
-# Testing Initialization
+# Testing - Web Service Initialization
 
 ## Step 1
 
 1. Delete the contents of `Tingen_Data\WebService\UAT\*`
 
-2. Execute the Tingen Web Service  
+2. Execute the Tingen Web Service
+
 The following should be created:
-- The framework
-- The Blueprints
-- The config files
-- The dailyLog file
+- Framework
+- Blueprints
+- Config files
+- DailyLog file
 
 ## Step 2
 
 Wait a few minutes after completing Step 1.
 
-1. Execute the Tingen Web Service 
+1. Execute the Tingen Web Service
 2. Verify that the above information has not been re-created or modified unexpectedly
 
 ## Step 3

@@ -1,5 +1,5 @@
-﻿// 260725_code
-// 260725_documentation
+﻿// 260727_code
+// 260727_documentation
 
 using System;
 using System.IO;
@@ -60,12 +60,22 @@ namespace TingenWebService.Core
 
             if (!File.Exists(dailyStartFile))
             {
+                var verificationStart = DateTime.Now.ToString("HH:mm:ss");
+
                 Framework.Verify(twsFramework);
                 DuFile.DeadDrop(dailyStartFile, Epistle.DailyStart(rtConfig.ReleaseBuild));
                 DuFile.DeadDropAppend(dailyStartFile, Epistle.FrameworkVerified());
 
                 Framework.ExportBlueprints(twsFramework.BlueprintRoot);
                 DuFile.DeadDropAppend(dailyStartFile, Epistle.BlueprintsExported());
+
+                var verificationEnd = DateTime.Now.ToString("HH:mm:ss");
+
+                var verificationDuration = (DateTime.ParseExact(verificationEnd, "HH:mm:ss", null) - DateTime.ParseExact(verificationStart, "HH:mm:ss", null)).ToString(@"hh\:mm\:ss");
+
+                var msg = $"[CR7516]Maintenance: Session maintenance completed. Duration: {verificationDuration}";
+
+                DuFile.DeadDropAppend(dailyStartFile, msg);
             }
         }
     }

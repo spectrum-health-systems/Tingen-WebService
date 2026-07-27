@@ -108,6 +108,7 @@
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
+    <Compile Include="Logger\DailyLog.cs" />
     <Compile Include="Logger\LogComponents.cs" />
     <Compile Include="Logger\SessionLog.cs" />
     <Compile Include="Logger\TraceLog.cs" />

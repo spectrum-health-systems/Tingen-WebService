@@ -1,17 +1,38 @@
 ﻿// 260726_code
 // 260726_documentation
 
+using System;
+using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using TingenWebService.Session;
 
 namespace TingenWebService.Logger
 {
     internal class LogEvent
     {
+        internal static void Daily(string path, string logContent)
+        {
+            if (File.Exists(path))
+            {
+                LogUtility.AppendLocal(path, $"{DateTime.Now:fffffff}-DailyLog.log", logContent);
+            }
+            else
+            {
+                DailyLog.Create(logContent);
+            }
+        }
+
         /// <summary>Logs a primeval event with the specified name and content.</summary>
         /// <param name="logName">The name of the log.</param>
         /// <param name="logContent">The content of the log.</param>
-        internal static void Primeval(string logName, string logContent = "") => PrimevalLog.Create(logName, logContent);
+        internal static void Primeval(string logName, string logContent = "")
+        {
+            Thread.Sleep(5); // Ensure unique timestamp for log file name
+
+            LogUtility.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
+        }
+
 
         internal static void Session(TngnWsvcSession twsSession) => SessionLog.Create(twsSession);
 
@@ -34,18 +55,16 @@ namespace TingenWebService.Logger
         ///     sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
         /// </code>
         /// </example>
-        internal static void Trace(int traceLevel,
-                                   int traceLevelLimit,
-                                   string sessionFolder,
-                                   [CallerFilePath] string classPath = "",
-                                   [CallerMemberName] string methodName = "",
-                                   [CallerLineNumber] int lineNumber = 0) => TraceLog.Create(traceLevel,
-                                                                                             traceLevelLimit,
-                                                                                             sessionFolder,
-                                                                                             classPath,
-                                                                                             methodName,
-                                                                                             lineNumber);
+        internal static void Trace(int traceLevel, int levelLimit, string sessionFolder, [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
+        {
+            if (levelLimit != 0 && (traceLevel <= levelLimit))
+            {
+                Thread.Sleep(levelLimit);
 
+                var logName = $"{DateTime.Now:ssff-fffff}-{LogUtility.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
 
+                LogUtility.WriteLocal(sessionFolder, logName, "");
+            }
+        }
     }
 }

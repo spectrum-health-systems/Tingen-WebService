@@ -26,10 +26,12 @@
 
 ## Testing
 
+* [Testing](../testing/README.md)
+
 <br/>
 
 ***
 
 [Development Manual](README.md) ❭ Development Guidelines
 
-<sub>Last updated: 260709</sub>
+<sub>Last updated: 063943</sub>
