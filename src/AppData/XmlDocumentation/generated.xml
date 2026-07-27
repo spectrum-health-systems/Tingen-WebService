@@ -322,6 +322,9 @@
             </list>
             </remarks>
         </member>
+        <member name="T:TingenWebService.Trove.NsDoc.NamespaceDoc">
+            <summary>TETTESTST</summary>
+        </member>
         <member name="T:TingenWebService.Core.Framework">
             <summary>Framework logic.</summary>
             <remarks>
