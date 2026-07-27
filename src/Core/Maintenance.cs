@@ -63,7 +63,6 @@ namespace TingenWebService.Core
             runningLog += $"Start: {verificationStart} | End: {verificationEnd} | Duration: {verificationDuration}";
 
             LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, runningLog);
-
         }
     }
 }

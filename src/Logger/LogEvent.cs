@@ -19,8 +19,6 @@ namespace TingenWebService.Logger
              */
             LogEvent.Primeval("SystemLogFileInitialized");
 
-
-
             if (File.Exists(Path.Combine(logFolder, logName)))
             {
                 LogWriter.AppendLocal(logFolder, logName, logContent);
@@ -40,7 +38,6 @@ namespace TingenWebService.Logger
 
             LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
         }
-
 
         internal static void Session(TngnWsvcSession twsSession)
         {
