@@ -112,7 +112,6 @@
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
     <Compile Include="Logger\LogComponent.cs" />
-    <Compile Include="Logger\SessionLog.cs" />
     <Compile Include="Logger\LogWriter.cs" />
     <Compile Include="Trove\Blueprint.cs" />
     <Compile Include="Trove\Catalog.cs" />
@@ -122,7 +121,6 @@
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Du\NsDoc.cs" />
     <Compile Include="Logger\LogEvent.cs" />
-    <Compile Include="Logger\PrimevalLog.cs" />
     <Compile Include="NsDoc.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

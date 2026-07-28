@@ -45,24 +45,25 @@ namespace TingenWebService.Core
              */
             //LogEvent.Primeval("VerifyComponents");
 
-            var runningLog = string.Empty;
+            var verificationLog = string.Empty;
 
             var verificationStart = DateTime.Now.ToString("HHmmss");
 
-            runningLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
+            verificationLog += $"> Start: {verificationStart}";
+            verificationLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
             Framework.Verify(twsFramework);
-            runningLog += Epistle.FrameworkVerified();
+            verificationLog += Epistle.FrameworkVerified();
 
             Framework.ExportBlueprints(twsFramework.BlueprintRoot);
-            runningLog += Epistle.BlueprintsExported();
+            verificationLog += Epistle.BlueprintsExported();
 
             var verificationEnd = DateTime.Now.ToString("HHmmss");
 
             var verificationDuration = (DateTime.ParseExact(verificationEnd, "HHmmss", null) - DateTime.ParseExact(verificationStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
 
-            runningLog += $"Start: {verificationStart} | End: {verificationEnd} | Duration: {verificationDuration}";
+            verificationLog += $"> End: {verificationEnd}{Environment.NewLine}> Duration: {verificationDuration}";
 
-            LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, runningLog);
+            LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, verificationLog);
         }
     }
 }
