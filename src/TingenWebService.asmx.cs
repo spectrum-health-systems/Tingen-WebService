@@ -102,7 +102,7 @@ namespace TingenWebService
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
              * - Disable this in production.
              */
-            //LogEvent.Primeval("StartApp");
+            LogEvent.Primeval("StartApp");
 
             RuntimeConfig rtConfig = RuntimeConfig.Load(_twsRelease);
 

@@ -2,6 +2,8 @@
 // 260728_documentation
 
 using System;
+using TingenWebService.Configuration;
+using TingenWebService.Core;
 
 namespace TingenWebService.Trove
 {
@@ -26,7 +28,7 @@ namespace TingenWebService.Trove
 
         /// <summary>Build the daily maintenance system log start message.</summary>
         /// <returns>The daily maintenance system log start message.</returns>
-        internal static string DailyStart(string releaseBuild) => $"> Release {releaseBuild}{Environment.NewLine}";
+        internal static string DailyStart(string releaseBuild) => $"[Release] {releaseBuild}{Environment.NewLine}";
 
         /*
          * Components
@@ -34,11 +36,51 @@ namespace TingenWebService.Trove
 
         /// <summary>Build the message indicating that the framework has been verified.</summary>
         /// <returns>The framework verified message.</returns>
-        internal static string FrameworkVerified() => $"> Framework verified{Environment.NewLine}";
+        internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
+
+        internal static string FrameworkDetails(Framework framework)
+        {
+            // TODO - Do the same things for Blueprints
+
+            return $"         Framework details{Environment.NewLine}" +
+                   $"--------------------------{Environment.NewLine}" +
+                   $"Avatar Generated Data Root: {framework.AvatarGeneratedDataRoot}{Environment.NewLine}" +
+                   $"               Config Root: {framework.ConfigRoot}{Environment.NewLine}" +
+                   $"               Export Root: {framework.ExportRoot}{Environment.NewLine}" +
+                   $"               Import Root: {framework.ImportRoot}{Environment.NewLine}" +
+                   $"               SysLog Root: {framework.SysLogRoot}{Environment.NewLine}" +
+                   $"           Blueprints Root: {framework.BlueprintRoot}{Environment.NewLine}" +
+                   $"              Session Root: {framework.SessionRoot}{Environment.NewLine}" +
+                   $"    Translation Table Root: {framework.TranslationTableRoot}{Environment.NewLine}";
+        }
 
         /// <summary>Build the message indicating that blueprints have been exported.</summary>
         /// <returns>The blueprints exported message.</returns>
-        internal static string BlueprintsExported() => $"> Blueprints exported{Environment.NewLine}";
+        internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
+
+        internal static string ConfigurationDetails(TwsConfig twsConfig)
+        {
+            return $"         Configuration details{Environment.NewLine}" +
+                   $"------------------------------{Environment.NewLine}" +
+                   $"                          Mode: {twsConfig.Mode}{Environment.NewLine}" +
+                   $"             Trace Level Limit: {twsConfig.TraceLevelLimit}{Environment.NewLine}" +
+                   $"                     Log Delay: {twsConfig.LogDelay}{Environment.NewLine}" +
+                   $"               Session Timeout: {twsConfig.SessionTimeout}{Environment.NewLine}" +
+                   $"            From Email Address: {twsConfig.FromEmailAddress}{Environment.NewLine}" +
+                   $"           From Email Password: Please see TngnWsvc.config{Environment.NewLine}" +
+                   $"              To Email Address: {string.Join(", ", twsConfig.ToEmailAddress)}{Environment.NewLine}" +
+                   $"Netsmart web services username: {twsConfig.NtstWsvcUserName}{Environment.NewLine}" +
+                   $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
+        }
+
+        internal static string RuntimeDetails(RuntimeConfig rtConfig)
+        {
+            return $"Runtime details{Environment.NewLine}" +
+                   $"---------------{Environment.NewLine}" +
+                   $"Release Build: {rtConfig.ReleaseBuild}{Environment.NewLine}" +
+                   $"Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
+                   $"    Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
+        }
 
         /*
          * Error messages
@@ -82,8 +124,7 @@ namespace TingenWebService.Trove
             $"[4694]{Environment.NewLine}" +
             $"Missing Tingen Web Service configuration file";
 
-        internal static string Error7362() =>
-            $"[7362]{Environment.NewLine}" +
-            $"Session exceeded timeout setting";
+        internal static string Error7362(string timeoutSetting) =>
+            $"Session exceeded timeout setting: {timeoutSetting}";
     }
 }

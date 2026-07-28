@@ -29,15 +29,8 @@ namespace TingenWebService.Trove
             $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
             $"================================================================================{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"~LOG~MESSAGE~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"--------------------------------------------------------------------------------{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"[CLASS] ~CLASS~{Environment.NewLine}" +
-            $"[METHOD] ~METHOD~{Environment.NewLine}" +
-            $"[LINE] ~LINE~{Environment.NewLine}";
+            $"[~ERROR~CODE~]{Environment.NewLine}" +
+            $"~LOG~MESSAGE~";
 
         /// <summary>Build the critical error log template.</summary>
         /// <returns>The critical error log template string.</returns>

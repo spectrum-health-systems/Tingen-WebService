@@ -73,7 +73,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("LoadFramework");
+            Logger.LogEvent.Primeval("LoadFramework");
 
             return new Framework()
             {
@@ -98,7 +98,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("VerifyFrameworkComponents");
+            Logger.LogEvent.Primeval("VerifyFrameworkComponents");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(twsFramework))
             {
@@ -123,7 +123,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("ExportBlueprints");
+            Logger.LogEvent.Primeval("ExportBlueprints");
 
             // TODO - There is a better way to do this.
 

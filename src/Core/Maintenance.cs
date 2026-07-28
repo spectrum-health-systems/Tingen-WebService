@@ -23,13 +23,34 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("SessionMaintenance");
+            Logger.LogEvent.Primeval("SessionMaintenance");
 
-            var startDate = DateTime.Now.ToString("yyMMdd");
+            var dailyDate = DateTime.Now.ToString("yyMMdd");
 
-            if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{startDate}.start")))
+            if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
             {
-                VerifyComponents($"{startDate}.start", rtConfig, twsFramework);
+                ResetSyslogs(twsFramework.SysLogRoot);
+                VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
+            }
+        }
+
+        internal static void ResetSyslogs(string sysLogPath)
+        {
+            // TODO - Clean this up, there is a better way to do this.
+
+            if (File.Exists(Path.Combine(sysLogPath, "Configuration.current")))
+            {
+                File.Delete(Path.Combine(sysLogPath, "Configuration.current"));
+            }
+
+            if (File.Exists(Path.Combine(sysLogPath, "Framework.current")))
+            {
+                File.Delete(Path.Combine(sysLogPath, "Framework.current"));
+            }
+
+            if (File.Exists(Path.Combine(sysLogPath, "Runtime.current")))
+            {
+                File.Delete(Path.Combine(sysLogPath, "Runtime.current"));
             }
         }
 
@@ -43,14 +64,14 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("VerifyComponents");
+            Logger.LogEvent.Primeval("VerifyComponents");
 
-            // TODO - Clean this up
+            var verificationLog = string.Empty;
 
-            var verificationLog   = string.Empty;
-            var verificationStart = DateTime.Now.ToString("HHmmss");
+            var verificationStartTime = DateTime.Now.ToString("HHmmss");
+            var verificationStartMilliseconds = DateTime.Now.ToString("fffffff");
 
-            verificationLog += $"> Start: {verificationStart}{Environment.NewLine}";
+            verificationLog += $"[Start] {verificationStartTime}:{verificationStartMilliseconds}{Environment.NewLine}";
             verificationLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
 
             Framework.Verify(twsFramework);
@@ -59,10 +80,14 @@ namespace TingenWebService.Core
             Framework.ExportBlueprints(twsFramework.BlueprintRoot);
             verificationLog += Epistle.BlueprintsExported();
 
-            var verificationEnd      = DateTime.Now.ToString("HHmmss");
-            var verificationDuration = (DateTime.ParseExact(verificationEnd, "HHmmss", null) - DateTime.ParseExact(verificationStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var verificationEndTime = DateTime.Now.ToString("HHmmss");
+            var verificationEndMilliseconds = DateTime.Now.ToString("fffffff");
 
-            verificationLog += $"> End: {verificationEnd}{Environment.NewLine}> Duration: {verificationDuration}";
+            // TODO - This is in a few places, and might be better in a common area.
+            var verificationDurationTime = (DateTime.ParseExact(verificationEndTime, "HHmmss", null) - DateTime.ParseExact(verificationStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var verificationDurationMilliseconds = (DateTime.ParseExact(verificationEndMilliseconds, "fffffff", null) - DateTime.ParseExact(verificationStartMilliseconds, "fffffff", null)).ToString("fffffff");
+
+            verificationLog += $"[End] {verificationEndTime}:{verificationEndMilliseconds}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
 
             LogEvent.SystemLog(twsFramework.SysLogRoot, sysLogFileName, verificationLog);
         }

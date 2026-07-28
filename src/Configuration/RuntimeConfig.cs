@@ -42,7 +42,7 @@ namespace TingenWebService.Configuration
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("LoadRuntimeConfig");
+            Logger.LogEvent.Primeval("LoadRuntimeConfig");
 
             return new RuntimeConfig()
             {

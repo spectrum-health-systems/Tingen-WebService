@@ -13,20 +13,16 @@ namespace TingenWebService.Logger
 {
     internal class LogEvent
     {
-        internal static void Error(string systemLogRoot, string blueprintRoot, string sessionStartDateTime, string errorCode, string errorMessage, [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
+        internal static void Error(string systemLogRoot, string blueprintRoot, string sessionStartDateTime, string errorCode, string errorMessage)
         {
             DuDirectory.EnsureDirectoryExists(systemLogRoot);
 
             var errorLogBlueprint = File.ReadAllText(Path.Combine(blueprintRoot, "ErrorLog.blueprint"));
-            var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"${sessionStartDateTime}")
+            var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessionStartDateTime}")
                                               .Replace("~ERROR~CODE~", errorCode)
-                                              .Replace("~LOG~MESSAGE~", errorMessage)
-                                              .Replace("~CLASS~", LogWriter.GetClassName(classPath))
-                                              .Replace("~METHOD~", methodName)
-                                              .Replace("~LINE~", lineNumber.ToString());
+                                              .Replace("~LOG~MESSAGE~", errorMessage);
 
-            //var errorLogName = Path.Combine(twsSession.TwsFramework.SysLogRoot, $"{twsSession.RtConfig.SessionStartDate}-{twsSession.RtConfig.SessionStartTime}-[{errorCode}].error");
-            LogWriter.WriteLocal(Path.Combine(systemLogRoot, $"{sessionStartDateTime}-[{errorCode}].error"), logContent);
+            LogWriter.WriteLocal(systemLogRoot, $"{sessionStartDateTime}-[{errorCode}].error", logContent);
         }
 
         /// <summary>Logs a primeval event with the specified name and content.</summary>
@@ -70,7 +66,7 @@ namespace TingenWebService.Logger
                                twsSession.TwsFramework.BlueprintRoot,
                                $"{twsSession.RtConfig.SessionStartDate}-{twsSession.RtConfig.SessionStartTime}",
                                "7362",
-                               Epistle.Error7362());
+                               Epistle.Error7362(twsSession.TwsConfig.SessionTimeout));
             }
 
             var sessionLogBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));

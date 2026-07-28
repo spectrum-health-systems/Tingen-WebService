@@ -107,7 +107,7 @@
     <Compile Include="Avatar\AvatarData.cs" />
     <Compile Include="Avatar\AvatarScriptParameter.cs" />
     <Compile Include="Configuration\RuntimeConfig.cs" />
-    <Compile Include="Configuration\TngnWsvcConfig.cs" />
+    <Compile Include="Configuration\TwsConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
     <Compile Include="Logger\LogComponent.cs" />
     <Compile Include="Logger\LogWriter.cs" />

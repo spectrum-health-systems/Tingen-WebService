@@ -6,6 +6,8 @@ using ScriptLinkStandard.Objects;
 using TingenWebService.Avatar;
 using TingenWebService.Configuration;
 using TingenWebService.Core;
+using TingenWebService.Logger;
+using TingenWebService.Trove;
 
 namespace TingenWebService.Session
 {
@@ -31,8 +33,8 @@ namespace TingenWebService.Session
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
         public Framework TwsFramework { get; set; }
 
-        /// <summary>The Tingen Web Service <see cref="TngnWsvcConfig"> configuration settings</see>.</summary>
-        public TngnWsvcConfig TwsConfig { get; set; }
+        /// <summary>The Tingen Web Service <see cref="Configuration.TwsConfig"> configuration settings</see>.</summary>
+        public TwsConfig TwsConfig { get; set; }
 
         /// <summary>The Avatar data associated with the session.</summary>
         public AvatarData AvatarOptionObjects { get; set; }
@@ -59,18 +61,28 @@ namespace TingenWebService.Session
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
              * - Disable this in production.
              */
-            //LogEvent.Primeval("StartSession");
+            Logger.LogEvent.Primeval("StartSession");
 
-            return new TwsSession()
+            TwsSession twsSession = new TwsSession()
             {
                 RtConfig              = rtConfig,
                 TwsFramework          = twsFramework,
-                TwsConfig             = TngnWsvcConfig.Load(Path.Combine(twsFramework.ConfigRoot, "TngnWsvc.config")),
+                TwsConfig             = TwsConfig.Load(Path.Combine(twsFramework.ConfigRoot, "TngnWsvc.config")),
                 AvatarOptionObjects   = AvatarData.InitializeOptionObjects(sentOptionObject),
                 SentScriptParameter   = sentScriptParameter,
                 SessionFolder         = Path.Combine(twsFramework.SessionRoot, rtConfig.SessionStartDate, sentOptionObject.OptionUserId, rtConfig.SessionStartTime),
                 RunningLog            = string.Empty
             };
+
+            if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, "Configuration.current")))
+            {
+                Maintenance.ResetSyslogs(twsFramework.SysLogRoot);
+                LogEvent.SystemLog(twsFramework.SysLogRoot, "Runtime.current", Epistle.RuntimeDetails(twsSession.RtConfig));
+                LogEvent.SystemLog(twsFramework.SysLogRoot, "Framework.current", Epistle.FrameworkDetails(twsFramework));
+                LogEvent.SystemLog(twsFramework.SysLogRoot, "Configuration.current", Epistle.ConfigurationDetails(twsSession.TwsConfig));
+            }
+
+            return twsSession;
         }
     }
 }

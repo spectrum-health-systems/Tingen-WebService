@@ -1,6 +1,7 @@
 ﻿// 260724_code
 // 260726_documentation
 
+using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Du;
 using TingenWebService.Logger;
@@ -14,7 +15,7 @@ namespace TingenWebService.Configuration
     /// know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
     /// other configuration components.
     /// </remarks>
-    internal class TngnWsvcConfig
+    internal class TwsConfig
     {
         /// <summary>Tingen Web Service mode</summary>
         /// <remarks>
@@ -43,13 +44,16 @@ namespace TingenWebService.Configuration
         public int LogDelay { get; set; }
 
         /// <summary>Session timeout is too damn high!</summary>
-        public int SessionTimeout { get; set; }
+        public string SessionTimeout { get; set; }
 
         /// <summary>Email address the web services uses to send notifications.</summary>
-        public string EmailAddress { get; set; }
+        public string FromEmailAddress { get; set; }
 
         /// <summary>Email password the web services uses to send notifications.</summary>
-        public string EmailPassword { get; set; }
+        public string FromEmailPassword { get; set; }
+
+        /// <summary>Email addresses the web services uses to send notifications.</summary>
+        public List<string> ToEmailAddress { get; set; }
 
         /// <summary>The username used to authenticate with NTST web services.</summary>
         public string NtstWsvcUserName { get; set; }
@@ -63,12 +67,12 @@ namespace TingenWebService.Configuration
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static TngnWsvcConfig Load(string configPath)
+        internal static TwsConfig Load(string configPath)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("LoadTingenWebServiceConfig");
+            Logger.LogEvent.Primeval("LoadTingenWebServiceConfig");
 
             if (!File.Exists(configPath))
             {
@@ -80,7 +84,7 @@ namespace TingenWebService.Configuration
                 CreateNew(configPath);
             }
 
-            return DuJson.ImportFile<TngnWsvcConfig>(configPath);
+            return DuJson.ImportFile<TwsConfig>(configPath);
         }
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
@@ -90,16 +94,17 @@ namespace TingenWebService.Configuration
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //LogEvent.Primeval("CreateTingenWebServiceConfig");
+            Logger.LogEvent.Primeval("CreateTingenWebServiceConfig");
 
-            TngnWsvcConfig tngnWsvcConfig = new TngnWsvcConfig()
+            TwsConfig tngnWsvcConfig = new TwsConfig()
             {
                 Mode              = "enabled",
                 TraceLevelLimit   = 0,
                 LogDelay          = 0,
-                SessionTimeout    = 5,
-                EmailAddress      = "unassigned",
-                EmailPassword     = "unassigned",
+                SessionTimeout    = "05",
+                FromEmailAddress  = "unassigned",
+                FromEmailPassword = "unassigned",
+                ToEmailAddress    = new List<string>() { "unassigned" },
                 NtstWsvcUserName  = "unassigned",
                 NtstWsvcPassword  = "unassigned"
             };
