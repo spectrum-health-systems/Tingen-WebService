@@ -14,10 +14,11 @@ namespace TingenWebService.Logger
     {
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
+            /* DEVNOTE
+             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
+             * - Disable this in production.
              */
-            LogEvent.Primeval("SystemLogFileInitialized");
+            //LogEvent.Primeval("SystemLogFileInitialized");
 
             if (File.Exists(Path.Combine(logFolder, logName)))
             {
@@ -49,14 +50,14 @@ namespace TingenWebService.Logger
 
             var sessionRoot = twsSession.TwsFramework.SessionRoot;
             var sessionDate = twsSession.RtConfig.CurrentDate;
-            var sessionUser = twsSession.SentOptionObject.OptionUserId;
+            var sessionUser = twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId;
             var sessionTime = twsSession.RtConfig.CurrentTime;
 
             var sessionFolder = Path.Combine(sessionRoot, sessionDate, sessionUser, sessionTime);
 
             DuDirectory.EnsureDirectoryExists(sessionFolder);
 
-            var logName = Path.Combine(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session");
+            var logName = Path.Combine(sessionFolder, $"{twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId}.session");
 
             var logBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
 
@@ -68,12 +69,12 @@ namespace TingenWebService.Logger
                                          .Replace("~SESSION~START~", twsSession.RtConfig.CurrentTime)
                                          .Replace("~SESSION~END~", endTime)
                                          .Replace("~SESSION~DURATION~", duration)
-                                         .Replace("~AVATAR~USER~NAME~", twsSession.SentOptionObject.OptionUserId.ToUpper())
+                                         .Replace("~AVATAR~USER~NAME~", twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId.ToUpper())
                                          .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
                                          .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
-                                         .Replace("~SESSION~DETAILS~", twsSession.SessionDetails);
+                                         .Replace("~SESSION~RUNNING~LOG~", twsSession.RunningLog);
 
-            LogWriter.WriteLocal(sessionFolder, $"{twsSession.SentOptionObject.OptionUserId}.session", logContent);
+            LogWriter.WriteLocal(sessionFolder, $"{twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId}.session", logContent);
         }
 
         /// <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>

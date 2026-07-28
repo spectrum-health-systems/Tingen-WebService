@@ -25,7 +25,7 @@ namespace TingenWebService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("260727")]
+        [global::System.Configuration.DefaultSettingValueAttribute("260728")]
         public string TngnWscvBuild {
             get {
                 return ((string)(this["TngnWscvBuild"]));

@@ -1,38 +1,65 @@
-# Testing - Web Service Initialization
+# Testing - After publishing a new release
 
-## Step 1
+## Step 1 of X
 
-1. Delete the contents of `Tingen_Data\WebService\UAT\*`
+- [ ] Delete the contents of `Tingen_Data\WebService\UAT\*`
+- [ ] Execute the Tingen Web Service
 
-2. Execute the Tingen Web Service
+### Verify
 
-The following should be created:
-- Framework
-- Blueprints
-- Config files
-- DailyLog file
+- [ ] No errors are thrown
+- [ ] The following folders are created in `Tingen_Data\WebService\UAT\`:
+    * Blueprints
+    * Config
+    * Export
+    * Import
+    * Session
+    * SysLog
+    * TranslationTables
+- [ ] The following files are created in `Tingen_Data\WebService\UAT\Blueprints\`:
+    * CriticalErrorLog.blueprint
+    * ErrorLog.blueprint
+    * SessionLog.blueprint
+- [ ] The following files are created in `Tingen_Data\WebService\UAT\Config\`:
+    * TngnWsvc.config
+- [ ] The `Tingen_Data\WebService\UAT\Session\YYMMDD\AvatarUserName\HHMMSS\` folder is created in
+- [ ] A valid `AvatarUserName.session` file is created in `Tingen_Data\WebService\UAT\Session\YYMMDD\AvatarUserName\HHMMSS\`
+- [ ] A valid `YYMMDD.start` file is created in `Tingen_Data\WebService\UAT\SysLog\`
 
-## Step 2
+## Step 2 of X
 
 Wait a few minutes after completing Step 1.
 
-1. Execute the Tingen Web Service
-2. Verify that the above information has not been re-created or modified unexpectedly
+- [ ] Execute the Tingen Web Service
+
+### Verify
+
+- [ ] No errors are thrown
+- [ ] `Tingen_Data\WebService\UAT\` has not been modified
+- [ ] `Tingen_Data\WebService\UAT\Blueprints\` has not been modified
+- [ ] `Tingen_Data\WebService\UAT\Config\` has not been modified
+- [ ] The `Tingen_Data\WebService\UAT\Session\YYMMDD\AvatarUserName\HHMMSS\` folder is created in
+- [ ] A valid `AvatarUserName.session` file is created in `Tingen_Data\WebService\UAT\Session\YYMMDD\AvatarUserName\HHMMSS\`
+- [ ] `Tingen_Data\WebService\UAT\SysLog\` has not been modified
 
 ## Step 3
 
 Wait a few minutes after completing Step 2.
 
-1. Delete the history file
-2. Execute the Tingen Web Service
-3. Confirm only the history file has been re-created
+- [ ] Delete the `Tingen_Data\WebService\UAT\SysLog\YYMMDD.start` file
+- [ ] Execute the Tingen Web Service
+
+### Verify
+
+- [ ] No errors are thrown
+- [ ] A valid `YYMMDD.start` file is created in `Tingen_Data\WebService\UAT\SysLog\`
 
 ## Step 4
 
 Wait a few minutes after completing Step 3.
 
-1. Delete a blueprint
-2. Delete a config file
-2. Execute the Tingen Web Service
-3. Confirm that the blueprint **is not** recreated (that's only when the system is rebuilt)
-4. Confirm that the config file **is** recreated (should happen whenever it's missing)
+- [ ] Delete a blueprint
+- [ ] Delete a config file
+- [ ] Execute the Tingen Web Service
+- [ ] Confirm that the blueprint **is not** recreated (that's only when the system is rebuilt)
+- [ ] Confirm that the config file **is** recreated (should happen whenever it's missing)

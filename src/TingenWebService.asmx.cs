@@ -44,7 +44,9 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* For debugging prior to logging functionality being initialized - Disable in production.
+            /* DEVNOTE
+             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
+             * - Disable this in production.
              */
             //LogEvent.Primeval("TingenWebServiceStarted", Epistle.DebugStartMessage(sentScriptParam));
 
@@ -85,7 +87,6 @@ namespace TingenWebService
             return !Avatar.AvatarData.WasSent(sentOptionObject) || !Avatar.AvatarData.WasSent(sentScriptParameter);
         }
 
-
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">
@@ -97,8 +98,9 @@ namespace TingenWebService
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
+            /* DEVNOTE
+             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
+             * - Disable this in production.
              */
             //LogEvent.Primeval("StartApp");
 

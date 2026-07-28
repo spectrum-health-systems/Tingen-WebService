@@ -50,7 +50,7 @@ namespace TingenWebService.Core
             var verificationLog   = string.Empty;
             var verificationStart = DateTime.Now.ToString("HHmmss");
 
-            verificationLog += $"> Start: {verificationStart}";
+            verificationLog += $"> Start: {verificationStart}{Environment.NewLine}";
             verificationLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
 
             Framework.Verify(twsFramework);

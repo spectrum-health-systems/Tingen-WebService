@@ -1,4 +1,4 @@
-﻿// 260725_code
+﻿// 260728_code
 // 260727_documentation
 
 using System;
@@ -78,6 +78,6 @@ namespace TingenWebService.Trove
             $"Session Detail{Environment.NewLine}" +
             $"--------------{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"~SESSION~DETAILS~";
+            $"~SESSION~RUNNING~LOG~";
     }
 }

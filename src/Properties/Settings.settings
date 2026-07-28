@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="TngnWscvBuild" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">260727</Value>
+      <Value Profile="(Default)">260728</Value>
     </Setting>
     <Setting Name="AvatarSystem" Type="System.String" Scope="Application">
       <Value Profile="(Default)">UAT</Value>

@@ -12,15 +12,15 @@ namespace TingenWebService.Avatar
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>This is <i>never</i> modified by the Tingen Web Service.</remarks>
-        public OptionObject2015 Sent { get; set; }
+        public OptionObject2015 SentOptionObject { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>This is <i>potentially</i> modified during processing.</remarks>
-        public OptionObject2015 Worker { get; set; }
+        public OptionObject2015 WorkerOptionObject { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> ready to be returned to Avatar.</summary>
         /// <remarks>This is the <i>final</i> version of the <see cref="OptionObject2015"/> that is returned to Avatar.</remarks>
-        public OptionObject2015 Complete { get; set; }
+        public OptionObject2015 CompleteOptionObject { get; set; }
 
         /// <summary>The original script parameter sent from Avatar.</summary>
         /// <remarks>TBD</remarks>
@@ -29,30 +29,32 @@ namespace TingenWebService.Avatar
         /*
          * Initializers
          */
-        internal static AvatarData Initialize(OptionObject2015 sentOptionObject)
+
+        /// <summary>Initialize a new instance of <see cref="AvatarData"/> with the specified <see cref="OptionObject2015"/>.</summary>
+        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
+        /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
+        internal static AvatarData InitializeOptionObjects(OptionObject2015 sentOptionObject)
         {
             return new AvatarData
             {
-                Sent     = sentOptionObject,
-                Worker   = sentOptionObject.Clone(),
-                Complete = null
+                SentOptionObject     = sentOptionObject,
+                WorkerOptionObject   = sentOptionObject.Clone(),
+                CompleteOptionObject = null
             };
-        }
-        public static string Initialize(string sentScriptParameter)
-        {
-            return sentScriptParameter ?? string.Empty;
         }
 
         /*
          * Verifiers
          */
 
+        /// <summary>Verify whether a script parameter was received from Avatar.</summary>
+        /// <param name="sentScriptParameter">The script parameter to verify.</param>
+        /// <returns>True if a script parameter was sent; otherwise, false.</returns>
         public static bool WasSent(string sentScriptParameter)
         {
             /* DEVNOTE
-             * - Since logging functionality has not been initialized yet, we'll use primeval logs.
-             * - This can be simplified, but I'm leaving it this way for now to make it easier to add logging in the
-             *   future if needed.
+             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
+             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
              */
 
             // TODO - Potentially send an email in addition to the error logs.
@@ -75,10 +77,11 @@ namespace TingenWebService.Avatar
         internal static bool WasSent(OptionObject2015 sentOptionObject)
         {
             /* DEVNOTE
-             * - Since logging functionality has not been initialized yet, we'll use primeval logs.
-             * - This can be simplified, but I'm leaving it this way for now to make it easier to add logging in the
-             *   future if needed.
+             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
+             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
              */
+
+            // TODO - Potentially send an email in addition to the error logs.
 
             if (sentOptionObject == null)
             {
