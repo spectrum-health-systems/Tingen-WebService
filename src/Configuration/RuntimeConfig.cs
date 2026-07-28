@@ -13,10 +13,10 @@ namespace TingenWebService.Configuration
     /// </remarks>
     internal class RuntimeConfig
     {
-        /// <summary>Format is yyMMdd.</summary>
+        /// <summary>The current date (yyMMdd).</summary>
         public string CurrentDate { get; set; }
 
-        /// <summary>Format is HHmmss.</summary>
+        /// <summary>The current time (HHmmss).</summary>
         public string CurrentTime { get; set; }
 
         /// <summary>Release and build information.</summary>

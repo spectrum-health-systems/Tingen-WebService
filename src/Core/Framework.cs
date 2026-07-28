@@ -147,13 +147,6 @@ namespace TingenWebService.Core
             {
                 DuFile.DeadDrop(sessionLogBlueprintPath, Blueprint.SessionLogBlueprint());
             }
-
-            //var unknownParameterLogBlueprintPath = Path.Combine(blueprintRoot, "UnknownParameterLog.blueprint");
-
-            //if (!File.Exists(unknownParameterLogBlueprintPath))
-            //{
-            //    DuFile.DeadDrop(Path.Combine(blueprintRoot, "UnknownParameterLog.blueprint"), Blueprint.OptObjUnknownParameterBlueprint());
-            //}
         }
     }
 }

@@ -32,9 +32,13 @@ namespace TingenWebService.Logger
         /// <summary>Logs a primeval event with the specified name and content.</summary>
         /// <param name="logName">The name of the log file.</param>
         /// <param name="logContent">The content of the log file.</param>
+        /// <remarks>
+        /// There is a 5-millisecond delay before writing the log to ensure that the log file name is unique and does
+        /// not conflict with other log entries.
+        /// </remarks>
         internal static void Primeval(string logName, string logContent = "")
         {
-            Thread.Sleep(5); // Ensure unique timestamp for log file name
+            Thread.Sleep(5);
 
             LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
         }
@@ -80,15 +84,16 @@ namespace TingenWebService.Logger
         /// <param name="traceLevel">The trace level for this log entry.</param>
         /// <param name="traceLogLimit">The configured maximum trace level that should be written.</param>
         /// <param name="sessionFolder">The session folder where the trace log file will be written.</param>
-        /// <param name="classPath">The full source file path of the caller, supplied automatically by the compiler.</param>
+        /// <param name="classPath">
+        /// The full source file path of the caller, supplied automatically by the compiler.
+        /// </param>
         /// <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
-        /// <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+        /// <param name="lineNumber">
+        /// The source line number of the caller, supplied automatically by the compiler.
+        /// </param>
         /// <example>
         /// <code>
-        /// LogEvent.Trace(
-        ///     traceLevel:    1,
-        ///     traceLevelLimit:    tngnWsvcSession.LogSetting.TraceLogLimit,
-        ///     sessionFolder: tngnWsvcSession.Framework.TngnWsvcDataFolder.Session);
+        /// LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
         /// </code>
         /// </example>
         internal static void Trace(int traceLevel, int levelLimit, string sessionFolder, [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)

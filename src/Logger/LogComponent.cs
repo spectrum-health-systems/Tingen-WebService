@@ -3,10 +3,12 @@
 
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
 namespace TingenWebService.Logger
 {
+    /// <summary>Provides logging-related helper methods.</summary>
     internal class LogComponents
     {
         /// <summary>Returns a formatted caller information string built from the calling source location.</summary>
@@ -25,7 +27,7 @@ namespace TingenWebService.Logger
         /// // Output: AvatarOptionObject-ToReturn-57
         /// </code>
         /// </example>
-        internal static string GetCallerInfo([System.Runtime.CompilerServices.CallerFilePath] string className = "", [System.Runtime.CompilerServices.CallerMemberName] string methodName = "", [System.Runtime.CompilerServices.CallerLineNumber] int lineNumber = 0)
+        internal static string GetCallerInfo([CallerFilePath] string className = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
         {
             var classOnly = Path.GetFileNameWithoutExtension(className);
 

@@ -45,20 +45,21 @@ namespace TingenWebService.Core
              */
             //LogEvent.Primeval("VerifyComponents");
 
-            var verificationLog = string.Empty;
+            // TODO - Clean this up
 
+            var verificationLog   = string.Empty;
             var verificationStart = DateTime.Now.ToString("HHmmss");
 
             verificationLog += $"> Start: {verificationStart}";
             verificationLog += Epistle.DailyStart(rtConfig.ReleaseBuild);
+
             Framework.Verify(twsFramework);
             verificationLog += Epistle.FrameworkVerified();
 
             Framework.ExportBlueprints(twsFramework.BlueprintRoot);
             verificationLog += Epistle.BlueprintsExported();
 
-            var verificationEnd = DateTime.Now.ToString("HHmmss");
-
+            var verificationEnd      = DateTime.Now.ToString("HHmmss");
             var verificationDuration = (DateTime.ParseExact(verificationEnd, "HHmmss", null) - DateTime.ParseExact(verificationStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
 
             verificationLog += $"> End: {verificationEnd}{Environment.NewLine}> Duration: {verificationDuration}";
