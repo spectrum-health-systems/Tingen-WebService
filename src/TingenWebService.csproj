@@ -127,7 +127,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Session\TngnWsvcSession.cs" />
+    <Compile Include="Session\TwsSession.cs" />
     <Compile Include="TingenWebService.asmx.cs">
       <DependentUpon>TingenWebService.asmx</DependentUpon>
       <SubType>Component</SubType>

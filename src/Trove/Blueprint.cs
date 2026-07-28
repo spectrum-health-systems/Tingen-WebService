@@ -35,7 +35,6 @@ namespace TingenWebService.Trove
             $"{Environment.NewLine}" +
             $"--------------------------------------------------------------------------------{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
             $"[CLASS] ~CLASS~{Environment.NewLine}" +
             $"[METHOD] ~METHOD~{Environment.NewLine}" +
             $"[LINE] ~LINE~{Environment.NewLine}";
@@ -54,7 +53,6 @@ namespace TingenWebService.Trove
             $"{Environment.NewLine}" +
             $"--------------------------------------------------------------------------------{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"[ASSEMBLY] ~ASSEMBLY~{Environment.NewLine}" +
             $"[CLASS] ~CLASS~{Environment.NewLine}" +
             $"[METHOD] ~METHOD~{Environment.NewLine}" +
             $"[LINE] ~LINE~{Environment.NewLine}";

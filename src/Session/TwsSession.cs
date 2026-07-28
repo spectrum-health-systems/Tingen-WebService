@@ -12,18 +12,18 @@ namespace TingenWebService.Session
     /// <summary>The Tingen Web Service session object.</summary>
     /// <remarks>
     /// <note type="note" title="About the Tingen Web Service Session">
-    /// The <see cref="Session.TngnWsvcSession"/> class contains everything needed for the Tingen Web Service to process
+    /// The <see cref="Session.TwsSession"/> class contains everything needed for the Tingen Web Service to process
     /// a request, including:
     /// <list type="bullet">
-    /// <item>The request (<see cref="TngnWsvcSession.SentScriptParameter"/>)</item>
-    /// <item>The <i>original</i> data from Avatar (<see cref="TngnWsvcSession.AvatarOptionObjects"/>)</item>
+    /// <item>The request (<see cref="TwsSession.SentScriptParameter"/>)</item>
+    /// <item>The <i>original</i> data from Avatar (<see cref="TwsSession.AvatarOptionObjects"/>)</item>
     /// <item>The <i>working</i> (<see cref="AvatarData.WorkerOptionObject"/>) and <i>completed</i> data (<see cref="AvatarData.CompleteOptionObject"/>) from Avatar</item>
     /// <item>Various settings, configurations, and framework information</item>
     /// <item>Details about the session</item>
     /// </list>
     /// </note>
     /// </remarks>
-    internal class TngnWsvcSession
+    internal class TwsSession
     {
         /// <summary>The <see cref="RuntimeConfig"> runtime settings</see>.</summary>
         public RuntimeConfig RtConfig { get; set; }
@@ -53,7 +53,7 @@ namespace TingenWebService.Session
         /// <param name="rtConfig">The <see cref="RuntimeConfig"> runtime configuration settings</see>.</param>
         /// <param name="twsFramework">The <see cref="Framework"> framework components</see>.</param>
         /// <returns>A new Tingen Web Service session object.</returns>
-        internal static TngnWsvcSession StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig rtConfig, Framework twsFramework)
+        internal static TwsSession StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig rtConfig, Framework twsFramework)
         {
             /* DEVNOTE
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
@@ -61,14 +61,14 @@ namespace TingenWebService.Session
              */
             //LogEvent.Primeval("StartSession");
 
-            return new TngnWsvcSession()
+            return new TwsSession()
             {
                 RtConfig              = rtConfig,
                 TwsFramework          = twsFramework,
                 TwsConfig             = TngnWsvcConfig.Load(Path.Combine(twsFramework.ConfigRoot, "TngnWsvc.config")),
                 AvatarOptionObjects   = AvatarData.InitializeOptionObjects(sentOptionObject),
                 SentScriptParameter   = sentScriptParameter,
-                SessionFolder         = Path.Combine(twsFramework.SessionRoot, rtConfig.CurrentDate, sentOptionObject.OptionUserId, rtConfig.CurrentTime),
+                SessionFolder         = Path.Combine(twsFramework.SessionRoot, rtConfig.SessionStartDate, sentOptionObject.OptionUserId, rtConfig.SessionStartTime),
                 RunningLog            = string.Empty
             };
         }

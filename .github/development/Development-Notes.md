@@ -19,7 +19,7 @@ TingenWebService.NsDoc.cs
 7622 - Error creating framework path
 7516 - Error creating dailyLogPath
 4694 - Missing TngnWsvc.config
-7362
+7362 - Session timeout error
 7540
 7322
 1124

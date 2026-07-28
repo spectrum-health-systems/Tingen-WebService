@@ -81,5 +81,9 @@ namespace TingenWebService.Trove
         internal static string Error4694() =>
             $"[4694]{Environment.NewLine}" +
             $"Missing Tingen Web Service configuration file";
+
+        internal static string Error7362() =>
+            $"[7362]{Environment.NewLine}" +
+            $"Session exceeded timeout setting";
     }
 }

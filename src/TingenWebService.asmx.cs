@@ -28,7 +28,7 @@ namespace TingenWebService
         /// StartApp method and is used throughout the service to access session-specific data and configurations.
         /// </remarks>
         /// <returns>The (empty) Tingen Web Service session instance.</returns>
-        internal TngnWsvcSession TwsSession { get; set; }
+        internal TwsSession TwsSession { get; set; }
 
         /// <summary>Get the current version of the Tingen Web Service.</summary>
         /// <remarks>This method is required by Avatar.</remarks>
@@ -110,7 +110,7 @@ namespace TingenWebService
 
             Maintenance.SessionMaintenance(rtConfig, twsFramework);
 
-            TwsSession = TngnWsvcSession.StartSession(sentOptionObject, sentScriptParameter, rtConfig, twsFramework);
+            TwsSession = TwsSession.StartSession(sentOptionObject, sentScriptParameter, rtConfig, twsFramework);
         }
     }
 }

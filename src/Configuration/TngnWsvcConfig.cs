@@ -42,6 +42,9 @@ namespace TingenWebService.Configuration
         /// <value>Default: 10</value>
         public int LogDelay { get; set; }
 
+        /// <summary>Session timeout is too damn high!</summary>
+        public int SessionTimeout { get; set; }
+
         /// <summary>Email address the web services uses to send notifications.</summary>
         public string EmailAddress { get; set; }
 
@@ -94,6 +97,7 @@ namespace TingenWebService.Configuration
                 Mode              = "enabled",
                 TraceLevelLimit   = 0,
                 LogDelay          = 0,
+                SessionTimeout    = 5,
                 EmailAddress      = "unassigned",
                 EmailPassword     = "unassigned",
                 NtstWsvcUserName  = "unassigned",

@@ -14,13 +14,13 @@ namespace TingenWebService.Configuration
     internal class RuntimeConfig
     {
         /// <summary>The current date (yyMMdd).</summary>
-        public string CurrentDate { get; set; }
+        public string SessionStartDate { get; set; }
 
         /// <summary>The current time (HHmmss).</summary>
-        public string CurrentTime { get; set; }
+        public string SessionStartTime { get; set; }
 
         /// <summary>The current milliseconds (fffffff).</summary>
-        public string CurrentMilliseconds { get; set; }
+        public string SessionStartMilliseconds { get; set; }
 
         /// <summary>Release and build information.</summary>
         /// <remarks>
@@ -46,12 +46,12 @@ namespace TingenWebService.Configuration
 
             return new RuntimeConfig()
             {
-                CurrentDate         = DateTime.Now.ToString("yyMMdd"),
-                CurrentTime         = DateTime.Now.ToString("HHmmss"),
-                CurrentMilliseconds = DateTime.Now.ToString("fffffff"),
-                ReleaseBuild        = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
-                AvatarSystem        = Settings.Default.AvatarSystem,
-                DataRoot            = Settings.Default.HostDataRoot,
+                SessionStartDate         = DateTime.Now.ToString("yyMMdd"),
+                SessionStartTime         = DateTime.Now.ToString("HHmmss"),
+                SessionStartMilliseconds = DateTime.Now.ToString("fffffff"),
+                ReleaseBuild             = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
+                AvatarSystem             = Settings.Default.AvatarSystem,
+                DataRoot                 = Settings.Default.HostDataRoot,
             };
         }
     }
