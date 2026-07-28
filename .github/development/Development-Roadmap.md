@@ -18,7 +18,7 @@
 ## Next
 
 * Better logging functionlity in regards to preset messages
-
+* better time formatting for log files
 * SQL query user name/password
 * Open Incident report thing - Pt name, involved, etc.
 * Preprocessor directives?

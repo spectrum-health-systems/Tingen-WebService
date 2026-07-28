@@ -61,14 +61,22 @@ namespace TingenWebService.Logger
 
             var logBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
 
-            var endTime  = DateTime.Now.ToString("HHmmssfffffff");
-            var duration = (DateTime.ParseExact(endTime, "HHmmssfffffff", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmssfffffff", null)).ToString(@"hh\:mm\:ss\:fffffff");
+            var endTime         = DateTime.Now.ToString("HHmmss");
+            var endMilliseconds = DateTime.Now.ToString("fffffff");
+
+            var durationTime = (DateTime.ParseExact(endTime, "HHmmss", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var durationMilliseconds = (DateTime.ParseExact(endMilliseconds, "fffffff", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentMilliseconds, "fffffff", null)).ToString("fffffff");
+
+            if (durationTime.StartsWith("00:00:10"))
+            {
+                // File error because this is too long
+            }
 
             var logContent = logBlueprint.Replace("~RELEASE~BUILD~", twsSession.RtConfig.ReleaseBuild)
                                          .Replace("~SESSION~DATE~", twsSession.RtConfig.CurrentDate)
                                          .Replace("~SESSION~START~", twsSession.RtConfig.CurrentTime)
                                          .Replace("~SESSION~END~", endTime)
-                                         .Replace("~SESSION~DURATION~", duration)
+                                         .Replace("~SESSION~DURATION~", $"{durationTime} ({durationMilliseconds})")
                                          .Replace("~AVATAR~USER~NAME~", twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId.ToUpper())
                                          .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
                                          .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)

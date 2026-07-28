@@ -19,6 +19,9 @@ namespace TingenWebService.Configuration
         /// <summary>The current time (HHmmss).</summary>
         public string CurrentTime { get; set; }
 
+        /// <summary>The current milliseconds (fffffff).</summary>
+        public string CurrentMilliseconds { get; set; }
+
         /// <summary>Release and build information.</summary>
         /// <remarks>
         /// These two pieces of information are combined to form a single string that is used to identify the version of
@@ -43,11 +46,12 @@ namespace TingenWebService.Configuration
 
             return new RuntimeConfig()
             {
-                CurrentDate  = DateTime.Now.ToString("yyMMdd"),
-                CurrentTime  = DateTime.Now.ToString("HHmmssfffffff"),
-                ReleaseBuild = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
-                AvatarSystem = Settings.Default.AvatarSystem,
-                DataRoot     = Settings.Default.HostDataRoot,
+                CurrentDate         = DateTime.Now.ToString("yyMMdd"),
+                CurrentTime         = DateTime.Now.ToString("HHmmss"),
+                CurrentMilliseconds = DateTime.Now.ToString("fffffff"),
+                ReleaseBuild        = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
+                AvatarSystem        = Settings.Default.AvatarSystem,
+                DataRoot            = Settings.Default.HostDataRoot,
             };
         }
     }
