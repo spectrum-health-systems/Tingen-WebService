@@ -1,5 +1,5 @@
-﻿// 260726_code
-// 260727_documentation
+﻿// 260728_code
+// 260728_documentation
 
 using System.Reflection;
 using System.Web.Services;
@@ -8,7 +8,6 @@ using TingenWebService.Configuration;
 using TingenWebService.Core;
 using TingenWebService.Logger;
 using TingenWebService.Session;
-using TingenWebService.Trove;
 
 namespace TingenWebService
 {
@@ -51,11 +50,6 @@ namespace TingenWebService
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
-                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-                 */
-                LogEvent.Primeval("[CR3876]MissingAvatarData", Epistle.Error3876());
-                // TODO - Potentially send an email in addition to the error log.
-
                 return sentOptObj.ToReturnOptionObject(0, "");
             }
             else
@@ -86,8 +80,11 @@ namespace TingenWebService
         /// checks for the presence of both components and logs an error if either is missing.</note>
         /// </remarks>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
-        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter) =>
-            sentOptionObject == null || string.IsNullOrWhiteSpace(sentScriptParameter);
+        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
+        {
+            return !Avatar.AvatarData.WasSent(sentOptionObject) || !Avatar.AvatarData.WasSent(sentScriptParameter);
+        }
+
 
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>

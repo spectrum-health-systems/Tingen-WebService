@@ -1,5 +1,5 @@
-﻿// 260727_code
-// 260727_documentation
+﻿// 260728_code
+// 260728_documentation
 
 using System;
 
@@ -48,7 +48,13 @@ namespace TingenWebService.Trove
         /// <returns>The missing Avatar data message.</returns>
         internal static string Error3876() =>
             $"[3876]{Environment.NewLine}" +
-            $"Missing OptionObject and/or Script Parameter";
+            $"The OptionOnject was not sent from Avatar";
+
+        /// <summary>Build the message missing Avatar data message.</summary>
+        /// <returns>The missing Avatar data message.</returns>
+        internal static string Error5285() =>
+            $"[5285]{Environment.NewLine}" +
+            $"The Script Parameter was not sent from Avatar";
 
         /// <summary>Build the framework verification failed message.</summary>
         /// <param name="path">The path that could not be created.</param>

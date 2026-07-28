@@ -1,5 +1,5 @@
-﻿// 260725_code
-// 260727_documentation
+﻿// 260728_code
+// 260728_documentation
 
 using System.IO;
 using ScriptLinkStandard.Objects;
@@ -33,14 +33,16 @@ namespace TingenWebService.Session
         /// <summary>The Tingen Web Service <see cref="TngnWsvcConfig"> configuration settings</see>.</summary>
         public TngnWsvcConfig TwsConfig { get; set; }
 
-        /// <summary>The <see cref="AvatarComponent.SentOptionObject"> <b>sent</b> option object</see> from Avatar.</summary>
-        public OptionObject2015 SentOptionObject { get; set; }
+        public AvatarData AvatarOptionObjects { get; set; }
 
-        /// <summary> The <see cref="AvatarComponent.WorkerOptionObject"> <b>working</b> option object</see> that is (potentially) modified during the session. </summary>
-        public OptionObject2015 WorkingOptionObject { get; set; }
+        ///// <summary>The <see cref="AvatarComponent.SentOptionObject"> <b>sent</b> option object</see> from Avatar.</summary>
+        //public OptionObject2015 SentOptionObject { get; set; }
 
-        /// <summary>The <see cref="AvatarComponent.CompleteOptionObject"> <b>completed</b> option object</see> that has is ready to be returned to Avatar.</summary>
-        public OptionObject2015 CompletedOptionObject { get; set; }
+        ///// <summary> The <see cref="AvatarComponent.WorkerOptionObject"> <b>working</b> option object</see> that is (potentially) modified during the session. </summary>
+        //public OptionObject2015 WorkerOptionObject { get; set; }
+
+        ///// <summary>The <see cref="AvatarComponent.CompleteOptionObject"> <b>completed</b> option object</see> that has is ready to be returned to Avatar.</summary>
+        //public OptionObject2015 CompleteOptionObject { get; set; }
 
         /// <summary>The <see cref="AvatarComponent.SentScriptParameter"> script parameter </see> sent from Avatar.</summary>
         public string SentScriptParameter { get; set; }
@@ -69,9 +71,7 @@ namespace TingenWebService.Session
                 RtConfig              = rtConfig,
                 TwsFramework          = twsFramework,
                 TwsConfig             = TngnWsvcConfig.Load(Path.Combine(twsFramework.ConfigRoot, "TngnWsvc.config")),
-                SentOptionObject      = sentOptionObject,
-                WorkingOptionObject   = sentOptionObject.Clone(),
-                CompletedOptionObject = null,
+                AvatarOptionObjects   = AvatarData.Initialize(sentOptionObject),
                 SentScriptParameter   = sentScriptParameter,
                 SessionFolder         = Path.Combine(twsFramework.SessionRoot, rtConfig.CurrentDate, sentOptionObject.OptionUserId, rtConfig.CurrentTime),
                 SessionDetails        = string.Empty

@@ -6,7 +6,18 @@
 
 ***
 
-## R26.7
+## R26.7b260728
+
+- All XML documentation complete
+- Testing functionality complete
+- Testing documentation
+- Open Incident report functionality complete
+- As many internals/private methods as possible
+
+
+## Next
+
+* Better logging functionlity in regards to preset messages
 
 * SQL query user name/password
 * Open Incident report thing - Pt name, involved, etc.

@@ -104,10 +104,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AvatarComponent\CompleteOptionObject.cs" />
-    <Compile Include="AvatarComponent\SentOptionObject.cs" />
-    <Compile Include="AvatarComponent\SentScriptParameter.cs" />
-    <Compile Include="AvatarComponent\WorkerOptionObject.cs" />
+    <Compile Include="Avatar\AvatarData.cs" />
+    <Compile Include="Avatar\AvatarScriptParameter.cs" />
     <Compile Include="Configuration\RuntimeConfig.cs" />
     <Compile Include="Configuration\TngnWsvcConfig.cs" />
     <Compile Include="Du\DuJson.cs" />
@@ -119,9 +117,7 @@
     <Compile Include="Core\Maintenance.cs" />
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
-    <Compile Include="Du\NsDoc.cs" />
     <Compile Include="Logger\LogEvent.cs" />
-    <Compile Include="NsDoc.cs" />
     <Compile Include="ProjectInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -155,7 +151,9 @@
       <Name>ScriptLinkStandard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Module\OpenIncident\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

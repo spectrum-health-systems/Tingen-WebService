@@ -14,11 +14,11 @@ TingenWebService.NsDoc.cs
 
 ## Error codes
 
-3876 - Missing Avatar data
+3876 - Missing sent OptionObject
+5285 - Missing sent ScriptParameter
 7622 - Error creating framework path
 7516 - Error creating dailyLogPath
 4694 - Missing TngnWsvc.config
-5285
 7362
 7540
 7322
