@@ -44,7 +44,7 @@ namespace TingenWebService.Configuration
             return new RuntimeConfig()
             {
                 CurrentDate  = DateTime.Now.ToString("yyMMdd"),
-                CurrentTime  = DateTime.Now.ToString("HHmmss"),
+                CurrentTime  = DateTime.Now.ToString("HHmmssfffffff"),
                 ReleaseBuild = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
                 AvatarSystem = Settings.Default.AvatarSystem,
                 DataRoot     = Settings.Default.HostDataRoot,

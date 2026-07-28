@@ -61,8 +61,8 @@ namespace TingenWebService.Logger
 
             var logBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
 
-            var endTime  = DateTime.Now.ToString("HHmmss");
-            var duration = (DateTime.ParseExact(endTime, "HHmmss", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var endTime  = DateTime.Now.ToString("HHmmssfffffff");
+            var duration = (DateTime.ParseExact(endTime, "HHmmssfffffff", null) - DateTime.ParseExact(twsSession.RtConfig.CurrentTime, "HHmmssfffffff", null)).ToString(@"hh\:mm\:ss\:fffffff");
 
             var logContent = logBlueprint.Replace("~RELEASE~BUILD~", twsSession.RtConfig.ReleaseBuild)
                                          .Replace("~SESSION~DATE~", twsSession.RtConfig.CurrentDate)
