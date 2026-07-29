@@ -1,12 +1,15 @@
 ﻿// 260729_code
 // 260729_documentation
 
+using System.IO;
 using System.Reflection;
 using System.Web.Services;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core;
 using TingenWebService.Core.Avatar;
+using TingenWebService.Core.Framework;
 using TingenWebService.Core.Logger;
+using TingenWebService.Core.Session;
 
 namespace TingenWebService
 {
@@ -22,20 +25,20 @@ namespace TingenWebService
         /// why I define it here, so that's why this comment exists. Hello future me (again).
         /// </remarks>
         /// <returns>A string representing the current release.</returns>
-        private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        private static string _releaseBuild { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>The Tingen Web Service session instance.</summary>
         /// <remarks>
         /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think
         /// this is easier to read/understand than <code>twsSession = StartApp()</code>
         /// </remarks>
-        internal TwsSession TwsSession { get; set; }
+        private Sess _sess { get; set; }
 
         /// <summary>Get the current version of the Tingen Web Service.</summary>
         /// <remarks>This method is required by Avatar.</remarks>
         /// <returns>A string representing the current version.</returns>
         [WebMethod]
-        public string GetVersion() => $"VERSION {_twsRelease}";
+        public string GetVersion() => $"VERSION {_releaseBuild}";
 
         /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
@@ -62,11 +65,11 @@ namespace TingenWebService
             {
                 StartApp(sentOptObj, sentScriptParam);
 
-                LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
+                LogEvent.Trace(9, _sess.TwsSetting.TraceLevelLimit, _sess.SessionFolder);
 
                 // TODO - Route to the appropriate place.
 
-                LogEvent.Session(TwsSession);
+                LogEvent.Session(_sess);
 
                 return sentOptObj.ToReturnOptionObject(0, "");
             }
@@ -85,21 +88,26 @@ namespace TingenWebService
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
-        /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>
-        /// <param name="sentScriptParameter"> The <see cref="AvatarComponent.SentScriptParameter"/> sent from Avatar.</param>
+        /// <param name="sentOptionObject">The <see cref="AvatarData.SentOptObj"/> sent from Avatar.</param>
+        /// <param name="sentScriptParameter"> The <see cref="AvatarData.SentScriptParam"/> sent from Avatar.</param>
         /// <remarks>
         /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
         /// validating requirements, and initializing the session state.
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            RuntimeConfiguration rtConfig = RuntimeConfiguration.Load(_twsRelease);
+            RuntimeConfig runtimeConfig = RuntimeConfig.Load(_releaseBuild);
 
-            Core.Framework.FrameworkConfiguration twsFramework = Core.Framework.FrameworkConfiguration.Load(rtConfig.DataRoot, rtConfig.AvatarSystem);
+            FrwkConfig frwkConfig = FrwkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
 
-            Core.Session.SessionMaintenance.InitializeNewSession(rtConfig, twsFramework);
+            SessMaint.InitializeNewSession(runtimeConfig, frwkConfig);
 
-            TwsSession = TwsSession.StartSession(sentOptionObject, sentScriptParameter, rtConfig, twsFramework);
+            _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frwkConfig);
+
+            if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - move
+            {
+                LogMaintenance.ResetSystemLogs(_sess);
+            }
         }
     }
 }

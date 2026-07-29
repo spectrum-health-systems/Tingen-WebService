@@ -34,7 +34,7 @@ namespace TingenWebService.Core.Trove
         internal static string[] ERR1010() =>
             new string[]
             {
-                "[ERR1010]",
+                "ERR1010",
                 $"The OptionObject was not sent from Avatar."
             };
 
@@ -43,7 +43,7 @@ namespace TingenWebService.Core.Trove
         internal static string[] ERR1020() =>
             new string[]
             {
-                "[ERR1020]",
+                "ERR1020",
                 $"The Script Parameter was not sent from Avatar."
             };
 
@@ -53,14 +53,14 @@ namespace TingenWebService.Core.Trove
         internal static string[] ERR1110(string errorMessage) =>
             new string[]
             {
-                "[ERR1110]",
+                "ERR1110",
                 $"Failed to load runtime configuration: {errorMessage}"
             };
 
         internal static string[] ERR1120(string errorMessage) =>
             new string[]
             {
-                "[ERR1120]",
+                "ERR1120",
                 $"Failed to load framework configuration: {errorMessage}"
             };
 
@@ -69,7 +69,7 @@ namespace TingenWebService.Core.Trove
         internal static string[] ERR1130() =>
             new string[]
             {
-                "[ERR1130]",
+                "ERR1130",
                 $"Missing Tingen Web Service configuration file."
             };
 
@@ -81,17 +81,17 @@ namespace TingenWebService.Core.Trove
         internal static string[] ERR1140(string path, string errorMessage) =>
             new string[]
             {
-                "[ERR1140]",
+                "ERR1140",
                 $"Framework verification failed:{Environment.NewLine}" +
                 $"  Path could not be created: {path}{Environment.NewLine}" +
                 $"  Message:  {errorMessage}"
             };
 
-        internal static string[] ERR1210(string timeoutSetting) =>
+        internal static string[] ERR1210(string avatarUser, string sessionDurationMilliseconds) =>
             new string[]
             {
-                "[ERR1210]",
-                $"Session exceeded timeout setting: {timeoutSetting}"
+                $"ERR1210",
+                $"User {avatarUser} session exceeded timeout setting: {sessionDurationMilliseconds}"
             };
 
 

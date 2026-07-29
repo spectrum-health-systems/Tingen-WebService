@@ -3,11 +3,9 @@
 
 using System.Collections.Generic;
 using System.IO;
-using TingenWebService.Core.Logger;
-using TingenWebService.Core.Trove;
 using TingenWebService.Du;
 
-namespace TingenWebService.Core.Configuration
+namespace TingenWebService.Core
 {
     /// <summary>Tingen Web Service configuration/settings logic.</summary>
     /// <remarks>
@@ -15,7 +13,7 @@ namespace TingenWebService.Core.Configuration
     /// know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
     /// other configuration components.
     /// </remarks>
-    internal class TwsConfiguration
+    internal class TwsConfig
     {
         /// <summary>Tingen Web Service mode</summary>
         /// <remarks>
@@ -43,8 +41,22 @@ namespace TingenWebService.Core.Configuration
         /// <value>Default: 10</value>
         public int LogDelay { get; set; }
 
+        public int SessLogDetailLevel { get; set; }
+
+        public bool SessLogTxt { get; set; }
+
+        public bool SessLogMd { get; set; }
+
+        public bool SessLogHtml { get; set; }
+
         /// <summary>Session timeout is too damn high!</summary>
-        public string SessionTimeout { get; set; }
+        public string SessTimeout { get; set; }
+
+        public bool ErrorLogTxt { get; set; }
+
+        public bool ErrorLogMd { get; set; }
+
+        public bool ErrorLogHtml { get; set; }
 
         /// <summary>Email address the web services uses to send notifications.</summary>
         public string FromEmailAddress { get; set; }
@@ -54,6 +66,8 @@ namespace TingenWebService.Core.Configuration
 
         /// <summary>Email addresses the web services uses to send notifications.</summary>
         public List<string> ToEmailAddress { get; set; }
+
+        public string EmailFormat { get; set; }
 
         /// <summary>The username used to authenticate with NTST web services.</summary>
         public string NtstWsvcUserName { get; set; }
@@ -67,7 +81,7 @@ namespace TingenWebService.Core.Configuration
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static TwsConfiguration Load(string configPath)
+        internal static TwsConfig Load(string configPath)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
@@ -76,15 +90,12 @@ namespace TingenWebService.Core.Configuration
 
             if (!File.Exists(configPath))
             {
-                /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-                 */
-                LogEvent.Primeval("[CR4694]MissingTingenWebServiceConfiguration", SysMsg.ERR1130()[1]);
                 //TODO - Probably send an email (since it should not happen)
 
                 CreateNew(configPath);
             }
 
-            return DuJson.ImportFile<TwsConfiguration>(configPath);
+            return DuJson.ImportFile<TwsConfig>(configPath);
         }
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
@@ -96,17 +107,25 @@ namespace TingenWebService.Core.Configuration
              */
             //Logger.LogEvent.Primeval("CreateTingenWebServiceConfig");
 
-            TwsConfiguration tngnWsvcConfig = new TwsConfiguration()
+            TwsConfig tngnWsvcConfig = new TwsConfig()
             {
-                Mode              = "enabled",
-                TraceLevelLimit   = 0,
-                LogDelay          = 0,
-                SessionTimeout    = "05",
-                FromEmailAddress  = "unassigned",
-                FromEmailPassword = "unassigned",
-                ToEmailAddress    = new List<string>() { "unassigned" },
-                NtstWsvcUserName  = "unassigned",
-                NtstWsvcPassword  = "unassigned"
+                Mode               = "enabled",
+                TraceLevelLimit    = 0,
+                LogDelay           = 0,
+                SessLogDetailLevel = 0,
+                SessLogTxt         = true,
+                SessLogMd          = false,
+                SessLogHtml        = false,
+                SessTimeout        = "05",
+                ErrorLogTxt        = true,
+                ErrorLogMd         = false,
+                ErrorLogHtml       = false,
+                FromEmailAddress   = "unassigned",
+                FromEmailPassword  = "unassigned",
+                ToEmailAddress     = new List<string>() { "unassigned" },
+                EmailFormat        = "html",
+                NtstWsvcUserName   = "unassigned",
+                NtstWsvcPassword   = "unassigned"
             };
 
             DuJson.ExportFile(tngnWsvcConfig, configPath, true);

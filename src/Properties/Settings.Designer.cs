@@ -26,9 +26,9 @@ namespace TingenWebService.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("260729")]
-        public string TngnWscvBuild {
+        public string TwsBuild {
             get {
-                return ((string)(this["TngnWscvBuild"]));
+                return ((string)(this["TwsBuild"]));
             }
         }
         
@@ -56,15 +56,6 @@ namespace TingenWebService.Properties {
         public string HostWwwPath {
             get {
                 return ((string)(this["HostWwwPath"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("260723")]
-        public string TngnWsvcBuild {
-            get {
-                return ((string)(this["TngnWsvcBuild"]));
             }
         }
         

@@ -106,18 +106,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Avatar\AvatarData.cs" />
-    <Compile Include="Core\RuntimeConfiguration.cs" />
-    <Compile Include="Core\TwsConfiguration.cs" />
-    <Compile Include="Core\Framework\FrameworkMaintenance.cs" />
-    <Compile Include="Core\Logger\LoggerMaintenance.cs" />
-    <Compile Include="Core\Session\SessionMaintenance.cs" />
+    <Compile Include="Core\RuntimeConfig.cs" />
+    <Compile Include="Core\TwsConfig.cs" />
+    <Compile Include="Core\Framework\FrwkMaint.cs" />
+    <Compile Include="Core\Logger\LogMaintenance.cs" />
+    <Compile Include="Core\Session\SessMaint.cs" />
     <Compile Include="Du\DuJson.cs" />
     <Compile Include="Core\Logger\LogComponent.cs" />
     <Compile Include="Core\Logger\LogWriter.cs" />
-    <Compile Include="Core\Trove\Blueprint.cs" />
+    <Compile Include="Core\Trove\BluePrint.cs" />
     <Compile Include="Core\Trove\Catalog.cs" />
-    <Compile Include="Core\Framework\FrameworkConfiguration.cs" />
-    <Compile Include="Core\Framework\Maintenance.cs" />
+    <Compile Include="Core\Framework\FrwkConfig.cs" />
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Core\Logger\LogEvent.cs" />
@@ -130,12 +129,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Core\Session\TwsSession.cs" />
+    <Compile Include="Core\Session\Sess.cs" />
     <Compile Include="TingenWebService.asmx.cs">
       <DependentUpon>TingenWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\Trove\Epistle.cs" />
+    <Compile Include="Core\Trove\RedPrint.cs" />
     <Compile Include="Core\Trove\SysMsg.cs" />
   </ItemGroup>
   <ItemGroup>

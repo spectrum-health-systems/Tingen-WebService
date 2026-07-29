@@ -16,10 +16,10 @@ namespace TingenWebService.Core.Logger
         {
             DuDirectory.EnsureDirectoryExists(systemLogRoot);
 
-            var errorLogBlueprint = File.ReadAllText(Path.Combine(blueprintRoot, "ErrorLog.blueprint"));
+            var errorLogBlueprint = File.ReadAllText(Path.Combine(blueprintRoot, "ErrorLogTxt.bp"));
             var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessionStartDateTime}")
                                               .Replace("~ERROR~CODE~", errorCode)
-                                              .Replace("~LOG~MESSAGE~", errorMessage);
+                                              .Replace("~ERROR~MESSAGE~", errorMessage);
 
             LogWriter.WriteLocal(systemLogRoot, $"{sessionStartDateTime}-[{errorCode}].error", logContent);
         }
@@ -38,48 +38,88 @@ namespace TingenWebService.Core.Logger
             LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
         }
 
-        internal static void Session(TwsSession twsSession)
+        internal static void Session(Sess sess)
         {
             // TODO - Clean this up.
 
-            var sessionFolder = Path.Combine(twsSession.TwsFramework.SessionRoot,
-                                             twsSession.RtConfig.SessionStartDate,
-                                             twsSession.AvatarData.SentOptionObject.OptionUserId,
-                                             twsSession.RtConfig.SessionStartTime);
+            var sessionFolder = Path.Combine(sess.FrameworkSetting.SessionRoot,
+                                             sess.RuntimeSetting.SessionStartDate,
+                                             sess.AvatarData.SentOptObj.OptionUserId,
+                                             sess.RuntimeSetting.SessionStartTime);
 
             DuDirectory.EnsureDirectoryExists(sessionFolder);
 
-            var sessionLogName = Path.Combine(sessionFolder, $"{twsSession.AvatarData.SentOptionObject.OptionUserId}.session");
+            var sessionLogName = Path.Combine(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session");
 
 
 
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
 
-            var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(twsSession.RtConfig.SessionStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
-            var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(twsSession.RtConfig.SessionStartMilliseconds, "fffffff", null)).ToString("fffffff");
+            var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RuntimeSetting.SessionStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RuntimeSetting.SessionStartMilliseconds, "fffffff", null)).ToString("fffffff");
 
-            if (sessionDurationTime.StartsWith($"00:00:{twsSession.TwsConfig.SessionTimeout}"))
+            if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessTimeout}"))
             {
-                LogEvent.Error(twsSession.TwsFramework.SysLogRoot,
-                               twsSession.TwsFramework.BlueprintRoot,
-                               $"{twsSession.RtConfig.SessionStartDate}-{twsSession.RtConfig.SessionStartTime}",
-                               "7362",
-                               SysMsg.ERR1210(twsSession.TwsConfig.SessionTimeout)[1]);
+                var errComponents = SysMsg.ERR1210(sess.AvatarData.SentOptObj.OptionUserId, sessionDurationMilliseconds);
+
+                LogEvent.Error(sess.FrameworkSetting.SysLogRoot,
+                               sess.FrameworkSetting.BlueprintRoot,
+                               $"{sess.RuntimeSetting.SessionStartDate}-{sess.RuntimeSetting.SessionStartTime}",
+                               errComponents[0],
+                               errComponents[1]);
             }
 
-            var sessionLogBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
-            var logContent = sessionLogBlueprint.Replace("~RELEASE~BUILD~", twsSession.RtConfig.ReleaseBuild)
-                                                .Replace("~SESSION~DATE~", twsSession.RtConfig.SessionStartDate)
-                                                .Replace("~SESSION~START~", $"{twsSession.RtConfig.SessionStartTime}:{twsSession.RtConfig.SessionStartMilliseconds}")
-                                                .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
-                                                .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                                .Replace("~AVATAR~USER~NAME~", twsSession.AvatarData.SentOptionObject.OptionUserId.ToUpper())
-                                                .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
-                                                .Replace("~SCRIPT~PARAMETER~", twsSession.AvatarData.SentScriptParameter)
-                                                .Replace("~SESSION~RUNNING~LOG~", twsSession.RunningLog);
+            // TODO - these need to be combined.
 
-            LogWriter.WriteLocal(sessionFolder, $"{twsSession.AvatarData.SentOptionObject.OptionUserId}.session", logContent); // simplify
+
+            if (sess.TwsSetting.SessLogTxt)
+            {
+                var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogTxt.bp"));
+                var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                             .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
+                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
+                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+
+                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session", logContent); // simplify
+            }
+
+            if (sess.TwsSetting.SessLogMd)
+            {
+                var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogMd.bp"));
+                var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                             .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
+                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
+                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+
+                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.md", logContent); // simplify
+            }
+
+            if (sess.TwsSetting.SessLogHtml)
+            {
+                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogHtml.bp"));
+                var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                             .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
+                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
+                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+
+                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.html", logContent); // simplify
+            }
         }
 
         internal static void SystemLog(string logFolder, string logName, string logContent)

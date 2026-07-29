@@ -2,18 +2,17 @@
 // 260729_documentation
 
 using System;
-using TingenWebService.Core.Configuration;
 
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
     /// <remarks>
-    /// <note type="note" title="About epistles">
-    /// Epistles are preset<b>messages</b> that cannot be modified by the user, and are used to format data in a
+    /// <note type="note" title="About redprints">
+    /// Redprints are preset<b>messages</b> that cannot be modified by the user, and are used to format data in a
     /// consistent manner.
     /// </note>
     /// </remarks>
-    internal class Epistle
+    internal class RedPrint
     {
 
         /*
@@ -37,7 +36,7 @@ namespace TingenWebService.Core.Trove
         /// <returns>The framework verified message.</returns>
         internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
 
-        internal static string FrameworkDetails(Framework.FrameworkConfiguration framework)
+        internal static string FrameworkDetails(Framework.FrwkConfig framework)
         {
             // TODO - Do the same things for Blueprints
 
@@ -57,14 +56,14 @@ namespace TingenWebService.Core.Trove
         /// <returns>The blueprints exported message.</returns>
         internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
 
-        internal static string ConfigurationDetails(TwsConfiguration twsConfig)
+        internal static string ConfigurationDetails(TwsConfig twsConfig)
         {
             return $"         Configuration details{Environment.NewLine}" +
                    $"------------------------------{Environment.NewLine}" +
                    $"                          Mode: {twsConfig.Mode}{Environment.NewLine}" +
                    $"             Trace Level Limit: {twsConfig.TraceLevelLimit}{Environment.NewLine}" +
                    $"                     Log Delay: {twsConfig.LogDelay}{Environment.NewLine}" +
-                   $"               Session Timeout: {twsConfig.SessionTimeout}{Environment.NewLine}" +
+                   $"               Session Timeout: {twsConfig.SessTimeout}{Environment.NewLine}" +
                    $"            From Email Address: {twsConfig.FromEmailAddress}{Environment.NewLine}" +
                    $"           From Email Password: Please see TngnWsvc.config{Environment.NewLine}" +
                    $"              To Email Address: {string.Join(", ", twsConfig.ToEmailAddress)}{Environment.NewLine}" +
@@ -72,7 +71,7 @@ namespace TingenWebService.Core.Trove
                    $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
         }
 
-        internal static string RuntimeDetails(RuntimeConfiguration rtConfig)
+        internal static string RuntimeDetails(RuntimeConfig rtConfig)
         {
             return $"Runtime details{Environment.NewLine}" +
                    $"---------------{Environment.NewLine}" +

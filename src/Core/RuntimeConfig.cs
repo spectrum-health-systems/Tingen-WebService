@@ -14,7 +14,7 @@ namespace TingenWebService.Core
     /// The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
     /// It contains information that the web service needs to know before anything else can be loaded.
     /// </remarks>
-    internal class RuntimeConfiguration
+    internal class RuntimeConfig
     {
         /// <summary>The current date (yyMMdd).</summary>
         public string SessionStartDate { get; set; }
@@ -38,7 +38,7 @@ namespace TingenWebService.Core
         /// <summary>The root directory for Tingen Web Service data.</summary>
         public string DataRoot { get; set; }
 
-        internal static RuntimeConfiguration Load(string twsRelease)
+        internal static RuntimeConfig Load(string twsRelease)
         {
             try
             {
@@ -46,27 +46,27 @@ namespace TingenWebService.Core
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("RuntimeConfiguration", SysMsg.ERR1110(ex.Message)[1]);
+                LogEvent.Primeval("ERR1110-RuntimeConfiguration", SysMsg.ERR1110(ex.Message)[1]);
 
                 throw;
             }
         }
 
         /// <summary>Build the runtime configuration.</summary>
-        /// <returns>A <see cref="RuntimeConfiguration"/> instance with the current settings.</returns>
-        internal static RuntimeConfiguration Build(string twsRelease)
+        /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
+        internal static RuntimeConfig Build(string twsRelease)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
             //Logger.LogEvent.Primeval("LoadRuntimeConfig");
 
-            return new RuntimeConfiguration()
+            return new RuntimeConfig()
             {
                 SessionStartDate         = DateTime.Now.ToString("yyMMdd"),
                 SessionStartTime         = DateTime.Now.ToString("HHmmss"),
                 SessionStartMilliseconds = DateTime.Now.ToString("fffffff"),
-                ReleaseBuild             = $"{twsRelease} (b{Settings.Default.TngnWsvcBuild})",
+                ReleaseBuild             = $"{twsRelease} (b{Settings.Default.TwsBuild})",
                 AvatarSystem             = Settings.Default.AvatarSystem,
                 DataRoot                 = Settings.Default.HostDataRoot,
             };

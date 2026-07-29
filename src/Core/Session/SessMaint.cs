@@ -6,7 +6,7 @@ using System.IO;
 
 namespace TingenWebService.Core.Session
 {
-    internal class SessionMaintenance
+    internal class SessMaint
     {
         /// <summary>Session maintenance.</summary>
         /// <remarks>
@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Session
         /// </remarks>
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework instance.</param>
-        internal static void InitializeNewSession(RuntimeConfiguration rtConfig, Framework.FrameworkConfiguration twsFramework)
+        internal static void InitializeNewSession(RuntimeConfig rtConfig, Framework.FrwkConfig twsFramework)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
@@ -25,8 +25,8 @@ namespace TingenWebService.Core.Session
 
             if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
             {
-                Logger.LoggerMaintenance.ResetSyslogs(twsFramework.SysLogRoot);
-                Framework.FrameworkMaintenance.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
+                //Logger.LogMaintenance.VerifySystemLogs(twsFramework.SysLogRoot);
+                Framework.FrwkMaint.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
             }
         }
     }
