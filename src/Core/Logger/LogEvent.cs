@@ -10,18 +10,18 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Logger
 {
-    internal class LogEvent
+    internal static class LogEvent
     {
-        internal static void Error(string systemLogRoot, string blueprintRoot, string sessionStartDateTime, string errorCode, string errorMessage)
+        internal static void Error(string sysLogRoot, string bpRoot, string sessStartDateTime, string errCode, string errMsg)
         {
-            DuDirectory.EnsureDirectoryExists(systemLogRoot);
+            DuDirectory.EnsureDirectoryExists(sysLogRoot);
 
-            var errorLogBlueprint = File.ReadAllText(Path.Combine(blueprintRoot, "ErrorLogTxt.bp"));
-            var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessionStartDateTime}")
-                                              .Replace("~ERROR~CODE~", errorCode)
-                                              .Replace("~ERROR~MESSAGE~", errorMessage);
+            var errorLogBlueprint = File.ReadAllText(Path.Combine(bpRoot, "ErrorLogTxt.bp"));
+            var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessStartDateTime}")
+                                              .Replace("~ERROR~CODE~", errCode)
+                                              .Replace("~ERROR~MESSAGE~", errMsg);
 
-            LogWriter.WriteLocal(systemLogRoot, $"{sessionStartDateTime}-[{errorCode}].error", logContent);
+            LogWriter.WriteLocal(sysLogRoot, $"{sessStartDateTime}-[{errCode}].error", logContent);
         }
 
         /// <summary>Logs a primeval event with the specified name and content.</summary>
@@ -51,8 +51,6 @@ namespace TingenWebService.Core.Logger
 
             var sessionLogName = Path.Combine(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session");
 
-
-
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
 
@@ -71,7 +69,6 @@ namespace TingenWebService.Core.Logger
             }
 
             // TODO - these need to be combined.
-
 
             if (sess.TwsSetting.SessLogTxt)
             {
@@ -128,7 +125,8 @@ namespace TingenWebService.Core.Logger
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
              * - Disable this in production.
              */
-            //LogEvent.Primeval("SystemLogFileInitialized");
+            LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-[ERR1140]-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
+            //LogEvent.Primeval("$"{DateTime.Now:yyMMdd-HHmmss}-DEBUG-LogEvent.SystemLog");
 
             if (File.Exists(Path.Combine(logFolder, logName)))
             {

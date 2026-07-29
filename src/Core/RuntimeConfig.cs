@@ -46,7 +46,7 @@ namespace TingenWebService.Core
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR1110-RuntimeConfiguration", SysMsg.ERR1110(ex.Message)[1]);
+                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1110-TwsConfigLoadFailed", SysMsg.ERR1110(ex.Message)[1]);
 
                 throw;
             }
@@ -59,7 +59,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("LoadRuntimeConfig");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-RuntimeConfig.Build");
 
             return new RuntimeConfig()
             {

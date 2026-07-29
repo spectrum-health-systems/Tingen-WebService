@@ -55,7 +55,7 @@ namespace TingenWebService.Core
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
              * - Disable this in production.
              */
-            //Logger.LogEvent.Primeval("StartSession");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-Sess.StartSession");
 
             return new Sess
             {

@@ -8,7 +8,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Logger
 {
-    internal class LogWriter
+    internal static class LogWriter
     {
         /// <summary>Extracts the class name (without extension) from a full source file path.</summary>
         /// <remarks>

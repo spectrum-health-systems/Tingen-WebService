@@ -22,7 +22,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("VerifyFrameworkComponents");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.Verify");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
             {
@@ -34,7 +34,7 @@ namespace TingenWebService.Core.Framework
                 {
                     /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                      */
-                    Logger.LogEvent.Primeval("ERR1140-FrameworkVerfication", SysMsg.ERR1140(path, ex.Message)[1]);
+                    LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1140-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
                     //TODO - Should probably send an email notification.
                 }
             }
@@ -47,7 +47,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("ExportBlueprints");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss}-[DEBUG]-FrwkMaint.ExportBlueprints");
 
             // TODO - So ugly!
             /* This code is terrible and needs to be refactored.
@@ -89,7 +89,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("VerifyComponents");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss}-[DEBUG]-FrwkMaint.VerifyComponents");
 
             var verificationLog = string.Empty;
 

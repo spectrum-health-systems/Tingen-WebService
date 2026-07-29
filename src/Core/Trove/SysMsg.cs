@@ -7,27 +7,23 @@ namespace TingenWebService.Core.Trove
 {
     internal class SysMsg
     {
-        /*
-         * 0000 - 0999: General
+        /* =====================================================================
+         * 0000 - 0999: Miscellaneous
+         * =====================================================================
+         * Nothing here yet.
          */
 
-
-
-
         /* =====================================================================
-         * 1000 - 1999: TingenWebService
+         * 1000 - 1999: Tingen Web Service
          * =====================================================================
          * ERR1010 - Missing sent OptionObject
          * ERR1020 - Missing sent ScriptParameter
-         * 
          * ERR1110 - Failed to load runtime configuration
          * ERR1120 - Failed to load framework configuration
          * ERR1130 - Missing TngnWsvc.config file
          * ERR1140 - Failed to validate framework
-         * 
          * ERR1210 - Session duration timeout exceeded
          */
-
 
         /// <summary>Build the missing OptionObject system message.</summary>
         /// <returns>The missing OptionObject system message.</returns>
@@ -94,24 +90,17 @@ namespace TingenWebService.Core.Trove
                 $"User {avatarUser} session exceeded timeout setting: {sessionDurationMilliseconds}"
             };
 
-
-        /*
-         * 2000 - 2999: TingenWebService.Module.*
+        /* =====================================================================
+         * 2000 - 2999: Tingen Web Service Modules
+         * =====================================================================
+         * Nothing here yet.
          */
 
 
 
 
 
-
-
-
-
-
-
-
-
-
+        // TODO ??
         /// <summary>Build the maintenance failure message.</summary>
         /// <param name="path">The path that could not be created.</param>
         /// <param name="errorMessage">The error message.</param>

@@ -62,7 +62,7 @@ namespace TingenWebService.Core.Framework
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR1120-FrameworkConfiguration", SysMsg.ERR1120(ex.Message)[1]);
+                LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1120-TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]);
 
                 throw;
             }
@@ -77,7 +77,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("LoadFramework");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkConfig.Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);

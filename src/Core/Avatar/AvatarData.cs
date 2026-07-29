@@ -1,6 +1,7 @@
 ﻿// 260729_code
 // 260729_documentation
 
+using System;
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Logger;
@@ -57,7 +58,7 @@ namespace TingenWebService.Core.Avatar
 
             if (sentOptObj == null)
             {
-                LogEvent.Primeval("ERR-MissingOptionObject", SysMsg.ERR1010()[1]);
+                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1010-MissingOptObj", SysMsg.ERR1010()[1]);
 
                 return false;
             }
@@ -81,7 +82,7 @@ namespace TingenWebService.Core.Avatar
 
             if (string.IsNullOrWhiteSpace(sentScriptParam))
             {
-                LogEvent.Primeval("ERR1020-MissingScriptParameter", SysMsg.ERR1020()[1]);
+                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1020-MissingScriptParam", SysMsg.ERR1020()[1]);
 
                 return false;
             }
@@ -134,9 +135,9 @@ namespace TingenWebService.Core.Avatar
         /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </code>
         /// </example>
-        internal static void ExportOptionObject(OptionObject2015 sentOptObj, string exportPath)
+        internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath)
         {
-            var dateTime    = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
             var htmlVersion = sentOptObj.ToHtmlString(true);
             File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{dateTime}.html"), htmlVersion);

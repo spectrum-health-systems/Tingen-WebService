@@ -7,7 +7,7 @@ using TingenWebService.Core.Trove;
 
 namespace TingenWebService.Core.Logger
 {
-    internal class LogMaintenance
+    internal static class LogMaintenance
     {
         internal static void VerifySystemLogs(Sess twsSession)
         {

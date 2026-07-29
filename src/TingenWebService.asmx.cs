@@ -104,9 +104,9 @@ namespace TingenWebService
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frwkConfig);
 
-            if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - move
+            if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else?
             {
-                LogMaintenance.ResetSystemLogs(_sess);
+                LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             }
         }
     }

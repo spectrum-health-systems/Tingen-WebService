@@ -19,13 +19,12 @@ namespace TingenWebService.Core.Session
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("SessionMaintenance");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-SessMaint.InitializeNewSession");
 
             var dailyDate = DateTime.Now.ToString("yyMMdd");
 
             if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
             {
-                //Logger.LogMaintenance.VerifySystemLogs(twsFramework.SysLogRoot);
                 Framework.FrwkMaint.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
             }
         }

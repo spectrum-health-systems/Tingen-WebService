@@ -9,7 +9,7 @@ using System.Xml.Linq;
 namespace TingenWebService.Core.Logger
 {
     /// <summary>Provides logging-related helper methods.</summary>
-    internal class LogComponents
+    internal static class LogComponents
     {
         /// <summary>Returns a formatted caller information string built from the calling source location.</summary>
         /// <remarks>

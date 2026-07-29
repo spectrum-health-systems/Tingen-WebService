@@ -86,13 +86,15 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("LoadTingenWebServiceConfig");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Load");
+
+            //TODO - put an actual error log here
 
             if (!File.Exists(configPath))
             {
                 //TODO - Probably send an email (since it should not happen)
 
-                CreateNew(configPath);
+                Build(configPath);
             }
 
             return DuJson.ImportFile<TwsConfig>(configPath);
@@ -100,12 +102,12 @@ namespace TingenWebService.Core
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
         /// <param name="configPath">The path to the configuration file.</param>
-        private static void CreateNew(string configPath)
+        private static void Build(string configPath)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval("CreateTingenWebServiceConfig");
+            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Build");
 
             TwsConfig tngnWsvcConfig = new TwsConfig()
             {
