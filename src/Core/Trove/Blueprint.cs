@@ -1,9 +1,9 @@
-﻿// 260728_code
-// 260727_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
 
-namespace TingenWebService.Trove
+namespace TingenWebService.Core.Trove
 {
     /// <summary>User-modifiable templates.</summary>
     /// <remarks>
@@ -29,32 +29,14 @@ namespace TingenWebService.Trove
             $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
             $"================================================================================{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"[~ERROR~CODE~]{Environment.NewLine}" +
-            $"~LOG~MESSAGE~";
-
-        /// <summary>Build the critical error log template.</summary>
-        /// <returns>The critical error log template string.</returns>
-        internal static string CriticalErrorLogBlueprint() =>
-            $"================================================================================{Environment.NewLine}" +
-            $"Tingen Web Service Critical Error Log{Environment.NewLine}" +
-            $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
-            $"================================================================================{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"[Error code] ~ERROR~CODE~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"~LOG~MESSAGE~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"--------------------------------------------------------------------------------{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"[CLASS] ~CLASS~{Environment.NewLine}" +
-            $"[METHOD] ~METHOD~{Environment.NewLine}" +
-            $"[LINE] ~LINE~{Environment.NewLine}";
+            $"~ERROR~CODE~{Environment.NewLine}" +
+            $"~ERROR~MESSAGE~";
 
         /// <summary>Build the session log template.</summary>
         /// <returns>The session log template string.</returns>
         internal static string SessionLogBlueprint() =>
             $"================================================================================{Environment.NewLine}" +
-            $"Tingen Web Service Session Log                               [~RELEASE~BUILD~]  {Environment.NewLine}" +
+            $"Tingen Web Service Session Log                             [~RELEASE~BUILD~]    {Environment.NewLine}" +
             $"--------------------------------------------------------------------------------{Environment.NewLine}" +
             $"            Date: ~SESSION~DATE~{Environment.NewLine}" +
             $"           Start: ~SESSION~START~{Environment.NewLine}" +

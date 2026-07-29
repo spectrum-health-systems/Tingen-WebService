@@ -1,12 +1,12 @@
-﻿// 260725_code
-// 260725_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
 using System.IO;
 using System.Linq;
 using TingenWebService.Du;
 
-namespace TingenWebService.Logger
+namespace TingenWebService.Core.Logger
 {
     internal class LogWriter
     {

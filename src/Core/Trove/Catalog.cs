@@ -1,9 +1,7 @@
-﻿// 260724_code
-// 260727_documentation
+﻿// 260729_code
+// 260729_documentation
 
-using TingenWebService.Core;
-
-namespace TingenWebService.Trove
+namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset collections and components.</summary>
     /// <remarks>
@@ -17,7 +15,7 @@ namespace TingenWebService.Trove
         /// <summary>Build the list of required framework folders.</summary>
         /// <param name="twsFramework">The framework object that contains the folder list.</param>
         /// <returns>A string array of the required framework folders.</returns>
-        internal static string[] RequiredFrameworkFolders(Framework twsFramework) =>
+        internal static string[] RequiredFrameworkFolders(Framework.FrameworkConfiguration twsFramework) =>
             new string[]
             {
                 twsFramework.AvatarGeneratedDataRoot,

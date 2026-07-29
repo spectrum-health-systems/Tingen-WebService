@@ -12,16 +12,11 @@ Update these source code documents for the new version:
 TingenWebService.NsDoc.cs
 /// <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/source-code/ns_TingenWebService.md">TingenWebService namespace</seealso>
 
+* Note about how Primeval logs only use the `returned[1]` value.
+* Verify `throw` works in StartApp()
+
 ## Error codes
 
-3876 - Missing sent OptionObject
-5285 - Missing sent ScriptParameter
-7622 - Error creating framework path
-7516 - Error creating dailyLogPath
-4694 - Missing TngnWsvc.config
-7362 - Session timeout error
-7540
-7322
 1124
 3242
 4930

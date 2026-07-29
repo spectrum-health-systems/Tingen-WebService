@@ -1,17 +1,20 @@
-﻿// 260725_code
-// 260726_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
+using TingenWebService.Core.Logger;
+using TingenWebService.Core.Trove;
 using TingenWebService.Properties;
 
-namespace TingenWebService.Configuration
+
+namespace TingenWebService.Core
 {
     /// <summary>Runtime configuration/settings logic.</summary>
     /// <remarks>
     /// The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
     /// It contains information that the web service needs to know before anything else can be loaded.
     /// </remarks>
-    internal class RuntimeConfig
+    internal class RuntimeConfiguration
     {
         /// <summary>The current date (yyMMdd).</summary>
         public string SessionStartDate { get; set; }
@@ -35,16 +38,30 @@ namespace TingenWebService.Configuration
         /// <summary>The root directory for Tingen Web Service data.</summary>
         public string DataRoot { get; set; }
 
-        /// <summary>Load the runtime configuration.</summary>
-        /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
-        internal static RuntimeConfig Load(string twsRelease)
+        internal static RuntimeConfiguration Load(string twsRelease)
+        {
+            try
+            {
+                return Build(twsRelease);
+            }
+            catch (Exception ex)
+            {
+                LogEvent.Primeval("RuntimeConfiguration", SysMsg.ERR1110(ex.Message)[1]);
+
+                throw;
+            }
+        }
+
+        /// <summary>Build the runtime configuration.</summary>
+        /// <returns>A <see cref="RuntimeConfiguration"/> instance with the current settings.</returns>
+        internal static RuntimeConfiguration Build(string twsRelease)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            Logger.LogEvent.Primeval("LoadRuntimeConfig");
+            //Logger.LogEvent.Primeval("LoadRuntimeConfig");
 
-            return new RuntimeConfig()
+            return new RuntimeConfiguration()
             {
                 SessionStartDate         = DateTime.Now.ToString("yyMMdd"),
                 SessionStartTime         = DateTime.Now.ToString("HHmmss"),

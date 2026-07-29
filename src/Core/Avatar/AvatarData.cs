@@ -1,15 +1,19 @@
-﻿// 260728_code
-// 260728_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System.IO;
 using ScriptLinkStandard.Objects;
-using TingenWebService.Logger;
-using TingenWebService.Trove;
+using TingenWebService.Core.Logger;
+using TingenWebService.Core.Trove;
 
-namespace TingenWebService.Avatar
+namespace TingenWebService.Core.Avatar
 {
+    /// <summary>Represents the data sent from Avatar to the Tingen Web Service.</summary>
+    /// <remarks>TBD</remarks>
     internal class AvatarData
     {
+        #region Properties
+
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>This is <i>never</i> modified by the Tingen Web Service.</remarks>
         public OptionObject2015 SentOptionObject { get; set; }
@@ -26,50 +30,28 @@ namespace TingenWebService.Avatar
         /// <remarks>TBD</remarks>
         public string SentScriptParameter { get; set; }
 
-        /*
-         * Initializers
-         */
+        #endregion Properties
 
-        /// <summary>Initialize a new instance of <see cref="AvatarData"/> with the specified <see cref="OptionObject2015"/>.</summary>
+        /// <summary>Initialize a new AvatarData object.</summary>
         /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
+        /// <remarks>
+        /// TBD
+        /// </remarks>
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
-        internal static AvatarData InitializeOptionObjects(OptionObject2015 sentOptionObject)
+        internal static AvatarData Initialize(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
             return new AvatarData
             {
                 SentOptionObject     = sentOptionObject,
                 WorkerOptionObject   = sentOptionObject.Clone(),
-                CompleteOptionObject = null
+                CompleteOptionObject = null,
+                SentScriptParameter  = sentScriptParameter
             };
         }
 
         /*
          * Verifiers
          */
-
-        /// <summary>Verify whether a script parameter was received from Avatar.</summary>
-        /// <param name="sentScriptParameter">The script parameter to verify.</param>
-        /// <returns>True if a script parameter was sent; otherwise, false.</returns>
-        public static bool WasSent(string sentScriptParameter)
-        {
-            /* DEVNOTE
-             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
-             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
-             */
-
-            // TODO - Potentially send an email in addition to the error logs.
-
-            if (string.IsNullOrWhiteSpace(sentScriptParameter))
-            {
-                LogEvent.Primeval("[ERR-CR5285]MissingScriptParameter", Epistle.Error5285());
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
 
         /// <summary>Verify whether an <see cref="OptionObject2015"/> was received from Avatar.</summary>
         /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> to verify.</param>
@@ -85,7 +67,7 @@ namespace TingenWebService.Avatar
 
             if (sentOptionObject == null)
             {
-                LogEvent.Primeval("[ERR-3876]MissingOptionObject", Epistle.Error3876());
+                LogEvent.Primeval("ERR-MissingOptionObject", SysMsg.ERR1010()[1]);
 
                 return false;
             }
@@ -94,6 +76,32 @@ namespace TingenWebService.Avatar
                 return true;
             }
         }
+
+        /// <summary>Verify whether a script parameter was received from Avatar.</summary>
+        /// <param name="sentScriptParameter">The script parameter to verify.</param>
+        /// <returns>True if a script parameter was sent; otherwise, false.</returns>
+        public static bool WasSent(string sentScriptParameter)
+        {
+            /* DEVNOTE
+             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
+             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
+             */
+
+            // TODO - Potentially send an email in addition to the error logs.
+
+            if (string.IsNullOrWhiteSpace(sentScriptParameter))
+            {
+                LogEvent.Primeval("ERR-MissingScriptParameter", SysMsg.ERR1020()[1]);
+
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
 
         /// <summary>Finalize the <see cref="OptionObject2015"/> so it can be returned to Avatar.</summary>
         /// <remarks>

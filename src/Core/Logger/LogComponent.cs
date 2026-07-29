@@ -1,12 +1,12 @@
-﻿// 260725_code
-// 260725_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
 
-namespace TingenWebService.Logger
+namespace TingenWebService.Core.Logger
 {
     /// <summary>Provides logging-related helper methods.</summary>
     internal class LogComponents

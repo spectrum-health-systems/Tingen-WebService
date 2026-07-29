@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TwsAsmx>
+
+    <Class name ="RunScript">
+
+        <!-- /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="RunScript"]/TheMagic/*'/> -->
+        <TheMagic>
+            <note type="information" title="The Magic">
+                This is where the following magic happens:
+                <list type="number">
+                    <item>Verify that Avatar actually sent data (and return the unmodified OptionObject if not)</item>
+                    <item><c>StartApp()</c> sets up the Tingen Web Service <i>session</i></item>
+                    <item>The request is processed</item>
+                    <item>The session is logged</item>
+                    <item>The (potentially) modified OptionObject is returned to Avatar</item>
+                </list>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is
+                returned to Avatar from a single location, regardless of whether the request was successful or not.
+            </note>
+        </TheMagic>
+
+      </Class>
+
+    <Class name ="StartApp">
+
+        <!-- /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="StartApp"]/AboutAvatarData/*'/> -->
+        <AboutAvatarData>
+            <note type="note" title="About Avatar data">
+                Avatar sends two pieces of data to the Tingen Web Service:
+                <list type="number">
+                    <item> The SentOptionObject</item>
+                    <item> The SentScriptParameter</item>
+                </list>
+                If either of these components are missing, the Tingen Web Service cannot function properly. This method
+                checks for the presence of both components and logs an error if either is missing.
+            </note>
+        </AboutAvatarData>
+
+    </Class>
+
+</TwsAsmx>

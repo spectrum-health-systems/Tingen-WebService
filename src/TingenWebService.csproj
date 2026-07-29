@@ -100,24 +100,27 @@
     <Content Include="AppData\XmlDocumentation\NamespaceDocumentation.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="AppData\XmlDocumentation\TwsAsmx.xml" />
     <Content Include="TingenWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Avatar\AvatarData.cs" />
-    <Compile Include="Avatar\AvatarScriptParameter.cs" />
-    <Compile Include="Configuration\RuntimeConfig.cs" />
-    <Compile Include="Configuration\TwsConfig.cs" />
+    <Compile Include="Core\Avatar\AvatarData.cs" />
+    <Compile Include="Core\RuntimeConfiguration.cs" />
+    <Compile Include="Core\TwsConfiguration.cs" />
+    <Compile Include="Core\Framework\FrameworkMaintenance.cs" />
+    <Compile Include="Core\Logger\LoggerMaintenance.cs" />
+    <Compile Include="Core\Session\SessionMaintenance.cs" />
     <Compile Include="Du\DuJson.cs" />
-    <Compile Include="Logger\LogComponent.cs" />
-    <Compile Include="Logger\LogWriter.cs" />
-    <Compile Include="Trove\Blueprint.cs" />
-    <Compile Include="Trove\Catalog.cs" />
-    <Compile Include="Core\Framework.cs" />
-    <Compile Include="Core\Maintenance.cs" />
+    <Compile Include="Core\Logger\LogComponent.cs" />
+    <Compile Include="Core\Logger\LogWriter.cs" />
+    <Compile Include="Core\Trove\Blueprint.cs" />
+    <Compile Include="Core\Trove\Catalog.cs" />
+    <Compile Include="Core\Framework\FrameworkConfiguration.cs" />
+    <Compile Include="Core\Framework\Maintenance.cs" />
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
-    <Compile Include="Logger\LogEvent.cs" />
+    <Compile Include="Core\Logger\LogEvent.cs" />
     <Compile Include="ProjectInfo.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -127,12 +130,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Session\TwsSession.cs" />
+    <Compile Include="Core\Session\TwsSession.cs" />
     <Compile Include="TingenWebService.asmx.cs">
       <DependentUpon>TingenWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Trove\Epistle.cs" />
+    <Compile Include="Core\Trove\Epistle.cs" />
+    <Compile Include="Core\Trove\SysMsg.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

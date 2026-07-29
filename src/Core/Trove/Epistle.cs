@@ -1,11 +1,10 @@
-﻿// 260728_code
-// 260728_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
-using TingenWebService.Configuration;
-using TingenWebService.Core;
+using TingenWebService.Core.Configuration;
 
-namespace TingenWebService.Trove
+namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
     /// <remarks>
@@ -38,7 +37,7 @@ namespace TingenWebService.Trove
         /// <returns>The framework verified message.</returns>
         internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
 
-        internal static string FrameworkDetails(Framework framework)
+        internal static string FrameworkDetails(Framework.FrameworkConfiguration framework)
         {
             // TODO - Do the same things for Blueprints
 
@@ -58,7 +57,7 @@ namespace TingenWebService.Trove
         /// <returns>The blueprints exported message.</returns>
         internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
 
-        internal static string ConfigurationDetails(TwsConfig twsConfig)
+        internal static string ConfigurationDetails(TwsConfiguration twsConfig)
         {
             return $"         Configuration details{Environment.NewLine}" +
                    $"------------------------------{Environment.NewLine}" +
@@ -73,7 +72,7 @@ namespace TingenWebService.Trove
                    $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
         }
 
-        internal static string RuntimeDetails(RuntimeConfig rtConfig)
+        internal static string RuntimeDetails(RuntimeConfiguration rtConfig)
         {
             return $"Runtime details{Environment.NewLine}" +
                    $"---------------{Environment.NewLine}" +
@@ -81,50 +80,5 @@ namespace TingenWebService.Trove
                    $"Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
                    $"    Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
         }
-
-        /*
-         * Error messages
-         */
-
-        /// <summary>Build the message missing Avatar data message.</summary>
-        /// <returns>The missing Avatar data message.</returns>
-        internal static string Error3876() =>
-            $"[3876]{Environment.NewLine}" +
-            $"The OptionOnject was not sent from Avatar";
-
-        /// <summary>Build the message missing Avatar data message.</summary>
-        /// <returns>The missing Avatar data message.</returns>
-        internal static string Error5285() =>
-            $"[5285]{Environment.NewLine}" +
-            $"The Script Parameter was not sent from Avatar";
-
-        /// <summary>Build the framework verification failed message.</summary>
-        /// <param name="path">The path that could not be created.</param>
-        /// <param name="errorMessage">The error message.</param>
-        /// <returns>The framework verification failed message.</returns>
-        internal static string Error7622(string path, string errorMessage) =>
-            $"[7622]{Environment.NewLine}" +
-            $"Framework verification failed:{Environment.NewLine}" +
-            $"  Path could not be created: {path}{Environment.NewLine}" +
-            $"  Message:  {errorMessage}";
-
-        /// <summary>Build the maintenance failure message.</summary>
-        /// <param name="path">The path that could not be created.</param>
-        /// <param name="errorMessage">The error message.</param>
-        /// <returns>The maintenance failure message.</returns>
-        internal static string Error7516(string path, string errorMessage) =>
-            $"[7516]{Environment.NewLine}" +
-            $"Maintenance failure:{Environment.NewLine}" +
-            $"  Path could not be created: {path}{Environment.NewLine}" +
-            $"  Message:  {errorMessage}";
-
-        /// <summary>Build the missing TngnWsvc.config message.</summary>
-        /// <returns>The missing configuration file message.</returns>
-        internal static string Error4694() =>
-            $"[4694]{Environment.NewLine}" +
-            $"Missing Tingen Web Service configuration file";
-
-        internal static string Error7362(string timeoutSetting) =>
-            $"Session exceeded timeout setting: {timeoutSetting}";
     }
 }

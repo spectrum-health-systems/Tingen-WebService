@@ -1,13 +1,12 @@
-﻿// 260728_code
-// 260728_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System.Reflection;
 using System.Web.Services;
 using ScriptLinkStandard.Objects;
-using TingenWebService.Configuration;
 using TingenWebService.Core;
-using TingenWebService.Logger;
-using TingenWebService.Session;
+using TingenWebService.Core.Avatar;
+using TingenWebService.Core.Logger;
 
 namespace TingenWebService
 {
@@ -18,16 +17,18 @@ namespace TingenWebService
     public class TingenWebService : WebService
     {
         /// <summary>The current Tingen Web Service release.</summary>
-        /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
+        /// <remarks>
+        /// Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering
+        /// why I define it here, so that's why this comment exists. Hello future me (again).
+        /// </remarks>
         /// <returns>A string representing the current release.</returns>
         private static string _twsRelease { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>The Tingen Web Service session instance.</summary>
         /// <remarks>
-        /// This property is used to maintain the session state for the Tingen Web Service. It is initialized in the
-        /// StartApp method and is used throughout the service to access session-specific data and configurations.
+        /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think
+        /// this is easier to read/understand than <code>twsSession = StartApp()</code>
         /// </remarks>
-        /// <returns>The (empty) Tingen Web Service session instance.</returns>
         internal TwsSession TwsSession { get; set; }
 
         /// <summary>Get the current version of the Tingen Web Service.</summary>
@@ -39,8 +40,11 @@ namespace TingenWebService
         /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
-        /// <remarks>This method is where the magic happens (and is required by Avatar).</remarks>
-        /// <returns>A completed OptionObject, which has potentially been modified.</returns>
+        /// <remarks>
+        /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="RunScript"]/TheMagic/*'/>
+        /// This method is required by Avatar.
+        /// </remarks>
+        /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
@@ -64,7 +68,7 @@ namespace TingenWebService
 
                 LogEvent.Session(TwsSession);
 
-                return sentOptObj.ToReturnOptionObject(0, ""); //TODO - Placeholder
+                return sentOptObj.ToReturnOptionObject(0, "");
             }
         }
 
@@ -72,43 +76,28 @@ namespace TingenWebService
         /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <note type="note" title="About Avatar data">
-        /// Avatar sends two pieces of data to the Tingen Web Service:
-        /// <list type="number">
-        /// <item>The <see cref="AvatarComponent.SentOptionObject"/></item>
-        /// <item>The <see cref="AvatarComponent.SentScriptParameter"/> </item>
-        /// </list>
-        /// If either of these components are missing, the Tingen Web Service cannot function properly. This method
-        /// checks for the presence of both components and logs an error if either is missing.</note>
+        /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="StartApp"]/AboutAvatarData/*'/>
         /// </remarks>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            return !Avatar.AvatarData.WasSent(sentOptionObject) || !Avatar.AvatarData.WasSent(sentScriptParameter);
+            return !AvatarData.WasSent(sentOptionObject) || !AvatarData.WasSent(sentScriptParameter);
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarComponent.SentOptionObject"/> sent from Avatar.</param>
-        /// <param name="sentScriptParameter">
-        /// The <see cref="AvatarComponent.SentScriptParameter"/> sent from Avatar.
-        /// </param>
+        /// <param name="sentScriptParameter"> The <see cref="AvatarComponent.SentScriptParameter"/> sent from Avatar.</param>
         /// <remarks>
         /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
         /// validating requirements, and initializing the session state.
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
-             * - Disable this in production.
-             */
-            LogEvent.Primeval("StartApp");
+            RuntimeConfiguration rtConfig = RuntimeConfiguration.Load(_twsRelease);
 
-            RuntimeConfig rtConfig = RuntimeConfig.Load(_twsRelease);
+            Core.Framework.FrameworkConfiguration twsFramework = Core.Framework.FrameworkConfiguration.Load(rtConfig.DataRoot, rtConfig.AvatarSystem);
 
-            Framework twsFramework = Framework.Load(rtConfig.DataRoot, rtConfig.AvatarSystem);
-
-            Maintenance.SessionMaintenance(rtConfig, twsFramework);
+            Core.Session.SessionMaintenance.InitializeNewSession(rtConfig, twsFramework);
 
             TwsSession = TwsSession.StartSession(sentOptionObject, sentScriptParameter, rtConfig, twsFramework);
         }

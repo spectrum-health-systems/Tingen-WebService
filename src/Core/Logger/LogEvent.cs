@@ -1,15 +1,14 @@
-﻿// 260728_code
-// 260728_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using TingenWebService.Core.Trove;
 using TingenWebService.Du;
-using TingenWebService.Session;
-using TingenWebService.Trove;
 
-namespace TingenWebService.Logger
+namespace TingenWebService.Core.Logger
 {
     internal class LogEvent
     {
@@ -45,12 +44,12 @@ namespace TingenWebService.Logger
 
             var sessionFolder = Path.Combine(twsSession.TwsFramework.SessionRoot,
                                              twsSession.RtConfig.SessionStartDate,
-                                             twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId,
+                                             twsSession.AvatarData.SentOptionObject.OptionUserId,
                                              twsSession.RtConfig.SessionStartTime);
 
             DuDirectory.EnsureDirectoryExists(sessionFolder);
 
-            var sessionLogName = Path.Combine(sessionFolder, $"{twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId}.session");
+            var sessionLogName = Path.Combine(sessionFolder, $"{twsSession.AvatarData.SentOptionObject.OptionUserId}.session");
 
 
 
@@ -66,7 +65,7 @@ namespace TingenWebService.Logger
                                twsSession.TwsFramework.BlueprintRoot,
                                $"{twsSession.RtConfig.SessionStartDate}-{twsSession.RtConfig.SessionStartTime}",
                                "7362",
-                               Epistle.Error7362(twsSession.TwsConfig.SessionTimeout));
+                               SysMsg.ERR1210(twsSession.TwsConfig.SessionTimeout)[1]);
             }
 
             var sessionLogBlueprint = File.ReadAllText(Path.Combine(twsSession.TwsFramework.BlueprintRoot, "SessionLog.blueprint"));
@@ -75,12 +74,12 @@ namespace TingenWebService.Logger
                                                 .Replace("~SESSION~START~", $"{twsSession.RtConfig.SessionStartTime}:{twsSession.RtConfig.SessionStartMilliseconds}")
                                                 .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                                 .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                                .Replace("~AVATAR~USER~NAME~", twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId.ToUpper())
+                                                .Replace("~AVATAR~USER~NAME~", twsSession.AvatarData.SentOptionObject.OptionUserId.ToUpper())
                                                 .Replace("~AVATAR~SYSTEM~", twsSession.RtConfig.AvatarSystem.ToUpper())
-                                                .Replace("~SCRIPT~PARAMETER~", twsSession.SentScriptParameter)
+                                                .Replace("~SCRIPT~PARAMETER~", twsSession.AvatarData.SentScriptParameter)
                                                 .Replace("~SESSION~RUNNING~LOG~", twsSession.RunningLog);
 
-            LogWriter.WriteLocal(sessionFolder, $"{twsSession.AvatarOptionObjects.SentOptionObject.OptionUserId}.session", logContent); // simplify
+            LogWriter.WriteLocal(sessionFolder, $"{twsSession.AvatarData.SentOptionObject.OptionUserId}.session", logContent); // simplify
         }
 
         internal static void SystemLog(string logFolder, string logName, string logContent)

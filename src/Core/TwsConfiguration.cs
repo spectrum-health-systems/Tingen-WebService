@@ -1,13 +1,13 @@
-﻿// 260724_code
-// 260726_documentation
+﻿// 260729_code
+// 260729_documentation
 
 using System.Collections.Generic;
 using System.IO;
+using TingenWebService.Core.Logger;
+using TingenWebService.Core.Trove;
 using TingenWebService.Du;
-using TingenWebService.Logger;
-using TingenWebService.Trove;
 
-namespace TingenWebService.Configuration
+namespace TingenWebService.Core.Configuration
 {
     /// <summary>Tingen Web Service configuration/settings logic.</summary>
     /// <remarks>
@@ -15,7 +15,7 @@ namespace TingenWebService.Configuration
     /// know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
     /// other configuration components.
     /// </remarks>
-    internal class TwsConfig
+    internal class TwsConfiguration
     {
         /// <summary>Tingen Web Service mode</summary>
         /// <remarks>
@@ -67,24 +67,24 @@ namespace TingenWebService.Configuration
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static TwsConfig Load(string configPath)
+        internal static TwsConfiguration Load(string configPath)
         {
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            Logger.LogEvent.Primeval("LoadTingenWebServiceConfig");
+            //Logger.LogEvent.Primeval("LoadTingenWebServiceConfig");
 
             if (!File.Exists(configPath))
             {
                 /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
                  */
-                LogEvent.Primeval("[CR4694]MissingConfig", Epistle.Error4694());
+                LogEvent.Primeval("[CR4694]MissingTingenWebServiceConfiguration", SysMsg.ERR1130()[1]);
                 //TODO - Probably send an email (since it should not happen)
 
                 CreateNew(configPath);
             }
 
-            return DuJson.ImportFile<TwsConfig>(configPath);
+            return DuJson.ImportFile<TwsConfiguration>(configPath);
         }
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
@@ -94,9 +94,9 @@ namespace TingenWebService.Configuration
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            Logger.LogEvent.Primeval("CreateTingenWebServiceConfig");
+            //Logger.LogEvent.Primeval("CreateTingenWebServiceConfig");
 
-            TwsConfig tngnWsvcConfig = new TwsConfig()
+            TwsConfiguration tngnWsvcConfig = new TwsConfiguration()
             {
                 Mode              = "enabled",
                 TraceLevelLimit   = 0,
