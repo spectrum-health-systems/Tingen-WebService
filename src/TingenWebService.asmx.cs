@@ -72,6 +72,7 @@ namespace TingenWebService
             }
         }
 
+        // TODO - Move to ns:Avatar.AvatarData?
         /// <summary>Determines if the Avatar data is missing.</summary>
         /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
@@ -97,7 +98,7 @@ namespace TingenWebService
 
             FrwkConfig frwkConfig = FrwkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
 
-            SessMaint.InitializeNewSession(runtimeConfig, frwkConfig);
+            SessMaint.InitializeNewSession(runtimeConfig, frwkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frwkConfig);
 
