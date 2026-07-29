@@ -51,11 +51,8 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
-             * - Disable this in production.
-             */
-            //LogEvent.Primeval("TingenWebServiceStarted", Epistle.DebugStartMessage(sentScriptParam));
+            /* Use primeval logs here to debug, since logging functionality has not been initialized yet. */
+            //LogEvent.Primeval("TingenWebServiceStarted", RedPrint.DebugStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
