@@ -9,7 +9,7 @@ using TingenWebService.Core.Trove;
 
 namespace TingenWebService.Core.Avatar
 {
-    /// <summary>Data sent from Avatar to the Tingen Web Service.</summary>
+    /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
     /// <remarks>
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/><br/>
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
@@ -31,7 +31,7 @@ namespace TingenWebService.Core.Avatar
         /// </remarks>
         public OptionObject2015 WorkerOptObj { get; set; }
 
-        /// <summary>The complete <see cref="OptionObject2015"/> ready to be returned to Avatar.</summary>
+        /// <summary>The complete <see cref="OptionObject2015"/> that is returned to Avatar.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>

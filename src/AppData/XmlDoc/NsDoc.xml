@@ -27,9 +27,9 @@
 
         <!-- N:TingenWebService.Core.Avatar -->
         <member name="N:TingenWebService.Core.Avatar">
-            <summary>Data that is sent to/from Avatar.</summary>
+            <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
             <remarks>
-                <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/>
+                Includes the OptionObject(s) and Scrip Parameter.
             </remarks>
         </member>
 
