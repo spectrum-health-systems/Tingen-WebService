@@ -494,52 +494,69 @@
             <param name="frameworkConfig">The <see cref="!:FrameworkConfig"> framework components</see>.</param>
             <returns>A new Tingen Web Service session object.</returns>
         </member>
+        <member name="T:TingenWebService.Du.DuJson">
+            <summary>Utilities for JSON operations.</summary>
+        </member>
         <member name="M:TingenWebService.Du.DuJson.ExportFile``1(``0,System.String,System.Boolean)">
-            <summary> Exports a JSON object to a file.</summary>
-            <typeparam name="T">The type of the JSON object.</typeparam>
+            <summary>Exports a JSON object to a file.</summary>
+            <typeparam name="JsonObject">The type of the JSON object.</typeparam>
             <param name="jsonObject">The JSON object to export.</param>
             <param name="filePath">The file path to export the JSON object to.</param>
             <param name="prettyJson">Determines if the JSON data is formatted.</param>
             <example>
-            To export a nicely formatted JSON object to a file:
             <code>
             var myObject = new MyObject();
-            DuJson.ExportFile(myObject, "path/to/file.json");
-            </code>
-            To export a compact JSON object to a file:
-            <code>
-            var myObject = new MyObject();
-            DuJson.ExportFile(myObject, "path/to/file.json", false);
+            DuJson.ExportFile&lt;MyObject&gt;(myObject, @"C:\Path\to\file.json"); // formatted
+            DuJson.ExportFile&lt;MyObject&gt;(myObject, @"C:\Path\to\file.json", false); //unformatted
             </code>
             </example>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:TingenWebService.Du.DuJson.ImportFile``1(System.String)" -->
-        <member name="M:TingenWebService.Du.DuDirectory.EnsureDirectoryExists(System.String)">
-            <summary>Ensures that the specified directory exists. If it does not exist, it will be created.</summary>
-            <param name="path">The path of the directory to check or create.</param>
+        <member name="M:TingenWebService.Du.DuJson.ImportFile``1(System.String)">
+            <summary>Imports a JSON object from a file.</summary>
+            <typeparam name="JsonObject">The type of the JSON object.</typeparam>
+            <param name="filePath">The file path to import the JSON object from.</param>
+            <returns>The imported JSON object.</returns>
             <example>
             <code>
-            DuDirectory.EnsureDirectoryExists("C:\\Tingen_Data");
+            var myObject = DuJson.ImportFile&lt;MyObject&gt;(@"C:\Path\to\file.json");
             </code>
             </example>
+        </member>
+        <member name="T:TingenWebService.Du.DuDirectory">
+            <summary>Utilities for directory operations.</summary>
+        </member>
+        <member name="M:TingenWebService.Du.DuDirectory.ForceExist(System.String)">
+            <summary>Ensures that the specified directory exists.</summary>
+            <param name="dir">The directory to verify/create.</param>
+            <remarks>If the directory does not exist, it will be created.</remarks>
+            <example>
+            <code>
+            DuDirectory.ForceExist(@"C:\directory\name");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Du.DuFile">
+            <summary>Utilities for file operations.</summary>
         </member>
         <member name="M:TingenWebService.Du.DuFile.DeadDrop(System.String,System.String)">
-            <summary>Writes the specified content to a file at the given path. If the file already exists, it will be overwritten.</summary>
+            <summary>Writes the specified content to a file at the given path.</summary>
             <param name="filePath">The path of the file to write to.</param>
             <param name="fileContent">The content to write to the file.</param>
+            <remarks>If the file already exists, it will be overwritten.</remarks>
             <example>
             <code>
-            DuFile.DeadDrop("C:\\Tingen_Data\\example.txt", "Hello, World!");
+            DuFile.DeadDrop(@"C:\Path\to\file.txt", "Hello, World!");
             </code>
             </example>
         </member>
         <member name="M:TingenWebService.Du.DuFile.DeadDropAppend(System.String,System.String)">
-            <summary>Writes the specified content to a file at the given path. If the file already exists, it will be overwritten.</summary>
+            <summary>Writes the specified content to a file at the given path.</summary>
             <param name="filePath">The path of the file to write to.</param>
             <param name="fileContent">The content to write to the file.</param>
+            <remarks>If the file already exists, the content will be appended to the existing file.</remarks>
             <example>
             <code>
-            DuFile.DeadDrop("C:\\Tingen_Data\\example.txt", "Hello, World!");
+            DuFile.DeadDrop(@"C:\Path\to\file.txt", "Hello, World!");
             </code>
             </example>
         </member>
