@@ -13,7 +13,9 @@ namespace TingenWebService.Core.Trove
     internal static class BluePrint
     {
         /// <summary>Build the blueprint for text error logs.</summary>
-        /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/></remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// </remarks>
         /// <returns>The text error log template string.</returns>
         internal static string ErrorLogTxtBP() =>
             $"Tingen Web Service Error Log{Environment.NewLine}" +
@@ -23,7 +25,9 @@ namespace TingenWebService.Core.Trove
             $"~ERROR~MESSAGE~";
 
         /// <summary>Build the blueprint for text session logs.</summary>
-        /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/></remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// </remarks>
         /// <returns>The text session log template string.</returns>
         internal static string SessLogTxtBP() =>
             $"Tingen Web Service Session Log{Environment.NewLine}" +
@@ -49,7 +53,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/><br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/><br/>
         /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
         /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
@@ -81,7 +85,9 @@ namespace TingenWebService.Core.Trove
             $"<sub>End of Tingen Web Service Session Log</sub>{Environment.NewLine}";
 
         /// <summary>Build the blueprint for HTML session logs.</summary>
-        /// <remarks>This is the default template for session logs sent via email.</remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// </remarks>
         /// <returns>The HTML session log template string.</returns>
         internal static string SessLogHtmlBP() =>
             $"<h1>Tingen Web Service Session Log</h1>{Environment.NewLine}" +

@@ -11,7 +11,7 @@ namespace TingenWebService.Core.Logger
     internal static class LogMaintenance
     {
         /// <summary>Verifies the existence of system log files and resets them if necessary.</summary>
-        /// <param name="twsSession"></param>
+        /// <param name="twsSession">The current session.</param>
         internal static void VerifySystemLogs(Sess twsSession)
         {
             if (!File.Exists(Path.Combine(twsSession.FrameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check

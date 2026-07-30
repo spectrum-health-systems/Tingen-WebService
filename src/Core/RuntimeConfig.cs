@@ -55,6 +55,7 @@ namespace TingenWebService.Core
         }
 
         /// <summary>Build the runtime configuration.</summary>
+        /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
         /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
         internal static RuntimeConfig Build(string twsRelease)
         {
