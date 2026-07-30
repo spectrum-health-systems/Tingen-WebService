@@ -94,6 +94,7 @@
         </member>
         <member name="M:TingenWebService.Core.RuntimeConfig.Build(System.String)">
             <summary>Build the runtime configuration.</summary>
+            <param name="twsRelease">The release version of the Tingen Web Service.</param>
             <returns>A <see cref="T:TingenWebService.Core.RuntimeConfig"/> instance with the current settings.</returns>
         </member>
         <member name="T:TingenWebService.Core.TwsConfig">
@@ -264,7 +265,7 @@
         </member>
         <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.Sess)">
             <summary>Verifies the existence of system log files and resets them if necessary.</summary>
-            <param name="twsSession"></param>
+            <param name="twsSession">The current session.</param>
         </member>
         <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Sess)">
             <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
@@ -450,7 +451,8 @@
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.ErrorLogTxtBP">
             <summary>Build the blueprint for text error logs.</summary>
-            <remarks><note type="note" title="About log formats">
+            <remarks>
+            <note type="note" title="About log formats">
                 Logs can be exported using any of the following formats:<br />
                 <br />
                 <b>Plain text (default)</b><br />
@@ -480,18 +482,81 @@
                     <item>Use HTML if you are emailing logs.</item>
                 </list>
                 You can change the log format by in the <c>TingenWebService.config</c> file.
-            </note></remarks>
+            </note> <br />
+            </remarks>
             <returns>The text error log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogTxtBP">
             <summary>Build the blueprint for text session logs.</summary>
-            <remarks><!-- No matching elements were found for the following include tag --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Blueprint&quot;]/LogFormats/*" /></remarks>
+            <remarks>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note> <br />
+            </remarks>
             <returns>The text session log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogMdBP">
             <summary>Build the blueprint for markdown session logs.</summary>
             <remarks>
-            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Blueprint&quot;]/LogFormats/*" /><br />
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note><br />
             This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
             up looking as nice as possible when it's rendered (it can't be perfect).
             </remarks>
@@ -499,7 +564,39 @@
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogHtmlBP">
             <summary>Build the blueprint for HTML session logs.</summary>
-            <remarks>This is the default template for session logs sent via email.</remarks>
+            <remarks>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note> <br />
+            </remarks>
             <returns>The HTML session log template string.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Catalog">
