@@ -367,20 +367,119 @@
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.ErrorLogTxtBP">
             <summary>Build the blueprint for text error logs.</summary>
+            <remarks>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:
+                <br />
+                <b>Plain text</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text (some text editors may not support it)<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list> 
+            </note>
+            </remarks>
             <returns>The text error log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogTxtBP">
             <summary>Build the blueprint for text session logs.</summary>
+            <remarks>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:
+                <br />
+                <b>Plain text</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text (some text editors may not support it)<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list> 
+            </note>
+            </remarks>
             <returns>The text session log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogMdBP">
             <summary>Build the blueprint for markdown session logs.</summary>
-            <remarks> Leave the tables like this so they end up looking as nice as possible as text.</remarks>
+            <remarks>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:
+                <br />
+                <b>Plain text</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text (some text editors may not support it)<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list> 
+            </note> 
+            <br /><br />
+            The table alignment looks wonkyLeave the tab, but leaving it this way is the best compromise to keep the
+            table up looking as nice as possible when it's rendered (it can't be perfect).
+            </remarks>
             <returns>A string containing the markdown blueprint for the session log.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogHtmlBP">
-            <summary>Build the blueprint for html session logs.</summary>
-            <returns>The html session log template string.</returns>
+            <summary>Build the blueprint for HTML session logs.</summary>
+            <remarks>This is the default template for session logs sent via email.</remarks>
+            <returns>The HTML session log template string.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Catalog">
             <summary>Preset collections and components.</summary>

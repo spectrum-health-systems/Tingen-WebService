@@ -64,7 +64,42 @@
                 The original template will be copied back to the blueprints folder.
             </note>
         </Restore>
-        
+
+        <!-- /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/> -->
+        <LogFormats>
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br/>
+                <br/>
+                <b>Plain text (default)</b><br/>
+                + Smallest file size (good for raw speed)<br/>
+                + Can be opened in any text editor<br/>
+                + Easy to customize<br/>
+                - Does not support any formatting/styling (totally boring!)<br/>
+                - Super compact, not the easiest to read<br/>
+                <br/>
+                <b>Markdown</b><br/>
+                + Allows for formatting, so logs look nice and are easy to read<br/>
+                + Super easy to customize<br/>
+                + The coolest format!<br/>
+                - Not as widely supported as plain text (some text editors may not support it)<br/>
+                - Probably not the best choice for emailing logs<br/>
+                <br/>
+                <b>HTML</b><br/>
+                + Allows for complex formatting<br/>
+                + Can be opened in any web browser (and most email clients)<br/>
+                - Largest file size<br/>
+                - More difficult to customize than plain text or markdown<br/>
+                <br/>
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note>
+        </LogFormats>
+
     </Topic>
 
 
