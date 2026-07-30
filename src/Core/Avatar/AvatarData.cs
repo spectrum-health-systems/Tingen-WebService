@@ -15,21 +15,24 @@ namespace TingenWebService.Core.Avatar
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
+        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 SentOptObj { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
+        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 WorkerOptObj { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> ready to be returned to Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
+        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 CompleteOptObj { get; set; }
