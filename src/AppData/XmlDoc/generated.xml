@@ -549,10 +549,18 @@
             <summary>Build the message indicating that blueprints have been exported.</summary>
             <returns>The blueprints exported message.</returns>
         </member>
+        <member name="M:TingenWebService.Core.Trove.RedPrint.ConfigurationDetails(TingenWebService.Core.TwsConfig)">
+            <summary>Build the configuration details message.</summary>
+            <param name="twsConfig">The Tingen Web Service configuration.</param>
+            <returns>The configuration details message.</returns>
+        </member>
         <member name="M:TingenWebService.Core.Trove.RedPrint.RuntimeDetails(TingenWebService.Core.RuntimeConfig)">
             <summary>Build the runtime details message.</summary>
             <param name="rtConfig">The runtime configuration.</param>
             <returns>The runtime details message.</returns>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.SysMsg">
+            <summary>Provides system messages for the Tingen Web Service.</summary>
         </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.DebugStartMessage(System.String)">
             <summary>Build the debug start message.</summary>
@@ -561,6 +569,7 @@
         </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.DailyStart(System.String)">
             <summary>Build the daily maintenance system log start message.</summary>
+            <param name="releaseBuild">The release build version.</param>
             <returns>The daily maintenance system log start message.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.FrameworkVerified">
@@ -579,6 +588,11 @@
             <summary>Build the runtime configuration load failure message.</summary>
             <param name="errorMessage">The error message.</param>
             <returns>The runtime configuration load failure message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1120(System.String)">
+            <summary>Build the framework configuration load failure message.</summary>
+            <param name="errorMessage">The error message.</param>
+            <returns>The framework configuration load failure message.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1130">
             <summary>Build the missing TngnWsvc.config message.</summary>

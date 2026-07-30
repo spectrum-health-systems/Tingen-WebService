@@ -5,6 +5,7 @@ using System;
 
 namespace TingenWebService.Core.Trove
 {
+    /// <summary>Provides system messages for the Tingen Web Service.</summary>
     internal class SysMsg
     {
         /* xxxx - System messages - will probably be moved to a numbered location.
@@ -20,6 +21,7 @@ namespace TingenWebService.Core.Trove
         internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
 
         /// <summary>Build the daily maintenance system log start message.</summary>
+        /// <param name="releaseBuild">The release build version.</param>
         /// <returns>The daily maintenance system log start message.</returns>
         internal static string DailyStart(string releaseBuild) => $"[Release] {releaseBuild}{Environment.NewLine}";
 
@@ -73,6 +75,9 @@ namespace TingenWebService.Core.Trove
                 $"Failed to load runtime configuration: {errorMessage}"
             };
 
+        /// <summary>Build the framework configuration load failure message.</summary>
+        /// <param name="errorMessage">The error message.</param>
+        /// <returns>The framework configuration load failure message.</returns>
         internal static string[] ERR1120(string errorMessage) =>
             new string[]
             {

@@ -32,6 +32,9 @@ namespace TingenWebService.Core.Trove
         /// <returns>The blueprints exported message.</returns>
         internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
 
+        /// <summary>Build the configuration details message.</summary>
+        /// <param name="twsConfig">The Tingen Web Service configuration.</param>
+        /// <returns>The configuration details message.</returns>
         internal static string ConfigurationDetails(TwsConfig twsConfig)
         {
             return $"         Configuration details{Environment.NewLine}" +
