@@ -97,10 +97,10 @@ namespace TingenWebService.Core.Framework
             var verificationStartMilliseconds = DateTime.Now.ToString("fffffff");
 
             verificationLog += $"[Start] {verificationStartTime}:{verificationStartMilliseconds}{Environment.NewLine}";
-            verificationLog += RedPrint.DailyStart(rtConfig.ReleaseBuild);
+            verificationLog += SysMsg.DailyStart(rtConfig.ReleaseBuild);
 
             Framework.FrwkMaint.Verify(twsFramework);
-            verificationLog += RedPrint.FrameworkVerified();
+            verificationLog += SysMsg.FrameworkVerified();
 
             Framework.FrwkMaint.ExportBlueprints(twsFramework.BlueprintRoot);
             verificationLog += RedPrint.BlueprintsExported();
