@@ -34,7 +34,7 @@ You can think of it as a box that contains all of the information that is in a f
 5. Makes sure everything is in order to be returned to Avatar
 6. Closes the box
 
-The box is then returned to AvatarNX.
+
 
 ### ScriptLink Standard
 

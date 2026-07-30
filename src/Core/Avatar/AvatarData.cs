@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 using System.IO;
@@ -9,20 +9,29 @@ using TingenWebService.Core.Trove;
 
 namespace TingenWebService.Core.Avatar
 {
-    /// <summary>Represents the data sent from Avatar to the Tingen Web Service.</summary>
-    /// <remarks>TBD</remarks>
+    /// <summary>Data sent from Avatar to the Tingen Web Service.</summary>
+    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/></remarks>
     internal class AvatarData
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
-        /// <remarks>This is <i>never</i> modified by the Tingen Web Service.</remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// </remarks>
         public OptionObject2015 SentOptObj { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
-        /// <remarks>This is <i>potentially</i> modified during processing.</remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// </remarks>
         public OptionObject2015 WorkerOptObj { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> ready to be returned to Avatar.</summary>
-        /// <remarks>This is the <i>final</i> version of the <see cref="OptionObject2015"/> that is returned to Avatar.</remarks>
+        /// <remarks>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// </remarks>
         public OptionObject2015 CompleteOptObj { get; set; }
 
         /// <summary>The original script parameter sent from Avatar.</summary>
