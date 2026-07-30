@@ -32,7 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>AppData\XmlDocumentation\generated.xml</DocumentationFile>
+    <DocumentationFile>AppData\XmlDoc\generated.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,10 +97,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppData\XmlDocumentation\NamespaceDocumentation.xml">
+    <Content Include="AppData\XmlDoc\NsDoc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="AppData\XmlDocumentation\TwsAsmx.xml" />
+    <Content Include="AppData\XmlDoc\Topics.xml" />
     <Content Include="TingenWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>

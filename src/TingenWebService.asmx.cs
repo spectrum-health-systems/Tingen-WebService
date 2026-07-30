@@ -44,7 +44,7 @@ namespace TingenWebService
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="RunScript"]/TheMagic/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="TheMagic"]/RunScript/*'/>
         /// This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
@@ -77,7 +77,7 @@ namespace TingenWebService
         /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDocumentation/TwsAsmx.xml' path='TwsAsmx/Class[@name="StartApp"]/AboutAvatarData/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/>
         /// </remarks>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
