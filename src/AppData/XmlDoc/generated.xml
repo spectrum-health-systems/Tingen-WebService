@@ -369,9 +369,9 @@
             <summary>Build the blueprint for text error logs.</summary>
             <remarks>
             <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:
+                Logs can be exported using any of the following formats:<br />
                 <br />
-                <b>Plain text</b><br />
+                <b>Plain text (default)</b><br />
                 + Smallest file size (good for raw speed)<br />
                 + Can be opened in any text editor<br />
                 + Easy to customize<br />
@@ -396,7 +396,8 @@
                     <item>Use plain text it you aren't constantly looking at logs.</item>
                     <item>Use Markdown if you are constantly looking at logs.</item>
                     <item>Use HTML if you are emailing logs.</item>
-                </list> 
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
             </note>
             </remarks>
             <returns>The text error log template string.</returns>
@@ -405,9 +406,9 @@
             <summary>Build the blueprint for text session logs.</summary>
             <remarks>
             <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:
+                Logs can be exported using any of the following formats:<br />
                 <br />
-                <b>Plain text</b><br />
+                <b>Plain text (default)</b><br />
                 + Smallest file size (good for raw speed)<br />
                 + Can be opened in any text editor<br />
                 + Easy to customize<br />
@@ -432,7 +433,8 @@
                     <item>Use plain text it you aren't constantly looking at logs.</item>
                     <item>Use Markdown if you are constantly looking at logs.</item>
                     <item>Use HTML if you are emailing logs.</item>
-                </list> 
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
             </note>
             </remarks>
             <returns>The text session log template string.</returns>
@@ -441,9 +443,9 @@
             <summary>Build the blueprint for markdown session logs.</summary>
             <remarks>
             <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:
+                Logs can be exported using any of the following formats:<br />
                 <br />
-                <b>Plain text</b><br />
+                <b>Plain text (default)</b><br />
                 + Smallest file size (good for raw speed)<br />
                 + Can be opened in any text editor<br />
                 + Easy to customize<br />
@@ -468,10 +470,11 @@
                     <item>Use plain text it you aren't constantly looking at logs.</item>
                     <item>Use Markdown if you are constantly looking at logs.</item>
                     <item>Use HTML if you are emailing logs.</item>
-                </list> 
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
             </note> 
             <br /><br />
-            The table alignment looks wonkyLeave the tab, but leaving it this way is the best compromise to keep the
+            This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the
             table up looking as nice as possible when it's rendered (it can't be perfect).
             </remarks>
             <returns>A string containing the markdown blueprint for the session log.</returns>

@@ -56,7 +56,7 @@ namespace TingenWebService.Core.Trove
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/> 
         /// <br/><br/>
-        /// The table alignment looks wonkyLeave the tab, but leaving it this way is the best compromise to keep the
+        /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the
         /// table up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
         /// <returns>A string containing the markdown blueprint for the session log.</returns>
