@@ -6,6 +6,7 @@ using System.IO;
 
 namespace TingenWebService.Core.Session
 {
+    /// <summary>Session maintenance logic.</summary>
     internal class SessMaint
     {
         /// <summary>Session maintenance.</summary>

@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System.Collections.Generic;
 using System.IO;
@@ -41,21 +41,28 @@ namespace TingenWebService.Core
         /// <value>Default: 10</value>
         public int LogDelay { get; set; }
 
+        /// <summary>Session log detail level.</summary>
         public int SessLogDetailLevel { get; set; }
 
+        /// <summary>Indicates whether session logs should be written in plain text format.</summary>
         public bool SessLogTxt { get; set; }
 
+        /// <summary>Indicates whether session logs should be written in Markdown format.</summary>
         public bool SessLogMd { get; set; }
 
+        /// <summary>Indicates whether session logs should be written in HTML format.</summary>
         public bool SessLogHtml { get; set; }
 
         /// <summary>Session timeout is too damn high!</summary>
         public string SessTimeout { get; set; }
 
+        /// <summary>Indicates whether error logs should be written in plain text format.</summary>
         public bool ErrorLogTxt { get; set; }
 
+        /// <summary>Indicates whether error logs should be written in Markdown format.</summary>
         public bool ErrorLogMd { get; set; }
 
+        /// <summary>Indicates whether error logs should be written in HTML format.</summary>
         public bool ErrorLogHtml { get; set; }
 
         /// <summary>Email address the web services uses to send notifications.</summary>
@@ -67,6 +74,7 @@ namespace TingenWebService.Core
         /// <summary>Email addresses the web services uses to send notifications.</summary>
         public List<string> ToEmailAddress { get; set; }
 
+        /// <summary>The format of the email messages sent by the web services.</summary>
         public string EmailFormat { get; set; }
 
         /// <summary>The username used to authenticate with NTST web services.</summary>

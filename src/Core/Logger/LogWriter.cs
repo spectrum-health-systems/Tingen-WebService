@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 using System.IO;
@@ -8,6 +8,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Logger
 {
+    /// <summary>Provides methods for writing log messages to local files.</summary>
     internal static class LogWriter
     {
         /// <summary>Extracts the class name (without extension) from a full source file path.</summary>

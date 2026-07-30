@@ -7,37 +7,17 @@ namespace TingenWebService.Core.Trove
 {
     internal class SysMsg
     {
-        /* 0xxx - Miscellaneous
+        /* xxxx - System messages - will probably be moved to a numbered location.
+         * 0xxx - Miscellaneous
          * 1xxx - Tingen Web Service
          * 2xxx - Tingen Web Service Modules
          * 9xxx - Critical messages
-         */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /* =====================================================================
-         * 0000 - 0999: Miscellaneous
-         * =====================================================================
-         * Nothing here yet.
          */
 
         /// <summary>Build the debug start message.</summary>
         /// <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
         /// <returns>The debug start message.</returns>
         internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
-
 
         /// <summary>Build the daily maintenance system log start message.</summary>
         /// <returns>The daily maintenance system log start message.</returns>
@@ -47,6 +27,11 @@ namespace TingenWebService.Core.Trove
         /// <returns>The framework verified message.</returns>
         internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
 
+        /* =====================================================================
+         * 0000 - 0999: Miscellaneous
+         * =====================================================================
+         * Nothing here yet.
+         */
 
         /* =====================================================================
          * 1000 - 1999: Tingen Web Service
@@ -118,6 +103,10 @@ namespace TingenWebService.Core.Trove
                 $"  Message:  {errorMessage}"
             };
 
+        /// <summary>Build the session duration timeout exceeded message.</summary>
+        /// <param name="avatarUser">The Avatar user.</param>
+        /// <param name="sessionDurationMilliseconds">The session duration in milliseconds.</param>
+        /// <returns>The session duration timeout exceeded message.</returns>
         internal static string[] ERR1210(string avatarUser, string sessionDurationMilliseconds) =>
             new string[]
             {

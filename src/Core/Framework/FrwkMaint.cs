@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 using System.IO;
@@ -9,6 +9,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Framework
 {
+    /// <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
     internal class FrwkMaint
     {
         /// <summary>Verify the Tingen Web Service framework.</summary>

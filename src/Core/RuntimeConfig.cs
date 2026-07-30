@@ -1,11 +1,10 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Trove;
 using TingenWebService.Properties;
-
 
 namespace TingenWebService.Core
 {
@@ -38,6 +37,9 @@ namespace TingenWebService.Core
         /// <summary>The root directory for Tingen Web Service data.</summary>
         public string DataRoot { get; set; }
 
+        /// <summary>Load the runtime configuration.</summary>
+        /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
+        /// <returns>The loaded <see cref="RuntimeConfig"/> instance.</returns>
         internal static RuntimeConfig Load(string twsRelease)
         {
             try

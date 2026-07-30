@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 using System.IO;
@@ -10,8 +10,15 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Logger
 {
+    /// <summary>Provides methods for logging various types of events.</summary>
     internal static class LogEvent
     {
+        /// <summary>Logs an error event with the specified details.</summary>
+        /// <param name="sysLogRoot">The root folder of the system log files.</param>
+        /// <param name="bpRoot">The root folder of the blueprint files.</param>
+        /// <param name="sessStartDateTime">The start date and time of the session.</param>
+        /// <param name="errCode">The error code.</param>
+        /// <param name="errMsg">The error message.</param>
         internal static void Error(string sysLogRoot, string bpRoot, string sessStartDateTime, string errCode, string errMsg)
         {
             DuDirectory.ForceExist(sysLogRoot);
@@ -38,6 +45,8 @@ namespace TingenWebService.Core.Logger
             LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
         }
 
+        /// <summary>Logs a session event with the specified session details.</summary>
+        /// <param name="sess">The session object containing session details.</param>
         internal static void Session(Sess sess)
         {
             // TODO - Clean this up.
@@ -119,6 +128,10 @@ namespace TingenWebService.Core.Logger
             }
         }
 
+        /// <summary>Logs a system event with the specified details.</summary>
+        /// <param name="logFolder">The folder where the log file will be written.</param>
+        /// <param name="logName">The name of the log file.</param>
+        /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
             /* DEVNOTE
