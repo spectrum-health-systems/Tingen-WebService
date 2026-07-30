@@ -1,20 +1,15 @@
-// 260722_code
-// 260722_documentation
+﻿// 260730_code
+// 260730_documentation
 
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using TingenWebService.Core.Du;
 using TingenWebService.Core.Logger;
+using TingenWebService.Du;
 
 namespace TingenWebService.Module.OpenIncident
 {
-    /// <summary>OpenIncident Module configuration logic.</summary>
     internal class OpenIncidentConfig
     {
-        /// <include file='AppData/XmlDocumentation/TngnWsvc.xml' path='TngnWsvc/Class[@name="CommonDefinition"]/ExecutingAssembly/*'/>
-        public static string ExeAsm { get; set; } = Assembly.GetExecutingAssembly().GetName().Name;
-
         /// <summary>The OpenIncident Module operating mode.</summary>
         /// <remarks>
         /// <list type="bullet">
@@ -25,22 +20,12 @@ namespace TingenWebService.Module.OpenIncident
         /// <value>The configured mode value, such as <c>enabled</c>.</value>
         public string Mode { get; set; }
 
-        //TODO Rename this to "BypassList"
         /// <summary>The list of Avatar usernames that bypass the OpenIncident module.</summary>
         /// <remarks>
         /// If an Avatar username (e.g., "JSMITH") is included in this list, they will bypass the OpenIncident module
         /// functionality, and the Open Incident form will behave normally.
         /// </remarks>
-        public List<string> Whitelist { get; set; }
-
-        //TODO Not sure if this is needed.
-        /// <summary>The list of users requiring conditional handling.</summary>
-        /// <value>A collection of user identifiers that should be treated as greylisted users.</value>
-        public List<string> Greylist { get; set; }
-
-        //TODO Rename this to "BannedList" - Also, not sure if this is needed.
-        /// <summary>The list of Avatar usernames explicitly denied access to the module.</summary>
-        public List<string> Blacklist { get; set; }
+        public List<string> BypassList { get; set; }
 
         /// <summary>The list of authorized Avatar User Roles that are permitted to view incidents.</summary>
         /// <remarks>
@@ -132,65 +117,39 @@ namespace TingenWebService.Module.OpenIncident
         /// </remarks>
         public int UnknownUserDescriptionErrCode { get; set; }
 
-        /// <summary>Load the OpenIncident configuration.</summary>
+
+        /// <summary>Load the Tingen Web Service configuration from a file.</summary>
+        /// <param name="configPath">The path to the configuration file.</param>
+        /// <param name="traceLimit">The trace limit for logging.</param>
+        /// <param name="sessFolder">The session folder for logging.</param>
         /// <remarks>
-        /// If the configuration file does not exist, a new default configuration file is created before the file is
-        /// loaded and returned.
+        /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
-        /// <param name="configPath">The full path to the configuration file.</param>
-        /// <param name="traceLogLimit">The maximum trace logging level to write.</param>
-        /// <param name="sessionFolder">The session folder where trace output is written.</param>
-        /// <returns>The loaded <see cref="OpenIncidentConfig"/> instance.</returns>
-        /// <example>
-        /// <code>
-        /// OpenIncidentConfig config = OpenIncidentConfig.Load(configPath, traceLogLimit, sessionFolder);
-        /// </code>
-        /// </example>
-        internal static OpenIncidentConfig Load(string configPath, int traceLogLimit, string sessionFolder)
+        /// <returns>The loaded Tingen Web Service configuration.</returns>
+        internal static OpenIncidentConfig Load(string configPath, int traceLimit, string sessFolder)
         {
-            LogEvent.Trace(1, traceLogLimit, sessionFolder, ExeAsm);
+            LogEvent.Trace(9, traceLimit, sessFolder);
 
             if (!File.Exists(configPath))
             {
-                LogEvent.Trace(2, traceLogLimit, sessionFolder, ExeAsm);
+                LogEvent.Trace(8, traceLimit, sessFolder);
 
-                CreateNew(configPath, traceLogLimit, sessionFolder);
+                Build(configPath, traceLimit, sessFolder);
             }
 
-            return DuJson.ImportFromLocalFile<OpenIncidentConfig>(configPath);
+            return DuJson.ImportFile<OpenIncidentConfig>(configPath);
         }
 
-        /// <summary>Creates a new configuration file with default OpenIncident module values.</summary>
-        /// <remarks>
-        /// This method initializes a new <see cref="OpenIncidentConfig"/> instance and writes it to the path
-        /// specified by <paramref name="configPath"/>.
-        /// </remarks>
-        /// <param name="configPath">The full path where the configuration file should be written.</param>
-        /// <param name="traceLogLimit">The maximum trace logging level to write.</param>
-        /// <param name="sessionFolder">The session folder where trace output is written.</param>
-        /// <example>
-        /// <code>
-        /// OpenIncidentConfig.New(configPath, traceLogLimit, sessionFolder);
-        /// </code>
-        /// </example>
-        internal static void CreateNew(string configPath, int traceLogLimit, string sessionFolder)
+        /// <summary>Create a new Tingen Web Service configuration file.</summary>
+        /// <param name="configPath">The path to the configuration file.</param>
+        /// <param name="traceLimit">The trace limit for logging.</param>
+        /// <param name="sessFolder">The session folder for logging.</param>
+        private static void Build(string configPath, int traceLimit, string sessFolder)
         {
-            LogEvent.Trace(1, traceLogLimit, sessionFolder, ExeAsm);
+            LogEvent.Trace(9, traceLimit, sessFolder);
 
-            OpenIncidentConfig openIncident = new OpenIncidentConfig()
+            OpenIncidentConfig openIncidentConfig = new OpenIncidentConfig()
             {
-                Mode                                = "enabled",
-                Whitelist                           = new List<string>(),
-                Blacklist                           = new List<string>(),
-                Greylist                            = new List<string>(),
-                AuthorizedUserRoles                 = new List<string>()
-                {
-                    "NXCOMPLIANCE",
-                    "NXDOCCLINSUP",
-                    "NXDOCMANAGEMENT",
-                    "NXDOCNURSESUP",
-                    "SuperUser"
-                },
                 BriefIncidentDescriptionFieldId     = "2",
                 ProgramOfIncidentFieldId            = "20",
                 PersonCompletingIncidentFormFieldId = "32",
@@ -206,7 +165,8 @@ namespace TingenWebService.Module.OpenIncident
                 InvalidProgramOfIncidentErrCode     = 1
             };
 
-            DuJson.ExportToLocalFile(openIncident, configPath, true);
+            // TODO - Add try...catch error handling - maybe in DuJson?
+            DuJson.ExportFile(openIncidentConfig, configPath, true);
         }
     }
 }

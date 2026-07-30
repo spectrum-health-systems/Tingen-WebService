@@ -62,7 +62,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-RuntimeConfig.Build");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-RuntimeConfig.Build");
 
             return new RuntimeConfig()
             {

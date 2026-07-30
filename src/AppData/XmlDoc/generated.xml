@@ -264,7 +264,7 @@
             </list>
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.TraceLevelLimit">
+        <member name="P:TingenWebService.Core.TwsConfig.TraceLimit">
             <summary>Trace level limit.</summary>
             <remarks>
             LINKTO Logging/TraceLevelLimit documentation
@@ -412,18 +412,20 @@
         <member name="T:TingenWebService.Core.Logger.LogMaintenance">
             <summary>Provides methods for maintaining system log files.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.Sess)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.Session.Sess)">
             <summary>Verifies the existence of system log files and resets them if necessary.</summary>
             <param name="twsSession">The current session.</param>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Sess)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Session.Sess)">
             <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
-            <param name="twsSession">The current session.</param>
+            <param name="sess">The current session.</param>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String})">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String},System.Int32,System.String)">
             <summary>Removes the specified system log files.</summary>
             <param name="systemLogRoot">The root folder of the system log files.</param>
             <param name="systemFileNames">The list of system log file names to remove.</param>
+            <param name="traceLimit">The trace limit for logging.</param>
+            <param name="sessionFolder">The session folder for logging.</param>
         </member>
         <member name="M:TingenWebService.Core.Logger.LogMaintenance.BuildSystemLogs(System.String,System.Collections.Generic.List{System.String},TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig,TingenWebService.Core.TwsConfig)">
             <summary>Builds the specified system log files.</summary>
@@ -534,7 +536,7 @@
             not conflict with other log entries.
             </remarks>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(TingenWebService.Core.Sess)">
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(TingenWebService.Core.Session.Sess)">
             <summary>Logs a session event with the specified session details.</summary>
             <param name="sess">The session object containing session details.</param>
         </member>
@@ -576,6 +578,50 @@
             </remarks>
             <param name="rtConfig">The runtime configuration.</param>
             <param name="twsFramework">The framework instance.</param>
+        </member>
+        <member name="T:TingenWebService.Core.Session.Sess">
+            <summary>The Tingen Web Service session object.</summary>
+            <remarks>
+            <note type="note" title="About the Tingen Web Service Session">
+            This class contains everything needed for the Tingen Web Service to process
+            a request, including:
+            <list type="bullet">
+            <item>The request (sentScriptParam)</item>
+            <item>The <i>original</i> data from Avatar (<see cref="T:TingenWebService.Core.Avatar.AvatarData"/>)</item>
+            <item>The <i>working</i> (<see cref="P:TingenWebService.Core.Avatar.AvatarData.WorkerOptObj"/>) and <i>completed</i> data (<see cref="P:TingenWebService.Core.Avatar.AvatarData.CompleteOptObj"/>) from Avatar</item>
+            <item>Various settings, configurations, and framework information</item>
+            <item>Details about the session</item>
+            </list>
+            </note>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.RtSetting">
+            <summary>The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime settings</see>.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.FrwkSetting">
+            <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.TwsSetting">
+            <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.TwsConfig"> configuration settings</see>.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.AvatarData">
+            <summary>The current date (yyMMdd).</summary>
+            <summary>The Avatar data associated with the session.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.SessionFolder">
+            <summary>The folder path that will store session data.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.Session.Sess.RunningLog">
+            <summary>Details about the session.</summary>
+            <remarks>The running log.</remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Session.Sess.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig)">
+            <summary>Start a new Tingen Web Service session.</summary>
+            <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
+            <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
+            <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime configuration settings</see>.</param>
+            <param name="frameworkConfig">The <see cref="P:TingenWebService.Core.Session.Sess.FrwkSetting"> framework components</see>.</param>
+            <returns>A new Tingen Web Service session object.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.BluePrint">
             <summary>User-modifiable templates.</summary>
@@ -862,50 +908,6 @@
             <param name="errorMessage">The error message.</param>
             <returns>The maintenance failure message.</returns>
         </member>
-        <member name="T:TingenWebService.Core.Sess">
-            <summary>The Tingen Web Service session object.</summary>
-            <remarks>
-            <note type="note" title="About the Tingen Web Service Session">
-            This class contains everything needed for the Tingen Web Service to process
-            a request, including:
-            <list type="bullet">
-            <item>The request (sentScriptParam)</item>
-            <item>The <i>original</i> data from Avatar (<see cref="T:TingenWebService.Core.Avatar.AvatarData"/>)</item>
-            <item>The <i>working</i> (<see cref="P:TingenWebService.Core.Avatar.AvatarData.WorkerOptObj"/>) and <i>completed</i> data (<see cref="P:TingenWebService.Core.Avatar.AvatarData.CompleteOptObj"/>) from Avatar</item>
-            <item>Various settings, configurations, and framework information</item>
-            <item>Details about the session</item>
-            </list>
-            </note>
-            </remarks>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.RuntimeSetting">
-            <summary>The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime settings</see>.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.FrameworkSetting">
-            <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.TwsSetting">
-            <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.TwsConfig"> configuration settings</see>.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.AvatarData">
-            <summary>The current date (yyMMdd).</summary>
-            <summary>The Avatar data associated with the session.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.SessionFolder">
-            <summary>The folder path that will store session data.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.Sess.RunningLog">
-            <summary>Details about the session.</summary>
-            <remarks>The running log.</remarks>
-        </member>
-        <member name="M:TingenWebService.Core.Sess.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig)">
-            <summary>Start a new Tingen Web Service session.</summary>
-            <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
-            <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-            <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime configuration settings</see>.</param>
-            <param name="frameworkConfig">The <see cref="P:TingenWebService.Core.Sess.FrameworkSetting"> framework components</see>.</param>
-            <returns>A new Tingen Web Service session object.</returns>
-        </member>
         <member name="T:TingenWebService.Du.DuJson">
             <summary>Utilities for JSON operations.</summary>
         </member>
@@ -969,6 +971,145 @@
             <example>
             <code>
             DuFile.DeadDrop(@"C:\Path\to\file.txt", "Hello, World!");
+            </code>
+            </example>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Mode">
+            <summary>The OpenIncident Module operating mode.</summary>
+            <remarks>
+            <list type="bullet">
+            <item>Enabled - The module is active and operational.</item>
+            <item>Disabled - The module is inactive and non-operational.</item>
+            </list>
+            </remarks>
+            <value>The configured mode value, such as <c>enabled</c>.</value>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.BypassList">
+            <summary>The list of Avatar usernames that bypass the OpenIncident module.</summary>
+            <remarks>
+            If an Avatar username (e.g., "JSMITH") is included in this list, they will bypass the OpenIncident module
+            functionality, and the Open Incident form will behave normally.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles">
+            <summary>The list of authorized Avatar User Roles that are permitted to view incidents.</summary>
+            <remarks>
+            If an Avatar User Role (e.g., "NXOPNURSE") is included in this list, it's members will be able to view Open
+            Incident forms, regardless of whether they are the original author of the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.BriefIncidentDescriptionFieldId">
+            <summary>The Brief Incident Description field ID.</summary>
+            <remarks>
+            TBD - What this is used for.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.ProgramOfIncidentFieldId">
+            <summary>The Program of Incident field ID.</summary>
+            <remarks>
+            TBD - What this is used for.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.PersonCompletingIncidentFormFieldId">
+            <summary>The Person Completing the Incident Form field ID.</summary>
+            <remarks>
+            TBD - What this is used for.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleMsg">
+            <summary>The message returned when the user lacks an authorized role.</summary>
+            <remarks>
+            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles"/>, this message
+            will be displayed to the user when they attempt to view an Open Incident form.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleErrCode">
+            <summary>The error code returned when the user lacks an authorized role.</summary>
+            <remarks>
+            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles"/>, this error code
+            will be returned when they attempt to view an Open Incident form.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenMsg">
+            <summary>The message returned when a non-author opens an incident.</summary>
+            <remarks>
+            If the user is not the original author of the incident, this message will be displayed to the user when they
+            attempt to open the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenErrCode">
+            <summary>The error code returned when a non-author opens an incident.</summary>
+            <remarks>
+            If the user is not the original author of the incident, this error code will be returned when they attempt to open the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitMsg">
+            <summary>The message returned when a non-author attempts to submit an incident.</summary>
+            <remarks>
+            If the user is not the original author of the incident, this message will be displayed to the user when they attempt to submit the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitErrCode">
+            <summary>The error code returned when a non-author attempts to submit an incident.</summary>
+            <remarks>
+            If the user is not the original author of the incident, this error code will be returned when they attempt to submit the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentMsg">
+            <summary>The message returned when the program of incident is invalid.</summary>
+            <remarks>
+            The message displayed to the user when the program of incident value is not valid and must be corrected
+            before submitting the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentErrCode">
+            <summary>The error code returned when the program of incident is invalid.</summary>
+            <remarks>
+            The error code returned when the program of incident value is not valid and must be corrected before
+            submitting the incident.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionMsg">
+            <summary>The message returned when the user description cannot be resolved.</summary>
+            <remarks>
+            The message displayed to the user when the current username is missing from the translation table.
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionErrCode">
+            <summary>The error code returned when the user description cannot be resolved.</summary>
+            <remarks>
+            The numeric error code associated with an unknown user description result.
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Load(System.String,System.Int32,System.String)">
+            <summary>Load the Tingen Web Service configuration from a file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+            <param name="traceLimit">The trace limit for logging.</param>
+            <param name="sessFolder">The session folder for logging.</param>
+            <remarks>
+            If the configuration file does not exist, a new configuration file is created with default values.
+            </remarks>
+            <returns>The loaded Tingen Web Service configuration.</returns>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Build(System.String,System.Int32,System.String)">
+            <summary>Create a new Tingen Web Service configuration file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+            <param name="traceLimit">The trace limit for logging.</param>
+            <param name="sessFolder">The session folder for logging.</param>
+        </member>
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentRequest.Parse(TingenWebService.Core.Session.Sess)">
+            <summary>Parses the OpenIncident request and sends it to the appropriate handler.</summary>
+            <remarks>
+            This method:
+            <list type="number">
+            <item>Loads the OpenIncident module configuration.</item>
+            <item>Routes the request.</item>
+            </list>
+            </remarks>
+            <param name="tngnWsvcSession">The current Tingen Web Service session being processed.</param>
+            <example>
+            <code>
+            OpenIncidentEvent.Parse(tngnWsvcSession);
             </code>
             </example>
         </member>

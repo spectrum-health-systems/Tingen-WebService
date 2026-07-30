@@ -1,6 +1,7 @@
 ﻿// 260729_code
 // 260729_documentation
 
+using System;
 using System.IO;
 using System.Reflection;
 using System.Web.Services;
@@ -10,6 +11,7 @@ using TingenWebService.Core.Avatar;
 using TingenWebService.Core.Framework;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
+using TingenWebService.Core.Trove;
 
 namespace TingenWebService
 {
@@ -52,7 +54,7 @@ namespace TingenWebService
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
             /* Use primeval logs here to debug, since logging functionality has not been initialized yet. */
-            //LogEvent.Primeval("TingenWebServiceStarted", RedPrint.DebugStartMessage(sentScriptParam));
+            LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TingenWebServiceStarted", SysMsg.DebugStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
@@ -62,13 +64,13 @@ namespace TingenWebService
             {
                 StartApp(sentOptObj, sentScriptParam);
 
-                LogEvent.Trace(9, _sess.TwsSetting.TraceLevelLimit, _sess.SessionFolder);
+                LogEvent.Trace(9, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
 
                 // TODO - Route to the appropriate place.
 
                 LogEvent.Session(_sess);
 
-                return sentOptObj.ToReturnOptionObject(0, "");
+                return _sess.AvatarData.WorkerOptObj.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
             }
         }
 
@@ -104,6 +106,8 @@ namespace TingenWebService
 
             if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else?
             {
+                LogEvent.Trace(8, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
+
                 LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             }
         }

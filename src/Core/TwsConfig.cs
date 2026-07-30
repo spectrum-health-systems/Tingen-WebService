@@ -1,6 +1,7 @@
 ﻿// 260729_code
 // 260730_documentation
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Du;
@@ -29,7 +30,7 @@ namespace TingenWebService.Core
         /// <remarks>
         /// LINKTO Logging/TraceLevelLimit documentation
         /// </remarks>
-        public int TraceLevelLimit { get; set; }
+        public int TraceLimit { get; set; }
 
         /// <summary>Log delay.</summary>
         /// <remarks>
@@ -94,7 +95,7 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Load");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Load");
 
             //TODO - put an actual error log here
 
@@ -115,12 +116,12 @@ namespace TingenWebService.Core
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Build");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Build");
 
             TwsConfig tngnWsvcConfig = new TwsConfig()
             {
                 Mode               = "enabled",
-                TraceLevelLimit    = 0,
+                TraceLimit    = 0,
                 LogDelay           = 0,
                 SessLogDetailLevel = 0,
                 SessLogTxt         = true,

@@ -32,7 +32,8 @@ namespace TingenWebService.Core.Trove
             {
                 "Configuration",
                 "Framework",
-                "Runtime"
+                "Runtime",
+                "OpenIncident"
             };
 
         // TODO - Add ErrorLogMd and ErrorLogHtml. Also rename ErrorLogTxt to ErrLogTxt

@@ -20,7 +20,7 @@ namespace TingenWebService.Core.Session
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-SessMaint.InitializeNewSession");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-SessMaint.InitializeNewSession");
 
             var dailyDate = DateTime.Now.ToString("yyMMdd");
 

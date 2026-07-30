@@ -49,6 +49,12 @@ namespace TingenWebService.Core.Avatar
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
         internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
         {
+            /* DEVNOTE
+             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
+             * - Disable this in production.
+             */
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-AvatarData.Build");
+
             return new AvatarData
             {
                 SentOptObj      = sentOptObj,

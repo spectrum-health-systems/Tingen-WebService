@@ -2,6 +2,7 @@
 // 260730_documentation
 
 using System;
+using TingenWebService.Module.OpenIncident;
 
 namespace TingenWebService.Core.Trove
 {
@@ -40,7 +41,7 @@ namespace TingenWebService.Core.Trove
             return $"         Configuration details{Environment.NewLine}" +
                    $"------------------------------{Environment.NewLine}" +
                    $"                          Mode: {twsConfig.Mode}{Environment.NewLine}" +
-                   $"             Trace Level Limit: {twsConfig.TraceLevelLimit}{Environment.NewLine}" +
+                   $"             Trace Level Limit: {twsConfig.TraceLimit}{Environment.NewLine}" +
                    $"                     Log Delay: {twsConfig.LogDelay}{Environment.NewLine}" +
                    $"               Session Timeout: {twsConfig.SessTimeout}{Environment.NewLine}" +
                    $"            From Email Address: {twsConfig.FromEmailAddress}{Environment.NewLine}" +
@@ -61,5 +62,43 @@ namespace TingenWebService.Core.Trove
                    $"Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
                    $"    Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
         }
+
+        internal static string OpenIncidentConfig(OpenIncidentConfig openIncidentConfig)
+        {
+            // TODO - See note below
+            return $"                  Open Incident Module Config{Environment.NewLine}" +
+                   $"---------------------------------------------{Environment.NewLine}" +
+                   $"                                         Mode: {openIncidentConfig.Mode}{Environment.NewLine}" +
+                   $"                                  Bypass List: {string.Join(", ", openIncidentConfig.BypassList)}{Environment.NewLine}" +
+                   $"                        Authorized User Roles: {string.Join(", ", openIncidentConfig.AuthorizedUserRoles)}{Environment.NewLine}" +
+                   $"          Brief Incident Description Field ID: {openIncidentConfig.BriefIncidentDescriptionFieldId}{Environment.NewLine}" +
+                   $"                 Program of Incident Field ID: {openIncidentConfig.ProgramOfIncidentFieldId}{Environment.NewLine}" +
+                   $"     Person Completing Incident Form Field ID: {openIncidentConfig.PersonCompletingIncidentFormFieldId}{Environment.NewLine}" +
+                   $"   Not Member of Authorized User Role Message: {openIncidentConfig.NotMemberOfAuthorizedUserRoleMsg}{Environment.NewLine}" +
+                   $"Not Member of Authorized User Role Error Code: {openIncidentConfig.NotMemberOfAuthorizedUserRoleErrCode}{Environment.NewLine}" +
+                   $"             Not Original Author Open Message: {openIncidentConfig.NotOriginalAuthorOpenMsg}{Environment.NewLine}" +
+                   $"          Not Original Author Open Error Code: {openIncidentConfig.NotOriginalAuthorOpenErrCode}{Environment.NewLine}" +
+                   $"           Not Original Author Submit Message: {openIncidentConfig.NotOriginalAuthorSubmitMsg}{Environment.NewLine}" +
+                   $"        Not Original Author Submit Error Code: {openIncidentConfig.NotOriginalAuthorSubmitErrCode}{Environment.NewLine}" +
+                   $"          Invalid Program of Incident Message: {openIncidentConfig.InvalidProgramOfIncidentMsg}{Environment.NewLine}" +
+                   $"       Invalid Program of Incident Error Code: {openIncidentConfig.InvalidProgramOfIncidentErrCode}{Environment.NewLine}";
+        }
     }
 }
+
+/*
+
+Originally in OpenIncidentConfig()
+
+/// <summary>The message returned when the user description cannot be resolved.</summary>
+/// <remarks>
+/// The message displayed to the user when the current username is missing from the translation table.
+/// </remarks>
+public string UnknownUserDescriptionMsg { get; set; }
+
+/// <summary>The error code returned when the user description cannot be resolved.</summary>
+/// <remarks>
+/// The numeric error code associated with an unknown user description result.
+/// </remarks>
+public int UnknownUserDescriptionErrCode { get; set; }
+ */

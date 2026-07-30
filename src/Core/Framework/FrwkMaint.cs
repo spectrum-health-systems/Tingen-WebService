@@ -23,7 +23,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.Verify");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.Verify");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
             {
@@ -48,7 +48,7 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss}-[DEBUG]-FrwkMaint.ExportBlueprints");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.ExportBlueprints");
 
             // TODO - So ugly!
             /* This code is terrible and needs to be refactored.
@@ -89,7 +89,10 @@ namespace TingenWebService.Core.Framework
             /* For debugging prior to logging functionality being initialized.
              * Disable in production.
              */
-            //Logger.LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss}-[DEBUG]-FrwkMaint.VerifyComponents");
+            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.VerifyComponents");
+
+
+            // TODO - Clean this up
 
             var verificationLog = string.Empty;
 
@@ -99,10 +102,10 @@ namespace TingenWebService.Core.Framework
             verificationLog += $"[Start] {verificationStartTime}:{verificationStartMilliseconds}{Environment.NewLine}";
             verificationLog += SysMsg.DailyStart(rtConfig.ReleaseBuild);
 
-            Framework.FrwkMaint.Verify(twsFramework);
+            Verify(twsFramework);
             verificationLog += SysMsg.FrameworkVerified();
 
-            Framework.FrwkMaint.ExportBlueprints(twsFramework.BlueprintRoot);
+            ExportBlueprints(twsFramework.BlueprintRoot);
             verificationLog += RedPrint.BlueprintsExported();
 
             var verificationEndTime = DateTime.Now.ToString("HHmmss");

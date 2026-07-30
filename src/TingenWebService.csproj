@@ -120,6 +120,8 @@
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Core\Logger\LogEvent.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentConfig.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentRequest.cs" />
     <Compile Include="ProjectInfo.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
@@ -156,9 +158,7 @@
       <Name>ScriptLinkStandard</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Module\OpenIncident\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
