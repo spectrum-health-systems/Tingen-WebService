@@ -6,56 +6,21 @@
 
 ***
 
+"${DateTime.Now:yyMMdd-HHmmss-fffffff}-[ERR1120]-TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]
 
-```xml
- <applicationSettings>
-    <TingenWebService.Properties.Settings>
-      <setting name="AvatarSystem" serializeAs="String">
-        <value>UAT</value>
-      </setting>
+$"{DateTime.Now:yyMMdd-HHmmss-fffffff}-[DEBUG]-FrwkConfig.Build"
 
-      <setting name="TraceLogLimit" serializeAs="String">
-        <value>0</value>
-      </setting>
-      <setting name="ServerWwwPath" serializeAs="String">
-        <value>C:\Tingen_www\WebService</value>
-      </setting>
-      <setting name="ServerDataPath" serializeAs="String">
-        <value>C:\Tingen_Data\WebService</value>
-      </setting>
-      <setting name="NtstWsvcUserName" serializeAs="String">
-        <value>unassigned</value>
-      </setting>
-      <setting name="NtstWsvcUserPass" serializeAs="String">
-        <value>unassigned</value>
-      </setting>
-      <setting name="BuildNumber" serializeAs="String">
-        <value>260618</value>
-      </setting>
-      <setting name="SessionLogLimit" serializeAs="String">
-        <value>0</value>
-      </setting>
-      <setting name="TingenWebService_NtstWsvcQueryUat_Query" serializeAs="String">
-        <value>https://{YourOrganization}nxuat.netsmartcloud.com/csp/{YourOrganization}uat/avpm/WEBSVC.Query.cls</value>
-      </setting>
-    </TingenWebService.Properties.Settings>
-  </applicationSettings>
+***
 
+/* Use primeval logs here to debug, since logging functionality has not been initialized yet. */
+//LogEvent.Primeval("TingenWebServiceStarted", RedPrint.DebugStartMessage(sentScriptParam));
 
-  | Setting | Description | Default Value |
-| ------- | ----------- | ------------- |
-| `AvatarSystem` | The [Avatar system](../glossary/SystemSystemCode.md) | `UAT` |
-| `Mode` | The Tingen Web Service [mode](../glossary/Mode.md) | `Enabled` |
-| `TraceLogLimit` | The [trace log limit](../glossary/logging.md) | `0` (no trace logging) |
-| `SessionLogLimit` | The [session log limit](../glossary/Session.md) | `0` (no session logging) |
-| `ServerDataPath` | The Tingen Web Service [data folder](../glossary/Framework) | ex: `C:\Tingen_Data\WebService` |
-| `ServerWwwPath` | The Tingen Web Service [www folder](../glossary/Framework) | ex: `C:\Tingen_www\WebService` |
-| `NtstWsvcUserName` | The Avatar Username for Netsmart web services | `unassigned` |
-| `NtstWsvcUserPass` | The Avatar Password for Netsmart web services | `unassigned` |
-| `TingenWebService_NtstWsvcQueryUat_Query` | The Netsmart Query web service URL | [See below](#netsmart-query-web-service-url) |
-| `BuildNumber` | The build number of the Tingen Web Service. | `260618` |
+*** 
 
+Update/create/modify the XML documentation in AppData/XmlDocumentation/NamespaceDocumentation.xml, using the guidelines in .github/agents/AGENT-CSharp-XmlDocumentation.md
+You caren update/modify existing documentation if necessary.
 
+****
 
 ### Netsmart Query web service URL
 

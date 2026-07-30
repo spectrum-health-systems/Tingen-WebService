@@ -4,69 +4,78 @@
     <assembly>
         <name>TingenWebService</name>
     </assembly>
+    
     <members>
 
         <!-- N:TingenWebService -->
         <member name="N:TingenWebService">
-            <summary>The Tingen Web Service.</summary>
+            <summary>Contains the Tingen Web Service entry point.</summary>
             <remarks>
-                The Tingen Web Service.
-            </remarks>
-        </member>
-
-        <!-- N:TingenWebService.AvatarComponent -->
-        <member name="N:TingenWebService.AvatarComponent">
-            <summary>Avatar-specific components.</summary>
-            <remarks>
-                These components are either sent directly <i>from Avatar</i>, or involved in data being <i>returned to Avatar</i>.
-            </remarks>
-        </member>
-
-        <!-- N:TingenWebService.Configuration -->
-        <member name="N:TingenWebService.Configuration">
-            <summary>Configuration logic.</summary>
-            <remarks>
-                Configuration logic for the Tingen Web Service.
+                The <see cref="TingenWebService.TingenWebService"/> class exposes the web methods used by Avatar to
+                query the service version and execute scripts.
             </remarks>
         </member>
 
         <!-- N:TingenWebService.Core -->
         <member name="N:TingenWebService.Core">
-            <summary>Core logic for the Tingen Web Service.</summary>
+            <summary>Contains the core runtime, configuration, session, logging, and shared support types.</summary>
             <remarks>
-                Core logic for the Tingen Web Service.
+                These types coordinate request processing by loading runtime settings, building framework paths,
+                managing session state, and supporting common output and logging tasks.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core.Avatar -->
+        <member name="N:TingenWebService.Core.Avatar">
+            <summary>Contains types that manage Avatar request and response data.</summary>
+            <remarks>
+                These types validate incoming Avatar data, store working copies of <see cref="ScriptLinkStandard.Objects.OptionObject2015"/>
+                values, and prepare the final data returned to Avatar.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core.Framework -->
+        <member name="N:TingenWebService.Core.Framework">
+            <summary>Contains framework path configuration used by the web service.</summary>
+            <remarks>
+                These types build the folder structure used for avatar-generated data, configuration, exports, imports,
+                logs, blueprints, sessions, and translation tables.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core.Logger -->
+        <member name="N:TingenWebService.Core.Logger">
+            <summary>Contains helper methods for logging and log formatting.</summary>
+            <remarks>
+                These types support caller-info formatting, local file writes, and XML or Markdown formatting for log
+                output.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core.Session -->
+        <member name="N:TingenWebService.Core.Session">
+            <summary>Contains session-state types used while processing a request.</summary>
+            <remarks>
+                These types hold the runtime settings, framework settings, Avatar data, session paths, and other values
+                needed for a single web service request.
+            </remarks>
+        </member>
+
+        <!-- N:TingenWebService.Core.Trove -->
+        <member name="N:TingenWebService.Core.Trove">
+            <summary>Contains preset strings and collections shared across the web service.</summary>
+            <remarks>
+                These types provide fixed templates, messages, folder lists, and other shared values used to keep output
+                and configuration consistent.
             </remarks>
         </member>
 
         <!-- N:TingenWebService.Du -->
         <member name="N:TingenWebService.Du">
-            <summary>DU logic for the Tingen Web Service.</summary>
+            <summary>Contains data utility helpers for file and JSON operations.</summary>
             <remarks>
-                DU logic for the Tingen Web Service.
-            </remarks>
-        </member>
-
-        <!-- N:TingenWebService.Logger -->
-        <member name="N:TingenWebService.Logger">
-            <summary>Logging logic for the Tingen Web Service.</summary>
-            <remarks>
-                Logging logic for the Tingen Web Service.
-            </remarks>
-        </member>
-
-        <!-- N:TingenWebService.Session -->
-        <member name="N:TingenWebService.Session">
-            <summary>Session management logic for the Tingen Web Service.</summary>
-            <remarks>
-                Session management logic for the Tingen Web Service.
-            </remarks>
-        </member>
-
-        <!-- N:TingenWebService.Trove -->
-        <member name="N:TingenWebService.Trove">
-            <summary>A collection of resources used by the Tingen Web Service.</summary>
-            <remarks>
-                The <b>Trove</b> is a collection templates, preset values, and other resources used by the Tingen Web Service to format data in a consistent manner.
+                These helpers read and write local files and serialize or deserialize JSON payloads used by the web
+                service.
             </remarks>
         </member>
 
