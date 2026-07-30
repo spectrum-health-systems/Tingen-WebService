@@ -6,7 +6,8 @@
     <members>
         <member name="T:TingenWebService.Core.Avatar.AvatarData">
             <summary>Data sent from Avatar to the Tingen Web Service.</summary>
-            <remarks><note type="note" title="About Avatar data">
+            <remarks>
+            <note type="note" title="About Avatar data">
                 Avatar sends two pieces of data to the Tingen Web Service:
                 <list type="number">
                     <item> The SentOptionObject</item>
@@ -14,7 +15,31 @@
                 </list>
                 If either of these components are missing, the Tingen Web Service cannot function properly. This method
                 checks for the presence of both components and logs an error if either is missing.
-            </note></remarks>
+            </note><br />
+            <note type="note" title="About OptionObjects">
+                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
+                <br />
+                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
+                box to the Tingen Web Service, and the Tingen Web Service:
+                <list type="number">
+                    <item>Opens the box</item>
+                    <item>Looks through the box for specific information</item>
+                    <item>Uses that information to do something</item>
+                    <item>Potentially modifies the contents</item>
+                    <item>Makes sure everything is in order to be returned to Avatar</item>
+                    <item>Closes the box</item>
+                </list>
+                The box is then returned to AvatarNX.<br>
+                <br />
+                The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
+                class library to define the <c>OptionObject</c> and its properties.<br />
+                <br />
+                You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
+                and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
+                </br>
+            </note>
+            AboutScriptParam Goes Here
+            </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarData.SentOptObj">
             <summary>The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> sent from Avatar.</summary>
@@ -41,23 +66,20 @@
                 and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
                 </br>
             </note><br />
-            <br />
             <note type="note" title="Types of OptionObjects">
                 The Tingen Web Service defines three types of OptionObjects:<br />
                 <br />
                 The <b>SentOptObj</b><br />
-                <br />
                 This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                 that the Tingen Web Service needs to process a request.<br />
                 <br />
                 The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                 <br />
                 The <b>WorkerOptObj</b><br />
-                <br />
                 This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                 the Tingen Web Service.<br />
-                The <b>CompleteOptObj</b><br />
                 <br />
+                The <b>CompleteOptObj</b><br />
                 This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                 Tingen Web Service.<br />
                 <br />
@@ -89,23 +111,20 @@
                 and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
                 </br>
             </note><br />
-            <br />
             <note type="note" title="Types of OptionObjects">
                 The Tingen Web Service defines three types of OptionObjects:<br />
                 <br />
                 The <b>SentOptObj</b><br />
-                <br />
                 This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                 that the Tingen Web Service needs to process a request.<br />
                 <br />
                 The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                 <br />
                 The <b>WorkerOptObj</b><br />
-                <br />
                 This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                 the Tingen Web Service.<br />
-                The <b>CompleteOptObj</b><br />
                 <br />
+                The <b>CompleteOptObj</b><br />
                 This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                 Tingen Web Service.<br />
                 <br />
@@ -137,23 +156,20 @@
                 and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
                 </br>
             </note><br />
-            <br />
             <note type="note" title="Types of OptionObjects">
                 The Tingen Web Service defines three types of OptionObjects:<br />
                 <br />
                 The <b>SentOptObj</b><br />
-                <br />
                 This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                 that the Tingen Web Service needs to process a request.<br />
                 <br />
                 The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                 <br />
                 The <b>WorkerOptObj</b><br />
-                <br />
                 This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                 the Tingen Web Service.<br />
-                The <b>CompleteOptObj</b><br />
                 <br />
+                The <b>CompleteOptObj</b><br />
                 This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                 Tingen Web Service.<br />
                 <br />

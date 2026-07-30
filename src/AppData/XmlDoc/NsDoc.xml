@@ -27,10 +27,9 @@
 
         <!-- N:TingenWebService.Core.Avatar -->
         <member name="N:TingenWebService.Core.Avatar">
-            <summary>Contains types that manage Avatar request and response data.</summary>
+            <summary>Data that is sent to/from Avatar.</summary>
             <remarks>
-                These types validate incoming Avatar data, store working copies of <see cref="ScriptLinkStandard.Objects.OptionObject2015"/>
-                values, and prepare the final data returned to Avatar.
+                <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/>
             </remarks>
         </member>
 

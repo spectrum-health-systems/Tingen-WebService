@@ -10,13 +10,16 @@ using TingenWebService.Core.Trove;
 namespace TingenWebService.Core.Avatar
 {
     /// <summary>Data sent from Avatar to the Tingen Web Service.</summary>
-    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/></remarks>
+    /// <remarks>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/><br/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
+    /// AboutScriptParam Goes Here
+    /// </remarks>
     internal class AvatarData
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 SentOptObj { get; set; }
@@ -24,7 +27,6 @@ namespace TingenWebService.Core.Avatar
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 WorkerOptObj { get; set; }
@@ -32,7 +34,6 @@ namespace TingenWebService.Core.Avatar
         /// <summary>The complete <see cref="OptionObject2015"/> ready to be returned to Avatar.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
         /// </remarks>
         public OptionObject2015 CompleteOptObj { get; set; }

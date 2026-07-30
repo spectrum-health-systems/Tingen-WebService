@@ -77,18 +77,16 @@
                 The Tingen Web Service defines three types of OptionObjects:<br/>
                 <br/>
                 The <b>SentOptObj</b><br/>
-                <br/>
                 This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                 that the Tingen Web Service needs to process a request.<br/>
                 <br/>
                 The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br/>
                 <br/>
                 The <b>WorkerOptObj</b><br/>
-                <br/>
                 This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                 the Tingen Web Service.<br/>
-                The <b>CompleteOptObj</b><br/>
                 <br/>
+                The <b>CompleteOptObj</b><br/>
                 This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                 Tingen Web Service.<br/>
                 <br/>
