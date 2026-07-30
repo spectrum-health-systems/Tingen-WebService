@@ -1,25 +1,28 @@
-﻿// 260725_code
-// 260723_documentation
+﻿// 260730_code
+// 260730_documentation
 
 using System.IO;
 
 namespace TingenWebService.Du
 {
+    /// <summary>Utilities for directory operations.</summary>
     public class DuDirectory
     {
-        // [260723]
-        /// <summary>Ensures that the specified directory exists. If it does not exist, it will be created.</summary>
-        /// <param name="path">The path of the directory to check or create.</param>
+        // TODO - Verify this works with verifying a subdirectory of a non-existent directory creates both.
+        // [260730]
+        /// <summary>Ensures that the specified directory exists.</summary>
+        /// <param name="dir">The directory to verify/create.</param>
+        /// <remarks>If the directory does not exist, it will be created.</remarks>
         /// <example>
         /// <code>
-        /// DuDirectory.EnsureDirectoryExists("C:\\Tingen_Data");
+        /// DuDirectory.ForceExist(@"C:\directory\name");
         /// </code>
         /// </example>
-        public static void EnsureDirectoryExists(string path)
+        public static void ForceExist(string dir)
         {
-            if (!Directory.Exists(path))
+            if (!Directory.Exists(dir))
             {
-                Directory.CreateDirectory(path);
+                Directory.CreateDirectory(dir);
             }
         }
     }

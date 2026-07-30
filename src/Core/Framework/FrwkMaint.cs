@@ -28,7 +28,7 @@ namespace TingenWebService.Core.Framework
             {
                 try
                 {
-                    DuDirectory.EnsureDirectoryExists(path);
+                    DuDirectory.ForceExist(path);
                 }
                 catch (Exception ex)
                 {

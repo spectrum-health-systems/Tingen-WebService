@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Logger
     {
         internal static void Error(string sysLogRoot, string bpRoot, string sessStartDateTime, string errCode, string errMsg)
         {
-            DuDirectory.EnsureDirectoryExists(sysLogRoot);
+            DuDirectory.ForceExist(sysLogRoot);
 
             var errorLogBlueprint = File.ReadAllText(Path.Combine(bpRoot, "ErrorLogTxt.bp"));
             var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessStartDateTime}")
@@ -47,7 +47,7 @@ namespace TingenWebService.Core.Logger
                                              sess.AvatarData.SentOptObj.OptionUserId,
                                              sess.RuntimeSetting.SessionStartTime);
 
-            DuDirectory.EnsureDirectoryExists(sessionFolder);
+            DuDirectory.ForceExist(sessionFolder);
 
             var sessionLogName = Path.Combine(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session");
 

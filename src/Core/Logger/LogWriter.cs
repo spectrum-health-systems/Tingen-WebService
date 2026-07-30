@@ -42,7 +42,7 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void WriteLocal(string fileFolder, string fileName, string fileContent = null)
         {
-            DuDirectory.EnsureDirectoryExists(fileFolder);
+            DuDirectory.ForceExist(fileFolder);
 
             File.WriteAllText(Path.Combine(fileFolder, fileName), fileContent);
         }
@@ -61,7 +61,7 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void AppendLocal(string fileFolder, string fileName, string fileContent)
         {
-            DuDirectory.EnsureDirectoryExists(fileFolder);
+            DuDirectory.ForceExist(fileFolder);
 
             File.AppendAllText(Path.Combine(fileFolder, fileName), fileContent);
         }

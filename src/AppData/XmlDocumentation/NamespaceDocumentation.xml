@@ -72,11 +72,8 @@
 
         <!-- N:TingenWebService.Du -->
         <member name="N:TingenWebService.Du">
-            <summary>Contains data utility helpers for file and JSON operations.</summary>
-            <remarks>
-                These helpers read and write local files and serialize or deserialize JSON payloads used by the web
-                service.
-            </remarks>
+            <summary>Utilities/helpers for various operations.</summary>
+            <remarks>These classes/methods are in a common location so they can be re-used across the web service.</remarks>
         </member>
 
     </members>
