@@ -1,17 +1,12 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System.Collections.Generic;
 
 namespace TingenWebService.Core.Trove
 {
-    /// <summary>Preset collections and components.</summary>
-    /// <remarks>
-    /// <note type="note" title="About catalogs">
-    /// Catalogs are preset <b>collections</b> that cannot be modified by the user, and are used to format data in a
-    /// consistent manner.
-    /// </note>
-    /// </remarks>
+    /// <summary>Internal preset collections.</summary>
+    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Catalog"]/About/*'/></remarks>
     internal static class Catalog
     {
         /// <summary>Build the list of required framework folders.</summary>
@@ -30,6 +25,8 @@ namespace TingenWebService.Core.Trove
                 twsFramework.TranslationTableRoot
             };
 
+        /// <summary>Build the list of system log file names.</summary>
+        /// <returns>A list of system log file names.</returns>
         internal static List<string> SystemLogFileNames() =>
             new List<string>
             {
@@ -38,6 +35,9 @@ namespace TingenWebService.Core.Trove
                 "Runtime"
             };
 
+        // TODO - Add ErrorLogMd and ErrorLogHtml. Also rename ErrorLogTxt to ErrLogTxt
+        /// <summary>Build the list of blueprint file names.</summary>
+        /// <returns>A list of blueprint file names.</returns>
         internal static List<string> BlueprintFileNames() =>
             new List<string>
             {
@@ -47,7 +47,7 @@ namespace TingenWebService.Core.Trove
                 "SessLogHtml"
             };
 
-        // TODO - prob belongs in Redprints.cs
+        // TODO - Prob belongs in Redprints.cs
         /// <summary>_Gets the translation for a form ID to its corresponding form name.</summary>
         /// <returns>A string representing the form ID to form name translation.</returns>
         internal static string FormIdToFormNameTranslation() =>

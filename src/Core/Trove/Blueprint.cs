@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 
@@ -7,15 +7,13 @@ namespace TingenWebService.Core.Trove
 {
     /// <summary>User-modifiable templates.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/About/*'/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/Restore/*'/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="BluePrint"]/About/*'/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="BluePrint"]/Restore/*'/>
     /// </remarks>
     internal static class BluePrint
     {
         /// <summary>Build the blueprint for text error logs.</summary>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/>
-        /// </remarks>
+        /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/></remarks>
         /// <returns>The text error log template string.</returns>
         internal static string ErrorLogTxtBP() =>
             $"Tingen Web Service Error Log{Environment.NewLine}" +
@@ -25,9 +23,7 @@ namespace TingenWebService.Core.Trove
             $"~ERROR~MESSAGE~";
 
         /// <summary>Build the blueprint for text session logs.</summary>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/>
-        /// </remarks>
+        /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/></remarks>
         /// <returns>The text session log template string.</returns>
         internal static string SessLogTxtBP() =>
             $"Tingen Web Service Session Log{Environment.NewLine}" +
@@ -51,13 +47,11 @@ namespace TingenWebService.Core.Trove
             $"{Environment.NewLine}" +
             $"[End of Tingen Web Service Session Log]{Environment.NewLine}";
 
-
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/> 
-        /// <br/><br/>
-        /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the
-        /// table up looking as nice as possible when it's rendered (it can't be perfect).
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/LogFormats/*'/><br/>
+        /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
+        /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
         /// <returns>A string containing the markdown blueprint for the session log.</returns>
         internal static string SessLogMdBP() =>

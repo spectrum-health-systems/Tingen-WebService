@@ -44,7 +44,7 @@ namespace TingenWebService
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="TheMagic"]/RunScript/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="RunScript"]/TheMagic/*'/>
         /// This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>

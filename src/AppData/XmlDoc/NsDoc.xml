@@ -63,7 +63,7 @@
 
         <!-- N:TingenWebService.Core.Trove -->
         <member name="N:TingenWebService.Core.Trove">
-            <summary>Contains preset strings and collections shared across the web service.</summary>
+            <summary>Preset strings and collections shared across the web service.</summary>
             <remarks>
                 These types provide fixed templates, messages, folder lists, and other shared values used to keep output
                 and configuration consistent.

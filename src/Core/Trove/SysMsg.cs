@@ -1,5 +1,5 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 
@@ -7,11 +7,46 @@ namespace TingenWebService.Core.Trove
 {
     internal class SysMsg
     {
+        /* 0xxx - Miscellaneous
+         * 1xxx - Tingen Web Service
+         * 2xxx - Tingen Web Service Modules
+         * 9xxx - Critical messages
+         */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /* =====================================================================
          * 0000 - 0999: Miscellaneous
          * =====================================================================
          * Nothing here yet.
          */
+
+        /// <summary>Build the debug start message.</summary>
+        /// <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
+        /// <returns>The debug start message.</returns>
+        internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
+
+
+        /// <summary>Build the daily maintenance system log start message.</summary>
+        /// <returns>The daily maintenance system log start message.</returns>
+        internal static string DailyStart(string releaseBuild) => $"[Release] {releaseBuild}{Environment.NewLine}";
+
+        /// <summary>Build the message indicating that the framework has been verified.</summary>
+        /// <returns>The framework verified message.</returns>
+        internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
+
 
         /* =====================================================================
          * 1000 - 1999: Tingen Web Service

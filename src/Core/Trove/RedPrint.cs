@@ -1,41 +1,17 @@
 ﻿// 260729_code
-// 260729_documentation
+// 260730_documentation
 
 using System;
 
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
-    /// <remarks>
-    /// <note type="note" title="About redprints">
-    /// Redprints are preset<b>messages</b> that cannot be modified by the user, and are used to format data in a
-    /// consistent manner.
-    /// </note>
-    /// </remarks>
+    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="RedPrint"]/About/*'/></remarks>
     internal class RedPrint
     {
-
-        /*
-         * Logs
-         */
-
-        /// <summary>Build the debug start message.</summary>
-        /// <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
-        /// <returns>The debug start message.</returns>
-        internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
-
-        /// <summary>Build the daily maintenance system log start message.</summary>
-        /// <returns>The daily maintenance system log start message.</returns>
-        internal static string DailyStart(string releaseBuild) => $"[Release] {releaseBuild}{Environment.NewLine}";
-
-        /*
-         * Components
-         */
-
-        /// <summary>Build the message indicating that the framework has been verified.</summary>
-        /// <returns>The framework verified message.</returns>
-        internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
-
+        /// <summary>Build the framework details message.</summary>
+        /// <param name="framework">The framework configuration.</param>
+        /// <returns>The framework details message.</returns>
         internal static string FrameworkDetails(Framework.FrwkConfig framework)
         {
             // TODO - Do the same things for Blueprints
@@ -71,6 +47,9 @@ namespace TingenWebService.Core.Trove
                    $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
         }
 
+        /// <summary>Build the runtime details message.</summary>
+        /// <param name="rtConfig">The runtime configuration.</param>
+        /// <returns>The runtime details message.</returns>
         internal static string RuntimeDetails(RuntimeConfig rtConfig)
         {
             return $"Runtime details{Environment.NewLine}" +
