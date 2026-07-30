@@ -156,7 +156,7 @@ namespace TingenWebService.Core.Logger
         /// parameters are populated automatically by the compiler via caller-info attributes.
         /// </remarks>
         /// <param name="traceLevel">The trace level for this log entry.</param>
-        /// <param name="traceLogLimit">The configured maximum trace level that should be written.</param>
+        /// <param name="levelLimit">The configured maximum trace level that should be written.</param>
         /// <param name="sessionFolder">The session folder where the trace log file will be written.</param>
         /// <param name="classPath">
         /// The full source file path of the caller, supplied automatically by the compiler.

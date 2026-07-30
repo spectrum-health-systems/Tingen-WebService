@@ -10,11 +10,11 @@ namespace TingenWebService.Core
     /// <summary>The Tingen Web Service session object.</summary>
     /// <remarks>
     /// <note type="note" title="About the Tingen Web Service Session">
-    /// The <see cref="TingenWebService.Core.Session.TwsSession"/> class contains everything needed for the Tingen Web Service to process
+    /// This class contains everything needed for the Tingen Web Service to process
     /// a request, including:
     /// <list type="bullet">
-    /// <item>The request (<see cref="Session.SentScriptParameter"/>)</item>
-    /// <item>The <i>original</i> data from Avatar (<see cref="Session.AvatarData"/>)</item>
+    /// <item>The request (sentScriptParam)</item>
+    /// <item>The <i>original</i> data from Avatar (<see cref="Core.Avatar.AvatarData"/>)</item>
     /// <item>The <i>working</i> (<see cref="AvatarData.WorkerOptObj"/>) and <i>completed</i> data (<see cref="AvatarData.CompleteOptObj"/>) from Avatar</item>
     /// <item>Various settings, configurations, and framework information</item>
     /// <item>Details about the session</item>
@@ -29,7 +29,7 @@ namespace TingenWebService.Core
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
         public Framework.FrwkConfig FrameworkSetting { get; set; }
 
-        /// <summary>The Tingen Web Service <see cref="Configuration.TwsConfig"> configuration settings</see>.</summary>
+        /// <summary>The Tingen Web Service <see cref="Core.TwsConfig"> configuration settings</see>.</summary>
         public TwsConfig TwsSetting { get; set; }
         /// <summary>The current date (yyMMdd).</summary>
 
@@ -47,7 +47,7 @@ namespace TingenWebService.Core
         /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
         /// <param name="runtimeConfig">The <see cref="RuntimeConfig"> runtime configuration settings</see>.</param>
-        /// <param name="frameworkConfig">The <see cref="FrameworkConfig"> framework components</see>.</param>
+        /// <param name="frameworkConfig">The <see cref="FrameworkSetting"> framework components</see>.</param>
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig runtimeConfig, Framework.FrwkConfig frameworkConfig)
         {

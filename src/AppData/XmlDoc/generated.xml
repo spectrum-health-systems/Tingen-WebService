@@ -86,6 +86,11 @@
         <member name="P:TingenWebService.Core.RuntimeConfig.DataRoot">
             <summary>The root directory for Tingen Web Service data.</summary>
         </member>
+        <member name="M:TingenWebService.Core.RuntimeConfig.Load(System.String)">
+            <summary>Load the runtime configuration.</summary>
+            <param name="twsRelease">The release version of the Tingen Web Service.</param>
+            <returns>The loaded <see cref="T:TingenWebService.Core.RuntimeConfig"/> instance.</returns>
+        </member>
         <member name="M:TingenWebService.Core.RuntimeConfig.Build(System.String)">
             <summary>Build the runtime configuration.</summary>
             <returns>A <see cref="T:TingenWebService.Core.RuntimeConfig"/> instance with the current settings.</returns>
@@ -124,8 +129,29 @@
             </remarks>
             <value>Default: 10</value>
         </member>
+        <member name="P:TingenWebService.Core.TwsConfig.SessLogDetailLevel">
+            <summary>Session log detail level.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.SessLogTxt">
+            <summary>Indicates whether session logs should be written in plain text format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.SessLogMd">
+            <summary>Indicates whether session logs should be written in Markdown format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.SessLogHtml">
+            <summary>Indicates whether session logs should be written in HTML format.</summary>
+        </member>
         <member name="P:TingenWebService.Core.TwsConfig.SessTimeout">
             <summary>Session timeout is too damn high!</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogTxt">
+            <summary>Indicates whether error logs should be written in plain text format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogMd">
+            <summary>Indicates whether error logs should be written in Markdown format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogHtml">
+            <summary>Indicates whether error logs should be written in HTML format.</summary>
         </member>
         <member name="P:TingenWebService.Core.TwsConfig.FromEmailAddress">
             <summary>Email address the web services uses to send notifications.</summary>
@@ -135,6 +161,9 @@
         </member>
         <member name="P:TingenWebService.Core.TwsConfig.ToEmailAddress">
             <summary>Email addresses the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.TwsConfig.EmailFormat">
+            <summary>The format of the email messages sent by the web services.</summary>
         </member>
         <member name="P:TingenWebService.Core.TwsConfig.NtstWsvcUserName">
             <summary>The username used to authenticate with NTST web services.</summary>
@@ -154,6 +183,9 @@
             <summary>Create a new Tingen Web Service configuration file.</summary>
             <param name="configPath">The path to the configuration file.</param>
         </member>
+        <member name="T:TingenWebService.Core.Framework.FrwkMaint">
+            <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
+        </member>
         <member name="M:TingenWebService.Core.Framework.FrwkMaint.Verify(TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Verify the Tingen Web Service framework.</summary>
             <param name="twsFramework">The framework instance containing the paths to verify.</param>
@@ -168,8 +200,7 @@
         </member>
         <member name="M:TingenWebService.Core.Framework.FrwkMaint.VerifyComponents(System.String,TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Verify the components for the session.</summary>
-            <param name="sysLogRoot">The root directory for system logs.</param>
-            <param name="dailyStartFileName">The name of the start log file.</param>
+            <param name="systemLogFileName">The name of the start log file.</param>
             <param name="rtConfig">The runtime configuration.</param>
             <param name="twsFramework">The framework instance.</param>
         </member>
@@ -227,6 +258,30 @@
             <param name="avatarSystem">The avatar system identifier.</param>
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrwkConfig"/> instance with the specified paths.</returns>
         </member>
+        <member name="T:TingenWebService.Core.Logger.LogMaintenance">
+            <summary>Provides methods for maintaining system log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.Sess)">
+            <summary>Verifies the existence of system log files and resets them if necessary.</summary>
+            <param name="twsSession"></param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Sess)">
+            <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
+            <param name="twsSession">The current session.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String})">
+            <summary>Removes the specified system log files.</summary>
+            <param name="systemLogRoot">The root folder of the system log files.</param>
+            <param name="systemFileNames">The list of system log file names to remove.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.BuildSystemLogs(System.String,System.Collections.Generic.List{System.String},TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig,TingenWebService.Core.TwsConfig)">
+            <summary>Builds the specified system log files.</summary>
+            <param name="systemLogRoot">The root folder of the system log files.</param>
+            <param name="systemFileNames">The list of system log file names to build.</param>
+            <param name="rtConfig">The runtime configuration.</param>
+            <param name="twsFramework">The framework configuration.</param>
+            <param name="twsConfig">The TWS configuration.</param>
+        </member>
         <member name="T:TingenWebService.Core.Logger.LogComponents">
             <summary>Provides logging-related helper methods.</summary>
         </member>
@@ -263,6 +318,9 @@
             // ```
             </code>
             </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogWriter">
+            <summary>Provides methods for writing log messages to local files.</summary>
         </member>
         <member name="M:TingenWebService.Core.Logger.LogWriter.GetClassName(System.String)">
             <summary>Extracts the class name (without extension) from a full source file path.</summary>
@@ -305,6 +363,17 @@
             </code>
             </example>
         </member>
+        <member name="T:TingenWebService.Core.Logger.LogEvent">
+            <summary>Provides methods for logging various types of events.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Error(System.String,System.String,System.String,System.String,System.String)">
+            <summary>Logs an error event with the specified details.</summary>
+            <param name="sysLogRoot">The root folder of the system log files.</param>
+            <param name="bpRoot">The root folder of the blueprint files.</param>
+            <param name="sessStartDateTime">The start date and time of the session.</param>
+            <param name="errCode">The error code.</param>
+            <param name="errMsg">The error message.</param>
+        </member>
         <member name="M:TingenWebService.Core.Logger.LogEvent.Primeval(System.String,System.String)">
             <summary>Logs a primeval event with the specified name and content.</summary>
             <param name="logName">The name of the log file.</param>
@@ -314,6 +383,16 @@
             not conflict with other log entries.
             </remarks>
         </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(TingenWebService.Core.Sess)">
+            <summary>Logs a session event with the specified session details.</summary>
+            <param name="sess">The session object containing session details.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.SystemLog(System.String,System.String,System.String)">
+            <summary>Logs a system event with the specified details.</summary>
+            <param name="logFolder">The folder where the log file will be written.</param>
+            <param name="logName">The name of the log file.</param>
+            <param name="logContent">The content of the log entry.</param>
+        </member>
         <member name="M:TingenWebService.Core.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
             <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
             <remarks>
@@ -321,7 +400,7 @@
             parameters are populated automatically by the compiler via caller-info attributes.
             </remarks>
             <param name="traceLevel">The trace level for this log entry.</param>
-            <param name="traceLogLimit">The configured maximum trace level that should be written.</param>
+            <param name="levelLimit">The configured maximum trace level that should be written.</param>
             <param name="sessionFolder">The session folder where the trace log file will be written.</param>
             <param name="classPath">
             The full source file path of the caller, supplied automatically by the compiler.
@@ -336,6 +415,9 @@
             </code>
             </example>
         </member>
+        <member name="T:TingenWebService.Core.Session.SessMaint">
+            <summary>Session maintenance logic.</summary>
+        </member>
         <member name="M:TingenWebService.Core.Session.SessMaint.InitializeNewSession(TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Session maintenance.</summary>
             <remarks>
@@ -348,7 +430,7 @@
             <summary>User-modifiable templates.</summary>
             <remarks>
             <note type="note" title="About blueprints">
-                Blueprints are templates for output generated by the Tingen Web Service. They are used to format logs,
+                <b>Blueprints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
                 error messages, and other data in a consistent manner.<br />
                 <br />
                 When the Tingen Web Service is initialized, these templates are exported to the <c>blueprints\</c> folder.
@@ -361,7 +443,6 @@
                     <item>Delete the template file from the blueprints folder</item>
                     <item>Restart the Tingen Web Service.</item>
                 </list>
-                <br />
                 The original template will be copied back to the blueprints folder.
             </note>
             </remarks>
@@ -449,13 +530,13 @@
         <member name="T:TingenWebService.Core.Trove.RedPrint">
             <summary>Preset messages and strings.</summary>
             <remarks><note type="note" title="About RedPrints">
-                RedPrints are templates for output generated by the Tingen Web Service. They are used to format logs,
+                <b>RedPrints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
                 error messages, and other data in a consistent manner.<br />
+                <br />
+                Like <c>BluePrints</c>, RedPrints can use plain text, Markdown, or HTML for formatting.
                 <br />
                 Unlike <c>BluePrints</c> RedPrints are <i>not</i> exported externally, and are <i>not</i> modifiable by
                 the user.<br />
-                <br />
-                Like <c>BluePrints</c>, RedPrints can use plain text, Markdown, or HTML for formatting.
             </note></remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.RedPrint.FrameworkDetails(TingenWebService.Core.Framework.FrwkConfig)">
@@ -508,6 +589,12 @@
             <param name="errorMessage">The error message.</param>
             <returns>The framework verification failed message.</returns>
         </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1210(System.String,System.String)">
+            <summary>Build the session duration timeout exceeded message.</summary>
+            <param name="avatarUser">The Avatar user.</param>
+            <param name="sessionDurationMilliseconds">The session duration in milliseconds.</param>
+            <returns>The session duration timeout exceeded message.</returns>
+        </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.Error7516(System.String,System.String)">
             <summary>Build the maintenance failure message.</summary>
             <param name="path">The path that could not be created.</param>
@@ -518,11 +605,11 @@
             <summary>The Tingen Web Service session object.</summary>
             <remarks>
             <note type="note" title="About the Tingen Web Service Session">
-            The <see cref="!:TingenWebService.Core.Session.TwsSession"/> class contains everything needed for the Tingen Web Service to process
+            This class contains everything needed for the Tingen Web Service to process
             a request, including:
             <list type="bullet">
-            <item>The request (<see cref="!:Session.SentScriptParameter"/>)</item>
-            <item>The <i>original</i> data from Avatar (<see cref="!:Session.AvatarData"/>)</item>
+            <item>The request (sentScriptParam)</item>
+            <item>The <i>original</i> data from Avatar (<see cref="T:TingenWebService.Core.Avatar.AvatarData"/>)</item>
             <item>The <i>working</i> (<see cref="P:TingenWebService.Core.Avatar.AvatarData.WorkerOptObj"/>) and <i>completed</i> data (<see cref="P:TingenWebService.Core.Avatar.AvatarData.CompleteOptObj"/>) from Avatar</item>
             <item>Various settings, configurations, and framework information</item>
             <item>Details about the session</item>
@@ -537,7 +624,7 @@
             <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Sess.TwsSetting">
-            <summary>The Tingen Web Service <see cref="!:Configuration.TwsConfig"> configuration settings</see>.</summary>
+            <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.TwsConfig"> configuration settings</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Sess.AvatarData">
             <summary>The current date (yyMMdd).</summary>
@@ -555,7 +642,7 @@
             <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
             <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
             <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime configuration settings</see>.</param>
-            <param name="frameworkConfig">The <see cref="!:FrameworkConfig"> framework components</see>.</param>
+            <param name="frameworkConfig">The <see cref="P:TingenWebService.Core.Sess.FrameworkSetting"> framework components</see>.</param>
             <returns>A new Tingen Web Service session object.</returns>
         </member>
         <member name="T:TingenWebService.Du.DuJson">
@@ -623,6 +710,9 @@
             DuFile.DeadDrop(@"C:\Path\to\file.txt", "Hello, World!");
             </code>
             </example>
+        </member>
+        <member name="T:TingenWebService.ProjectInfo">
+            <summary>Provides information about the Tingen Web Service project.</summary>
         </member>
         <member name="T:TingenWebService.TingenWebService">
             <summary>The Tingen Web Service entry class.</summary>

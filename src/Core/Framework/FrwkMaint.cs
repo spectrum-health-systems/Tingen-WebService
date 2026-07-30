@@ -13,7 +13,7 @@ namespace TingenWebService.Core.Framework
     internal class FrwkMaint
     {
         /// <summary>Verify the Tingen Web Service framework.</summary>
-        /// <param name="twsFramework">The framework instance containing the paths to verify.</param>
+        /// <param name="frwkConfig">The framework instance containing the paths to verify.</param>
         /// <remarks>
         /// The reason why we hand this off is because while currently the configuration contains root paths, it may
         /// contain other data in the future.
@@ -81,8 +81,7 @@ namespace TingenWebService.Core.Framework
         }
 
         /// <summary>Verify the components for the session.</summary>
-        /// <param name="sysLogRoot">The root directory for system logs.</param>
-        /// <param name="dailyStartFileName">The name of the start log file.</param>
+        /// <param name="systemLogFileName">The name of the start log file.</param>
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework instance.</param>
         internal static void VerifyComponents(string systemLogFileName, RuntimeConfig rtConfig, FrwkConfig twsFramework)

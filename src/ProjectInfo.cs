@@ -5,10 +5,11 @@
 // Licensed under the Apache 2.0 license.
 // =============================================================================
 
-// R26.7-development+b30.0657
+// R26.7-development+b30.0943
 
 namespace TingenWebService
 {
+    /// <summary>Provides information about the Tingen Web Service project.</summary>
     public class ProjectInfo
     {
         /* This class is only used for informational purposes, and does not contain executable code.

@@ -31,6 +31,7 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>Initialize a new AvatarData object.</summary>
         /// <param name="sentOptObj">The <see cref="OptionObject2015"/> sent from Avatar.</param>
+        /// <param name="sentScriptParam"></param>
         /// <remarks>TBD</remarks>
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
         internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
