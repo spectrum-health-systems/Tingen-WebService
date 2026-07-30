@@ -125,7 +125,6 @@ namespace TingenWebService.Core.Logger
              * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
              * - Disable this in production.
              */
-            LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-[ERR1140]-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
             //LogEvent.Primeval("$"{DateTime.Now:yyMMdd-HHmmss}-DEBUG-LogEvent.SystemLog");
 
             if (File.Exists(Path.Combine(logFolder, logName)))
