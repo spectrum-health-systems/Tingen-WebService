@@ -27,6 +27,7 @@
         <member name="M:TingenWebService.Core.Avatar.AvatarData.Build(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
             <summary>Initialize a new AvatarData object.</summary>
             <param name="sentOptObj">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
+            <param name="sentScriptParam"></param>
             <remarks>TBD</remarks>
             <returns>A new instance of <see cref="T:TingenWebService.Core.Avatar.AvatarData"/>.</returns>
         </member>
@@ -188,7 +189,7 @@
         </member>
         <member name="M:TingenWebService.Core.Framework.FrwkMaint.Verify(TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Verify the Tingen Web Service framework.</summary>
-            <param name="twsFramework">The framework instance containing the paths to verify.</param>
+            <param name="frwkConfig">The framework instance containing the paths to verify.</param>
             <remarks>
             The reason why we hand this off is because while currently the configuration contains root paths, it may
             contain other data in the future.
