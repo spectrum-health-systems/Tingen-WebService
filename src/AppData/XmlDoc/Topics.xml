@@ -56,8 +56,12 @@
         <!-- /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Blueprint"]/Restore/*'/> -->
         <Restore>
             <note type="note" title="Restoring blueprints">
-                To restore a template to its original state, delete the template file from the blueprints folder and restart the
-                Tingen Web Service. The original template will be copied back to the blueprints folder.
+                To restore a template to its original state:
+                <list type="number">
+                    <item>Delete the template file from the blueprints folder</item>
+                    <item>Restart the Tingen Web Service.</item>
+                </list>
+                The original template will be copied back to the blueprints folder.
             </note>
         </Restore>
         
