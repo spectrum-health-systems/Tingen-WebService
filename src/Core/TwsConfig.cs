@@ -1,9 +1,9 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
-using System;
 using System.Collections.Generic;
 using System.IO;
+using TingenWebService.Core.Logger;
 using TingenWebService.Du;
 
 namespace TingenWebService.Core
@@ -92,12 +92,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static TwsConfig Load(string configPath)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Load");
-
-            //TODO - put an actual error log here
+            LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Load");
 
             if (!File.Exists(configPath))
             {
@@ -113,10 +108,7 @@ namespace TingenWebService.Core
         /// <param name="configPath">The path to the configuration file.</param>
         private static void Build(string configPath)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TwsConfig.Build");
+            LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Build");
 
             TwsConfig tngnWsvcConfig = new TwsConfig()
             {

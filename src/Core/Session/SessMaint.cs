@@ -1,8 +1,9 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260729_documentation
 
 using System;
 using System.IO;
+using TingenWebService.Core.Logger;
 
 namespace TingenWebService.Core.Session
 {
@@ -17,10 +18,7 @@ namespace TingenWebService.Core.Session
         /// <param name="twsFramework">The framework instance.</param>
         internal static void InitializeNewSession(RuntimeConfig rtConfig, Framework.FrwkConfig twsFramework)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-SessMaint.InitializeNewSession");
+            LogEvent.Primeval("PRELOG-TRACE_SessMaint-InitializeNewSession");
 
             var dailyDate = DateTime.Now.ToString("yyMMdd");
 

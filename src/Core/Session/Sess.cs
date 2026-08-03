@@ -1,10 +1,10 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260729_documentation
 
-using System;
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Avatar;
+using TingenWebService.Core.Logger;
 
 namespace TingenWebService.Core.Session
 {
@@ -52,11 +52,7 @@ namespace TingenWebService.Core.Session
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig runtimeConfig, Framework.FrwkConfig frameworkConfig)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
-             * - Disable this in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-Sess.StartSession");
+            LogEvent.Primeval("PRELOG-TRACE_Sess-StartSession");
 
             return new Sess
             {

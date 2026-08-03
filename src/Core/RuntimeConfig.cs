@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
 using System;
@@ -42,13 +42,15 @@ namespace TingenWebService.Core
         /// <returns>The loaded <see cref="RuntimeConfig"/> instance.</returns>
         internal static RuntimeConfig Load(string twsRelease)
         {
+            LogEvent.Primeval("PRELOG-TRACE_RuntimeConfig-Load");
+
             try
             {
                 return Build(twsRelease);
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1110-TwsConfigLoadFailed", SysMsg.ERR1110(ex.Message)[1]);
+                LogEvent.Primeval("ERR1110-TwsConfigLoadFailed", SysMsg.ERR1110(ex.Message)[1]);
 
                 throw;
             }
@@ -59,10 +61,7 @@ namespace TingenWebService.Core
         /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
         internal static RuntimeConfig Build(string twsRelease)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-RuntimeConfig.Build");
+            LogEvent.Primeval("PRELOG-TRACE_RuntimeConfig-Build");
 
             return new RuntimeConfig()
             {

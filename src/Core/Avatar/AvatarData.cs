@@ -1,11 +1,10 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
 using System;
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Logger;
-using TingenWebService.Core.Trove;
 
 namespace TingenWebService.Core.Avatar
 {
@@ -49,11 +48,7 @@ namespace TingenWebService.Core.Avatar
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
         internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
-             * - Disable this in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-AvatarData.Build");
+            LogEvent.Primeval("PRELOG-TRACE_AvatarData-Build");
 
             return new AvatarData
             {
@@ -69,16 +64,12 @@ namespace TingenWebService.Core.Avatar
         /// <returns>True if an <see cref="OptionObject2015"/> was sent; otherwise, false.</returns>
         internal static bool WasSent(OptionObject2015 sentOptObj)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
-             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
-             */
-
-            // TODO - Potentially send an email in addition to the error logs.
+            LogEvent.Primeval("PRELOG-TRACE_WasSent-OptionObject");
 
             if (sentOptObj == null)
             {
-                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1010-MissingOptObj", SysMsg.ERR1010()[1]);
+                LogEvent.Primeval("ERR1010_MissingOptObj");
+                // TODO - Potentially send an email in addition to the error logs.
 
                 return false;
             }
@@ -93,16 +84,14 @@ namespace TingenWebService.Core.Avatar
         /// <returns>True if a script parameter was sent; otherwise, false.</returns>
         internal static bool WasSent(string sentScriptParam)
         {
-            /* DEVNOTE
-             * - Use primeval logs here to write error logs, since logging functionality has not been initialized yet.
-             * - This can be simplified, but I'm leaving it for now to make it easier to add logging in the future.
-             */
+            LogEvent.Primeval("PRELOG-TRACE_WasSent-ScriptParam");
 
             // TODO - Potentially send an email in addition to the error logs.
 
             if (string.IsNullOrWhiteSpace(sentScriptParam))
             {
-                LogEvent.Primeval($"{DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1020-MissingScriptParam", SysMsg.ERR1020()[1]);
+                LogEvent.Primeval("ERR1020_MissingScriptParam");
+                // TODO - Potentially send an email in addition to the error logs.
 
                 return false;
             }
@@ -157,6 +146,8 @@ namespace TingenWebService.Core.Avatar
         /// </example>
         internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath)
         {
+            // TODO - Tracelog
+
             var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
             var htmlVersion = sentOptObj.ToHtmlString(true);

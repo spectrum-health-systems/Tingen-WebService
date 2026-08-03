@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
 using System;
@@ -52,7 +52,7 @@ namespace TingenWebService.Core.Logger
         {
             // TODO - Clean this up.
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             var sessionFolder = Path.Combine(sess.FrwkSetting.SessionRoot,
                                              sess.RtSetting.SessionStartDate,
@@ -81,7 +81,7 @@ namespace TingenWebService.Core.Logger
 
             if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessTimeout}"))
             {
-                LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
                 var errComponents = SysMsg.ERR1210(sess.AvatarData.SentOptObj.OptionUserId, sessionDurationMilliseconds);
 
@@ -98,8 +98,7 @@ namespace TingenWebService.Core.Logger
 
             if (sess.TwsSetting.SessLogTxt)
             {
-
-                LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogTxt.bp"));
                 var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
@@ -119,18 +118,18 @@ namespace TingenWebService.Core.Logger
 
             if (sess.TwsSetting.SessLogMd)
             {
-                LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogMd.bp"));
                 var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
-                                             .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
-                                             .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
-                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
-                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
-                                             .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
-                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
-                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+                                            .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
+                                            .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
+                                            .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+                                            .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+                                            .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                            .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
+                                            .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                            .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
                 LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.md", logContent); // simplify
             }
@@ -139,23 +138,21 @@ namespace TingenWebService.Core.Logger
 
             if (sess.TwsSetting.SessLogHtml)
             {
-                LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogHtml.bp"));
                 var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
-                                             .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
-                                             .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
-                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
-                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
-                                             .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
-                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
-                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+                                              .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
+                                              .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
+                                              .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+                                              .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+                                              .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                              .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
+                                              .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                              .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
                 LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.html", logContent); // simplify
             }
-
-
         }
 
         /// <summary>Logs a system event with the specified details.</summary>
@@ -164,11 +161,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            /* DEVNOTE - Even though this can be used after the session starts...
-             * - Use primeval logs here to debug, since logging functionality has not been initialized yet.
-             * - Disable this in production.
-             */
-            LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-LogEvent.SystemLog");
+            LogEvent.Primeval("PRELOG-TRACE_LogEvent-SystemLog");
 
             if (File.Exists(Path.Combine(logFolder, logName)))
             {
@@ -202,6 +195,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void Trace(int traceLevel, int levelLimit, string sessionFolder, [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
         {
+            // Can't put a trace log here!
+
             if (levelLimit != 0 && (traceLevel <= levelLimit))
             {
                 Thread.Sleep(levelLimit);

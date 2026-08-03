@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
 using System;
@@ -20,10 +20,7 @@ namespace TingenWebService.Core.Framework
         /// </remarks>
         internal static void Verify(FrwkConfig frwkConfig)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.Verify");
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-Verify");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
             {
@@ -33,9 +30,7 @@ namespace TingenWebService.Core.Framework
                 }
                 catch (Exception ex)
                 {
-                    /* Use a primeval log to log the error, since the logging functionality is not initialized yet.
-                     */
-                    LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1140-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
+                    LogEvent.Primeval("ERR1140-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
                     //TODO - Should probably send an email notification.
                 }
             }
@@ -45,10 +40,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
         internal static void ExportBlueprints(string blueprintRoot)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.ExportBlueprints");
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportBlueprints");
 
             // TODO - So ugly!
             /* This code is terrible and needs to be refactored.
@@ -86,11 +78,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="twsFramework">The framework instance.</param>
         internal static void VerifyComponents(string systemLogFileName, RuntimeConfig rtConfig, FrwkConfig twsFramework)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkMaint.VerifyComponents");
-
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents");
 
             // TODO - Clean this up
 

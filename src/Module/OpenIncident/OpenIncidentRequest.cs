@@ -1,4 +1,4 @@
-﻿// 260730_code
+﻿// 260803_code
 // 260730_documentation
 
 using System.IO;
@@ -29,7 +29,7 @@ namespace TingenWebService.Module.OpenIncident
             var sessionFolder   = sess.FrwkSetting.SessionRoot;
             var scriptParameter = sess.AvatarData.SentScriptParam.ToLower();
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
+            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
 
             var configPath = Path.Combine(sess.FrwkSetting.ConfigRoot, "OpenIncident.config");
             var openIncidentConfig = OpenIncidentConfig.Load(configPath, traceLimit, sessionFolder);
@@ -40,7 +40,7 @@ namespace TingenWebService.Module.OpenIncident
 
             if (bypassUser)
             {
-                LogEvent.Trace(8, traceLimit, sessionFolder);
+                LogEvent.Trace(4, traceLimit, sessionFolder);
 
                 return;
             }

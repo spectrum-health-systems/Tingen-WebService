@@ -9,19 +9,30 @@
 ## R26.8
 
 - Review web.config and remove unnecessary settings
-
-## R26.7b260728
-
 - All XML documentation complete
 - Testing functionality complete
 - Testing documentation
 - Open Incident report functionality complete
 - As many internals/private methods as possible
+- Verify error message codes match
+
+TraceLogs
+
+0 - No trace logs
+1 - Top of methods
+2 -
+3 - 
+4 - Block
+5 - Block
+6 - Block
+7 -
+8 -
+9 - Debugging (all trace logs)
 
 
 ## Next
 
-* Better logging functionlity in regards to preset messages
+* Better logging functionality in regards to preset messages
 * better time formatting for log files
 * SQL query user name/password
 * Open Incident report thing - Pt name, involved, etc.

@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260730_documentation
 
 using System.Collections.Generic;
@@ -45,6 +45,7 @@ namespace TingenWebService.Core.Logger
 
             foreach (var file in systemFileNames)
             {
+                //LogEvent.Primeval("DEBUG-TingenWebServiceStarted", SysMsg.DebugStartMessage(sentScriptParam));
                 Logger.LogEvent.Primeval(@"C:\Tingen_Data\Development\PrimevalLog\Name.txt", $"_Name: {file}");
 
                 if (File.Exists(Path.Combine(systemLogRoot, $"{file}.current")))

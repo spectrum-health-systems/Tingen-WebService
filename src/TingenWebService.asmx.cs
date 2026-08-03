@@ -1,7 +1,6 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260729_documentation
 
-using System;
 using System.IO;
 using System.Reflection;
 using System.Web.Services;
@@ -53,8 +52,7 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            /* Use primeval logs here to debug, since logging functionality has not been initialized yet. */
-            LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-TingenWebServiceStarted", SysMsg.DebugStartMessage(sentScriptParam));
+            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-Runscript", SysMsg.PretraceStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
@@ -84,6 +82,8 @@ namespace TingenWebService
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
+            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-IsMissingAvatarData");
+
             return !AvatarData.WasSent(sentOptionObject) || !AvatarData.WasSent(sentScriptParameter);
         }
 
@@ -96,6 +96,8 @@ namespace TingenWebService
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
+            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-StartApp");
+
             RuntimeConfig runtimeConfig = RuntimeConfig.Load(_releaseBuild);
 
             FrwkConfig frwkConfig = FrwkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
@@ -106,7 +108,7 @@ namespace TingenWebService
 
             if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else?
             {
-                LogEvent.Trace(8, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
+                LogEvent.Trace(4, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
 
                 LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             }

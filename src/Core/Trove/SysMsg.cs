@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 2608030_code
 // 260730_documentation
 
 using System;
@@ -18,7 +18,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the debug start message.</summary>
         /// <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
         /// <returns>The debug start message.</returns>
-        internal static string DebugStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
+        internal static string PretraceStartMessage(string sentScriptParam) => $"RunScript called with script parameter: {sentScriptParam}.";
 
         /// <summary>Build the daily maintenance system log start message.</summary>
         /// <param name="releaseBuild">The release build version.</param>

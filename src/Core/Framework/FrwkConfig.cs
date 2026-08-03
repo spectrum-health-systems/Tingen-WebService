@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260803_code
 // 260729_documentation
 
 using System;
@@ -56,13 +56,15 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrwkConfig"/> instance with the specified paths.</returns>
         internal static FrwkConfig Load(string dataRoot, string avatarSystem)
         {
+            LogEvent.Primeval("PRELOG-TRACE_FrwkConfig-Load");
+
             try
             {
                 return Build(dataRoot, avatarSystem);
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("${DateTime.Now:yyMMdd-HHmmss-fffffff}-ERR1120-TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]);
+                LogEvent.Primeval("ERR1120_TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]);
 
                 throw;
             }
@@ -74,10 +76,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrwkConfig"/> instance with the specified paths.</returns>
         internal static FrwkConfig Build(string dataRoot, string avatarSystem)
         {
-            /* For debugging prior to logging functionality being initialized.
-             * Disable in production.
-             */
-            Logger.LogEvent.Primeval($"_{DateTime.Now:yyMMdd-HHmmss-fffffff}-DEBUG-FrwkConfig.Build");
+            LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);

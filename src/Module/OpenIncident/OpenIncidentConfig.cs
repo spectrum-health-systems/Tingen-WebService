@@ -1,4 +1,4 @@
-﻿// 260730_code
+﻿// 260803_code
 // 260730_documentation
 
 using System.Collections.Generic;
@@ -128,11 +128,11 @@ namespace TingenWebService.Module.OpenIncident
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static OpenIncidentConfig Load(string configPath, int traceLimit, string sessFolder)
         {
-            LogEvent.Trace(9, traceLimit, sessFolder);
+            LogEvent.Trace(1, traceLimit, sessFolder);
 
             if (!File.Exists(configPath))
             {
-                LogEvent.Trace(8, traceLimit, sessFolder);
+                LogEvent.Trace(4, traceLimit, sessFolder);
 
                 Build(configPath, traceLimit, sessFolder);
             }
@@ -146,7 +146,7 @@ namespace TingenWebService.Module.OpenIncident
         /// <param name="sessFolder">The session folder for logging.</param>
         private static void Build(string configPath, int traceLimit, string sessFolder)
         {
-            LogEvent.Trace(9, traceLimit, sessFolder);
+            LogEvent.Trace(1, traceLimit, sessFolder);
 
             OpenIncidentConfig openIncidentConfig = new OpenIncidentConfig()
             {
