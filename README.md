@@ -15,7 +15,7 @@
   
   <h3>A custom web service for Netsmart's AvatarNX™ EHR platform</h3>
 
-  ![RELEASE](https://img.shields.io/badge/Release-26.7-teal)&nbsp;
+  ![RELEASE](https://img.shields.io/badge/Release-26.8-teal)&nbsp;
   ![STAGE](https://img.shields.io/badge/DEVELOPMENT-red)&nbsp; <!-- Alpha = Red, Beta = Yellow, Stable = Green, Development = Orange -->
   ![LICENSE](https://img.shields.io/badge/License-apache-blue)&nbsp;
   ![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)&nbsp;

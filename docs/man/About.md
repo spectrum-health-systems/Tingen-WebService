@@ -11,7 +11,7 @@
   <br/>
   <br/>
 
-  ![RELEASE](https://img.shields.io/badge/Release-26.6-teal)
+  ![RELEASE](https://img.shields.io/badge/Release-26.8-teal)
 
 <h1>About the Tingen Web Service</h1>
 

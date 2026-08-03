@@ -10,9 +10,9 @@
 
 ***
 
-## R26.7
+## R26.8
 
-> Please see the [release notes](./release-notes/R26.7-release-notes.md) for more details.
+> Please see the [release notes](./release-notes/R26.8-release-notes.md) for more details.
 
 * New
   * None
@@ -24,6 +24,12 @@
   * None
 * Security
   * None
+
+## R26.7
+
+> Please see the [release notes](./release-notes/R26.7-release-notes.md) for more details.
+
+This release was a major refactor.
 
 ***
 

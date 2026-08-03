@@ -6,6 +6,10 @@
 
 ***
 
+## R26.8
+
+- Review web.config and remove unnecessary settings
+
 ## R26.7b260728
 
 - All XML documentation complete
