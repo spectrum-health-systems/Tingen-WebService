@@ -50,7 +50,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="sess">The session object containing session details.</param>
         internal static void Session(Sess sess)
         {
-            // TODO - Clean this up.
+            // TODO - Clean this up (but leave "LogEvent." in front of each call to LogEvent.Trace() so that the trace log will show the correct class name).
 
             LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
@@ -175,7 +175,8 @@ namespace TingenWebService.Core.Logger
 
         /// <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
         /// <remarks>
-        /// The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/TraceLogLevels/*'/>
+        /// <br/> The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
         /// parameters are populated automatically by the compiler via caller-info attributes.
         /// </remarks>
         /// <param name="traceLevel">The trace level for this log entry.</param>

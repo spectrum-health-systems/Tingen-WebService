@@ -5,6 +5,7 @@ using System;
 
 namespace TingenWebService.Core.Trove
 {
+    // TODO - About SysMsg xml
     /// <summary>Provides system messages for the Tingen Web Service.</summary>
     internal class SysMsg
     {

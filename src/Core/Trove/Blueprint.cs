@@ -7,14 +7,14 @@ namespace TingenWebService.Core.Trove
 {
     /// <summary>User-modifiable templates.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="BluePrint"]/About/*'/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="BluePrint"]/Restore/*'/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutBlueprints/*'/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/RestoringBlueprints/*'/>
     /// </remarks>
     internal static class BluePrint
     {
         /// <summary>Build the blueprint for text error logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text error log template string.</returns>
         internal static string ErrorLogTxtBP() =>
@@ -26,7 +26,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for text session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text session log template string.</returns>
         internal static string SessLogTxtBP() =>
@@ -53,7 +53,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/><br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/><br/>
         /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
         /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
@@ -86,7 +86,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for HTML session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="LogFormat"]/About/*'/> <br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The HTML session log template string.</returns>
         internal static string SessLogHtmlBP() =>

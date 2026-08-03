@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Internal preset collections.</summary>
-    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Catalog"]/About/*'/></remarks>
+    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutCatalogs/*'/></remarks>
     internal static class Catalog
     {
         /// <summary>Build the list of required framework folders.</summary>

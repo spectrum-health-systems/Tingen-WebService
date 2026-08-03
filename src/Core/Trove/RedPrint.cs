@@ -7,7 +7,7 @@ using TingenWebService.Module.OpenIncident;
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
-    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="RedPrint"]/About/*'/></remarks>
+    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutRedprints/*'/></remarks>
     internal class RedPrint
     {
         /// <summary>Build the framework details message.</summary>

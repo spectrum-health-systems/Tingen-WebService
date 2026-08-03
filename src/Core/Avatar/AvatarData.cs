@@ -10,35 +10,36 @@ namespace TingenWebService.Core.Avatar
 {
     /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/><br/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/>
-    /// AboutScriptParam Goes Here
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
+    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
     /// </remarks>
     internal class AvatarData
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 SentOptObj { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 WorkerOptObj { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> that is returned to Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptObj/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptObj/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 CompleteOptObj { get; set; }
 
         /// <summary>The original script parameter sent from Avatar.</summary>
-        /// <remarks>TBD</remarks>
+        /// <remarks>
+        /// xml doc
+        /// </remarks>
         public string SentScriptParam { get; set; }
 
         /// <summary>Initialize a new AvatarData object.</summary>

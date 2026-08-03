@@ -7,171 +7,36 @@
         <member name="T:TingenWebService.Core.Avatar.AvatarData">
             <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
             <remarks>
-            <note type="note" title="About Avatar data">
-                Avatar sends two pieces of data to the Tingen Web Service:
-                <list type="number">
-                    <item> The SentOptionObject</item>
-                    <item> The SentScriptParameter</item>
-                </list>
-                If either of these components are missing, the Tingen Web Service cannot function properly. This method
-                checks for the presence of both components and logs an error if either is missing.
-            </note><br />
-            <note type="note" title="About OptionObjects">
-                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
-                <br />
-                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                box to the Tingen Web Service, and the Tingen Web Service:
-                <list type="number">
-                    <item>Opens the box</item>
-                    <item>Looks through the box for specific information</item>
-                    <item>Uses that information to do something</item>
-                    <item>Potentially modifies the contents</item>
-                    <item>Makes sure everything is in order to be returned to Avatar</item>
-                    <item>Closes the box</item>
-                </list>
-                The box is then returned to AvatarNX.<br>
-                <br />
-                <b><u>Additional information</u></b><br />
-                The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                </br>
-            </note>
-            AboutScriptParam Goes Here
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarData.SentOptObj">
             <summary>The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> sent from Avatar.</summary>
             <remarks>
-            <note type="note" title="About OptionObjects">
-                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
-                <br />
-                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                box to the Tingen Web Service, and the Tingen Web Service:
-                <list type="number">
-                    <item>Opens the box</item>
-                    <item>Looks through the box for specific information</item>
-                    <item>Uses that information to do something</item>
-                    <item>Potentially modifies the contents</item>
-                    <item>Makes sure everything is in order to be returned to Avatar</item>
-                    <item>Closes the box</item>
-                </list>
-                The box is then returned to AvatarNX.<br>
-                <br />
-                <b><u>Additional information</u></b><br />
-                The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                </br>
-            </note><br />
-            <note type="note" title="Types of OptionObjects">
-                The Tingen Web Service defines three types of OptionObjects:<br />
-                <br />
-                The <b>SentOptObj</b><br />
-                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
-                that the Tingen Web Service needs to process a request.<br />
-                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
-                <br />
-                The <b>WorkerOptObj</b><br />
-                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
-                the Tingen Web Service.<br />
-                <br />
-                The <b>CompleteOptObj</b><br />
-                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
-                Tingen Web Service.<br />
-                <br />
-            </note>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarData.WorkerOptObj">
             <summary>The worker <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> used during processing.</summary>
             <remarks>
-            <note type="note" title="About OptionObjects">
-                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
-                <br />
-                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                box to the Tingen Web Service, and the Tingen Web Service:
-                <list type="number">
-                    <item>Opens the box</item>
-                    <item>Looks through the box for specific information</item>
-                    <item>Uses that information to do something</item>
-                    <item>Potentially modifies the contents</item>
-                    <item>Makes sure everything is in order to be returned to Avatar</item>
-                    <item>Closes the box</item>
-                </list>
-                The box is then returned to AvatarNX.<br>
-                <br />
-                <b><u>Additional information</u></b><br />
-                The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                </br>
-            </note><br />
-            <note type="note" title="Types of OptionObjects">
-                The Tingen Web Service defines three types of OptionObjects:<br />
-                <br />
-                The <b>SentOptObj</b><br />
-                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
-                that the Tingen Web Service needs to process a request.<br />
-                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
-                <br />
-                The <b>WorkerOptObj</b><br />
-                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
-                the Tingen Web Service.<br />
-                <br />
-                The <b>CompleteOptObj</b><br />
-                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
-                Tingen Web Service.<br />
-                <br />
-            </note>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarData.CompleteOptObj">
             <summary>The complete <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> that is returned to Avatar.</summary>
             <remarks>
-            <note type="note" title="About OptionObjects">
-                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
-                <br />
-                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                box to the Tingen Web Service, and the Tingen Web Service:
-                <list type="number">
-                    <item>Opens the box</item>
-                    <item>Looks through the box for specific information</item>
-                    <item>Uses that information to do something</item>
-                    <item>Potentially modifies the contents</item>
-                    <item>Makes sure everything is in order to be returned to Avatar</item>
-                    <item>Closes the box</item>
-                </list>
-                The box is then returned to AvatarNX.<br>
-                <br />
-                <b><u>Additional information</u></b><br />
-                The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                </br>
-            </note><br />
-            <note type="note" title="Types of OptionObjects">
-                The Tingen Web Service defines three types of OptionObjects:<br />
-                <br />
-                The <b>SentOptObj</b><br />
-                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
-                that the Tingen Web Service needs to process a request.<br />
-                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
-                <br />
-                The <b>WorkerOptObj</b><br />
-                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
-                the Tingen Web Service.<br />
-                <br />
-                The <b>CompleteOptObj</b><br />
-                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
-                Tingen Web Service.<br />
-                <br />
-            </note>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarData.SentScriptParam">
             <summary>The original script parameter sent from Avatar.</summary>
-            <remarks>TBD</remarks>
+            <remarks>
+            xml doc
+            </remarks>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarData.Build(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
             <summary>Initialize a new AvatarData object.</summary>
@@ -549,7 +414,8 @@
         <member name="M:TingenWebService.Core.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
             <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
             <remarks>
-            The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
+            <br /> The <paramref name="classPath" />, <paramref name="methodName" />, and <paramref name="lineNumber" />
             parameters are populated automatically by the compiler via caller-info attributes.
             </remarks>
             <param name="traceLevel">The trace level for this log entry.</param>
@@ -626,132 +492,28 @@
         <member name="T:TingenWebService.Core.Trove.BluePrint">
             <summary>User-modifiable templates.</summary>
             <remarks>
-            <note type="note" title="About blueprints">
-                <b>Blueprints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
-                error messages, and other data in a consistent manner.<br />
-                <br />
-                When the Tingen Web Service is initialized, these templates are exported to the <c>blueprints\</c> folder.
-                The external templates can then be modified by the user to customize the log output.
-
-            </note>
-            <note type="note" title="Restoring blueprints">
-                To restore a template to its original state:
-                <list type="number">
-                    <item>Delete the template file from the blueprints folder</item>
-                    <item>Restart the Tingen Web Service.</item>
-                </list>
-                The original template will be copied back to the blueprints folder.
-            </note>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.ErrorLogTxtBP">
             <summary>Build the blueprint for text error logs.</summary>
             <remarks>
-            <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:<br />
-                <br />
-                <b>Plain text (default)</b><br />
-                + Smallest file size (good for raw speed)<br />
-                + Can be opened in any text editor<br />
-                + Easy to customize<br />
-                - Does not support any formatting/styling (totally boring!)<br />
-                - Super compact, not the easiest to read<br />
-                <br />
-                <b>Markdown</b><br />
-                + Allows for formatting, so logs look nice and are easy to read<br />
-                + Super easy to customize<br />
-                + The coolest format!<br />
-                - Not as widely supported as plain text<br />
-                - Probably not the best choice for emailing logs<br />
-                <br />
-                <b>HTML</b><br />
-                + Allows for complex formatting<br />
-                + Can be opened in any web browser (and most email clients)<br />
-                - Largest file size<br />
-                - More difficult to customize than plain text or markdown<br />
-                <br />
-                In general:
-                <list type="number">
-                    <item>Use plain text it you aren't constantly looking at logs.</item>
-                    <item>Use Markdown if you are constantly looking at logs.</item>
-                    <item>Use HTML if you are emailing logs.</item>
-                </list>
-                You can change the log format by in the <c>TingenWebService.config</c> file.
-            </note> <br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --> <br />
             </remarks>
             <returns>The text error log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogTxtBP">
             <summary>Build the blueprint for text session logs.</summary>
             <remarks>
-            <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:<br />
-                <br />
-                <b>Plain text (default)</b><br />
-                + Smallest file size (good for raw speed)<br />
-                + Can be opened in any text editor<br />
-                + Easy to customize<br />
-                - Does not support any formatting/styling (totally boring!)<br />
-                - Super compact, not the easiest to read<br />
-                <br />
-                <b>Markdown</b><br />
-                + Allows for formatting, so logs look nice and are easy to read<br />
-                + Super easy to customize<br />
-                + The coolest format!<br />
-                - Not as widely supported as plain text<br />
-                - Probably not the best choice for emailing logs<br />
-                <br />
-                <b>HTML</b><br />
-                + Allows for complex formatting<br />
-                + Can be opened in any web browser (and most email clients)<br />
-                - Largest file size<br />
-                - More difficult to customize than plain text or markdown<br />
-                <br />
-                In general:
-                <list type="number">
-                    <item>Use plain text it you aren't constantly looking at logs.</item>
-                    <item>Use Markdown if you are constantly looking at logs.</item>
-                    <item>Use HTML if you are emailing logs.</item>
-                </list>
-                You can change the log format by in the <c>TingenWebService.config</c> file.
-            </note> <br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --> <br />
             </remarks>
             <returns>The text session log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogMdBP">
             <summary>Build the blueprint for markdown session logs.</summary>
             <remarks>
-            <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:<br />
-                <br />
-                <b>Plain text (default)</b><br />
-                + Smallest file size (good for raw speed)<br />
-                + Can be opened in any text editor<br />
-                + Easy to customize<br />
-                - Does not support any formatting/styling (totally boring!)<br />
-                - Super compact, not the easiest to read<br />
-                <br />
-                <b>Markdown</b><br />
-                + Allows for formatting, so logs look nice and are easy to read<br />
-                + Super easy to customize<br />
-                + The coolest format!<br />
-                - Not as widely supported as plain text<br />
-                - Probably not the best choice for emailing logs<br />
-                <br />
-                <b>HTML</b><br />
-                + Allows for complex formatting<br />
-                + Can be opened in any web browser (and most email clients)<br />
-                - Largest file size<br />
-                - More difficult to customize than plain text or markdown<br />
-                <br />
-                In general:
-                <list type="number">
-                    <item>Use plain text it you aren't constantly looking at logs.</item>
-                    <item>Use Markdown if you are constantly looking at logs.</item>
-                    <item>Use HTML if you are emailing logs.</item>
-                </list>
-                You can change the log format by in the <c>TingenWebService.config</c> file.
-            </note><br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --><br />
             This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
             up looking as nice as possible when it's rendered (it can't be perfect).
             </remarks>
@@ -760,48 +522,13 @@
         <member name="M:TingenWebService.Core.Trove.BluePrint.SessLogHtmlBP">
             <summary>Build the blueprint for HTML session logs.</summary>
             <remarks>
-            <note type="note" title="About log formats">
-                Logs can be exported using any of the following formats:<br />
-                <br />
-                <b>Plain text (default)</b><br />
-                + Smallest file size (good for raw speed)<br />
-                + Can be opened in any text editor<br />
-                + Easy to customize<br />
-                - Does not support any formatting/styling (totally boring!)<br />
-                - Super compact, not the easiest to read<br />
-                <br />
-                <b>Markdown</b><br />
-                + Allows for formatting, so logs look nice and are easy to read<br />
-                + Super easy to customize<br />
-                + The coolest format!<br />
-                - Not as widely supported as plain text<br />
-                - Probably not the best choice for emailing logs<br />
-                <br />
-                <b>HTML</b><br />
-                + Allows for complex formatting<br />
-                + Can be opened in any web browser (and most email clients)<br />
-                - Largest file size<br />
-                - More difficult to customize than plain text or markdown<br />
-                <br />
-                In general:
-                <list type="number">
-                    <item>Use plain text it you aren't constantly looking at logs.</item>
-                    <item>Use Markdown if you are constantly looking at logs.</item>
-                    <item>Use HTML if you are emailing logs.</item>
-                </list>
-                You can change the log format by in the <c>TingenWebService.config</c> file.
-            </note> <br />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --> <br />
             </remarks>
             <returns>The HTML session log template string.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Catalog">
             <summary>Internal preset collections.</summary>
-            <remarks><note type="note" title="About catalogs">
-                <b>Catalogs</b> are preset collections of data (lists, strings, etc.) that are used throughout the
-                Tingen Web Service.<br />
-                <br />
-                Catalogs are hard-coded into the Tingen Web Service, and are not meant to be modified by the user.<br />
-            </note></remarks>
+            <remarks><!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --></remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.Catalog.RequiredFrameworkFolders(TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Build the list of required framework folders.</summary>
@@ -822,15 +549,7 @@
         </member>
         <member name="T:TingenWebService.Core.Trove.RedPrint">
             <summary>Preset messages and strings.</summary>
-            <remarks><note type="note" title="About RedPrints">
-                <b>RedPrints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
-                error messages, and other data in a consistent manner.<br />
-                <br />
-                Like <c>BluePrints</c>, RedPrints can use plain text, Markdown, or HTML for formatting.
-                <br />
-                Unlike <c>BluePrints</c> RedPrints are <i>not</i> exported externally, and are <i>not</i> modifiable by
-                the user.<br />
-            </note></remarks>
+            <remarks><!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included --></remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.RedPrint.FrameworkDetails(TingenWebService.Core.Framework.FrwkConfig)">
             <summary>Build the framework details message.</summary>
@@ -854,7 +573,7 @@
         <member name="T:TingenWebService.Core.Trove.SysMsg">
             <summary>Provides system messages for the Tingen Web Service.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.DebugStartMessage(System.String)">
+        <member name="M:TingenWebService.Core.Trove.SysMsg.PretraceStartMessage(System.String)">
             <summary>Build the debug start message.</summary>
             <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
             <returns>The debug start message.</returns>
@@ -1144,7 +863,7 @@
             <param name="sentOptObj">The OptionObject sent from Avatar.</param>
             <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
             <remarks>
-            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;RunScript&quot;]/TheMagic/*" />
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             This method is required by Avatar.
             </remarks>
             <returns>A (potentially modified) completed OptionObject.</returns>
@@ -1154,15 +873,7 @@
             <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
             <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
             <remarks>
-            <note type="note" title="About Avatar data">
-                Avatar sends two pieces of data to the Tingen Web Service:
-                <list type="number">
-                    <item> The SentOptionObject</item>
-                    <item> The SentScriptParameter</item>
-                </list>
-                If either of these components are missing, the Tingen Web Service cannot function properly. This method
-                checks for the presence of both components and logs an error if either is missing.
-            </note>
+            <!-- Badly formed XML file "C:\IT\CSB\Repositories\SHS\Tingen-WebService\src\AppData\XmlDoc\Topics.xml" cannot be included -->
             </remarks>
             <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         </member>
