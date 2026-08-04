@@ -108,6 +108,7 @@
     <Compile Include="Core\Avatar\AvatarData.cs" />
     <Compile Include="Core\Framework\FrameworkExport.cs" />
     <Compile Include="Core\RuntimeConfig.cs" />
+    <Compile Include="Core\Trove\JsonObj.cs" />
     <Compile Include="Core\TwsConfig.cs" />
     <Compile Include="Core\Framework\FrameworkMaintenance.cs" />
     <Compile Include="Core\Logger\LogMaintenance.cs" />

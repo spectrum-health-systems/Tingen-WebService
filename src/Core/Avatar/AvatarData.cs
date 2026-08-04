@@ -50,7 +50,7 @@ namespace TingenWebService.Core.Avatar
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
         internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE_AvatarData-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-AvatarData-Build");
 
             return new AvatarData
             {
@@ -71,7 +71,7 @@ namespace TingenWebService.Core.Avatar
              * is a critical error and needs to be logged.
              */
 
-            LogEvent.Primeval("PRELOG-TRACE_WasSent-OptionObject");
+            //LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
 
             if (sentOptObj == null)
             {
@@ -96,7 +96,7 @@ namespace TingenWebService.Core.Avatar
              * is a critical error and needs to be logged.
              */
 
-            LogEvent.Primeval("PRELOG-TRACE_WasSent-ScriptParam");
+            //LogEvent.Primeval("PRELOG-TRACE-WasSent-ScriptParam");
 
             if (string.IsNullOrWhiteSpace(sentScriptParam))
             {

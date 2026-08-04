@@ -57,7 +57,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkConfig"/> instance with the specified paths.</returns>
         internal static FrameworkConfig Load(string dataRoot, string avatarSystem)
         {
-            LogEvent.Primeval("PRELOG-TRACE_FrwkConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Load");
 
             try
             {
@@ -77,7 +77,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkConfig"/> instance with the specified paths.</returns>
         internal static FrameworkConfig Build(string dataRoot, string avatarSystem)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);

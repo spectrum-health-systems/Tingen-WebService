@@ -3,7 +3,6 @@
 
 using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Trove;
 using TingenWebService.Du;
@@ -16,7 +15,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
         internal static void ExportBlueprints(string blueprintRoot)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportBlueprints");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportBlueprints");
 
             foreach (var blueprintFileName in Catalog.BlueprintFileNames())
             {
@@ -67,22 +66,20 @@ namespace TingenWebService.Core.Framework
                 switch (translationFileName)
                 {
                     case "FormIdToName":
-                        translationContent = Catalog.FormIdFormName();
-
-
+                        translationContent = new JsonObj.FormId().ToFormName;
 
                         break;
                 }
 
                 if (translationContent != null)
                 {
+                    var jsonString = translationContent.ToString();
 
-                    var trans = JsonSerializer.Serialize(translationContent);
+                    DuJson.ExportFile(translationContent, translationPath);
 
-                    DuFile.DeadDrop(translationPath, trans);
+                    LogEvent.Primeval("PRELOG-TRACE-08");
                 }
             }
         }
-
     }
 }

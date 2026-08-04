@@ -20,6 +20,9 @@ namespace TingenWebService.Module.OpenIncident
         /// <value>The configured mode value, such as <c>enabled</c>.</value>
         public string Mode { get; set; }
 
+        /// <summary>Determines if local translations are used.</summary>
+        public bool UseLocalTranslations { get; set; }
+
         /// <summary>The list of Avatar usernames that bypass the OpenIncident module.</summary>
         /// <remarks>
         /// If an Avatar username (e.g., "JSMITH") is included in this list, they will bypass the OpenIncident module
@@ -149,6 +152,7 @@ namespace TingenWebService.Module.OpenIncident
 
             OpenIncidentConfig openIncidentConfig = new OpenIncidentConfig()
             {
+                UseLocalTranslations                = true,
                 BriefIncidentDescriptionFieldId     = "2",
                 ProgramOfIncidentFieldId            = "20",
                 PersonCompletingIncidentFormFieldId = "32",

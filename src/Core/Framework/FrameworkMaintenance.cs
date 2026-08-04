@@ -19,7 +19,7 @@ namespace TingenWebService.Core.Framework
         /// </remarks>
         internal static void Verify(FrameworkConfig frwkConfig)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-Verify");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-Verify");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
             {
@@ -41,7 +41,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="twsFramework">The framework instance.</param>
         internal static void VerifyComponents(string systemLogFileName, RuntimeConfig rtConfig, FrameworkConfig twsFramework)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents");
 
             // TODO - Clean this up
 
@@ -62,14 +62,22 @@ namespace TingenWebService.Core.Framework
             FrameworkExport.ExportTranslations(twsFramework.TranslationTableRoot);
             dailyLog += Catalog.TranslationFilesBuilt();
 
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents5");
+
             var verificationEndTime = DateTime.Now.ToString("HHmmss");
             var verificationEndMilliseconds = DateTime.Now.ToString("fffffff");
+
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents6");
 
             // TODO - This is in a few places, and might be better in a common area.
             var verificationDurationTime = (DateTime.ParseExact(verificationEndTime, "HHmmss", null) - DateTime.ParseExact(verificationStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
             var verificationDurationMilliseconds = (DateTime.ParseExact(verificationEndMilliseconds, "fffffff", null) - DateTime.ParseExact(verificationStartMilliseconds, "fffffff", null)).ToString("fffffff");
 
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents7");
+
             dailyLog += $"[End] {verificationEndTime}:{verificationEndMilliseconds}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
+
+            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents8");
 
             LogEvent.SystemLog(twsFramework.SysLogRoot, systemLogFileName, dailyLog);
         }

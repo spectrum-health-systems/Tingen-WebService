@@ -1,4 +1,4 @@
-﻿// 260729_code
+﻿// 260804_code
 // 260730_documentation
 
 using System.Collections.Generic;
@@ -59,14 +59,6 @@ namespace TingenWebService.Core.Trove
         ///// <returns>A string representing the form ID to form name translation.</returns>
         ////internal static string TranslateFormIdToName() =>
         ////    "INCIDENT1=OpenIncident";
-
-        internal static Dictionary<string, string> FormIdFormName()
-        {
-            return new Dictionary<string, string>
-            {
-                { "INCIDENT1", "OpenIncident" }
-            };
-        }
 
         internal static string TranslationFilesBuilt() => $"[Translation files built]{System.Environment.NewLine}";
     }

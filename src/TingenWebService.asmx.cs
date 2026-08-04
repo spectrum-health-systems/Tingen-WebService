@@ -11,7 +11,6 @@ using TingenWebService.Core.Avatar;
 using TingenWebService.Core.Framework;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
-using TingenWebService.Core.Trove;
 
 namespace TingenWebService
 {
@@ -53,7 +52,7 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-Runscript", SysMsg.PretraceStartMessage(sentScriptParam));
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", SysMsg.PretraceStartMessage(sentScriptParam));
 
             if (IsMissingAvatarData(sentOptObj, sentScriptParam))
             {
@@ -83,7 +82,7 @@ namespace TingenWebService
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-IsMissingAvatarData");
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-IsMissingAvatarData");
 
             return !AvatarData.WasSent(sentOptionObject) || !AvatarData.WasSent(sentScriptParameter);
         }
@@ -97,7 +96,7 @@ namespace TingenWebService
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            LogEvent.Primeval("PRELOG-TRACE_TingenWebService-StartApp");
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
             RuntimeConfig runtimeConfig = RuntimeConfig.Load(_releaseBuild);
 
@@ -187,19 +186,19 @@ namespace TingenWebService
         /// </example>
         internal static string GetFormName(Sess sess)
         {
-            File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation"));
+            //File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation"));
 
-            foreach (var line in File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation")))
-            {
-                var parts = line.Split('=');
+            //foreach (var line in File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation")))
+            //{
+            //    var parts = line.Split('=');
 
-                if (parts.Length == 2 && parts[0].Trim() == sess.AvatarData.SentOptObj.Original.OptionId)
-                {
-                    return parts[1].Trim();
-                }
-            }
+            //    if (parts.Length == 2 && parts[0].Trim() == sess.AvatarData.SentOptObj.Original.OptionId)
+            //    {
+            //        return parts[1].Trim();
+            //    }
+            //}
 
-            //return t;
+            ////return t;
             return "";
         }
 

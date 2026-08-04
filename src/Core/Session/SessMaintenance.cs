@@ -3,7 +3,6 @@
 
 using System;
 using System.IO;
-using TingenWebService.Core.Logger;
 
 namespace TingenWebService.Core.Session
 {
@@ -18,12 +17,14 @@ namespace TingenWebService.Core.Session
         /// <param name="twsFramework">The framework instance.</param>
         internal static void InitializeNewSession(RuntimeConfig rtConfig, Framework.FrameworkConfig twsFramework)
         {
-            LogEvent.Primeval("PRELOG-TRACE_SessMaint-InitializeNewSession");
+            //LogEvent.Primeval("PRELOG-TRACE-SessMaint-InitializeNewSession");
 
             var dailyDate = DateTime.Now.ToString("yyMMdd");
 
             if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
             {
+                var dailyFilePath = Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily");
+
                 Framework.FrameworkMaintenance.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
             }
         }

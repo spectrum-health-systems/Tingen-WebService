@@ -92,7 +92,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static TwsConfig Load(string configPath)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Load");
 
             if (!File.Exists(configPath))
             {
@@ -108,7 +108,7 @@ namespace TingenWebService.Core
         /// <param name="configPath">The path to the configuration file.</param>
         private static void Build(string configPath)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Build");
 
             TwsConfig tngnWsvcConfig = new TwsConfig()
             {

@@ -4,7 +4,6 @@
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Avatar;
-using TingenWebService.Core.Logger;
 
 namespace TingenWebService.Core.Session
 {
@@ -52,7 +51,7 @@ namespace TingenWebService.Core.Session
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig runtimeConfig, Framework.FrameworkConfig frameworkConfig)
         {
-            LogEvent.Primeval("PRELOG-TRACE_Sess-StartSession");
+            //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 
             return new Sess
             {

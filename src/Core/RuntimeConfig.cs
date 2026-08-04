@@ -42,7 +42,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded <see cref="RuntimeConfig"/> instance.</returns>
         internal static RuntimeConfig Load(string twsRelease)
         {
-            LogEvent.Primeval("PRELOG-TRACE_RuntimeConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeConfig-Load");
 
             try
             {
@@ -61,7 +61,7 @@ namespace TingenWebService.Core
         /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
         internal static RuntimeConfig Build(string twsRelease)
         {
-            LogEvent.Primeval("PRELOG-TRACE_RuntimeConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeConfig-Build");
 
             return new RuntimeConfig()
             {

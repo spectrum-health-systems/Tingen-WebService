@@ -148,7 +148,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            LogEvent.Primeval("PRELOG-TRACE_LogEvent-SystemLog");
+            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
 
             if (File.Exists(Path.Combine(logFolder, logName)))
             {
