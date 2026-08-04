@@ -1,4 +1,4 @@
-﻿// 260803_code
+﻿// 260804_code
 // 260730_documentation
 
 using System;
@@ -38,13 +38,14 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>The original script parameter sent from Avatar.</summary>
         /// <remarks>
-        /// xml doc
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
         /// </remarks>
         public string SentScriptParam { get; set; }
 
         /// <summary>Initialize a new AvatarData object.</summary>
         /// <param name="sentOptObj">The <see cref="OptionObject2015"/> sent from Avatar.</param>
-        /// <param name="sentScriptParam"></param>
+        /// <param name="sentScriptParam">The script parameter sent from Avatar.</param>
         /// <remarks>TBD</remarks>
         /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
         internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
@@ -62,9 +63,14 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>Verify whether an <see cref="OptionObject2015"/> was received from Avatar.</summary>
         /// <param name="sentOptObj">The <see cref="OptionObject2015"/> to verify.</param>
+        /// <remarks>TBD</remarks>
         /// <returns>True if an <see cref="OptionObject2015"/> was sent; otherwise, false.</returns>
         internal static bool WasSent(OptionObject2015 sentOptObj)
         {
+            /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
+             * is a critical error and needs to be logged.
+             */
+
             LogEvent.Primeval("PRELOG-TRACE_WasSent-OptionObject");
 
             if (sentOptObj == null)
@@ -82,12 +88,15 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>Verify whether a script parameter was received from Avatar.</summary>
         /// <param name="sentScriptParam">The script parameter to verify.</param>
+        /// <remarks>TBD</remarks>
         /// <returns>True if a script parameter was sent; otherwise, false.</returns>
         internal static bool WasSent(string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE_WasSent-ScriptParam");
+            /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
+             * is a critical error and needs to be logged.
+             */
 
-            // TODO - Potentially send an email in addition to the error logs.
+            LogEvent.Primeval("PRELOG-TRACE_WasSent-ScriptParam");
 
             if (string.IsNullOrWhiteSpace(sentScriptParam))
             {
@@ -147,7 +156,8 @@ namespace TingenWebService.Core.Avatar
         /// </example>
         internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath)
         {
-            // TODO - Tracelog
+            // TODO - Enable this eventually
+            //LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 

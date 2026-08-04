@@ -75,6 +75,19 @@
             <remarks>These classes/methods are in a common location so they can be re-used across the web service.</remarks>
         </member>
 
+        <!-- N:TingenWebService.Module -->
+        <member name="N:TingenWebService.Module">
+            <summary>Contains the various modules used by the web service.</summary>
+            <remarks>These classes/methods are organized by module to keep the web service maintainable and modular.</remarks>
+        </member>
+
+
+        <!-- N:TingenWebService.Module -->
+        <member name="N:TingenWebService.Module.OpenIncident">
+            <summary>Contains the OpenIncident module used by the web service.</summary>
+            <remarks>These classes/methods are organized by module to keep the web service maintainable and modular.</remarks>
+        </member>
+
     </members>
 
 </doc>

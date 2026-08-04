@@ -1,4 +1,4 @@
-﻿// 260803_code
+﻿// 260804_code
 // 260730_documentation
 
 using System;
@@ -24,7 +24,7 @@ namespace TingenWebService.Core.Logger
         {
             DuDirectory.ForceExist(sysLogRoot);
 
-            var errorLogBlueprint = File.ReadAllText(Path.Combine(bpRoot, "ErrorLogTxt.bp"));
+            var errorLogBlueprint = File.ReadAllText(Path.Combine(bpRoot, "ErrorLogTxt.blueprint"));
             var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessStartDateTime}")
                                               .Replace("~ERROR~CODE~", errCode)
                                               .Replace("~ERROR~MESSAGE~", errMsg);
@@ -88,7 +88,8 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogTxt.bp"));
+                var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogTxt.blueprint"));
+
                 var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
                                              .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
                                              .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
@@ -108,7 +109,7 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogMd.bp"));
+                var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogMd.blueprint"));
                 var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
                                             .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
                                             .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
@@ -126,7 +127,7 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogHtml.bp"));
+                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogHtml.blueprint"));
                 var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
                                               .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
                                               .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")

@@ -10,7 +10,7 @@ namespace TingenWebService.Core.Trove
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutBlueprints/*'/>
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/RestoringBlueprints/*'/>
     /// </remarks>
-    internal static class BluePrint
+    internal static class Blueprint
     {
         /// <summary>Build the blueprint for text error logs.</summary>
         /// <remarks>

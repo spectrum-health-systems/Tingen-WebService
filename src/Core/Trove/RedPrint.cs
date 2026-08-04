@@ -8,12 +8,12 @@ namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
     /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutRedprints/*'/></remarks>
-    internal class RedPrint
+    internal class Redprint
     {
         /// <summary>Build the framework details message.</summary>
         /// <param name="framework">The framework configuration.</param>
         /// <returns>The framework details message.</returns>
-        internal static string FrameworkDetails(Framework.FrwkConfig framework)
+        internal static string FrameworkDetails(Framework.FrameworkConfig framework)
         {
             // TODO - Do the same things for Blueprints
 

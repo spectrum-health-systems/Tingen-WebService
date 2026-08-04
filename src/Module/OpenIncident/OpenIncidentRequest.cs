@@ -1,4 +1,4 @@
-﻿// 260803_code
+﻿// 260804_code
 // 260730_documentation
 
 using System.IO;
@@ -25,14 +25,10 @@ namespace TingenWebService.Module.OpenIncident
         /// </example>
         internal static void Parse(Sess sess)
         {
-            var traceLimit      = sess.TwsSetting.TraceLimit;
-            var sessionFolder   = sess.FrwkSetting.SessionRoot;
-            var scriptParameter = sess.AvatarData.SentScriptParam.ToLower();
-
             LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
 
             var configPath = Path.Combine(sess.FrwkSetting.ConfigRoot, "OpenIncident.config");
-            var openIncidentConfig = OpenIncidentConfig.Load(configPath, traceLimit, sessionFolder);
+            var openIncidentConfig = OpenIncidentConfig.Load(configPath, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
 
             var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
 
@@ -40,7 +36,9 @@ namespace TingenWebService.Module.OpenIncident
 
             if (bypassUser)
             {
-                LogEvent.Trace(4, traceLimit, sessionFolder);
+                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
+
+                sess.RunningLog += $"Bypass user {sess.AvatarData.SentOptObj.OptionUserId} detected. OpenIncident module will not be processed.\n";
 
                 return;
             }

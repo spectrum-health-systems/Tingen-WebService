@@ -91,8 +91,46 @@
             </note>
         </TypesOfOptionObjects>
 
+        <AboutTheScriptParameter>
+            <note type="note" title="About the Avatar Script Parameter">
+                The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
+                <br/>
+                Here are the syntax rules for the Script Parameter:
+                <list type="bullet">
+                    <item>The Script Parameter cannot be null or empty.</item>
+                    <item>The Script Parameter cannot exceed 50 characters in length.</item>
+                    <item>The Script Parameter can only contain letters, numbers, underscores (`_`), and hyphens (`-`).</item>
+                </list>
+                Aside from those rules, the Script Parameter can be structured in any way that makes sense, as long as the Tingen Web Service can interpret it.<br/>
+                <br/>
+                For example, the following are all valid Script Parameters:
+                <list type="bullet">
+                    <item>`_FormName-DoSomething`</item>
+                    <item>`_FormName-DoSomething-Else`</item>
+                    <item>`DoSomething`</item>
+                    <item>`DoSomething-Else-Please`</item>
+                </list>
+                For a list of the Script Parameters that are currently supported by the Tingen Web Service, see <NEED-LINK-HERE>.
+            </note>
+        </AboutTheScriptParameter>
+
+        <TypesOfScriptParameters>
+            <note type="note" title="Types of Script Parameters">
+                There are two types of Script Parameters:<br/>
+                <br/>
+                <b>Form-specific</b><br/>
+                If a Script Parameter starts with an underscore (`_`), the Tingen Web Service will route the request to a specific form.<br/>
+                For example, if the Script Parameter is `_OpenIncident-DoSomething`, the Tingen Web Service will route the request to `Module.OpenIncident` for further processing.
+                <br/>
+                The <b>General</b><br/>
+                If a Script Parameter does not start with an underscore (`_`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br/>
+                For example, if the Script Parameter is `DoSomething`, the Tingen Web Service will route that command to the appropriate code for processing.
+                <br/>
+            </note>
+        </TypesOfScriptParameters>
+
     </Topic>
-    
+
     <!--
     ====================================================================================================================
     LOGGER

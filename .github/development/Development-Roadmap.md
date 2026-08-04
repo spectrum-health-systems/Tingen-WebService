@@ -15,6 +15,9 @@
 - Open Incident report functionality complete
 - As many internals/private methods as possible
 - Verify error message codes match
+- Test upper/lowercase script parameter parse
+- Fix "Value cannot be null" error when starting fresh
+
 
 TraceLogs
 

@@ -1,4 +1,4 @@
-﻿// 260803_code
+﻿// 260804_code
 // 260730_documentation
 
 using System.Collections.Generic;
@@ -62,18 +62,18 @@ namespace TingenWebService.Core.Logger
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework configuration.</param>
         /// <param name="twsConfig">The TWS configuration.</param>
-        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig rtConfig, Framework.FrwkConfig twsFramework, TwsConfig twsConfig)
+        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig rtConfig, Framework.FrameworkConfig twsFramework, TwsConfig twsConfig)
         {
             LogEvent.Trace(9, twsConfig.TraceLimit, twsFramework.SessionRoot);
 
-            LogEvent.SystemLog(systemLogRoot, "Runtime.current", RedPrint.RuntimeDetails(rtConfig));
-            LogEvent.SystemLog(systemLogRoot, "Framework.current", RedPrint.FrameworkDetails(twsFramework));
-            LogEvent.SystemLog(systemLogRoot, "Configuration.current", RedPrint.ConfigurationDetails(twsConfig));
+            LogEvent.SystemLog(systemLogRoot, "Runtime.current", Redprint.RuntimeDetails(rtConfig));
+            LogEvent.SystemLog(systemLogRoot, "Framework.current", Redprint.FrameworkDetails(twsFramework));
+            LogEvent.SystemLog(systemLogRoot, "Configuration.current", Redprint.ConfigurationDetails(twsConfig));
 
             LogEvent.Trace(9, twsConfig.TraceLimit, twsFramework.SessionRoot);
 
             OpenIncidentConfig openIncidentConfig = OpenIncidentConfig.Load(Path.Combine(twsFramework.ConfigRoot, "OpenIncident.config"), twsConfig.TraceLimit, twsFramework.SessionRoot);
-            LogEvent.SystemLog(systemLogRoot, "OpenIncident.current", RedPrint.OpenIncidentConfig(openIncidentConfig));
+            LogEvent.SystemLog(systemLogRoot, "OpenIncident.current", Redprint.OpenIncidentConfig(openIncidentConfig));
         }
     }
 }

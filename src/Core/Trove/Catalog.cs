@@ -12,7 +12,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the list of required framework folders.</summary>
         /// <param name="twsFramework">The framework object that contains the folder list.</param>
         /// <returns>A string array of the required framework folders.</returns>
-        internal static string[] RequiredFrameworkFolders(Framework.FrwkConfig twsFramework) =>
+        internal static string[] RequiredFrameworkFolders(Framework.FrameworkConfig twsFramework) =>
             new string[]
             {
                 twsFramework.AvatarGeneratedDataRoot,
@@ -48,10 +48,18 @@ namespace TingenWebService.Core.Trove
                 "SessLogHtml"
             };
 
+        internal static List<string> TranslationFileNames() =>
+            new List<string>
+            {
+                "FormIdToName"
+            };
+
         // TODO - Prob belongs in Redprints.cs
         /// <summary>_Gets the translation for a form ID to its corresponding form name.</summary>
         /// <returns>A string representing the form ID to form name translation.</returns>
-        internal static string FormIdToFormNameTranslation() =>
+        internal static string TranslateFormIdToName() =>
             "INCIDENT1=OpenIncident";
+
+        internal static string TranslationFilesBuilt() => $"[Translation files built]{System.Environment.NewLine}";
     }
 }

@@ -1,6 +1,7 @@
-﻿// 260803_code
+﻿// 260804_code
 // 260729_documentation
 
+using System;
 using System.IO;
 using System.Reflection;
 using System.Web.Services;
@@ -100,9 +101,9 @@ namespace TingenWebService
 
             RuntimeConfig runtimeConfig = RuntimeConfig.Load(_releaseBuild);
 
-            FrwkConfig frwkConfig = FrwkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
+            FrameworkConfig frwkConfig = FrameworkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
 
-            SessMaint.InitializeNewSession(runtimeConfig, frwkConfig); // TODO - is this really "initialize", or verify?
+            SessMaintenance.InitializeNewSession(runtimeConfig, frwkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frwkConfig);
 
@@ -113,5 +114,85 @@ namespace TingenWebService
                 LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             }
         }
+
+        internal void ParseRequest(Sess sess)
+        {
+            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
+
+            if (sess.AvatarData.SentScriptParam.StartsWith("_", StringComparison.OrdinalIgnoreCase))
+            {
+
+            }
+            else
+            {
+
+            }
+
+
+        }
+
+        /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
+        /// <remarks>
+        /// Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
+        /// translation table.<br/>
+        /// <br/>
+        /// Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
+        /// respective event parsers.
+        /// </remarks>
+        /// <param name="specificFormName">The name of the specific form to handle.</param>
+        /// <param name="sess">The web service session object containing form data and module event parsers.</param>
+        /// <example>
+        /// <code>
+        /// AvatarScriptParameter.SpecificFormRequest("OpenIncident", sess);
+        /// AvatarScriptParameter.SpecificFormRequest("DoseChangeEvaluationOtp", sess);
+        /// </code>
+        /// </example>
+        internal static void SpecificFormRequest(string specificFormName, Sess sess)
+        {
+            //if (specificFormName == "WSVC2491")
+            //{
+            //    //sess.TngnWsvcSessionError.HardError(tngnWsvcSession, 1, $"[WSVC2491] The form ID '{tngnWsvcSession.OptObj.Original.OptionId}' was not found in the translation table.");
+            //}
+            //else
+            //{
+            //    switch (specificFormName)
+            //    {
+            //        case "OpenIncident":
+            //            tngnWsvcSession.Module.OpenIncident.OpenIncidentEvent.Parse(tngnWsvcSession);
+            //            break;
+
+            //        case "DoseChangeEvaluationOtp":
+            //            tngnWsvcSession.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(tngnWsvcSession);
+            //            break;
+
+            //            /* TODO
+            //             * Error catch should be here.
+            //             */
+            //    }
+            //}
+        }
+
+        /// <summary>
+        /// Gets the form name from the translation table based on the original option ID sent by Avatar.
+        /// </summary>
+        /// <param name="tngnWsvcSession">
+        /// The session object containing the original option ID and translation table.
+        /// </param>
+        /// <returns>The name of the form corresponding to the original option ID.</returns>
+        /// <example>
+        /// <code>
+        /// var formName = AvatarScriptParameter.GetFormName(tngnWsvcSession);
+        /// Console.WriteLine($"Resolved form name: {formName}");
+        /// </code>
+        /// </example>
+        internal static string GetFormName(Sess sess)
+        {
+
+            //var t = sess.Translation.FormId.GetFormName(tngnWsvcSession.OptObj.Original.OptionId, tngnWsvcSession.Framework.TngnWsvcDataFolder.TranslationTable, tngnWsvcSession.Framework.TngnWsvcDataFolder.Session, tngnWsvcSession.LogSetting.TraceLogLimit);
+
+            //return t;
+            return "";
+        }
+
     }
 }
