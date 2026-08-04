@@ -113,7 +113,7 @@ namespace TingenWebService.Core
             TwsConfig tngnWsvcConfig = new TwsConfig()
             {
                 Mode               = "enabled",
-                TraceLimit    = 0,
+                TraceLimit         = 0,
                 LogDelay           = 0,
                 SessLogDetailLevel = 0,
                 SessLogTxt         = true,

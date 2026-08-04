@@ -45,12 +45,11 @@ namespace TingenWebService.Core.Logger
 
             foreach (var file in systemFileNames)
             {
-                //LogEvent.Primeval("DEBUG-TingenWebServiceStarted", SysMsg.DebugStartMessage(sentScriptParam));
-                Logger.LogEvent.Primeval(@"C:\Tingen_Data\Development\PrimevalLog\Name.txt", $"_Name: {file}");
+                LogEvent.Primeval("PRELOG-TRACE_LogMaintenance-RemoveSystemLogs_Looking", $"Looking for: {file}");
 
                 if (File.Exists(Path.Combine(systemLogRoot, $"{file}.current")))
                 {
-                    Logger.LogEvent.Primeval(@"C:\Tingen_Data\Development\PrimevalLog\Found.txt", $"_Found: {file}");
+                    LogEvent.Primeval("PRELOG-TRACE_LogMaintenance-RemoveSystemLogs_Found", $"Found: {file}");
 
                     File.Delete(Path.Combine(systemLogRoot, $"{file}.current"));
                 }

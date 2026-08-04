@@ -59,25 +59,15 @@ namespace TingenWebService.Core.Logger
                                              sess.AvatarData.SentOptObj.OptionUserId,
                                              sess.RtSetting.SessionStartTime);
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
-
             DuDirectory.ForceExist(sessionFolder);
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
-
             var sessionLogName = Path.Combine(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session");
-
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
-
             var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RtSetting.SessionStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
             var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RtSetting.SessionStartMilliseconds, "fffffff", null)).ToString("fffffff");
-
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessTimeout}"))
             {
@@ -91,8 +81,6 @@ namespace TingenWebService.Core.Logger
                                errComponents[0],
                                errComponents[1]);
             }
-
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             // TODO - these need to be combined.
 
@@ -133,8 +121,6 @@ namespace TingenWebService.Core.Logger
 
                 LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.md", logContent); // simplify
             }
-
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
             if (sess.TwsSetting.SessLogHtml)
             {

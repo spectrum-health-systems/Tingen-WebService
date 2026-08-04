@@ -45,7 +45,7 @@
                 If either of these components are missing, the Tingen Web Service cannot function properly. This method
                 checks for the presence of both components and logs an error if either is missing.
             </note>
-        </AboutAvatarDa>
+        </AboutAvatarData>
 
         <AboutOptionObjects>
             <note type="note" title="About OptionObjects">
@@ -89,7 +89,7 @@
                 Tingen Web Service.<br/>
                 <br/>
             </note>
-        </TypesOfOptionO>
+        </TypesOfOptionObjects>
 
     </Topic>
     
@@ -205,5 +205,7 @@
                 the user.<br/>
             </note>
         </AboutRedprints>
+
+        </Topic>
 
 </Topics>
