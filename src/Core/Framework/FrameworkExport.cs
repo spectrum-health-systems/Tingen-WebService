@@ -1,7 +1,9 @@
 ﻿// 260804_code
 // 260730_documentation
 
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Trove;
 using TingenWebService.Du;
@@ -60,19 +62,24 @@ namespace TingenWebService.Core.Framework
             {
                 var translationPath = Path.Combine(translationRoot, $"{translationFileName}.translation");
 
-                string translationContent = null;
+                Dictionary<string, string> translationContent = null;
 
                 switch (translationFileName)
                 {
                     case "FormIdToName":
-                        translationContent = Catalog.TranslateFormIdToName();
+                        translationContent = Catalog.FormIdFormName();
+
+
 
                         break;
                 }
 
                 if (translationContent != null)
                 {
-                    DuFile.DeadDrop(translationPath, translationContent);
+
+                    var trans = JsonSerializer.Serialize(translationContent);
+
+                    DuFile.DeadDrop(translationPath, trans);
                 }
             }
         }

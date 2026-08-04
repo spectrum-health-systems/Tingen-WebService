@@ -16,7 +16,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="twsSession">The current session.</param>
         internal static void VerifySystemLogs(Sess twsSession)
         {
-            if (!File.Exists(Path.Combine(twsSession.FrwkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
+            if (!File.Exists(Path.Combine(twsSession.FrameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
             {
                 ResetSystemLogs(twsSession);
             }
@@ -30,8 +30,8 @@ namespace TingenWebService.Core.Logger
 
             var systemFileNames = Catalog.SystemLogFileNames();
 
-            RemoveSystemLogs(sess.FrwkSetting.SysLogRoot, systemFileNames, sess.TwsSetting.TraceLimit, sess.SessionFolder);
-            BuildSystemLogs(sess.FrwkSetting.SysLogRoot, systemFileNames, sess.RtSetting, sess.FrwkSetting, sess.TwsSetting);
+            RemoveSystemLogs(sess.FrameworkSetting.SysLogRoot, systemFileNames, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            BuildSystemLogs(sess.FrameworkSetting.SysLogRoot, systemFileNames, sess.RuntimeSetting, sess.FrameworkSetting, sess.TwsSetting);
         }
 
         /// <summary>Removes the specified system log files.</summary>

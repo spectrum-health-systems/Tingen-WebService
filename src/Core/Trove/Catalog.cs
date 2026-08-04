@@ -54,11 +54,19 @@ namespace TingenWebService.Core.Trove
                 "FormIdToName"
             };
 
-        // TODO - Prob belongs in Redprints.cs
-        /// <summary>_Gets the translation for a form ID to its corresponding form name.</summary>
-        /// <returns>A string representing the form ID to form name translation.</returns>
-        internal static string TranslateFormIdToName() =>
-            "INCIDENT1=OpenIncident";
+        ////TODO - Prob belongs in Redprints.cs
+        ///// <summary>_Gets the translation for a form ID to its corresponding form name.</summary>
+        ///// <returns>A string representing the form ID to form name translation.</returns>
+        ////internal static string TranslateFormIdToName() =>
+        ////    "INCIDENT1=OpenIncident";
+
+        internal static Dictionary<string, string> FormIdFormName()
+        {
+            return new Dictionary<string, string>
+            {
+                { "INCIDENT1", "OpenIncident" }
+            };
+        }
 
         internal static string TranslationFilesBuilt() => $"[Translation files built]{System.Environment.NewLine}";
     }

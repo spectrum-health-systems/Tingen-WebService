@@ -117,7 +117,7 @@ namespace TingenWebService
 
         internal void ParseRequest(Sess sess)
         {
-            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrwkSetting.SessionRoot);
+            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
 
             if (sess.AvatarData.SentScriptParam.StartsWith("_", StringComparison.OrdinalIgnoreCase))
             {
@@ -187,8 +187,17 @@ namespace TingenWebService
         /// </example>
         internal static string GetFormName(Sess sess)
         {
+            File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation"));
 
-            //var t = sess.Translation.FormId.GetFormName(tngnWsvcSession.OptObj.Original.OptionId, tngnWsvcSession.Framework.TngnWsvcDataFolder.TranslationTable, tngnWsvcSession.Framework.TngnWsvcDataFolder.Session, tngnWsvcSession.LogSetting.TraceLogLimit);
+            foreach (var line in File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation")))
+            {
+                var parts = line.Split('=');
+
+                if (parts.Length == 2 && parts[0].Trim() == sess.AvatarData.SentOptObj.Original.OptionId)
+                {
+                    return parts[1].Trim();
+                }
+            }
 
             //return t;
             return "";

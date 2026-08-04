@@ -117,7 +117,6 @@ namespace TingenWebService.Module.OpenIncident
         /// </remarks>
         public int UnknownUserDescriptionErrCode { get; set; }
 
-
         /// <summary>Load the Tingen Web Service configuration from a file.</summary>
         /// <param name="configPath">The path to the configuration file.</param>
         /// <param name="traceLimit">The trace limit for logging.</param>

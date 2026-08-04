@@ -11,20 +11,19 @@
 - Review web.config and remove unnecessary settings
 - All XML documentation complete
 - Testing functionality complete
-- Testing documentation
+- Testing documentation complete
 - Open Incident report functionality complete
 - As many internals/private methods as possible
 - Verify error message codes match
 - Test upper/lowercase script parameter parse
 - Fix "Value cannot be null" error when starting fresh
 
-
 TraceLogs
 
 0 - No trace logs
 1 - Top of methods
 2 -
-3 - 
+3 -
 4 - Block
 5 - Block
 6 - Block

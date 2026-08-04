@@ -54,10 +54,10 @@ namespace TingenWebService.Core.Logger
 
             LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-            var sessionFolder = Path.Combine(sess.FrwkSetting.SessionRoot,
-                                             sess.RtSetting.SessionStartDate,
+            var sessionFolder = Path.Combine(sess.FrameworkSetting.SessionRoot,
+                                             sess.RuntimeSetting.SessionStartDate,
                                              sess.AvatarData.SentOptObj.OptionUserId,
-                                             sess.RtSetting.SessionStartTime);
+                                             sess.RuntimeSetting.SessionStartTime);
 
             DuDirectory.ForceExist(sessionFolder);
 
@@ -66,8 +66,8 @@ namespace TingenWebService.Core.Logger
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
 
-            var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RtSetting.SessionStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
-            var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RtSetting.SessionStartMilliseconds, "fffffff", null)).ToString("fffffff");
+            var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RuntimeSetting.SessionStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RuntimeSetting.SessionStartMilliseconds, "fffffff", null)).ToString("fffffff");
 
             if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessTimeout}"))
             {
@@ -75,9 +75,9 @@ namespace TingenWebService.Core.Logger
 
                 var errComponents = SysMsg.ERR1210(sess.AvatarData.SentOptObj.OptionUserId, sessionDurationMilliseconds);
 
-                LogEvent.Error(sess.FrwkSetting.SysLogRoot,
-                               sess.FrwkSetting.BlueprintRoot,
-                               $"{sess.RtSetting.SessionStartDate}-{sess.RtSetting.SessionStartTime}",
+                LogEvent.Error(sess.FrameworkSetting.SysLogRoot,
+                               sess.FrameworkSetting.BlueprintRoot,
+                               $"{sess.RuntimeSetting.SessionStartDate}-{sess.RuntimeSetting.SessionStartTime}",
                                errComponents[0],
                                errComponents[1]);
             }
@@ -88,15 +88,15 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogTxt.blueprint"));
+                var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogTxt.blueprint"));
 
-                var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
-                                             .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
-                                             .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
+                var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                             .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                              .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                              .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
                                              .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
-                                             .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
+                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
                                              .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
                                              .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
@@ -109,14 +109,14 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogMd.blueprint"));
-                var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
-                                            .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
-                                            .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
+                var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogMd.blueprint"));
+                var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                            .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                            .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
-                                            .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
+                                            .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
@@ -127,14 +127,14 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrwkSetting.BlueprintRoot, "SessLogHtml.blueprint"));
-                var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RtSetting.ReleaseBuild)
-                                              .Replace("~SESSION~DATE~", sess.RtSetting.SessionStartDate)
-                                              .Replace("~SESSION~START~", $"{sess.RtSetting.SessionStartTime}:{sess.RtSetting.SessionStartMilliseconds}")
+                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogHtml.blueprint"));
+                var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                                              .Replace("~SESSION~DATE~", sess.RuntimeSetting.SessionStartDate)
+                                              .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                               .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                               .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
                                               .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
-                                              .Replace("~AVATAR~SYSTEM~", sess.RtSetting.AvatarSystem.ToUpper())
+                                              .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
                                               .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
                                               .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
