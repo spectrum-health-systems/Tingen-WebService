@@ -23,8 +23,8 @@ namespace TingenWebService.Core.Session
     /// </remarks>
     internal class Sess
     {
-        /// <summary>The <see cref="RuntimeConfig"> runtime settings</see>.</summary>
-        public RuntimeConfig RuntimeSetting { get; set; }
+        /// <summary>The <see cref="Core.RuntimeSetting"> runtime settings</see>.</summary>
+        public RuntimeSetting RuntimeSetting { get; set; }
 
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
         public Framework.FrameworkConfig FrameworkSetting { get; set; }
@@ -48,10 +48,10 @@ namespace TingenWebService.Core.Session
         /// <summary>Start a new Tingen Web Service session.</summary>
         /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-        /// <param name="runtimeConfig">The <see cref="RuntimeConfig"> runtime configuration settings</see>.</param>
+        /// <param name="runtimeConfig">The <see cref="Core.RuntimeSetting"> runtime configuration settings</see>.</param>
         /// <param name="frameworkConfig">The <see cref="FrameworkSetting"> framework components</see>.</param>
         /// <returns>A new Tingen Web Service session object.</returns>
-        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeConfig runtimeConfig, Framework.FrameworkConfig frameworkConfig)
+        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeConfig, Framework.FrameworkConfig frameworkConfig)
         {
             //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 
@@ -62,7 +62,7 @@ namespace TingenWebService.Core.Session
                 TwsSetting          = TwsConfig.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
                 OptionObject        = AvatarOptionObject.Build(sentOptionObject),
                 SentScriptParameter = sentScriptParameter,
-                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.SessionStartDate, sentOptionObject.OptionUserId, runtimeConfig.SessionStartTime),
+                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.RuntimeStartDate, sentOptionObject.OptionUserId, runtimeConfig.RuntimeStartTime),
                 RunningLog          = string.Empty
             };
         }

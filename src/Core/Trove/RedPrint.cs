@@ -54,7 +54,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the runtime details message.</summary>
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <returns>The runtime details message.</returns>
-        internal static string RuntimeDetails(RuntimeConfig rtConfig)
+        internal static string RuntimeDetails(RuntimeSetting rtConfig)
         {
             return $"Runtime details{Environment.NewLine}" +
                    $"---------------{Environment.NewLine}" +

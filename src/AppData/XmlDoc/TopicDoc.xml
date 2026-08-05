@@ -4,7 +4,7 @@
 
     <!--
     ====================================================================================================================
-    TINGENWEBSERVICE.ASMX.CS
+    TingenWebService.asmx.cs
     ====================================================================================================================
     -->
 
@@ -23,9 +23,11 @@
                         <item>3 - Write the session log</item>
                         <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
                     </list>
-                    The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
-                    Avatar from a single location, regardless of whether the request was successful or not.
                 </note>
+            </para>
+            <para>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
+                Avatar from a single location, regardless of whether the request was successful or not.
             </para>
             <para>
                 <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
@@ -37,26 +39,66 @@
         </RunScript>
 
         <StartApp>
-            <note type="information" title="The Magic of StartApp()">
-                A lot of stuff happens in the <c>StartApp()</c> method,:
-                <list>
-                    <item>1 - Loads the runtime settings</item>
-                    <item>2 - Loads the framework settings</item>
-                    <item>3 - Verifies/updates the framework</item>
-                    <item>4 - Initializes/starts a new session</item>
-                    <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
-                </list>
-                The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
-                <list>
-                    <item>6 - Return a (potentially) modified OptionObject to <c>RunScript()</c></item>
-                </list>
-            </note>
+            <para>
+                <note type="information" title="The Magic of StartApp()">
+                    A lot of stuff happens in the <c>StartApp()</c> method,:
+                    <list>
+                        <item>1 - Loads the runtime settings</item>
+                        <item>2 - Loads the framework settings</item>
+                        <item>3 - Verifies/updates the framework</item>
+                        <item>4 - Initializes/starts a new session</item>
+                        <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
+                    </list>
+                    The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
+                    <list>
+                        <item>6 - Return a (potentially) modified OptionObject to <c>RunScript()</c></item>
+                    </list>
+                </note>
+            </para>
         </StartApp>
 
     </Topic>
 
 
+    <!--
+    ====================================================================================================================
+    TingenWebService.Core.RuntimeConfig.cs
+    ====================================================================================================================
+    -->
 
+    <Topic name ="RuntimeConfig">
+
+        <AboutRuntimeConfig>
+            <para>
+                <note type="information" title="The Magic of RunScript()">
+                    The <c>RunScript()</c> method:
+                    <list>
+                        <item>1 - Verifies that Avatar actually sent data</item>
+                        <item>
+                            2 - Hands things off to <c>StartApp()</c>
+                        </item>
+                    </list>
+                    The <c>StartApp()</c> method will then do it's thing, after which we'll return to this method, and...
+                    <list>
+                        <item>3 - Write the session log</item>
+                        <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
+                    </list>
+                    The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
+                    Avatar from a single location, regardless of whether the request was successful or not.
+                </note>
+            </para>
+            <para>
+                <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
+                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named
+                    "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process the response.
+                    This is only the case for the <c>RunScript()</c> method.
+                </note>
+            </para>
+        </AboutRuntimeConfig>
+
+    </Topic>
+    
+    
 
 
     <!--

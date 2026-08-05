@@ -45,32 +45,14 @@ namespace TingenWebService.Core.Trove
         /* =====================================================================
          * 1000 - 1999: Tingen Web Service
          * =====================================================================
-         * ERR1010 - Missing sent OptionObject
-         * ERR1020 - Missing sent ScriptParameter
+         * ERR1010 -
+         * ERR1020 -
          * ERR1110 - Failed to load runtime configuration
          * ERR1120 - Failed to load framework configuration
          * ERR1130 - Missing TngnWsvc.config file
          * ERR1140 - Failed to validate framework
          * ERR1210 - Session duration timeout exceeded
          */
-
-        /// <summary>Build the missing OptionObject system message.</summary>
-        /// <returns>The missing OptionObject system message.</returns>
-        internal static string[] ERR1010() =>
-            new string[]
-            {
-                "ERR1010",
-                $"The OptionObject was not sent from Avatar."
-            };
-
-        /// <summary>Build the missing Script Parameter message.</summary>
-        /// <returns>The missing Script Parameter message.</returns>
-        internal static string[] ERR1020() =>
-            new string[]
-            {
-                "ERR1020",
-                $"The Script Parameter was not sent from Avatar."
-            };
 
         /// <summary>Build the runtime configuration load failure message.</summary>
         /// <param name="errorMessage">The error message.</param>

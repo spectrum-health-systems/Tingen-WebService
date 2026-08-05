@@ -50,7 +50,7 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
 
             if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
             {

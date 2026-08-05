@@ -1,5 +1,5 @@
-﻿// 260804_code
-// 260730_documentation
+﻿// 260805_code
+// 260805_documentation
 
 using System;
 using TingenWebService.Core.Logger;
@@ -13,16 +13,16 @@ namespace TingenWebService.Core
     /// The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
     /// It contains information that the web service needs to know before anything else can be loaded.
     /// </remarks>
-    internal class RuntimeConfig
+    internal class RuntimeSetting
     {
         /// <summary>The current date (yyMMdd).</summary>
-        public string SessionStartDate { get; set; }
+        public string RuntimeStartDate { get; set; }
 
         /// <summary>The current time (HHmmss).</summary>
-        public string SessionStartTime { get; set; }
+        public string RuntimeStartTime { get; set; }
 
         /// <summary>The current milliseconds (fffffff).</summary>
-        public string SessionStartMilliseconds { get; set; }
+        public string RuntimeStartMs { get; set; }
 
         /// <summary>Release and build information.</summary>
         /// <remarks>
@@ -39,10 +39,10 @@ namespace TingenWebService.Core
 
         /// <summary>Load the runtime configuration.</summary>
         /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
-        /// <returns>The loaded <see cref="RuntimeConfig"/> instance.</returns>
-        internal static RuntimeConfig Load(string twsRelease)
+        /// <returns>The loaded <see cref="RuntimeSetting"/> instance.</returns>
+        internal static RuntimeSetting Load(string twsRelease)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
 
             try
             {
@@ -50,7 +50,7 @@ namespace TingenWebService.Core
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR1110-TwsConfigLoadFailed", SysMsg.ERR1110(ex.Message)[1]);
+                LogEvent.Primeval("ERR1110-FailedToLoadRuntimeSettings", ErrorMessage.ERR1110(ex.Message)[1]);
 
                 throw;
             }
@@ -58,16 +58,16 @@ namespace TingenWebService.Core
 
         /// <summary>Build the runtime configuration.</summary>
         /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
-        /// <returns>A <see cref="RuntimeConfig"/> instance with the current settings.</returns>
-        internal static RuntimeConfig Build(string twsRelease)
+        /// <returns>A <see cref="RuntimeSetting"/> instance with the current settings.</returns>
+        internal static RuntimeSetting Build(string twsRelease)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
 
-            return new RuntimeConfig()
+            return new RuntimeSetting()
             {
-                SessionStartDate         = DateTime.Now.ToString("yyMMdd"),
-                SessionStartTime         = DateTime.Now.ToString("HHmmss"),
-                SessionStartMilliseconds = DateTime.Now.ToString("fffffff"),
+                RuntimeStartDate         = DateTime.Now.ToString("yyMMdd"),
+                RuntimeStartTime         = DateTime.Now.ToString("HHmmss"),
+                RuntimeStartMs = DateTime.Now.ToString("fffffff"),
                 ReleaseBuild             = $"{twsRelease} (b{Settings.Default.TwsBuild})",
                 AvatarSystem             = Settings.Default.AvatarSystem,
                 DataRoot                 = Settings.Default.HostDataRoot,

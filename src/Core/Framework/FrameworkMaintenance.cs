@@ -11,7 +11,7 @@ namespace TingenWebService.Core.Framework
     /// <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
     internal static class FrameworkMaintenance
     {
-        internal static void DailyVerify(RuntimeConfig runtimeConfig, FrameworkConfig frameworkConfig)
+        internal static void DailyVerify(RuntimeSetting runtimeConfig, FrameworkConfig frameworkConfig)
         {
             var dailyLogFileName = $"{DateTime.Now:yyMMdd}.daily";
 
@@ -49,7 +49,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="systemLogFileName">The name of the start log file.</param>
         /// <param name="runtimeConfig">The runtime configuration.</param>
         /// <param name="frameworkConfig">The framework instance.</param>
-        internal static void VerifyComponents(string dailyLogFileName, RuntimeConfig runtimeConfig, FrameworkConfig frameworkConfig)
+        internal static void VerifyComponents(string dailyLogFileName, RuntimeSetting runtimeConfig, FrameworkConfig frameworkConfig)
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
