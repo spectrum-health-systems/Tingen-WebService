@@ -3,13 +3,12 @@
 
 using System.Collections.Generic;
 using System.IO;
-using TingenWebService.Core.Logger;
 using TingenWebService.Core.Trove;
 using TingenWebService.Du;
 
 namespace TingenWebService.Core.Framework
 {
-    internal class FrameworkExport
+    internal static class FrameworkExport
     {
         /// <summary>Exports all blueprint templates to the specified host directory.</summary>
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
@@ -55,7 +54,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="translationRoot">The root directory where the translations will be exported.</param>
         internal static void ExportTranslations(string translationRoot)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
 
             foreach (var translationFileName in Catalog.TranslationFileNames())
             {
@@ -73,11 +72,7 @@ namespace TingenWebService.Core.Framework
 
                 if (translationContent != null)
                 {
-                    var jsonString = translationContent.ToString();
-
                     DuJson.ExportFile(translationContent, translationPath);
-
-                    LogEvent.Primeval("PRELOG-TRACE-08");
                 }
             }
         }

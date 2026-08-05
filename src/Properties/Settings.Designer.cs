@@ -25,7 +25,7 @@ namespace TingenWebService.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("260803")]
+        [global::System.Configuration.DefaultSettingValueAttribute("260804")]
         public string TwsBuild {
             get {
                 return ((string)(this["TwsBuild"]));

@@ -21,9 +21,7 @@ namespace TingenWebService.Core.Framework
 
         /// <summary>Configuration data.</summary>
         /// <remarks>
-        /// All *.config files are stored here.<br>
-        /// </br>
-        /// Please note that 
+        /// All *.config files are stored here.
         /// </remarks>
         public string ConfigRoot { get; set; }
 

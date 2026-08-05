@@ -11,6 +11,8 @@ using TingenWebService.Core.Avatar;
 using TingenWebService.Core.Framework;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
+using TingenWebService.Core.Trove;
+using TingenWebService.Du;
 
 namespace TingenWebService
 {
@@ -112,6 +114,8 @@ namespace TingenWebService
 
                 LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             }
+
+            ParseRequest(_sess);
         }
 
         internal void ParseRequest(Sess sess)
@@ -120,14 +124,14 @@ namespace TingenWebService
 
             if (sess.AvatarData.SentScriptParam.StartsWith("_", StringComparison.OrdinalIgnoreCase))
             {
+                var formName = GetFormName(sess.FrameworkSetting.TranslationTableRoot, sess.AvatarData.SentOptObj.OptionId);
 
+                sess.RunningLog += Redprint.ParseRequest(sess.AvatarData.SentOptObj.OptionId, formName, sess.AvatarData.SentScriptParam);
             }
             else
             {
-
+                // SpecificFormRequest
             }
-
-
         }
 
         /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
@@ -184,23 +188,15 @@ namespace TingenWebService
         /// Console.WriteLine($"Resolved form name: {formName}");
         /// </code>
         /// </example>
-        internal static string GetFormName(Sess sess)
+        internal static string GetFormName(string translationPath, string formId)
         {
-            //File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation"));
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-GetFormName");
 
-            //foreach (var line in File.ReadAllLines(Path.Combine(sess.FrameworkSetting.TranslationTableRoot, "FormIdToName.translation")))
-            //{
-            //    var parts = line.Split('=');
+            var path = Path.Combine(translationPath, "FormIdToName.translation");
 
-            //    if (parts.Length == 2 && parts[0].Trim() == sess.AvatarData.SentOptObj.Original.OptionId)
-            //    {
-            //        return parts[1].Trim();
-            //    }
-            //}
+            var forms = DuJson.ImportFile<JsonObj.FormId>(path);
 
-            ////return t;
-            return "";
+            return forms.ToFormName[formId];
         }
-
     }
 }

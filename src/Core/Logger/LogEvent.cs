@@ -194,7 +194,5 @@ namespace TingenWebService.Core.Logger
                 LogWriter.WriteLocal(sessionFolder, logName);
             }
         }
-
-
     }
 }

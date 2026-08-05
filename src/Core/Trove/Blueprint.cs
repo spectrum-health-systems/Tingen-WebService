@@ -41,15 +41,13 @@ namespace TingenWebService.Core.Trove
             $"End: ~SESSION~END~{Environment.NewLine}" +
             $"Duration: ~SESSION~DURATION~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"Session Log" +
-            $"{Environment.NewLine}" +
             $"~SESSION~RUNNING~LOG~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"Session Details{Environment.NewLine}" +
+            $"Session Details" +
             $"{Environment.NewLine}" +
             $"~SESSION~DETAILS~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"[End of Tingen Web Service Session Log]{Environment.NewLine}";
+            $"[End]{Environment.NewLine}";
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
@@ -72,17 +70,17 @@ namespace TingenWebService.Core.Trove
             $"| **End**               | ~SESSION~END~                                         |{Environment.NewLine}" +
             $"| **Duration**          | ~SESSION~DURATION~                                       |{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"## Session Log{Environment.NewLine}" +
+            $"***{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"~SESSION~RUNNING~LOG~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"## Session Details{Environment.NewLine}" +
+            $"***{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"~SESSION~DETAILS~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"***{Environment.NewLine}" +
-            $"<sub>End of Tingen Web Service Session Log</sub>{Environment.NewLine}";
+            $"<sub>End</sub>{Environment.NewLine}";
 
         /// <summary>Build the blueprint for HTML session logs.</summary>
         /// <remarks>
@@ -126,14 +124,14 @@ namespace TingenWebService.Core.Trove
             $"</tr>{Environment.NewLine}" +
             $"</table>{Environment.NewLine}" +
             $"<br/>{Environment.NewLine}" +
-            $"<h2>Session Log</h2>{Environment.NewLine}" +
+            $"<hr>{Environment.NewLine}" +
             $"<para>~SESSION~RUNNING~LOG~</para>{Environment.NewLine}" +
             $"<br/>{Environment.NewLine}" +
             $"<h2>Session Details</h2>{Environment.NewLine}" +
-            $"<para>~SESSION~DETAILS~</para>{Environment.NewLine}" +
+            $"<hr>{Environment.NewLine}" +
             $"<br/>{Environment.NewLine}" +
             $"<hr>{Environment.NewLine}" +
-            $"<p><sub>End of Tingen Web Service Session Log</sub></p>{Environment.NewLine}" +
+            $"<p><sub>End</sub></p>{Environment.NewLine}" +
             $"{Environment.NewLine}";
     }
 }

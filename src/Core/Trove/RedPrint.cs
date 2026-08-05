@@ -83,6 +83,15 @@ namespace TingenWebService.Core.Trove
                    $"          Invalid Program of Incident Message: {openIncidentConfig.InvalidProgramOfIncidentMsg}{Environment.NewLine}" +
                    $"       Invalid Program of Incident Error Code: {openIncidentConfig.InvalidProgramOfIncidentErrCode}{Environment.NewLine}";
         }
+
+        internal static string ParseRequest(string formId, string formName, string request)
+        {
+            return $"[Parse request]{Environment.NewLine}" +
+                   $"Form ID: {formId}{Environment.NewLine}" +
+                   $"Form Name: {formName}{Environment.NewLine}" +
+                   $"Request: {request}{Environment.NewLine}" +
+                   $"{Environment.NewLine}";
+        }
     }
 }
 
