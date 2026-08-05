@@ -66,7 +66,7 @@ namespace TingenWebService.Core.Avatar
 
             if (sentOptionObject == null)
             {
-                LogEvent.Primeval("ERROR-ScriptParameterMissing");
+                LogEvent.Primeval("ERROR-MissingScriptParameter");
                 // TODO - Potentially send an email in addition to the error logs.
 
                 return false;

@@ -65,12 +65,12 @@ namespace TingenWebService.Core
 
             return new RuntimeSetting()
             {
-                RuntimeStartDate         = DateTime.Now.ToString("yyMMdd"),
-                RuntimeStartTime         = DateTime.Now.ToString("HHmmss"),
-                RuntimeStartMs = DateTime.Now.ToString("fffffff"),
-                ReleaseBuild             = $"{twsRelease} (b{Settings.Default.TwsBuild})",
-                AvatarSystem             = Settings.Default.AvatarSystem,
-                DataRoot                 = Settings.Default.HostDataRoot,
+                RuntimeStartDate = DateTime.Now.ToString("yyMMdd"),
+                RuntimeStartTime = DateTime.Now.ToString("HHmmss"),
+                RuntimeStartMs   = DateTime.Now.ToString("fffffff"),
+                ReleaseBuild     = $"{twsRelease} (b{Settings.Default.TwsBuild})",
+                AvatarSystem     = Settings.Default.AvatarSystem,
+                DataRoot         = Settings.Default.HostDataRoot,
             };
         }
     }

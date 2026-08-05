@@ -99,7 +99,7 @@
             contain other data in the future.
             </remarks>
         </member>
-        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrameworkConfig)">
+        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig)">
             <summary>Verify the components for the session.</summary>
             <param name="systemLogFileName">The name of the start log file.</param>
             <param name="runtimeConfig">The runtime configuration.</param>
@@ -158,44 +158,49 @@
             <param name="avatarSystem">The avatar system identifier.</param>
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrameworkConfig"/> instance with the specified paths.</returns>
         </member>
-        <member name="T:TingenWebService.Core.RuntimeConfig">
+        <member name="T:TingenWebService.Core.RuntimeSetting">
             <summary>Runtime configuration/settings logic.</summary>
             <remarks>
             The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
             It contains information that the web service needs to know before anything else can be loaded.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.SessionStartDate">
+        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartDate">
             <summary>The current date (yyMMdd).</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.SessionStartTime">
+        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartTime">
             <summary>The current time (HHmmss).</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.SessionStartMilliseconds">
+        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartMs">
             <summary>The current milliseconds (fffffff).</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.ReleaseBuild">
+        <member name="P:TingenWebService.Core.RuntimeSetting.ReleaseBuild">
             <summary>Release and build information.</summary>
             <remarks>
             These two pieces of information are combined to form a single string that is used to identify the version of
             the Tingen Web Service that is running.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.AvatarSystem">
+        <member name="P:TingenWebService.Core.RuntimeSetting.AvatarSystem">
             <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeConfig.DataRoot">
+        <member name="P:TingenWebService.Core.RuntimeSetting.DataRoot">
             <summary>The root directory for Tingen Web Service data.</summary>
         </member>
-        <member name="M:TingenWebService.Core.RuntimeConfig.Load(System.String)">
+        <member name="M:TingenWebService.Core.RuntimeSetting.Load(System.String)">
             <summary>Load the runtime configuration.</summary>
             <param name="twsRelease">The release version of the Tingen Web Service.</param>
-            <returns>The loaded <see cref="T:TingenWebService.Core.RuntimeConfig"/> instance.</returns>
+            <returns>The loaded <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance.</returns>
         </member>
-        <member name="M:TingenWebService.Core.RuntimeConfig.Build(System.String)">
+        <member name="M:TingenWebService.Core.RuntimeSetting.Build(System.String)">
             <summary>Build the runtime configuration.</summary>
             <param name="twsRelease">The release version of the Tingen Web Service.</param>
-            <returns>A <see cref="T:TingenWebService.Core.RuntimeConfig"/> instance with the current settings.</returns>
+            <returns>A <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance with the current settings.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.ErrorMessage.ERR1110(System.String)">
+            <summary>Build the runtime configuration load failure message.</summary>
+            <param name="errorMessage">The error message.</param>
+            <returns>The runtime configuration load failure message.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Translation">
             <summary>Represents a JSON object used within the Tingen Web Service.</summary>
@@ -279,7 +284,7 @@
             <param name="twsConfig">The Tingen Web Service configuration.</param>
             <returns>The configuration details message.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.RuntimeDetails(TingenWebService.Core.RuntimeConfig)">
+        <member name="M:TingenWebService.Core.Trove.Redprint.RuntimeDetails(TingenWebService.Core.RuntimeSetting)">
             <summary>Build the runtime details message.</summary>
             <param name="rtConfig">The runtime configuration.</param>
             <returns>The runtime details message.</returns>
@@ -304,19 +309,6 @@
         <member name="M:TingenWebService.Core.Trove.SysMsg.SystemLogsReset">
             <summary>Build the message indicating that the system logs have been reset.</summary>
             <returns>The system logs reset message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1010">
-            <summary>Build the missing OptionObject system message.</summary>
-            <returns>The missing OptionObject system message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1020">
-            <summary>Build the missing Script Parameter message.</summary>
-            <returns>The missing Script Parameter message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1110(System.String)">
-            <summary>Build the runtime configuration load failure message.</summary>
-            <param name="errorMessage">The error message.</param>
-            <returns>The runtime configuration load failure message.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1120(System.String)">
             <summary>Build the framework configuration load failure message.</summary>
@@ -436,13 +428,13 @@
         <member name="T:TingenWebService.Core.Logger.LogMaintenance">
             <summary>Provides methods for maintaining system log files.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.TwsConfig)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.TwsConfig)">
             <summary>Verifies the existence of system log files and resets them if necessary.</summary>
             <param name="frameworkSetting">The framework configuration.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
             <param name="twsSetting">The TWS configuration.</param>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.RuntimeConfig)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.RuntimeSetting)">
             <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
             <param name="frameworkSetting">The framework configuration.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
@@ -455,7 +447,7 @@
             <param name="traceLimit">The trace limit for logging.</param>
             <param name="sessionFolder">The session folder for logging.</param>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.BuildSystemLogs(System.String,System.Collections.Generic.List{System.String},TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrameworkConfig)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.BuildSystemLogs(System.String,System.Collections.Generic.List{System.String},TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig)">
             <summary>Builds the specified system log files.</summary>
             <param name="systemLogRoot">The root folder of the system log files.</param>
             <param name="systemFileNames">The list of system log file names to build.</param>
@@ -600,7 +592,7 @@
         <member name="T:TingenWebService.Core.Session.SessMaintenance">
             <summary>Session maintenance logic.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Session.SessMaintenance.InitializeNewSession(TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrameworkConfig)">
+        <member name="M:TingenWebService.Core.Session.SessMaintenance.InitializeNewSession(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig)">
             <summary>Session maintenance.</summary>
             <remarks>
             This maintenance is done for every session.
@@ -626,7 +618,7 @@
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Session.Sess.RuntimeSetting">
-            <summary>The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime settings</see>.</summary>
+            <summary>The <see cref="T:TingenWebService.Core.RuntimeSetting"> runtime settings</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Session.Sess.FrameworkSetting">
             <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
@@ -647,11 +639,11 @@
             <summary>Details about the session.</summary>
             <remarks>The running log.</remarks>
         </member>
-        <member name="M:TingenWebService.Core.Session.Sess.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.RuntimeConfig,TingenWebService.Core.Framework.FrameworkConfig)">
+        <member name="M:TingenWebService.Core.Session.Sess.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig)">
             <summary>Start a new Tingen Web Service session.</summary>
             <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
             <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-            <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeConfig"> runtime configuration settings</see>.</param>
+            <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeSetting"> runtime configuration settings</see>.</param>
             <param name="frameworkConfig">The <see cref="P:TingenWebService.Core.Session.Sess.FrameworkSetting"> framework components</see>.</param>
             <returns>A new Tingen Web Service session object.</returns>
         </member>
@@ -925,9 +917,10 @@
                         <item>3 - Write the session log</item>
                         <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
                     </list>
-                    The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
-                    Avatar from a single location, regardless of whether the request was successful or not.
                 </note>
+            </para><para>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
+                Avatar from a single location, regardless of whether the request was successful or not.
             </para><para>
                 <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
                     For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named 
@@ -944,20 +937,22 @@
             <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject" /> sent from Avatar.</param>
             <param name="sentScriptParameter">The <see cref="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter" /> sent from Avatar.</param>
             <remarks>
-            <note type="information" title="The Magic of StartApp()">
-                A lot of stuff happens in the <c>StartApp()</c> method,:
-                <list>
-                    <item>1 - Loads the runtime settings</item>
-                    <item>2 - Loads the framework settings</item>
-                    <item>3 - Verifies/updates the framework</item>
-                    <item>4 - Initializes/starts a new session</item>
-                    <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
-                </list>
-                The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
-                <list>
-                    <item>6 - Return a (potentially) modified OptionObject to <c>RunScript()</c></item>
-                </list>
-            </note>
+            <para>
+                <note type="information" title="The Magic of StartApp()">
+                    A lot of stuff happens in the <c>StartApp()</c> method,:
+                    <list>
+                        <item>1 - Loads the runtime settings</item>
+                        <item>2 - Loads the framework settings</item>
+                        <item>3 - Verifies/updates the framework</item>
+                        <item>4 - Initializes/starts a new session</item>
+                        <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
+                    </list>
+                    The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
+                    <list>
+                        <item>6 - Return a (potentially) modified OptionObject to <c>RunScript()</c></item>
+                    </list>
+                </note>
+            </para>
             This method is required by Avatar.
             </remarks>
         </member>

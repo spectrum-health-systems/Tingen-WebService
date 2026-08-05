@@ -2,15 +2,11 @@
 
 <Topics>
 
-    <!--
-    ====================================================================================================================
-    TingenWebService.asmx.cs
-    ====================================================================================================================
-    -->
+    <!-- ===== TingenWebService.asmx.cs =============================================================================================== -->
 
     <Topic name ="Asmx">
 
-        <RunScript>
+        <RunScript> <!-- 260805 -->
             <para>
                 <note type="information" title="The Magic of RunScript()">
                     The <c>RunScript()</c> method:
@@ -38,7 +34,7 @@
             </para>
         </RunScript>
 
-        <StartApp>
+        <StartApp> <!-- 260805 -->
             <para>
                 <note type="information" title="The Magic of StartApp()">
                     A lot of stuff happens in the <c>StartApp()</c> method,:
@@ -60,38 +56,21 @@
     </Topic>
 
 
-    <!--
-    ====================================================================================================================
-    TingenWebService.Core.RuntimeConfig.cs
-    ====================================================================================================================
-    -->
+    <!-- ===== TingenWebService.Core.RuntimeConfig.cs ================================================================================= -->
 
     <Topic name ="RuntimeConfig">
 
-        <AboutRuntimeConfig>
+        <AboutRuntimeConfig> <!-- 260805 -->
             <para>
-                <note type="information" title="The Magic of RunScript()">
-                    The <c>RunScript()</c> method:
-                    <list>
-                        <item>1 - Verifies that Avatar actually sent data</item>
-                        <item>
-                            2 - Hands things off to <c>StartApp()</c>
-                        </item>
+                <note type="information" title="The runtime settings">
+                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up.
+                    <list type="bullet">
+                        <item>Runtime start date/time</item>
+                        <item>Current Tingen Web Service release/build</item>
+                        <item>The Avatar system that the Tingen Web Service will interface with</item>
+                        <item>The root directory for Tingen Web Service data</item>
                     </list>
-                    The <c>StartApp()</c> method will then do it's thing, after which we'll return to this method, and...
-                    <list>
-                        <item>3 - Write the session log</item>
-                        <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
-                    </list>
-                    The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
-                    Avatar from a single location, regardless of whether the request was successful or not.
-                </note>
-            </para>
-            <para>
-                <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
-                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named
-                    "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process the response.
-                    This is only the case for the <c>RunScript()</c> method.
+                    The last three items are loaded from the <c>web.config</c> file.
                 </note>
             </para>
         </AboutRuntimeConfig>
