@@ -11,7 +11,7 @@
         <member name="N:TingenWebService">
             <summary>Contains the Tingen Web Service entry point.</summary>
             <remarks>
-                The <see cref="TingenWebService.TingenWebService"/> class exposes the web methods used by Avatar to
+                The TingenWebService class exposes the web methods used by Avatar to
                 query the service version and execute scripts.
             </remarks>
         </member>

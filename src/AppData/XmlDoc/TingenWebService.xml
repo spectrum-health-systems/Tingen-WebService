@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TingenWebService>
+
+    <Method name ="RunScript">
+
+        <HowItWorks>
+            <note type="information" title="How It Works">
+                This is where the following magic happens:
+                <list type="number">
+                    <item>Verify that Avatar actually sent data (and return the unmodified OptionObject if not)</item>
+                    <item>
+                        <c>StartApp()</c> sets up the Tingen Web Service <i>session</i>
+                    </item>
+                    <item>The request is processed</item>
+                    <item>The session is logged</item>
+                    <item>The (potentially) modified OptionObject is returned to Avatar</item>
+                </list>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is
+                returned to Avatar from a single location, regardless of whether the request was successful or not.
+            </note>
+        </HowItWorks>
+
+    </Method>
+
+</TingenWebService>

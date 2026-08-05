@@ -1,5 +1,5 @@
 ﻿// 260805_code
-// 260729_documentation
+// 260805_documentation
 
 using System.Reflection;
 using System.Web.Services;
@@ -29,7 +29,7 @@ namespace TingenWebService
         /// <summary>The Tingen Web Service session instance.</summary>
         /// <remarks>
         /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think
-        /// this is easier to read/understand than <code>twsSession = StartApp()</code>
+        /// this is easier to read/understand than <c>twsSession = StartApp()</c>
         /// </remarks>
         private Sess _sess { get; set; }
 
@@ -41,24 +41,24 @@ namespace TingenWebService
 
         /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
-        /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
+        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="RunScript"]/TheMagic/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Method"]/RunScript/*'/>
         /// This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
-        public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
+        public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParameter)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", SysMsg.PretraceStartMessage(sentScriptParam));
+            Core.Logger.LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", Core.Trove.SysMsg.PretraceStartMessage(sentScriptParameter));
 
-            if (IsMissingAvatarData(sentOptObj, sentScriptParam))
+            if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParameter))
             {
                 return sentOptObj.ToReturnOptionObject(0, "");
             }
             else
             {
-                StartApp(sentOptObj, sentScriptParam);
+                StartApp(sentOptObj, sentScriptParameter);
 
                 LogEvent.Trace(9, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
 
@@ -75,7 +75,8 @@ namespace TingenWebService
         /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/About/*'/>
+        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/>
+        /// <br/>
         /// </remarks>
         /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
         private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
@@ -87,7 +88,7 @@ namespace TingenWebService
 
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
-        /// <param name="sentScriptParameter"> The <see cref="AvatarOptionObject.SentScriptParam"/> sent from Avatar.</param>
+        /// <param name="sentScriptParameter"> The <see cref="AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
         /// <remarks>
         /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
         /// validating requirements, and initializing the session state.
