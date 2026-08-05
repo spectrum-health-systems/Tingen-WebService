@@ -1,4 +1,4 @@
-﻿// 260804_code
+﻿// 260805_code
 // 260729_documentation
 
 using System.Reflection;
@@ -105,19 +105,7 @@ namespace TingenWebService
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frameworkConfig);
 
-            //if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else? or if daily is missing
-            //{
-            //    LogEvent.Trace(4, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
-
-            //    LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
-            //}
-
             AvatarScriptParameter.Parse(_sess);
         }
-
-
-
-
-
     }
 }

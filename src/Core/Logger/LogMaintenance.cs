@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Core.Framework;
 using TingenWebService.Core.Trove;
-using TingenWebService.Module.OpenIncident;
 
 namespace TingenWebService.Core.Logger
 {
@@ -16,7 +15,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="frameworkSetting">The framework configuration.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="twsSetting">The TWS configuration.</param>
-        internal static void VerifySystemLogs(FrameworkConfig frameworkSetting, RuntimeConfig runtimeSetting)
+        internal static void VerifySystemLogs(RuntimeConfig runtimeSetting, FrameworkConfig frameworkSetting, TwsConfig twsConfig)
         {
             if (!File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
             {
@@ -66,17 +65,17 @@ namespace TingenWebService.Core.Logger
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework configuration.</param>
         /// <param name="twsConfig">The TWS configuration.</param>
-        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig rtConfig, Framework.FrameworkConfig twsFramework)
+        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig runtimeConfig, FrameworkConfig twsFramework)
         {
             //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-BuildSystemLogs");
 
-            LogEvent.SystemLog(systemLogRoot, "Runtime.current", Redprint.RuntimeDetails(rtConfig));
+            LogEvent.SystemLog(systemLogRoot, "Runtime.current", Redprint.RuntimeDetails(runtimeConfig));
             LogEvent.SystemLog(systemLogRoot, "Framework.current", Redprint.FrameworkDetails(twsFramework));
 
             //LogEvent.SystemLog(systemLogRoot, "Configuration.current", Redprint.ConfigurationDetails(twsFramework));
 
-            OpenIncidentConfig openIncidentConfig = OpenIncidentConfig.Load(Path.Combine(twsFramework.ConfigRoot, "OpenIncident.config"), twsFramework.SessionRoot);
-            LogEvent.SystemLog(systemLogRoot, "OpenIncident.current", Redprint.OpenIncidentConfig(openIncidentConfig));
+            //OpenIncidentConfig openIncidentConfig = OpenIncidentConfig.Load(Path.Combine(twsFramework.ConfigRoot, "OpenIncident.config"), twsConfig.TraceLimit, twsFramework.SessionRoot);
+            //LogEvent.SystemLog(systemLogRoot, "OpenIncident.current", Redprint.OpenIncidentConfig(openIncidentConfig));
         }
     }
 }

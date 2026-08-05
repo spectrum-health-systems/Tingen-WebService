@@ -78,7 +78,7 @@ namespace TingenWebService.Core.Framework
             var verificationDurationTime = (DateTime.ParseExact(verifyEnd, "HHmmss", null) - DateTime.ParseExact(verifyStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
             var verificationDurationMilliseconds = (DateTime.ParseExact(verifyEndMs, "fffffff", null) - DateTime.ParseExact(verifyStartMs, "fffffff", null)).ToString("fffffff");
 
-            _runningDailyLog += $"[End] {verifyEnd}:{verifyEndMs}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
+            runningDailyLog += $"[End] {verifyEnd}:{verifyEndMs}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
 
             LogEvent.SystemLog(frameworkConfig.SysLogRoot, dailyLogFileName, runningDailyLog);
 

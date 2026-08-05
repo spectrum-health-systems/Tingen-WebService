@@ -100,7 +100,9 @@
     <Content Include="AppData\XmlDoc\NsDoc.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="AppData\XmlDoc\Topics.xml" />
+    <Content Include="AppData\XmlDoc\Topics.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="TingenWebService.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
