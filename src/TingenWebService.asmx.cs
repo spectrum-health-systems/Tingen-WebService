@@ -20,16 +20,16 @@ namespace TingenWebService
     {
         /// <summary>The current Tingen Web Service release.</summary>
         /// <remarks>
-        /// Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering
-        /// why I define it here, so that's why this comment exists. Hello future me (again).
+        /// Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering  why I define it
+        /// here, so that's why this comment exists. Hello future me (again).
         /// </remarks>
         /// <returns>A string representing the current release.</returns>
         private static string _releaseBuild { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>The Tingen Web Service session instance.</summary>
         /// <remarks>
-        /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think
-        /// this is easier to read/understand than <c>twsSession = StartApp()</c>
+        /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think this is easier to
+        /// read/understand than <c>twsSession = StartApp()</c>
         /// </remarks>
         private Sess _sess { get; set; }
 
@@ -43,14 +43,14 @@ namespace TingenWebService
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Method"]/RunScript/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/RunScript/*'/>
         /// This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParameter)
         {
-            //Core.Logger.LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", Core.Trove.SysMsg.PretraceStartMessage(sentScriptParameter));
+            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", sentScriptParameter);
 
             if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParameter))
             {
@@ -70,28 +70,14 @@ namespace TingenWebService
             }
         }
 
-        // TODO - Move to ns:Avatar.AvatarData?
-        /// <summary>Determines if the Avatar data is missing.</summary>
-        /// <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
-        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/>
-        /// <br/>
-        /// </remarks>
-        /// <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
-        private static bool IsMissingAvatarData(OptionObject2015 sentOptionObject, string sentScriptParameter)
-        {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-IsMissingAvatarData");
-
-            return !AvatarOptionObject.WasSent(sentOptionObject) || !AvatarScriptParameter.WasSent(sentScriptParameter);
-        }
-
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter"> The <see cref="AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
         /// <remarks>
-        /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
-        /// validating requirements, and initializing the session state.
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/StartApp/*'/>
+        /// This method does
+        /// the heavy-lifting of starting the Tingen Web Service by loading multiple configurations, validating
+        /// requirements, and initializing the session state.
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {

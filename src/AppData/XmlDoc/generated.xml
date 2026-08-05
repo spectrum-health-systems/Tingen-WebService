@@ -891,16 +891,16 @@
         <member name="P:TingenWebService.TingenWebService._releaseBuild">
             <summary>The current Tingen Web Service release.</summary>
             <remarks>
-            Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering
-            why I define it here, so that's why this comment exists. Hello future me (again).
+            Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering  why I define it
+            here, so that's why this comment exists. Hello future me (again).
             </remarks>
             <returns>A string representing the current release.</returns>
         </member>
         <member name="P:TingenWebService.TingenWebService._sess">
             <summary>The Tingen Web Service session instance.</summary>
             <remarks>
-            Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think
-            this is easier to read/understand than <c>twsSession = StartApp()</c>
+            Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think this is easier to
+            read/understand than <c>twsSession = StartApp()</c>
             </remarks>
         </member>
         <member name="M:TingenWebService.TingenWebService.GetVersion">
@@ -914,14 +914,40 @@
             <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
             <remarks>
             <note type="information" title="The Magic of RunScript()">
+                The <c>RunScript()</c> method:
+                <list>
+                    <item>1 - Verifies that Avatar actually sent data</item>
+                    <item>2 - Hands things off to <c>StartApp()</c></item>
+                </list>
+                The <c>StartApp()</c> method will then do it's thing, after which we'll return to this method, and...
+                <list>
+                    <item>3 - Write the session log</item>
+                    <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
+                </list>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
+                Avatar from a single location, regardless of whether the request was successful or not.
+            </note><br /><br /><note type="caution" title="It's called &quot;sentOptObj&quot; for a reason">
+                For some unexplainable  - at least to me - the <c>sentOptObj</c> must be called <c>sentOptObj</c>, otherwise
+                you'll get an error when Avatar tries to process the response. This is only the case for the <c>RunScript()</c> method.
+            </note>
+            This method is required by Avatar.
+            </remarks>
+            <returns>A (potentially modified) completed OptionObject.</returns>
+        </member>
+        <member name="M:TingenWebService.TingenWebService.StartApp(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+            <summary>Start the Tingen Web Service.</summary>
+            <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject" /> sent from Avatar.</param>
+            <param name="sentScriptParameter"> The <see cref="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter" /> sent from Avatar.</param>
+            <remarks>
+            <note type="information" title="The Magic of StartApp()">
                 This is where the following magic happens:
                 <list type="number">
-                    <item>Verify that Avatar actually sent data (and return the unmodified OptionObject if not)</item>
-                    <item>The Tingen Web Service framework is verified</item>
-                    <item>A new <i>session</i> is created</item>
-                    <item>The request is processed</item>
-                    <item>The session is logged</item>
-                    <item>The (potentially) modified OptionObject is returned to Avatar</item>
+                    <item>Load the runtime settings</item>
+                    <item>Load the framework settings</item>
+                    <item>Verify/update the framework</item>
+                    <item>Initialize/start a new session</item>
+                    <item>Parse the script parameter</item>
+                    <item>Return a (potentially) modified OptionObject to Avatar</item>
                 </list>
                 The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to<br />
                 Avatar from a single location, regardless of whether the request was successful or not.
@@ -929,27 +955,9 @@
                 For some unexplainable reason - at least to me - the <c>sentOptObj</c> must be called <c>sentOptObj</c>, otherwise <br />
                 you'll get an error when Avatar tries to process the response. This is only the case for the <c>RunScript()</c> method.
             </note>
-            This method is required by Avatar.
-            </remarks>
-            <returns>A (potentially modified) completed OptionObject.</returns>
-        </member>
-        <member name="M:TingenWebService.TingenWebService.IsMissingAvatarData(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
-            <summary>Determines if the Avatar data is missing.</summary>
-            <param name="sentOptionObject">The OptionObject sent from Avatar.</param>
-            <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutAvatarData/*" />
-            <br />
-            </remarks>
-            <returns><c>True</c> if the avatar data is missing; otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:TingenWebService.TingenWebService.StartApp(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
-            <summary>Start the Tingen Web Service.</summary>
-            <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
-            <param name="sentScriptParameter"> The <see cref="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
-            <remarks>
-            This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
-            validating requirements, and initializing the session state.
+            This method does
+            the heavy-lifting of starting the Tingen Web Service by loading multiple configurations, validating
+            requirements, and initializing the session state.
             </remarks>
         </member>
     </members>

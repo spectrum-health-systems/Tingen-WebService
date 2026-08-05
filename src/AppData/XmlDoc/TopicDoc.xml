@@ -8,18 +8,41 @@
     ====================================================================================================================
     -->
 
-    <Topic name ="Method">
+    <Topic name ="Asmx">
 
         <RunScript>
             <note type="information" title="The Magic of RunScript()">
+                The <c>RunScript()</c> method:
+                <list>
+                    <item>1 - Verifies that Avatar actually sent data</item>
+                    <item>2 - Hands things off to <c>StartApp()</c></item>
+                </list>
+                The <c>StartApp()</c> method will then do it's thing, after which we'll return to this method, and...
+                <list>
+                    <item>3 - Write the session log</item>
+                    <item>4 - Return a (potentially) modified OptionObject to Avatar</item>
+                </list>
+                The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to
+                Avatar from a single location, regardless of whether the request was successful or not.
+            </note>
+            <br/>
+            <br/>
+            <note type="caution" title="It's called &quot;sentOptObj&quot; for a reason">
+                For some unexplainable  - at least to me - the <c>sentOptObj</c> must be called <c>sentOptObj</c>, otherwise
+                you'll get an error when Avatar tries to process the response. This is only the case for the <c>RunScript()</c> method.
+            </note>
+        </RunScript>
+
+        <StartApp>
+            <note type="information" title="The Magic of StartApp()">
                 This is where the following magic happens:
                 <list type="number">
-                    <item>Verify that Avatar actually sent data (and return the unmodified OptionObject if not)</item>
-                    <item>The Tingen Web Service framework is verified</item>
-                    <item>A new <i>session</i> is created</item>
-                    <item>The request is processed</item>
-                    <item>The session is logged</item>
-                    <item>The (potentially) modified OptionObject is returned to Avatar</item>
+                    <item>Load the runtime settings</item>
+                    <item>Load the framework settings</item>
+                    <item>Verify/update the framework</item>
+                    <item>Initialize/start a new session</item>
+                    <item>Parse the script parameter</item>
+                    <item>Return a (potentially) modified OptionObject to Avatar</item>
                 </list>
                 The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to<br/>
                 Avatar from a single location, regardless of whether the request was successful or not.
@@ -29,10 +52,14 @@
                 For some unexplainable reason - at least to me - the <c>sentOptObj</c> must be called <c>sentOptObj</c>, otherwise <br/>
                 you'll get an error when Avatar tries to process the response. This is only the case for the <c>RunScript()</c> method.
             </note>
-        </RunScript>
+        </StartApp>
 
     </Topic>
 
+    
+    
+    
+    
     <!--
     ====================================================================================================================
     AVATARDATA
