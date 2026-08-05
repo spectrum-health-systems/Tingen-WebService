@@ -24,9 +24,10 @@
                 The reason that all of this logic is <i>here</i> is because this way the <c>CompletedOptionObject</c> is returned to<br/>
                 Avatar from a single location, regardless of whether the request was successful or not.
             </note>
+            <br/>
             <note type="caution" title="It's called the sentOptObj for a reason">
                 For some unexplainable reason - at least to me - the <c>sentOptObj</c> must be called <c>sentOptObj</c>, otherwise <br/>
-                you'll get an error when Avatar tries to process the response.
+                you'll get an error when Avatar tries to process the response. This is only the case for the <c>RunScript()</c> method.
             </note>
         </RunScript>
 
