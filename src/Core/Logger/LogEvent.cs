@@ -56,12 +56,12 @@ namespace TingenWebService.Core.Logger
 
             var sessionFolder = Path.Combine(sess.FrameworkSetting.SessionRoot,
                                              sess.RuntimeSetting.SessionStartDate,
-                                             sess.AvatarData.SentOptObj.OptionUserId,
+                                             sess.OptionObject.SentOptionObject.OptionUserId,
                                              sess.RuntimeSetting.SessionStartTime);
 
             DuDirectory.ForceExist(sessionFolder);
 
-            var sessionLogName = Path.Combine(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session");
+            var sessionLogName = Path.Combine(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session");
 
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
@@ -73,7 +73,7 @@ namespace TingenWebService.Core.Logger
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var errComponents = SysMsg.ERR1210(sess.AvatarData.SentOptObj.OptionUserId, sessionDurationMilliseconds);
+                var errComponents = SysMsg.ERR1210(sess.OptionObject.SentOptionObject.OptionUserId, sessionDurationMilliseconds);
 
                 LogEvent.Error(sess.FrameworkSetting.SysLogRoot,
                                sess.FrameworkSetting.BlueprintRoot,
@@ -95,12 +95,12 @@ namespace TingenWebService.Core.Logger
                                              .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                              .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                              .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                             .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                             .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
                                              .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
-                                             .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                             .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
                                              .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session", logContent); // simplify
+                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session", logContent); // simplify
             }
 
             LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
@@ -115,12 +115,12 @@ namespace TingenWebService.Core.Logger
                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                             .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                            .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                            .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
-                                            .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                            .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.md", logContent); // simplify
+                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
             }
 
             if (sess.TwsSetting.SessLogHtml)
@@ -133,12 +133,12 @@ namespace TingenWebService.Core.Logger
                                               .Replace("~SESSION~START~", $"{sess.RuntimeSetting.SessionStartTime}:{sess.RuntimeSetting.SessionStartMilliseconds}")
                                               .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
                                               .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                              .Replace("~AVATAR~USER~NAME~", sess.AvatarData.SentOptObj.OptionUserId.ToUpper())
+                                              .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
                                               .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
-                                              .Replace("~SCRIPT~PARAMETER~", sess.AvatarData.SentScriptParam)
+                                              .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
                                               .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.AvatarData.SentOptObj.OptionUserId}.session.html", logContent); // simplify
+                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.html", logContent); // simplify
             }
         }
 

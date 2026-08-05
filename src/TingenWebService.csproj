@@ -105,14 +105,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Avatar\AvatarData.cs" />
+    <Compile Include="Core\Avatar\AvatarOptionObject.cs" />
+    <Compile Include="Core\Avatar\AvatarScriptParameter.cs" />
     <Compile Include="Core\Framework\FrameworkExport.cs" />
     <Compile Include="Core\RuntimeConfig.cs" />
-    <Compile Include="Core\Trove\JsonObj.cs" />
+    <Compile Include="Core\Trove\Translation.cs" />
+    <Compile Include="Core\Trove\RunningLog.cs" />
     <Compile Include="Core\TwsConfig.cs" />
     <Compile Include="Core\Framework\FrameworkMaintenance.cs" />
     <Compile Include="Core\Logger\LogMaintenance.cs" />
     <Compile Include="Core\Session\SessMaintenance.cs" />
+    <Compile Include="Core\Utility\AvatarForm.cs" />
     <Compile Include="Du\DuJson.cs" />
     <Compile Include="Core\Logger\LogComponent.cs" />
     <Compile Include="Core\Logger\LogWriter.cs" />
@@ -123,6 +126,7 @@
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Core\Logger\LogEvent.cs" />
     <Compile Include="Module\OpenIncident\OpenIncidentConfig.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentEvent.cs" />
     <Compile Include="Module\OpenIncident\OpenIncidentRequest.cs" />
     <Compile Include="ProjectInfo.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

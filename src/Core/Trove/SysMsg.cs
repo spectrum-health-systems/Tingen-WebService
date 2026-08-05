@@ -30,6 +30,12 @@ namespace TingenWebService.Core.Trove
         /// <returns>The framework verified message.</returns>
         internal static string FrameworkVerified() => $"[Framework verified]{Environment.NewLine}";
 
+
+        /// <summary>Build the message indicating that the system logs have been reset.</summary>
+        /// <returns>The system logs reset message.</returns>
+        internal static string SystemLogsReset() => $"[System logs reset]{Environment.NewLine}";
+
+
         /* =====================================================================
          * 0000 - 0999: Miscellaneous
          * =====================================================================

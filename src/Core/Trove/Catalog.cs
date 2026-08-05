@@ -22,7 +22,7 @@ namespace TingenWebService.Core.Trove
                 twsFramework.SysLogRoot,
                 twsFramework.BlueprintRoot,
                 twsFramework.SessionRoot,
-                twsFramework.TranslationTableRoot
+                twsFramework.TranslationRoot
             };
 
         /// <summary>Build the list of system log file names.</summary>
@@ -60,6 +60,6 @@ namespace TingenWebService.Core.Trove
         ////internal static string TranslateFormIdToName() =>
         ////    "INCIDENT1=OpenIncident";
 
-        internal static string TranslationFilesBuilt() => $"[Translation files built]{System.Environment.NewLine}";
+        internal static string TranslationFilesExported() => $"[Translation files built]{System.Environment.NewLine}";
     }
 }

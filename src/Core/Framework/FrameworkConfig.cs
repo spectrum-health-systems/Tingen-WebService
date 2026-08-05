@@ -1,4 +1,4 @@
-﻿// 260804_code
+﻿// 260805_code
 // 260729_documentation
 
 using System;
@@ -47,7 +47,7 @@ namespace TingenWebService.Core.Framework
 
         /// <summary>Translation table data.</summary>
         /// <remarks>All translation table data is stored here.</remarks>
-        public string TranslationTableRoot { get; set; }
+        public string TranslationRoot { get; set; }
 
         /// <summary>Load the Tingen Web Service framework.</summary>
         /// <param name="dataRoot">The root path for data storage.</param>
@@ -87,9 +87,9 @@ namespace TingenWebService.Core.Framework
                 ExportRoot              = Path.Combine(avatarSystemRoot, "Export"),
                 ImportRoot              = Path.Combine(avatarSystemRoot, "Import"),
                 SysLogRoot              = Path.Combine(avatarSystemRoot, "SysLog"),
-                BlueprintRoot           = Path.Combine(avatarSystemRoot, "Blueprints"),
+                BlueprintRoot           = Path.Combine(avatarSystemRoot, "Blueprint"),
                 SessionRoot             = Path.Combine(avatarSystemRoot, "Session"),
-                TranslationTableRoot    = Path.Combine(avatarSystemRoot, "TranslationTables")
+                TranslationRoot         = Path.Combine(avatarSystemRoot, "Translation")
             };
         }
     }

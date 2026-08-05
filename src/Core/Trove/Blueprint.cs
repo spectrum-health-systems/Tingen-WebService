@@ -1,7 +1,9 @@
-﻿// 260729_code
+﻿// 260805_code
 // 260730_documentation
 
 using System;
+using System.IO;
+using TingenWebService.Du;
 
 namespace TingenWebService.Core.Trove
 {
@@ -17,7 +19,7 @@ namespace TingenWebService.Core.Trove
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text error log template string.</returns>
-        internal static string ErrorLogTxtBP() =>
+        internal static string ErrorLogTxt() =>
             $"Tingen Web Service Error Log{Environment.NewLine}" +
             $"Date/Time: ~SESSION~DATE~TIME~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
@@ -29,25 +31,12 @@ namespace TingenWebService.Core.Trove
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text session log template string.</returns>
-        internal static string SessLogTxtBP() =>
-            $"Tingen Web Service Session Log{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
+        internal static string SessLogTxt() =>
             $"Release/Build: ~RELEASE~BUILD~{Environment.NewLine}" +
-            $"Date: ~SESSION~DATE~{Environment.NewLine}" +
-            $"Start: ~SESSION~START~{Environment.NewLine}" +
-            $"Logged in as: ~AVATAR~USER~NAME~{Environment.NewLine}" +
-            $"Avatar system: ~AVATAR~SYSTEM~{Environment.NewLine}" +
-            $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}" +
-            $"End: ~SESSION~END~{Environment.NewLine}" +
-            $"Duration: ~SESSION~DURATION~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"~SESSION~RUNNING~LOG~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"Session Details" +
-            $"{Environment.NewLine}" +
-            $"~SESSION~DETAILS~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"[End]{Environment.NewLine}";
+            $"Date: ~SESSION~DATE~ " +
+            $"Start: ~SESSION~START~ / End: ~SESSION~END~ / Duration: ~SESSION~DURATION~{Environment.NewLine}" +
+            $"Logged into ~AVATAR~SYSTEM~ as: ~AVATAR~USER~NAME~{Environment.NewLine}" +
+            $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}";
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
@@ -56,7 +45,7 @@ namespace TingenWebService.Core.Trove
         /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
         /// <returns>A string containing the markdown blueprint for the session log.</returns>
-        internal static string SessLogMdBP() =>
+        internal static string SessLogMd() =>
             $"# Tingen Web Service Session Log{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"|                       |                                                        |{Environment.NewLine}" +
@@ -78,60 +67,99 @@ namespace TingenWebService.Core.Trove
             $"{Environment.NewLine}" +
             $"~SESSION~DETAILS~{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
             $"***{Environment.NewLine}" +
             $"<sub>End</sub>{Environment.NewLine}";
 
-        /// <summary>Build the blueprint for HTML session logs.</summary>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
-        /// </remarks>
-        /// <returns>The HTML session log template string.</returns>
-        internal static string SessLogHtmlBP() =>
-            $"<h1>Tingen Web Service Session Log</h1>{Environment.NewLine}" +
-            $"<table>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Release/Build</strong></td>{Environment.NewLine}" +
-            $"<td>~RELEASE~BUILD~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Date</strong></td>{Environment.NewLine}" +
-            $"<td>~SESSION~DATE~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Start</strong></td>{Environment.NewLine}" +
-            $"<td>~SESSION~START~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Logged in as</strong></td>{Environment.NewLine}" +
-            $"<td>~AVATAR~USER~NAME~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Avatar system</strong></td>{Environment.NewLine}" +
-            $"<td>~AVATAR~SYSTEM~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Script parameter</strong></td>{Environment.NewLine}" +
-            $"<td>~SCRIPT~PARAMETER~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>End</strong></td>{Environment.NewLine}" +
-            $"<td>~SESSION~END~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"<tr>{Environment.NewLine}" +
-            $"<td align = \"right\"><strong>Duration</strong></td>{Environment.NewLine}" +
-            $"<td>~SESSION~DURATION~</td>{Environment.NewLine}" +
-            $"</tr>{Environment.NewLine}" +
-            $"</table>{Environment.NewLine}" +
-            $"<br/>{Environment.NewLine}" +
-            $"<hr>{Environment.NewLine}" +
-            $"<para>~SESSION~RUNNING~LOG~</para>{Environment.NewLine}" +
-            $"<br/>{Environment.NewLine}" +
-            $"<h2>Session Details</h2>{Environment.NewLine}" +
-            $"<hr>{Environment.NewLine}" +
-            $"<br/>{Environment.NewLine}" +
-            $"<hr>{Environment.NewLine}" +
-            $"<p><sub>End</sub></p>{Environment.NewLine}" +
-            $"{Environment.NewLine}";
+        ///// <summary>Build the blueprint for HTML session logs.</summary>
+        ///// <remarks>
+        ///// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
+        ///// </remarks>
+        ///// <returns>The HTML session log template string.</returns>
+        //internal static string SessLogHtml() =>
+        //    $"<h1>Tingen Web Service Session Log</h1>{Environment.NewLine}" +
+        //    $"<table>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Release/Build</strong></td>{Environment.NewLine}" +
+        //    $"<td>~RELEASE~BUILD~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Date</strong></td>{Environment.NewLine}" +
+        //    $"<td>~SESSION~DATE~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Start</strong></td>{Environment.NewLine}" +
+        //    $"<td>~SESSION~START~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Logged in as</strong></td>{Environment.NewLine}" +
+        //    $"<td>~AVATAR~USER~NAME~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Avatar system</strong></td>{Environment.NewLine}" +
+        //    $"<td>~AVATAR~SYSTEM~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Script parameter</strong></td>{Environment.NewLine}" +
+        //    $"<td>~SCRIPT~PARAMETER~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>End</strong></td>{Environment.NewLine}" +
+        //    $"<td>~SESSION~END~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"<tr>{Environment.NewLine}" +
+        //    $"<td align = \"right\"><strong>Duration</strong></td>{Environment.NewLine}" +
+        //    $"<td>~SESSION~DURATION~</td>{Environment.NewLine}" +
+        //    $"</tr>{Environment.NewLine}" +
+        //    $"</table>{Environment.NewLine}" +
+        //    $"<br/>{Environment.NewLine}" +
+        //    $"<hr>{Environment.NewLine}" +
+        //    $"<para>~SESSION~RUNNING~LOG~</para>{Environment.NewLine}" +
+        //    $"<br/>{Environment.NewLine}" +
+        //    $"<h2>Session Details</h2>{Environment.NewLine}" +
+        //    $"<hr>{Environment.NewLine}" +
+        //    $"<br/>{Environment.NewLine}" +
+        //    $"<p><sub>End</sub></p>{Environment.NewLine}" +
+        //    $"{Environment.NewLine}";
+
+
+        /// <summary>Exports all blueprint templates to the specified host directory.</summary>
+        /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
+        internal static void ExportBlueprints(string blueprintRoot)
+        {
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportBlueprints");
+
+            foreach (var blueprintFileName in Catalog.BlueprintFileNames())
+            {
+                var blueprintPath = Path.Combine(blueprintRoot, $"{blueprintFileName}.blueprint");
+
+                if (!File.Exists(blueprintPath))
+                {
+                    string blueprintContent = null;
+
+                    switch (blueprintFileName)
+                    {
+                        case "SessLogTxt":
+                            blueprintContent = Blueprint.SessLogTxt();
+
+                            break;
+
+                        case "SessLogMd":
+                            blueprintContent = Blueprint.SessLogMd();
+
+                            break;
+
+                            //case "SessLogHtml":
+                            //    blueprintContent = Blueprint.SessLogHtml();
+
+                            //    break;
+                    }
+
+                    if (blueprintContent != null)
+                    {
+                        DuFile.DeadDrop(blueprintPath, blueprintContent);
+                    }
+                }
+            }
+        }
     }
 }

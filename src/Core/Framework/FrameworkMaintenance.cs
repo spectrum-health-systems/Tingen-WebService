@@ -2,6 +2,7 @@
 // 260730_documentation
 
 using System;
+using System.IO;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Trove;
 using TingenWebService.Du;
@@ -11,15 +12,25 @@ namespace TingenWebService.Core.Framework
     /// <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
     internal static class FrameworkMaintenance
     {
+        internal static void DailyVerify(RuntimeConfig runtimeConfig, FrameworkConfig frameworkConfig)
+        {
+            var dailyLogFileName = $"{DateTime.Now:yyMMdd}.daily";
+
+            if (!File.Exists(Path.Combine(frameworkConfig.SysLogRoot, dailyLogFileName)))
+            {
+                VerifyComponents(dailyLogFileName, runtimeConfig, frameworkConfig);
+            }
+        }
+
         /// <summary>Verify the Tingen Web Service framework.</summary>
         /// <param name="frwkConfig">The framework instance containing the paths to verify.</param>
         /// <remarks>
         /// The reason why we hand this off is because while currently the configuration contains root paths, it may
         /// contain other data in the future.
         /// </remarks>
-        internal static void Verify(FrameworkConfig frwkConfig)
+        internal static void VerifyStructure(FrameworkConfig frwkConfig)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-Verify");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyStructure");
 
             foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
             {
@@ -37,41 +48,42 @@ namespace TingenWebService.Core.Framework
 
         /// <summary>Verify the components for the session.</summary>
         /// <param name="systemLogFileName">The name of the start log file.</param>
-        /// <param name="rtConfig">The runtime configuration.</param>
-        /// <param name="twsFramework">The framework instance.</param>
-        internal static void VerifyComponents(string systemLogFileName, RuntimeConfig rtConfig, FrameworkConfig twsFramework)
+        /// <param name="runtimeConfig">The runtime configuration.</param>
+        /// <param name="frameworkConfig">The framework instance.</param>
+        internal static void VerifyComponents(string dailyLogFileName, RuntimeConfig runtimeConfig, FrameworkConfig frameworkConfig)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-VerifyComponents");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
-            // TODO - Clean this up
+            var verifyStart   = DateTime.Now.ToString("HH:mm:ss");
+            var verifyStartMs = DateTime.Now.ToString("fffffff");
 
-            var dailyLog = string.Empty;
+            string runningDailyLog = SysMsg.DailyStart(runtimeConfig.ReleaseBuild);
 
-            var verificationStartTime = DateTime.Now.ToString("HHmmss");
-            var verificationStartMilliseconds = DateTime.Now.ToString("fffffff");
+            VerifyStructure(frameworkConfig);
+            runningDailyLog += SysMsg.FrameworkVerified();
 
-            dailyLog += $"[Start] {verificationStartTime}:{verificationStartMilliseconds}{Environment.NewLine}";
-            dailyLog += SysMsg.DailyStart(rtConfig.ReleaseBuild);
+            LogMaintenance.ResetSystemLogs(frameworkConfig, runtimeConfig);
+            runningDailyLog += SysMsg.SystemLogsReset();
 
-            Verify(twsFramework);
-            dailyLog += SysMsg.FrameworkVerified();
+            Blueprint.ExportBlueprints(frameworkConfig.BlueprintRoot);
+            runningDailyLog += Redprint.BlueprintsExported();
 
-            FrameworkExport.ExportBlueprints(twsFramework.BlueprintRoot);
-            dailyLog += Redprint.BlueprintsExported();
+            Translation.ExportTranslations(frameworkConfig.TranslationRoot);
+            runningDailyLog += Catalog.TranslationFilesExported();
 
-            FrameworkExport.ExportTranslations(twsFramework.TranslationTableRoot);
-            dailyLog += Catalog.TranslationFilesBuilt();
-
-            var verificationEndTime = DateTime.Now.ToString("HHmmss");
-            var verificationEndMilliseconds = DateTime.Now.ToString("fffffff");
+            var verifyEnd = DateTime.Now.ToString("HHmmss");
+            var verifyEndMs = DateTime.Now.ToString("fffffff");
 
             // TODO - This is in a few places, and might be better in a common area.
-            var verificationDurationTime = (DateTime.ParseExact(verificationEndTime, "HHmmss", null) - DateTime.ParseExact(verificationStartTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
-            var verificationDurationMilliseconds = (DateTime.ParseExact(verificationEndMilliseconds, "fffffff", null) - DateTime.ParseExact(verificationStartMilliseconds, "fffffff", null)).ToString("fffffff");
+            var verificationDurationTime = (DateTime.ParseExact(verifyEnd, "HHmmss", null) - DateTime.ParseExact(verifyStart, "HHmmss", null)).ToString(@"hh\:mm\:ss");
+            var verificationDurationMilliseconds = (DateTime.ParseExact(verifyEndMs, "fffffff", null) - DateTime.ParseExact(verifyStartMs, "fffffff", null)).ToString("fffffff");
 
-            dailyLog += $"[End] {verificationEndTime}:{verificationEndMilliseconds}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
+            _runningDailyLog += $"[End] {verifyEnd}:{verifyEndMs}{Environment.NewLine}[Duration] {verificationDurationTime}:{verificationDurationMilliseconds}";
 
-            LogEvent.SystemLog(twsFramework.SysLogRoot, systemLogFileName, dailyLog);
+            LogEvent.SystemLog(frameworkConfig.SysLogRoot, dailyLogFileName, runningDailyLog);
+
+
+
         }
     }
 }

@@ -32,13 +32,13 @@ namespace TingenWebService.Module.OpenIncident
 
             var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
 
-            var bypassUser = openIncidentConfig.BypassList.Contains(sess.AvatarData.SentOptObj.OptionUserId);
+            var bypassUser = openIncidentConfig.BypassList.Contains(sess.OptionObject.SentOptionObject.OptionUserId);
 
             if (bypassUser)
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
 
-                sess.RunningLog += $"Bypass user {sess.AvatarData.SentOptObj.OptionUserId} detected. OpenIncident module will not be processed.\n";
+                sess.RunningLog += $"Bypass user {sess.OptionObject.SentOptionObject.OptionUserId} detected. OpenIncident module will not be processed.\n";
 
                 return;
             }

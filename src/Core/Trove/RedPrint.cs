@@ -26,7 +26,7 @@ namespace TingenWebService.Core.Trove
                    $"               SysLog Root: {framework.SysLogRoot}{Environment.NewLine}" +
                    $"           Blueprints Root: {framework.BlueprintRoot}{Environment.NewLine}" +
                    $"              Session Root: {framework.SessionRoot}{Environment.NewLine}" +
-                   $"    Translation Table Root: {framework.TranslationTableRoot}{Environment.NewLine}";
+                   $"    Translation Table Root: {framework.TranslationRoot}{Environment.NewLine}";
         }
 
         /// <summary>Build the message indicating that blueprints have been exported.</summary>
@@ -84,13 +84,9 @@ namespace TingenWebService.Core.Trove
                    $"       Invalid Program of Incident Error Code: {openIncidentConfig.InvalidProgramOfIncidentErrCode}{Environment.NewLine}";
         }
 
-        internal static string ParseRequest(string formId, string formName, string request)
+        internal static string DailyLogStart(string verifyStart, string verifyStartMs)
         {
-            return $"[Parse request]{Environment.NewLine}" +
-                   $"Form ID: {formId}{Environment.NewLine}" +
-                   $"Form Name: {formName}{Environment.NewLine}" +
-                   $"Request: {request}{Environment.NewLine}" +
-                   $"{Environment.NewLine}";
+            return $"[Start] {verifyStart}({verifyStartMs}){Environment.NewLine}";
         }
     }
 }

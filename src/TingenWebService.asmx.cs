@@ -1,8 +1,6 @@
 ﻿// 260804_code
 // 260729_documentation
 
-using System;
-using System.IO;
 using System.Reflection;
 using System.Web.Services;
 using ScriptLinkStandard.Objects;
@@ -11,8 +9,6 @@ using TingenWebService.Core.Avatar;
 using TingenWebService.Core.Framework;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
-using TingenWebService.Core.Trove;
-using TingenWebService.Du;
 
 namespace TingenWebService
 {
@@ -70,7 +66,7 @@ namespace TingenWebService
 
                 LogEvent.Session(_sess);
 
-                return _sess.AvatarData.WorkerOptObj.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
+                return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
             }
         }
 
@@ -86,12 +82,12 @@ namespace TingenWebService
         {
             //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-IsMissingAvatarData");
 
-            return !AvatarData.WasSent(sentOptionObject) || !AvatarData.WasSent(sentScriptParameter);
+            return !AvatarOptionObject.WasSent(sentOptionObject) || !AvatarScriptParameter.WasSent(sentScriptParameter);
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
-        /// <param name="sentOptionObject">The <see cref="AvatarData.SentOptObj"/> sent from Avatar.</param>
-        /// <param name="sentScriptParameter"> The <see cref="AvatarData.SentScriptParam"/> sent from Avatar.</param>
+        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
+        /// <param name="sentScriptParameter"> The <see cref="AvatarOptionObject.SentScriptParam"/> sent from Avatar.</param>
         /// <remarks>
         /// This method does the heavy-lifting of starting the Tingen Web Service by loading multiple configurations,
         /// validating requirements, and initializing the session state.
@@ -100,103 +96,28 @@ namespace TingenWebService
         {
             //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
-            RuntimeConfig runtimeConfig = RuntimeConfig.Load(_releaseBuild);
+            RuntimeConfig runtimeConfig     = RuntimeConfig.Load(_releaseBuild);
+            FrameworkConfig frameworkConfig = FrameworkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
 
-            FrameworkConfig frwkConfig = FrameworkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
+            FrameworkMaintenance.DailyVerify(runtimeConfig, frameworkConfig);
 
-            SessMaintenance.InitializeNewSession(runtimeConfig, frwkConfig); // TODO - is this really "initialize", or verify?
+            SessMaintenance.InitializeNewSession(runtimeConfig, frameworkConfig); // TODO - is this really "initialize", or verify?
 
-            _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frwkConfig);
+            _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frameworkConfig);
 
-            if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else?
-            {
-                LogEvent.Trace(4, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
-
-                LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
-            }
-
-            ParseRequest(_sess);
-        }
-
-        internal void ParseRequest(Sess sess)
-        {
-            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
-
-            if (sess.AvatarData.SentScriptParam.StartsWith("_", StringComparison.OrdinalIgnoreCase))
-            {
-                var formName = GetFormName(sess.FrameworkSetting.TranslationTableRoot, sess.AvatarData.SentOptObj.OptionId);
-
-                sess.RunningLog += Redprint.ParseRequest(sess.AvatarData.SentOptObj.OptionId, formName, sess.AvatarData.SentScriptParam);
-            }
-            else
-            {
-                // SpecificFormRequest
-            }
-        }
-
-        /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
-        /// <remarks>
-        /// Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
-        /// translation table.<br/>
-        /// <br/>
-        /// Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
-        /// respective event parsers.
-        /// </remarks>
-        /// <param name="specificFormName">The name of the specific form to handle.</param>
-        /// <param name="sess">The web service session object containing form data and module event parsers.</param>
-        /// <example>
-        /// <code>
-        /// AvatarScriptParameter.SpecificFormRequest("OpenIncident", sess);
-        /// AvatarScriptParameter.SpecificFormRequest("DoseChangeEvaluationOtp", sess);
-        /// </code>
-        /// </example>
-        internal static void SpecificFormRequest(string specificFormName, Sess sess)
-        {
-            //if (specificFormName == "WSVC2491")
+            //if (!File.Exists(Path.Combine(frwkConfig.SysLogRoot, "Configuration.current"))) // TODO - Move this somewhere else? or if daily is missing
             //{
-            //    //sess.TngnWsvcSessionError.HardError(tngnWsvcSession, 1, $"[WSVC2491] The form ID '{tngnWsvcSession.OptObj.Original.OptionId}' was not found in the translation table.");
-            //}
-            //else
-            //{
-            //    switch (specificFormName)
-            //    {
-            //        case "OpenIncident":
-            //            tngnWsvcSession.Module.OpenIncident.OpenIncidentEvent.Parse(tngnWsvcSession);
-            //            break;
+            //    LogEvent.Trace(4, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
 
-            //        case "DoseChangeEvaluationOtp":
-            //            tngnWsvcSession.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(tngnWsvcSession);
-            //            break;
-
-            //            /* TODO
-            //             * Error catch should be here.
-            //             */
-            //    }
+            //    LogMaintenance.ResetSystemLogs(_sess); // TODO - Test this.
             //}
+
+            AvatarScriptParameter.Parse(_sess);
         }
 
-        /// <summary>
-        /// Gets the form name from the translation table based on the original option ID sent by Avatar.
-        /// </summary>
-        /// <param name="tngnWsvcSession">
-        /// The session object containing the original option ID and translation table.
-        /// </param>
-        /// <returns>The name of the form corresponding to the original option ID.</returns>
-        /// <example>
-        /// <code>
-        /// var formName = AvatarScriptParameter.GetFormName(tngnWsvcSession);
-        /// Console.WriteLine($"Resolved form name: {formName}");
-        /// </code>
-        /// </example>
-        internal static string GetFormName(string translationPath, string formId)
-        {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-GetFormName");
 
-            var path = Path.Combine(translationPath, "FormIdToName.translation");
 
-            var forms = DuJson.ImportFile<JsonObj.FormId>(path);
 
-            return forms.ToFormName[formId];
-        }
+
     }
 }

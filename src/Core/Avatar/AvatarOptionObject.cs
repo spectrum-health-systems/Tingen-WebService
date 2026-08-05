@@ -1,5 +1,5 @@
-﻿// 260804_code
-// 260730_documentation
+﻿// 260805_code
+// 260805_documentation
 
 using System;
 using System.IO;
@@ -13,59 +13,50 @@ namespace TingenWebService.Core.Avatar
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
     /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
     /// </remarks>
-    internal class AvatarData
+    internal class AvatarOptionObject
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
-        public OptionObject2015 SentOptObj { get; set; }
+        public OptionObject2015 SentOptionObject { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
-        public OptionObject2015 WorkerOptObj { get; set; }
+        public OptionObject2015 WorkerOptionObject { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> that is returned to Avatar.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
         /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
-        public OptionObject2015 CompleteOptObj { get; set; }
+        public OptionObject2015 CompleteOptionObject { get; set; }
 
-        /// <summary>The original script parameter sent from Avatar.</summary>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
-        /// </remarks>
-        public string SentScriptParam { get; set; }
-
-        /// <summary>Initialize a new AvatarData object.</summary>
-        /// <param name="sentOptObj">The <see cref="OptionObject2015"/> sent from Avatar.</param>
-        /// <param name="sentScriptParam">The script parameter sent from Avatar.</param>
+        /// <summary>Initialize a new AvatarOptionObject object.</summary>
+        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
         /// <remarks>TBD</remarks>
-        /// <returns>A new instance of <see cref="AvatarData"/>.</returns>
-        internal static AvatarData Build(OptionObject2015 sentOptObj, string sentScriptParam)
+        /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
+        internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-AvatarData-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
 
-            return new AvatarData
+            return new AvatarOptionObject
             {
-                SentOptObj      = sentOptObj,
-                WorkerOptObj    = sentOptObj.Clone(),
-                CompleteOptObj  = null,
-                SentScriptParam = sentScriptParam
+                SentOptionObject      = sentOptionObject,
+                WorkerOptionObject    = sentOptionObject.Clone(),
+                CompleteOptionObject  = null
             };
         }
 
         /// <summary>Verify whether an <see cref="OptionObject2015"/> was received from Avatar.</summary>
-        /// <param name="sentOptObj">The <see cref="OptionObject2015"/> to verify.</param>
+        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> to verify.</param>
         /// <remarks>TBD</remarks>
         /// <returns>True if an <see cref="OptionObject2015"/> was sent; otherwise, false.</returns>
-        internal static bool WasSent(OptionObject2015 sentOptObj)
+        internal static bool WasSent(OptionObject2015 sentOptionObject)
         {
             /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
              * is a critical error and needs to be logged.
@@ -73,34 +64,9 @@ namespace TingenWebService.Core.Avatar
 
             //LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
 
-            if (sentOptObj == null)
+            if (sentOptionObject == null)
             {
-                LogEvent.Primeval("ERR1010_MissingOptObj");
-                // TODO - Potentially send an email in addition to the error logs.
-
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        /// <summary>Verify whether a script parameter was received from Avatar.</summary>
-        /// <param name="sentScriptParam">The script parameter to verify.</param>
-        /// <remarks>TBD</remarks>
-        /// <returns>True if a script parameter was sent; otherwise, false.</returns>
-        internal static bool WasSent(string sentScriptParam)
-        {
-            /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
-             * is a critical error and needs to be logged.
-             */
-
-            //LogEvent.Primeval("PRELOG-TRACE-WasSent-ScriptParam");
-
-            if (string.IsNullOrWhiteSpace(sentScriptParam))
-            {
-                LogEvent.Primeval("ERR1020_MissingScriptParam");
+                LogEvent.Primeval("ERR1010_MissingOptionObject");
                 // TODO - Potentially send an email in addition to the error logs.
 
                 return false;

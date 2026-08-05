@@ -14,8 +14,8 @@ namespace TingenWebService.Core.Session
     /// a request, including:
     /// <list type="bullet">
     /// <item>The request (sentScriptParam)</item>
-    /// <item>The <i>original</i> data from Avatar (<see cref="Avatar.AvatarData"/>)</item>
-    /// <item>The <i>working</i> (<see cref="AvatarData.WorkerOptObj"/>) and <i>completed</i> data (<see cref="AvatarData.CompleteOptObj"/>) from Avatar</item>
+    /// <item>The <i>original</i> data from Avatar (<see cref="Avatar.AvatarOptionObject"/>)</item>
+    /// <item>The <i>working</i> (<see cref="AvatarOptionObject.WorkerOptionObject"/>) and <i>completed</i> data (<see cref="AvatarOptionObject.CompleteOptionObject"/>) from Avatar</item>
     /// <item>Various settings, configurations, and framework information</item>
     /// <item>Details about the session</item>
     /// </list>
@@ -31,10 +31,12 @@ namespace TingenWebService.Core.Session
 
         /// <summary>The Tingen Web Service <see cref="TwsConfig"> configuration settings</see>.</summary>
         public TwsConfig TwsSetting { get; set; }
-        /// <summary>The current date (yyMMdd).</summary>
 
-        /// <summary>The Avatar data associated with the session.</summary>
-        public AvatarData AvatarData { get; set; }
+        /// <remarks>Used to create the session folder.</remarks>
+        public string SentScriptParameter { get; set; }
+
+        /// <summary>The Avatar OptionObjects associated with the session.</summary>
+        public AvatarOptionObject OptionObject { get; set; }
 
         /// <summary>The folder path that will store session data.</summary>
         public string SessionFolder { get; set; }
@@ -55,12 +57,13 @@ namespace TingenWebService.Core.Session
 
             return new Sess
             {
-                RuntimeSetting   = runtimeConfig,
-                FrameworkSetting = frameworkConfig,
-                TwsSetting       = TwsConfig.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
-                AvatarData       = AvatarData.Build(sentOptionObject, sentScriptParameter),
-                SessionFolder    = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.SessionStartDate, sentOptionObject.OptionUserId, runtimeConfig.SessionStartTime),
-                RunningLog       = string.Empty
+                RuntimeSetting      = runtimeConfig,
+                FrameworkSetting    = frameworkConfig,
+                TwsSetting          = TwsConfig.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
+                OptionObject        = AvatarOptionObject.Build(sentOptionObject),
+                SentScriptParameter = sentScriptParameter,
+                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.SessionStartDate, sentOptionObject.OptionUserId, runtimeConfig.SessionStartTime),
+                RunningLog          = string.Empty
             };
         }
     }

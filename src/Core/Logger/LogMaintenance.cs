@@ -3,7 +3,7 @@
 
 using System.Collections.Generic;
 using System.IO;
-using TingenWebService.Core.Session;
+using TingenWebService.Core.Framework;
 using TingenWebService.Core.Trove;
 using TingenWebService.Module.OpenIncident;
 
@@ -13,25 +13,29 @@ namespace TingenWebService.Core.Logger
     internal static class LogMaintenance
     {
         /// <summary>Verifies the existence of system log files and resets them if necessary.</summary>
-        /// <param name="twsSession">The current session.</param>
-        internal static void VerifySystemLogs(Sess twsSession)
+        /// <param name="frameworkSetting">The framework configuration.</param>
+        /// <param name="runtimeSetting">The runtime configuration.</param>
+        /// <param name="twsSetting">The TWS configuration.</param>
+        internal static void VerifySystemLogs(FrameworkConfig frameworkSetting, RuntimeConfig runtimeSetting)
         {
-            if (!File.Exists(Path.Combine(twsSession.FrameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
+            if (!File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
             {
-                ResetSystemLogs(twsSession);
+                ResetSystemLogs(frameworkSetting, runtimeSetting);
             }
         }
 
         /// <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
-        /// <param name="sess">The current session.</param>
-        internal static void ResetSystemLogs(Sess sess)
+        /// <param name="frameworkSetting">The framework configuration.</param>
+        /// <param name="runtimeSetting">The runtime configuration.</param>
+        /// <param name="twsSetting">The TWS configuration.</param>
+        internal static void ResetSystemLogs(FrameworkConfig frameworkSetting, RuntimeConfig runtimeSetting)
         {
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-ResetSystemLogs");
 
             var systemFileNames = Catalog.SystemLogFileNames();
 
-            RemoveSystemLogs(sess.FrameworkSetting.SysLogRoot, systemFileNames, sess.TwsSetting.TraceLimit, sess.SessionFolder);
-            BuildSystemLogs(sess.FrameworkSetting.SysLogRoot, systemFileNames, sess.RuntimeSetting, sess.FrameworkSetting, sess.TwsSetting);
+            RemoveSystemLogs(frameworkSetting.SysLogRoot, systemFileNames, frameworkSetting.SessionRoot);
+            BuildSystemLogs(frameworkSetting.SysLogRoot, systemFileNames, runtimeSetting, frameworkSetting);
         }
 
         /// <summary>Removes the specified system log files.</summary>
@@ -39,9 +43,9 @@ namespace TingenWebService.Core.Logger
         /// <param name="systemFileNames">The list of system log file names to remove.</param>
         /// <param name="traceLimit">The trace limit for logging.</param>
         /// <param name="sessionFolder">The session folder for logging.</param>
-        internal static void RemoveSystemLogs(string systemLogRoot, List<string> systemFileNames, int traceLimit, string sessionFolder)
+        internal static void RemoveSystemLogs(string systemLogRoot, List<string> systemFileNames, string sessionFolder)
         {
-            LogEvent.Trace(9, traceLimit, sessionFolder);
+            //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-RemoveSystemLogs");
 
             foreach (var file in systemFileNames)
             {
@@ -62,17 +66,16 @@ namespace TingenWebService.Core.Logger
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework configuration.</param>
         /// <param name="twsConfig">The TWS configuration.</param>
-        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig rtConfig, Framework.FrameworkConfig twsFramework, TwsConfig twsConfig)
+        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeConfig rtConfig, Framework.FrameworkConfig twsFramework)
         {
-            LogEvent.Trace(9, twsConfig.TraceLimit, twsFramework.SessionRoot);
+            //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-BuildSystemLogs");
 
             LogEvent.SystemLog(systemLogRoot, "Runtime.current", Redprint.RuntimeDetails(rtConfig));
             LogEvent.SystemLog(systemLogRoot, "Framework.current", Redprint.FrameworkDetails(twsFramework));
-            LogEvent.SystemLog(systemLogRoot, "Configuration.current", Redprint.ConfigurationDetails(twsConfig));
 
-            LogEvent.Trace(9, twsConfig.TraceLimit, twsFramework.SessionRoot);
+            //LogEvent.SystemLog(systemLogRoot, "Configuration.current", Redprint.ConfigurationDetails(twsFramework));
 
-            OpenIncidentConfig openIncidentConfig = OpenIncidentConfig.Load(Path.Combine(twsFramework.ConfigRoot, "OpenIncident.config"), twsConfig.TraceLimit, twsFramework.SessionRoot);
+            OpenIncidentConfig openIncidentConfig = OpenIncidentConfig.Load(Path.Combine(twsFramework.ConfigRoot, "OpenIncident.config"), twsFramework.SessionRoot);
             LogEvent.SystemLog(systemLogRoot, "OpenIncident.current", Redprint.OpenIncidentConfig(openIncidentConfig));
         }
     }
