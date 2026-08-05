@@ -48,17 +48,17 @@ namespace TingenWebService
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
-        public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParameter)
+        public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", sentScriptParameter);
+            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
 
-            if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParameter))
+            if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
             {
                 return sentOptObj.ToReturnOptionObject(0, "");
             }
             else
             {
-                StartApp(sentOptObj, sentScriptParameter);
+                StartApp(sentOptObj, sentScriptParam);
 
                 LogEvent.Trace(9, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
 
@@ -72,12 +72,10 @@ namespace TingenWebService
 
         /// <summary>Start the Tingen Web Service.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
-        /// <param name="sentScriptParameter"> The <see cref="AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
+        /// <param name="sentScriptParameter">The <see cref="AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
         /// <remarks>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/StartApp/*'/>
-        /// This method does
-        /// the heavy-lifting of starting the Tingen Web Service by loading multiple configurations, validating
-        /// requirements, and initializing the session state.
+        /// This method is required by Avatar.
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
