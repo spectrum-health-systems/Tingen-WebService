@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260806_code
 // 260805_documentation
 
 using System.Collections.Generic;
@@ -25,14 +25,21 @@ namespace TingenWebService.Core.Trove
                 twsFramework.TranslationRoot
             };
 
+        /// <summary>Build the list of system logs that are created during the framework verification process.</summary>
+        /// <returns>A list of system log file names.</returns>
+        internal static List<string> PreSystemLogFileNames() =>
+            new List<string>
+            {
+                "Runtime",
+                "Framework",
+            };
+
         /// <summary>Build the list of system log file names.</summary>
         /// <returns>A list of system log file names.</returns>
-        internal static List<string> SystemLogFileNames() =>
+        internal static List<string> PostSystemLogFileNames() =>
             new List<string>
             {
                 "Configuration",
-                "Framework",
-                "Runtime",
                 "OpenIncident"
             };
 

@@ -81,7 +81,8 @@
         <AboutRuntimeSetting> <!-- 260805 -->
             <para>
                 <note type="information" title="The runtime settings">
-                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up.
+                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
+                    such as:
                     <list type="bullet">
                         <item>Runtime start date/time</item>
                         <item>Current Tingen Web Service release/build</item>
@@ -103,15 +104,14 @@
             <para>
                 <note type="information" title="The Tingen Web Service settings">
                     The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
-                    runtime settings.<br/>
-                    Tingen Web Service settings are loaded from the <c>TingenWebService.config</c> file, and are used to configure the Tingen Web Service.<br/>
+                    runtime settings. They are loaded from the <c>TingenWebService.config</c> file, and contains information such as:
                     <list type="bullet">
-                        <item>Runtime start date/time</item>
-                        <item>Current Tingen Web Service release/build</item>
-                        <item>The Avatar system that the Tingen Web Service will interface with</item>
-                        <item>The root directory for Tingen Web Service data</item>
+                        <item>The Tingen Web Service mode </item>
+                        <item>Log settings</item>
+                        <item>Templates</item>
+                        <item>Email credentials</item>
+                        <item>Netsmart web service credentials</item>
                     </list>
-                    The last three items are loaded from the <c>web.config</c> file.
                 </note>
             </para>
         </AboutAppSetting>

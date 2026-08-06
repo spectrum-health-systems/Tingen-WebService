@@ -25,27 +25,27 @@ namespace TingenWebService.Core.Framework
 
         /// <summary>Verify the components for the session.</summary>
         /// <param name="systemLogFileName">The name of the start log file.</param>
-        /// <param name="runtimeConfig">The runtime configuration.</param>
-        /// <param name="frameworkConfig">The framework instance.</param>
-        internal static void VerifyComponents(string dailyLogFileName, RuntimeSetting runtimeConfig, FrameworkSetting frameworkConfig)
+        /// <param name="runtimeSetting">The runtime configuration.</param>
+        /// <param name="frameworkSetting">The framework instance.</param>
+        internal static void VerifyComponents(string dailyLogFileName, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
             var verifyStart   = DateTime.Now.ToString("HHmmss");
             var verifyStartMs = DateTime.Now.ToString("fffffff");
 
-            string runningDailyLog = SysMsg.DailyStart(runtimeConfig.ReleaseBuild);
+            string runningDailyLog = SysMsg.DailyStart(runtimeSetting.ReleaseBuild);
 
-            VerifyStructure(frameworkConfig);
+            VerifyStructure(frameworkSetting);
             runningDailyLog += SysMsg.FrameworkVerified();
 
-            LogMaintenance.ResetSystemLogs(frameworkConfig, runtimeConfig);
+            LogMaintenance.ResetSystemLogs(frameworkSetting, runtimeSetting);
             runningDailyLog += SysMsg.SystemLogsReset();
 
-            Blueprint.ExportBlueprints(frameworkConfig.BlueprintRoot);
+            Blueprint.ExportBlueprints(frameworkSetting.BlueprintRoot);
             runningDailyLog += Redprint.BlueprintsExported();
 
-            Translation.ExportTranslations(frameworkConfig.TranslationRoot);
+            Translation.ExportTranslations(frameworkSetting.TranslationRoot);
             runningDailyLog += Catalog.TranslationFilesExported();
 
             var verifyEnd = DateTime.Now.ToString("HHmmss");
@@ -55,10 +55,8 @@ namespace TingenWebService.Core.Framework
 
             runningDailyLog += $"[End] {verifyEnd}:{verifyEndMs}{Environment.NewLine}[Duration] {duration}";
 
-            LogEvent.SystemLog(frameworkConfig.SysLogRoot, dailyLogFileName, runningDailyLog);
+            LogEvent.SystemLog(frameworkSetting.SysLogRoot, dailyLogFileName, runningDailyLog);
         }
-
-
 
         /// <summary>Verify the Tingen Web Service framework.</summary>
         /// <param name="frwkConfig">The framework instance containing the paths to verify.</param>

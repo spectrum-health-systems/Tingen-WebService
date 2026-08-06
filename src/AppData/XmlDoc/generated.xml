@@ -94,8 +94,8 @@
         <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the components for the session.</summary>
             <param name="systemLogFileName">The name of the start log file.</param>
-            <param name="runtimeConfig">The runtime configuration.</param>
-            <param name="frameworkConfig">The framework instance.</param>
+            <param name="runtimeSetting">The runtime configuration.</param>
+            <param name="frameworkSetting">The framework instance.</param>
         </member>
         <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyStructure(TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the Tingen Web Service framework.</summary>
@@ -163,7 +163,8 @@
             <remarks>
             <para>
                 <note type="information" title="The runtime settings">
-                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up.
+                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
+                    such as:
                     <list type="bullet">
                         <item>Runtime start date/time</item>
                         <item>Current Tingen Web Service release/build</item>
@@ -268,7 +269,11 @@
             <param name="twsFramework">The framework object that contains the folder list.</param>
             <returns>A string array of the required framework folders.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.SystemLogFileNames">
+        <member name="M:TingenWebService.Core.Trove.Catalog.PreSystemLogFileNames">
+            <summary>Build the list of system logs that are created during the framework verification process.</summary>
+            <returns>A list of system log file names.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Catalog.PostSystemLogFileNames">
             <summary>Build the list of system log file names.</summary>
             <returns>A list of system log file names.</returns>
         </member>
@@ -438,19 +443,17 @@
         <member name="T:TingenWebService.Core.Logger.LogMaintenance">
             <summary>Provides methods for maintaining system log files.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.AppSetting)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verifies the existence of system log files and resets them if necessary.</summary>
             <param name="frameworkSetting">The framework configuration.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
-            <param name="twsSetting">The TWS configuration.</param>
         </member>
         <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.RuntimeSetting)">
             <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
             <param name="frameworkSetting">The framework configuration.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
-            <param name="twsSetting">The TWS configuration.</param>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String},System.String)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String})">
             <summary>Removes the specified system log files.</summary>
             <param name="systemLogRoot">The root folder of the system log files.</param>
             <param name="systemFileNames">The list of system log file names to remove.</param>
