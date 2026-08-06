@@ -7,29 +7,173 @@
         <member name="T:TingenWebService.Core.Avatar.AvatarOptionObject">
             <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutAvatarData/*" /><br />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutOptionObjects/*" /><br />
+            <note type="note" title="About Avatar data">
+                Avatar sends two pieces of data to the Tingen Web Service:
+                <list type="number">
+                    <item> The SentOptionObject</item>
+                    <item> The SentScriptParameter</item>
+                </list>
+                If either of these components are missing, the Tingen Web Service cannot function properly. This method
+                checks for the presence of both components and logs an error if either is missing.
+            </note>
+            <note type="note" title="About OptionObjects">
+                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
+                <br />
+                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
+                box to the Tingen Web Service, and the Tingen Web Service:
+                <list type="number">
+                    <item>Opens the box</item>
+                    <item>Looks through the box for specific information</item>
+                    <item>Uses that information to do something</item>
+                    <item>Potentially modifies the contents</item>
+                    <item>Makes sure everything is in order to be returned to Avatar</item>
+                    <item>Closes the box</item>
+                </list>
+                The box is then returned to AvatarNX.<br>
+                    <br />
+                    <b>
+                        <u>Additional information</u>
+                    </b><br />
+                    The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
+                    class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
+                    and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
+                </br>
+            </note>
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">
             <summary>The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> sent from Avatar.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutOptionObjects/*" /><br />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/TypesOfOptionObjects/*" />
+            <note type="note" title="About OptionObjects">
+                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
+                <br />
+                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
+                box to the Tingen Web Service, and the Tingen Web Service:
+                <list type="number">
+                    <item>Opens the box</item>
+                    <item>Looks through the box for specific information</item>
+                    <item>Uses that information to do something</item>
+                    <item>Potentially modifies the contents</item>
+                    <item>Makes sure everything is in order to be returned to Avatar</item>
+                    <item>Closes the box</item>
+                </list>
+                The box is then returned to AvatarNX.<br>
+                    <br />
+                    <b>
+                        <u>Additional information</u>
+                    </b><br />
+                    The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
+                    class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
+                    and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
+                </br>
+            </note>
+            <note type="note" title="Types of OptionObjects">
+                The Tingen Web Service defines three types of OptionObjects:<br />
+                <br />
+                The <b>SentOptObj</b><br />
+                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
+                that the Tingen Web Service needs to process a request.<br />
+                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                <br />
+                The <b>WorkerOptObj</b><br />
+                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
+                the Tingen Web Service.<br />
+                <br />
+                The <b>CompleteOptObj</b><br />
+                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
+                Tingen Web Service.<br />
+                <br />
+            </note>
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.WorkerOptionObject">
             <summary>The worker <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> used during processing.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutOptionObjects/*" /><br />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/TypesOfOptionObjects/*" />
+            <note type="note" title="About OptionObjects">
+                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
+                <br />
+                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
+                box to the Tingen Web Service, and the Tingen Web Service:
+                <list type="number">
+                    <item>Opens the box</item>
+                    <item>Looks through the box for specific information</item>
+                    <item>Uses that information to do something</item>
+                    <item>Potentially modifies the contents</item>
+                    <item>Makes sure everything is in order to be returned to Avatar</item>
+                    <item>Closes the box</item>
+                </list>
+                The box is then returned to AvatarNX.<br>
+                    <br />
+                    <b>
+                        <u>Additional information</u>
+                    </b><br />
+                    The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
+                    class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
+                    and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
+                </br>
+            </note>
+            <note type="note" title="Types of OptionObjects">
+                The Tingen Web Service defines three types of OptionObjects:<br />
+                <br />
+                The <b>SentOptObj</b><br />
+                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
+                that the Tingen Web Service needs to process a request.<br />
+                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                <br />
+                The <b>WorkerOptObj</b><br />
+                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
+                the Tingen Web Service.<br />
+                <br />
+                The <b>CompleteOptObj</b><br />
+                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
+                Tingen Web Service.<br />
+                <br />
+            </note>
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">
             <summary>The complete <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> that is returned to Avatar.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutOptionObjects/*" /><br />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/TypesOfOptionObjects/*" />
+            <note type="note" title="About OptionObjects">
+                An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br />
+                <br />
+                You can think of it as a box that contains all of the information that is in a form. Avatar sends that
+                box to the Tingen Web Service, and the Tingen Web Service:
+                <list type="number">
+                    <item>Opens the box</item>
+                    <item>Looks through the box for specific information</item>
+                    <item>Uses that information to do something</item>
+                    <item>Potentially modifies the contents</item>
+                    <item>Makes sure everything is in order to be returned to Avatar</item>
+                    <item>Closes the box</item>
+                </list>
+                The box is then returned to AvatarNX.<br>
+                    <br />
+                    <b>
+                        <u>Additional information</u>
+                    </b><br />
+                    The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
+                    class library to define the <c>OptionObject</c> and its properties. You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
+                    and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
+                </br>
+            </note>
+            <note type="note" title="Types of OptionObjects">
+                The Tingen Web Service defines three types of OptionObjects:<br />
+                <br />
+                The <b>SentOptObj</b><br />
+                This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
+                that the Tingen Web Service needs to process a request.<br />
+                The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                <br />
+                The <b>WorkerOptObj</b><br />
+                This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
+                the Tingen Web Service.<br />
+                <br />
+                The <b>CompleteOptObj</b><br />
+                This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
+                Tingen Web Service.<br />
+                <br />
+            </note>
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.Build(ScriptLinkStandard.Objects.OptionObject2015)">
@@ -64,15 +208,72 @@
         <member name="T:TingenWebService.Core.Avatar.AvatarScriptParameter">
             <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutAvatarData/*" /><br />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutTheScriptParameter/*" /><br />
+            <note type="note" title="About Avatar data">
+                Avatar sends two pieces of data to the Tingen Web Service:
+                <list type="number">
+                    <item> The SentOptionObject</item>
+                    <item> The SentScriptParameter</item>
+                </list>
+                If either of these components are missing, the Tingen Web Service cannot function properly. This method
+                checks for the presence of both components and logs an error if either is missing.
+            </note><br />
+            <note type="note" title="About the Avatar Script Parameter">
+                The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
+                <br />
+                Here are the syntax rules for the Script Parameter:
+                <list type="bullet">
+                    <item>The Script Parameter cannot be null or empty.</item>
+                    <item>The Script Parameter cannot exceed 50 characters in length.</item>
+                    <item>The Script Parameter can only contain letters, numbers, underscores (`_`), and hyphens (`-`).</item>
+                </list>
+                Aside from those rules, the Script Parameter can be structured in any way that makes sense, as long as the Tingen Web Service can interpret it.<br />
+                <br />
+                For example, the following are all valid Script Parameters:
+                <list type="bullet">
+                    <item>`_FormName-DoSomething`</item>
+                    <item>`_FormName-DoSomething-Else`</item>
+                    <item>`DoSomething`</item>
+                    <item>`DoSomething-Else-Please`</item>
+                </list>
+                For a list of the Script Parameters that are currently supported by the Tingen Web Service, see [NEED-LINK-HERE].
+            </note><br />
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter">
             <summary>The original script parameter sent from Avatar.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/AboutTheScriptParameter/*" />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;AvatarData&quot;]/TypesOfScriptParameters/*" />
+            <note type="note" title="About the Avatar Script Parameter">
+                The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
+                <br />
+                Here are the syntax rules for the Script Parameter:
+                <list type="bullet">
+                    <item>The Script Parameter cannot be null or empty.</item>
+                    <item>The Script Parameter cannot exceed 50 characters in length.</item>
+                    <item>The Script Parameter can only contain letters, numbers, underscores (`_`), and hyphens (`-`).</item>
+                </list>
+                Aside from those rules, the Script Parameter can be structured in any way that makes sense, as long as the Tingen Web Service can interpret it.<br />
+                <br />
+                For example, the following are all valid Script Parameters:
+                <list type="bullet">
+                    <item>`_FormName-DoSomething`</item>
+                    <item>`_FormName-DoSomething-Else`</item>
+                    <item>`DoSomething`</item>
+                    <item>`DoSomething-Else-Please`</item>
+                </list>
+                For a list of the Script Parameters that are currently supported by the Tingen Web Service, see [NEED-LINK-HERE].
+            </note>
+            <note type="note" title="Types of Script Parameters">
+                There are two types of Script Parameters:<br />
+                <br />
+                <b>Form-specific</b><br />
+                If a Script Parameter starts with an underscore (`_`), the Tingen Web Service will route the request to a specific form.<br />
+                For example, if the Script Parameter is `_OpenIncident-DoSomething`, the Tingen Web Service will route the request to `Module.OpenIncident` for further processing.
+                <br />
+                The <b>General</b><br />
+                If a Script Parameter does not start with an underscore (`_`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br />
+                For example, if the Script Parameter is `DoSomething`, the Tingen Web Service will route that command to the appropriate code for processing.
+                <br />
+            </note>
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.WasSent(System.String)">
@@ -88,12 +289,298 @@
             TBD
             </remarks>
         </member>
+        <member name="T:TingenWebService.Core.RuntimeSetting">
+            <summary>Runtime settings logic.</summary>
+            <remarks>
+            <para>
+                <note type="information" title="The runtime settings">
+                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
+                    such as:
+                    <list type="bullet">
+                        <item>Runtime start date/time</item>
+                        <item>Current Tingen Web Service release/build</item>
+                        <item>The Avatar system that the Tingen Web Service will interface with</item>
+                        <item>The root directory for Tingen Web Service data</item>
+                    </list>
+                    The last three items are loaded from the <c>web.config</c> file.
+                </note>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurentDate">
+            <summary>The current date.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentTime">
+            <summary>The current time.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentMs">
+            <summary>The current milliseconds.</summary>
+            <remarks>This is used to calculate durations.</remarks>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.VersionBuild">
+            <summary>Release version and build information.</summary>
+            <remarks>The release version and build information are combined to form a single string for readability.</remarks>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.AvatarSystem">
+            <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
+            <value>e.g., "LIVE", "UAT"</value>
+        </member>
+        <member name="P:TingenWebService.Core.RuntimeSetting.DataRoot">
+            <summary>The root directory for Tingen Web Service data.</summary>
+            <value>e.g., "C:\Tingen_Data"</value>
+        </member>
+        <member name="M:TingenWebService.Core.RuntimeSetting.Load(System.String)">
+            <summary>Loads the runtime settings.</summary>
+            <param name="appVersion">The current version of the Tingen Web Service.</param>
+            <returns>The runtime settings.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.RuntimeSetting.Build(System.String)">
+            <summary>Builds the runtime settings.</summary>
+            <param name="appVersion">The release version of the Tingen Web Service.</param>
+            <returns>A <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance with the current settings.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.ErrorMessage.ERR1000(System.String)">
+            <summary>Build the runtime configuration load failure message.</summary>
+            <param name="errorMessage">The error message.</param>
+            <returns>The runtime configuration load failure message.</returns>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.Translation">
+            <summary>Represents a JSON object used within the Tingen Web Service.</summary>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.Translation.FormId">
+            <summary>Represents a form ID mapping used within the JSON object.</summary>
+        </member>
+        <member name="F:TingenWebService.Core.Trove.Translation.FormId.ToFormName">
+            <summary>Gets a dictionary mapping form IDs to form names.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Translation.ExportTranslations(System.String)">
+            <summary>Exports all translation files to the specified host directory.</summary>
+            <param name="translationRoot">The root directory where the translations will be exported.</param>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.Blueprint">
+            <summary>User-modifiable templates.</summary>
+            <remarks>
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Trove&quot;]/AboutBlueprints/*" />
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Trove&quot;]/RestoringBlueprints/*" />
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Blueprint.ErrorLogTxt">
+            <summary>Build the blueprint for text error logs.</summary>
+            <remarks>
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
+            </remarks>
+            <returns>The text error log template string.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogTxt">
+            <summary>Build the blueprint for text session logs.</summary>
+            <remarks>
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
+            </remarks>
+            <returns>The text session log template string.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogMd">
+            <summary>Build the blueprint for markdown session logs.</summary>
+            <remarks>
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /><br />
+            This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
+            up looking as nice as possible when it's rendered (it can't be perfect).
+            </remarks>
+            <returns>A string containing the markdown blueprint for the session log.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Blueprint.ExportBlueprints(System.String)">
+            <summary>Exports all blueprint templates to the specified host directory.</summary>
+            <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.Catalog">
+            <summary>Internal preset collections.</summary>
+            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutCatalogs/*" /></remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Catalog.RequiredFrameworkFolders(TingenWebService.Core.Framework.FrameworkSetting)">
+            <summary>Build the list of required framework folders.</summary>
+            <param name="twsFramework">The framework object that contains the folder list.</param>
+            <returns>A string array of the required framework folders.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Catalog.PreSystemLogFileNames">
+            <summary>Build the list of system logs that are created during the framework verification process.</summary>
+            <returns>A list of system log file names.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Catalog.PostSystemLogFileNames">
+            <summary>Build the list of system log file names.</summary>
+            <returns>A list of system log file names.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Catalog.BlueprintFileNames">
+            <summary>Build the list of blueprint file names.</summary>
+            <returns>A list of blueprint file names.</returns>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.Redprint">
+            <summary>Preset messages and strings.</summary>
+            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutRedprints/*" /></remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Redprint.RuntimeDetails(TingenWebService.Core.RuntimeSetting)">
+            <summary>Build the runtime details message.</summary>
+            <param name="rtConfig">The runtime configuration.</param>
+            <returns>The runtime details message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Redprint.FrameworkSettings(TingenWebService.Core.Framework.FrameworkSetting)">
+            <summary>Build the framework details message.</summary>
+            <param name="framework">The framework configuration.</param>
+            <returns>The framework details message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Redprint.BlueprintsExported">
+            <summary>Build the message indicating that blueprints have been exported.</summary>
+            <returns>The blueprints exported message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.Redprint.ApplicationSettings(TingenWebService.Core.AppSetting)">
+            <summary>Build the configuration details message.</summary>
+            <param name="appSetting">The Tingen Web Service configuration.</param>
+            <returns>The configuration details message.</returns>
+        </member>
+        <member name="T:TingenWebService.Core.Trove.SysMsg">
+            <summary>Provides system messages for the Tingen Web Service.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.PretraceStartMessage(System.String)">
+            <summary>Build the debug start message.</summary>
+            <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
+            <returns>The debug start message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1120(System.String)">
+            <summary>Build the framework configuration load failure message.</summary>
+            <param name="errorMessage">The error message.</param>
+            <returns>The framework configuration load failure message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1130">
+            <summary>Build the missing TngnWsvc.config message.</summary>
+            <returns>The missing configuration file message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1140(System.String,System.String)">
+            <summary>Build the framework verification failed message.</summary>
+            <param name="path">The path that could not be created.</param>
+            <param name="errorMessage">The error message.</param>
+            <returns>The framework verification failed message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1210(System.String,System.String)">
+            <summary>Build the session duration timeout exceeded message.</summary>
+            <param name="avatarUser">The Avatar user.</param>
+            <param name="sessionDurationMilliseconds">The session duration in milliseconds.</param>
+            <returns>The session duration timeout exceeded message.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.Trove.SysMsg.Error7516(System.String,System.String)">
+            <summary>Build the maintenance failure message.</summary>
+            <param name="path">The path that could not be created.</param>
+            <param name="errorMessage">The error message.</param>
+            <returns>The maintenance failure message.</returns>
+        </member>
+        <member name="T:TingenWebService.Core.AppSetting">
+            <summary>Tingen Web Service setting logic.</summary>
+            <remarks>
+            <para>
+                <note type="information" title="The Tingen Web Service settings">
+                    The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
+                    runtime settings. They are loaded from the <c>TingenWebService.config</c> file, and contains information such as:
+                    <list type="bullet">
+                        <item>The Tingen Web Service mode</item>
+                        <item>Log settings</item>
+                        <item>Templates</item>
+                        <item>Email credentials</item>
+                        <item>Netsmart web service credentials</item>
+                    </list>
+                </note>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.Mode">
+            <summary>Tingen Web Service mode</summary>
+            <remarks>
+            <list type="bullet">
+            <item><c>enabled</c> - All web service functionality is enabled.</item>
+            <item><c>disabled</c> - All web service functionality is disabled.</item>
+            <item><c>passthrough</c> - The web service operates in passthrough mode.</item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.TraceLimit">
+            <summary>Trace level limit.</summary>
+            <remarks>
+            LINKTO Logging/TraceLevelLimit documentation
+            </remarks>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.LogDelay">
+            <summary>Log delay.</summary>
+            <remarks>
+            In some cases the Tingen Web Service may create a large number of log entries in a short period of time. The
+            LogDelay setting ensures that each event is logged with a unique timestamp.<br>
+            </br>
+            The LogDelay setting is the number of milliseconds to wait before logging the next event.
+            </remarks>
+            <value>Default: 10</value>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.SessionLogDetailLevel">
+            <summary>Session log detail level.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.SessionLogTextFormat">
+            <summary>Indicates whether session logs should be written in plain text format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.SessionLogMarkdownFormat">
+            <summary>Indicates whether session logs should be written in Markdown format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.SessionTimeout">
+            <summary>Session timeout is too damn high!</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogTextFormat">
+            <summary>Indicates whether error logs should be written in plain text format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogMarkdownFormat">
+            <summary>Indicates whether error logs should be written in Markdown format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogHtmlFormat">
+            <summary>Indicates whether error logs should be written in HTML format.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.FromEmailAddress">
+            <summary>Email address the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.FromEmailPassword">
+            <summary>Email password the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.ToEmailAddress">
+            <summary>Email addresses the web services uses to send notifications.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.EmailFormat">
+            <summary>The format of the email messages sent by the web services.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcUserName">
+            <summary>The username used to authenticate with NTST web services.</summary>
+        </member>
+        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcPassword">
+            <summary>The password used to authenticate with NTST web services.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.AppSetting.Load(System.String)">
+            <summary>Load the Tingen Web Service configuration from a file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+            <remarks>
+            If the configuration file does not exist, a new configuration file is created with default values.
+            </remarks>
+            <returns>The loaded Tingen Web Service configuration.</returns>
+        </member>
+        <member name="M:TingenWebService.Core.AppSetting.Build(System.String)">
+            <summary>Create a new Tingen Web Service configuration file.</summary>
+            <param name="configPath">The path to the configuration file.</param>
+            <remarks>Add to redprint.</remarks>
+        </member>
         <member name="T:TingenWebService.Core.Framework.FrameworkMaintenance">
             <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
+            <remarks>
+            The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
+            Web Service to function properly.
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.DailyValidation(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
+            <summary>Validate the Tingen Web Service framework daily.</summary>
+            <param name="runtimeSetting">The runtime configuration.</param>
+            <param name="frameworkSetting">The framework instance.</param>
         </member>
         <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the components for the session.</summary>
-            <param name="systemLogFileName">The name of the start log file.</param>
+            <param name="dailyLogFileName">The name of the daily log file.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
             <param name="frameworkSetting">The framework instance.</param>
         </member>
@@ -156,289 +643,8 @@
             <summary>Build a <see cref="T:TingenWebService.Core.Framework.FrameworkSetting"/> instance with the specified paths.</summary>
             <param name="dataRoot">The root path for data storage.</param>
             <param name="avatarSystem">The avatar system identifier.</param>
+            <remarks>Add to redprint.</remarks>
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrameworkSetting"/> instance with the specified paths.</returns>
-        </member>
-        <member name="T:TingenWebService.Core.RuntimeSetting">
-            <summary>Runtime settings logic.</summary>
-            <remarks>
-            <para>
-                <note type="information" title="The runtime settings">
-                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
-                    such as:
-                    <list type="bullet">
-                        <item>Runtime start date/time</item>
-                        <item>Current Tingen Web Service release/build</item>
-                        <item>The Avatar system that the Tingen Web Service will interface with</item>
-                        <item>The root directory for Tingen Web Service data</item>
-                    </list>
-                    The last three items are loaded from the <c>web.config</c> file.
-                </note>
-            </para>
-            </remarks>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.CurentDate">
-            <summary>The current date.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentTime">
-            <summary>The current time.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentMs">
-            <summary>The current milliseconds.</summary>
-            <remarks>This is used to calculate durations.</remarks>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.ReleaseBuild">
-            <summary>Release version and build information.</summary>
-            <remarks>The release version and build information are combined to form a single string for readability.</remarks>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.AvatarSystem">
-            <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
-            <value>e.g., "LIVE", "UAT"</value>
-        </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.DataRoot">
-            <summary>The root directory for Tingen Web Service data.</summary>
-            <value>e.g., "C:\Tingen_Data"</value>
-        </member>
-        <member name="M:TingenWebService.Core.RuntimeSetting.Load(System.String)">
-            <summary>Loads the runtime settings.</summary>
-            <param name="appVersion">The current version of the Tingen Web Service.</param>
-            <returns>The runtime settings.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.RuntimeSetting.Build(System.String)">
-            <summary>Builds the runtime settings.</summary>
-            <param name="appVersion">The release version of the Tingen Web Service.</param>
-            <returns>A <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance with the current settings.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.ErrorMessage.ERR1000(System.String)">
-            <summary>Build the runtime configuration load failure message.</summary>
-            <param name="errorMessage">The error message.</param>
-            <returns>The runtime configuration load failure message.</returns>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.Translation">
-            <summary>Represents a JSON object used within the Tingen Web Service.</summary>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.Translation.FormId">
-            <summary>Represents a form ID mapping used within the JSON object.</summary>
-        </member>
-        <member name="F:TingenWebService.Core.Trove.Translation.FormId.ToFormName">
-            <summary>Gets a dictionary mapping form IDs to form names.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Translation.ExportTranslations(System.String)">
-            <summary>Exports all translation files to the specified host directory.</summary>
-            <param name="translationRoot">The root directory where the translations will be exported.</param>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.Blueprint">
-            <summary>User-modifiable templates.</summary>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutBlueprints/*" />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/RestoringBlueprints/*" />
-            </remarks>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Blueprint.ErrorLogTxt">
-            <summary>Build the blueprint for text error logs.</summary>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
-            </remarks>
-            <returns>The text error log template string.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogTxt">
-            <summary>Build the blueprint for text session logs.</summary>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
-            </remarks>
-            <returns>The text session log template string.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogMd">
-            <summary>Build the blueprint for markdown session logs.</summary>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Logger&quot;]/AboutLogFormats/*" /><br />
-            This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
-            up looking as nice as possible when it's rendered (it can't be perfect).
-            </remarks>
-            <returns>A string containing the markdown blueprint for the session log.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Blueprint.ExportBlueprints(System.String)">
-            <summary>Exports all blueprint templates to the specified host directory.</summary>
-            <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.Catalog">
-            <summary>Internal preset collections.</summary>
-            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutCatalogs/*" /></remarks>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.RequiredFrameworkFolders(TingenWebService.Core.Framework.FrameworkSetting)">
-            <summary>Build the list of required framework folders.</summary>
-            <param name="twsFramework">The framework object that contains the folder list.</param>
-            <returns>A string array of the required framework folders.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.PreSystemLogFileNames">
-            <summary>Build the list of system logs that are created during the framework verification process.</summary>
-            <returns>A list of system log file names.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.PostSystemLogFileNames">
-            <summary>Build the list of system log file names.</summary>
-            <returns>A list of system log file names.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.BlueprintFileNames">
-            <summary>Build the list of blueprint file names.</summary>
-            <returns>A list of blueprint file names.</returns>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.Redprint">
-            <summary>Preset messages and strings.</summary>
-            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutRedprints/*" /></remarks>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.FrameworkDetails(TingenWebService.Core.Framework.FrameworkSetting)">
-            <summary>Build the framework details message.</summary>
-            <param name="framework">The framework configuration.</param>
-            <returns>The framework details message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.BlueprintsExported">
-            <summary>Build the message indicating that blueprints have been exported.</summary>
-            <returns>The blueprints exported message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.ConfigurationDetails(TingenWebService.Core.AppSetting)">
-            <summary>Build the configuration details message.</summary>
-            <param name="twsConfig">The Tingen Web Service configuration.</param>
-            <returns>The configuration details message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.RuntimeDetails(TingenWebService.Core.RuntimeSetting)">
-            <summary>Build the runtime details message.</summary>
-            <param name="rtConfig">The runtime configuration.</param>
-            <returns>The runtime details message.</returns>
-        </member>
-        <member name="T:TingenWebService.Core.Trove.SysMsg">
-            <summary>Provides system messages for the Tingen Web Service.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.PretraceStartMessage(System.String)">
-            <summary>Build the debug start message.</summary>
-            <param name="sentScriptParam">The script parameter sent to the debug start message.</param>
-            <returns>The debug start message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.DailyStart(System.String)">
-            <summary>Build the daily maintenance system log start message.</summary>
-            <param name="releaseBuild">The release build version.</param>
-            <returns>The daily maintenance system log start message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.FrameworkVerified">
-            <summary>Build the message indicating that the framework has been verified.</summary>
-            <returns>The framework verified message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.SystemLogsReset">
-            <summary>Build the message indicating that the system logs have been reset.</summary>
-            <returns>The system logs reset message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1120(System.String)">
-            <summary>Build the framework configuration load failure message.</summary>
-            <param name="errorMessage">The error message.</param>
-            <returns>The framework configuration load failure message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1130">
-            <summary>Build the missing TngnWsvc.config message.</summary>
-            <returns>The missing configuration file message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1140(System.String,System.String)">
-            <summary>Build the framework verification failed message.</summary>
-            <param name="path">The path that could not be created.</param>
-            <param name="errorMessage">The error message.</param>
-            <returns>The framework verification failed message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.ERR1210(System.String,System.String)">
-            <summary>Build the session duration timeout exceeded message.</summary>
-            <param name="avatarUser">The Avatar user.</param>
-            <param name="sessionDurationMilliseconds">The session duration in milliseconds.</param>
-            <returns>The session duration timeout exceeded message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.SysMsg.Error7516(System.String,System.String)">
-            <summary>Build the maintenance failure message.</summary>
-            <param name="path">The path that could not be created.</param>
-            <param name="errorMessage">The error message.</param>
-            <returns>The maintenance failure message.</returns>
-        </member>
-        <member name="T:TingenWebService.Core.AppSetting">
-            <summary>Tingen Web Service setting logic.</summary>
-            <remarks>
-            The TngnWsvcConfiguration contains configuration and setting information that the Tingen Web Service needs to
-            know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
-            other configuration components.
-            </remarks>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.Mode">
-            <summary>Tingen Web Service mode</summary>
-            <remarks>
-            <list type="bullet">
-            <item><c>enabled</c> - All web service functionality is enabled.</item>
-            <item><c>disabled</c> - All web service functionality is disabled.</item>
-            <item><c>passthrough</c> - The web service operates in passthrough mode.</item>
-            </list>
-            </remarks>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.TraceLimit">
-            <summary>Trace level limit.</summary>
-            <remarks>
-            LINKTO Logging/TraceLevelLimit documentation
-            </remarks>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.LogDelay">
-            <summary>Log delay.</summary>
-            <remarks>
-            In some cases the Tingen Web Service may create a large number of log entries in a short period of time. The
-            LogDelay setting ensures that each event is logged with a unique timestamp.<br>
-            </br>
-            The LogDelay setting is the number of milliseconds to wait before logging the next event.
-            </remarks>
-            <value>Default: 10</value>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.SessLogDetailLevel">
-            <summary>Session log detail level.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.SessLogTxt">
-            <summary>Indicates whether session logs should be written in plain text format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.SessLogMd">
-            <summary>Indicates whether session logs should be written in Markdown format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.SessLogHtml">
-            <summary>Indicates whether session logs should be written in HTML format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.SessTimeout">
-            <summary>Session timeout is too damn high!</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.ErrorLogTxt">
-            <summary>Indicates whether error logs should be written in plain text format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.ErrorLogMd">
-            <summary>Indicates whether error logs should be written in Markdown format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.ErrorLogHtml">
-            <summary>Indicates whether error logs should be written in HTML format.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.FromEmailAddress">
-            <summary>Email address the web services uses to send notifications.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.FromEmailPassword">
-            <summary>Email password the web services uses to send notifications.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.ToEmailAddress">
-            <summary>Email addresses the web services uses to send notifications.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.EmailFormat">
-            <summary>The format of the email messages sent by the web services.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcUserName">
-            <summary>The username used to authenticate with NTST web services.</summary>
-        </member>
-        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcPassword">
-            <summary>The password used to authenticate with NTST web services.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.AppSetting.Load(System.String)">
-            <summary>Load the Tingen Web Service configuration from a file.</summary>
-            <param name="configPath">The path to the configuration file.</param>
-            <remarks>
-            If the configuration file does not exist, a new configuration file is created with default values.
-            </remarks>
-            <returns>The loaded Tingen Web Service configuration.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.AppSetting.Build(System.String)">
-            <summary>Create a new Tingen Web Service configuration file.</summary>
-            <param name="configPath">The path to the configuration file.</param>
         </member>
         <member name="T:TingenWebService.Core.Logger.LogMaintenance">
             <summary>Provides methods for maintaining system log files.</summary>
@@ -552,10 +758,19 @@
         <member name="T:TingenWebService.Core.Logger.LogEvent">
             <summary>Provides methods for logging various types of events.</summary>
         </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Daily(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>Logs a daily event with the specified details.</summary>
+            <param name="sysLogRoot">The root folder of the system log files.</param>
+            <param name="todayDate">The current date.</param>
+            <param name="startTime">The start time of the event.</param>
+            <param name="versionBuild">The version and build information.</param>
+            <param name="runningLog">The running log content.</param>
+            <param name="duration">The duration of the event.</param>
+        </member>
         <member name="M:TingenWebService.Core.Logger.LogEvent.Error(System.String,System.String,System.String,System.String,System.String)">
             <summary>Logs an error event with the specified details.</summary>
             <param name="sysLogRoot">The root folder of the system log files.</param>
-            <param name="bpRoot">The root folder of the blueprint files.</param>
+            <param name="blueprintRoot">The root folder of the blueprint files.</param>
             <param name="sessStartDateTime">The start date and time of the session.</param>
             <param name="errCode">The error code.</param>
             <param name="errMsg">The error message.</param>

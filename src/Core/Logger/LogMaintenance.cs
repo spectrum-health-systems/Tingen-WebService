@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260805_documentation
+// 260806_documentation
 
 using System.Collections.Generic;
 using TingenWebService.Core.Framework;
@@ -32,9 +32,7 @@ namespace TingenWebService.Core.Logger
 
             //var systemFileNames = Catalog.PreSystemLogFileNames();
 
-
-
-            LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Runtime.settings", Redprint.RuntimeDetails(runtimeSetting));
+            LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Runtime.details", Redprint.RuntimeDetails(runtimeSetting));
             LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Framework.settings", Redprint.FrameworkSettings(frameworkSetting));
 
             //if (File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Runtime.settings")))

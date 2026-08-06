@@ -1,5 +1,5 @@
 ﻿// 260805_code
-// 260805_documentation
+// 260806_documentation
 
 using System.Reflection;
 using System.Web.Services;
@@ -84,7 +84,7 @@ namespace TingenWebService
             RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
             FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
 
-            FrameworkMaintenance.DailyVerify(runtimeSetting, frameworkConfig);
+            FrameworkMaintenance.DailyValidation(runtimeSetting, frameworkConfig);
 
             SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 

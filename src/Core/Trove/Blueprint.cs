@@ -1,5 +1,5 @@
-﻿// 260805_code
-// 260805_documentation
+﻿// 260806_code
+// 260806_documentation
 
 using System;
 using System.IO;
@@ -9,14 +9,14 @@ namespace TingenWebService.Core.Trove
 {
     /// <summary>User-modifiable templates.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutBlueprints/*'/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/RestoringBlueprints/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/AboutBlueprints/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/RestoringBlueprints/*'/>
     /// </remarks>
     internal static class Blueprint
     {
         /// <summary>Build the blueprint for text error logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text error log template string.</returns>
         internal static string ErrorLogTxt() =>
@@ -28,7 +28,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for text session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/> <br/>
         /// </remarks>
         /// <returns>The text session log template string.</returns>
         internal static string SessLogTxt() =>
@@ -40,7 +40,7 @@ namespace TingenWebService.Core.Trove
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/><br/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/><br/>
         /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
         /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
@@ -120,7 +120,6 @@ namespace TingenWebService.Core.Trove
         //    $"<br/>{Environment.NewLine}" +
         //    $"<p><sub>End</sub></p>{Environment.NewLine}" +
         //    $"{Environment.NewLine}";
-
 
         /// <summary>Exports all blueprint templates to the specified host directory.</summary>
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>

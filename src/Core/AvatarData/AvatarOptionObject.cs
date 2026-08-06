@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260805_documentation
+// 260806_documentation
 
 using System;
 using System.IO;
@@ -10,29 +10,29 @@ namespace TingenWebService.Core.Avatar
 {
     /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
     /// </remarks>
     internal class AvatarOptionObject
     {
         /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 SentOptionObject { get; set; }
 
         /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 WorkerOptionObject { get; set; }
 
         /// <summary>The complete <see cref="OptionObject2015"/> that is returned to Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/><br/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 CompleteOptionObject { get; set; }
 

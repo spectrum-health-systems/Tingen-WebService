@@ -1,5 +1,6 @@
 ﻿// 260806_code
-// 260805_documentation
+// 260806_documentation
+
 using System;
 using System.IO;
 using TingenWebService.Core.Logger;
@@ -54,7 +55,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
         internal static FrameworkSetting Load(string dataRoot, string avatarSystem)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSettings-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Load");
 
             try
             {
@@ -62,7 +63,7 @@ namespace TingenWebService.Core.Framework
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR100-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
+                LogEvent.Primeval("ERR1000-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
 
                 throw;
             }
@@ -75,7 +76,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
         internal static FrameworkSetting Build(string dataRoot, string avatarSystem)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSettings-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);

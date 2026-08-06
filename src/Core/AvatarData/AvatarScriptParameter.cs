@@ -1,5 +1,5 @@
-﻿// 260805_code
-// 260805_documentation
+﻿// 260806_code
+// 260806_documentation
 
 using System;
 using TingenWebService.Core.Logger;
@@ -11,15 +11,15 @@ namespace TingenWebService.Core.Avatar
 {
     /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
-    /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/><br/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/><br/>
     /// </remarks>
     internal class AvatarScriptParameter
     {
         /// <summary>The original script parameter sent from Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
-        /// <include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
         /// </remarks>
         public string SentScriptParameter { get; set; }
 

@@ -1,5 +1,6 @@
-﻿// 260805_code
-// 260805_documentation
+﻿// 260806_code
+// 260806_documentation
+
 using System;
 using System.IO;
 using TingenWebService.Core.Logger;
@@ -9,29 +10,35 @@ using TingenWebService.Du;
 namespace TingenWebService.Core.Framework
 {
     /// <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
+    /// <remarks>
+    /// The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
+    /// Web Service to function properly.
+    /// </remarks>
     internal static class FrameworkMaintenance
     {
-        internal static void DailyVerify(RuntimeSetting runtimeConfig, FrameworkSetting frameworkConfig)
+        /// <summary>Validate the Tingen Web Service framework daily.</summary>
+        /// <param name="runtimeSetting">The runtime configuration.</param>
+        /// <param name="frameworkSetting">The framework instance.</param>
+        internal static void DailyValidation(RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-DailyVerify");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-DailyValidation");
 
-            var dailyLogFileName = $"{DateTime.Now:yyyyMMdd}.daily";
+            var todayDate = DateTime.Now.ToString("yyyyMMdd");
 
-            if (!File.Exists(Path.Combine(frameworkConfig.SysLogRoot, dailyLogFileName)))
+            if (!File.Exists(Path.Combine(frameworkSetting.SysLogRoot, $"{todayDate}.daily")))
             {
-                VerifyComponents(dailyLogFileName, runtimeConfig, frameworkConfig);
+                VerifyComponents(todayDate, runtimeSetting, frameworkSetting);
             }
         }
 
         /// <summary>Verify the components for the session.</summary>
-        /// <param name="systemLogFileName">The name of the start log file.</param>
+        /// <param name="dailyLogFileName">The name of the daily log file.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="frameworkSetting">The framework instance.</param>
-        internal static void VerifyComponents(string dailyLogFileName, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
+        internal static void VerifyComponents(string todayDate, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
-            var todayDate = DateTime.Now.ToString("yyyyMMdd");
             var startTime = DateTime.Now.ToString("HHmmss");
             var startMs   = DateTime.Now.ToString("fffffff");
 
@@ -73,7 +80,7 @@ namespace TingenWebService.Core.Framework
                 }
                 catch (Exception ex)
                 {
-                    LogEvent.Primeval("ERR1140-FrameworkValidationFailed", SysMsg.ERR1140(path, ex.Message)[1]);
+                    LogEvent.Primeval("ERR1000-FrameworkValidationFailed", ErrorMessage.ERR1000(ex.Message));
                     //TODO - Should probably send an email notification.
                 }
             }

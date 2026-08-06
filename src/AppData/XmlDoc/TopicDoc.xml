@@ -2,7 +2,7 @@
 
 <Topics>
 
-    <!-- ===== TingenWebService.asmx.cs =============================================================================================== -->
+    <!-- ===== C:TingenWebService.asmx.cs ============================================================================================= -->
 
     <Topic name ="Asmx">
 
@@ -74,7 +74,7 @@
     </Topic>
 
 
-    <!-- ===== TingenWebService.Core.RuntimeSetting.cs ================================================================================= -->
+    <!-- ===== C:TingenWebService.Core.RuntimeSetting.cs ============================================================================== -->
 
     <Topic name ="RuntimeSetting">
 
@@ -96,7 +96,7 @@
 
     </Topic>
 
-    <!-- ===== TingenWebService.Core.AppSetting.cs ================================================================================= -->
+    <!-- ===== C:TingenWebService.Core.AppSetting.cs ================================================================================== -->
 
     <Topic name ="AppSetting">
 
@@ -106,7 +106,7 @@
                     The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
                     runtime settings. They are loaded from the <c>TingenWebService.config</c> file, and contains information such as:
                     <list type="bullet">
-                        <item>The Tingen Web Service mode </item>
+                        <item>The Tingen Web Service mode</item>
                         <item>Log settings</item>
                         <item>Templates</item>
                         <item>Email credentials</item>
@@ -118,17 +118,11 @@
 
     </Topic>
 
-
-
-    <!--
-    ====================================================================================================================
-    AVATARDATA
-    ====================================================================================================================
-    -->
+    <!-- ===== N:TingenWebService.Core.AvatarData ===================================================================================== -->
 
     <Topic name ="AvatarData">
 
-        <AboutAvatarData>
+        <AboutAvatarData> <!-- 260805 -->
             <note type="note" title="About Avatar data">
                 Avatar sends two pieces of data to the Tingen Web Service:
                 <list type="number">
@@ -140,7 +134,7 @@
             </note>
         </AboutAvatarData>
 
-        <AboutOptionObjects>
+        <AboutOptionObjects> <!-- 260805 -->
             <note type="note" title="About OptionObjects">
                 An Avatar <c>OptionObject</c> defines the web service contract for use with AvatarNX.<br/>
                 <br/>
@@ -166,7 +160,7 @@
             </note>
         </AboutOptionObjects>
 
-        <TypesOfOptionObjects>
+        <TypesOfOptionObjects> <!-- 260805 -->
             <note type="note" title="Types of OptionObjects">
                 The Tingen Web Service defines three types of OptionObjects:<br/>
                 <br/>
@@ -186,7 +180,7 @@
             </note>
         </TypesOfOptionObjects>
 
-        <AboutTheScriptParameter>
+        <AboutTheScriptParameter> <!-- 260805 -->
             <note type="note" title="About the Avatar Script Parameter">
                 The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
                 <br/>
@@ -209,7 +203,7 @@
             </note>
         </AboutTheScriptParameter>
 
-        <TypesOfScriptParameters>
+        <TypesOfScriptParameters> <!-- 260805 -->
             <note type="note" title="Types of Script Parameters">
                 There are two types of Script Parameters:<br/>
                 <br/>
@@ -225,6 +219,19 @@
         </TypesOfScriptParameters>
 
     </Topic>
+
+    <!-- ===== N:TingenWebService.Core.Framework ====================================================================================== -->
+
+    <Topic name ="Framework">
+
+        <AboutTheFramework> <!-- 260806 -->
+            <para>
+            </para>
+        </AboutTheFramework>
+
+    </Topic>
+
+
 
     <!--
     ====================================================================================================================

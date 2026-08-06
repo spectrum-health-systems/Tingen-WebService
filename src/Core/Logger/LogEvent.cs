@@ -1,5 +1,5 @@
-﻿// 260805_code
-// 260805_documentation
+﻿// 260806_code
+// 260806_documentation
 
 using System;
 using System.IO;
@@ -14,32 +14,37 @@ namespace TingenWebService.Core.Logger
     /// <summary>Provides methods for logging various types of events.</summary>
     internal static class LogEvent
     {
+        /// <summary>Logs a daily event with the specified details.</summary>
+        /// <param name="sysLogRoot">The root folder of the system log files.</param>
+        /// <param name="todayDate">The current date.</param>
+        /// <param name="startTime">The start time of the event.</param>
+        /// <param name="versionBuild">The version and build information.</param>
+        /// <param name="runningLog">The running log content.</param>
+        /// <param name="duration">The duration of the event.</param>
         internal static void Daily(string sysLogRoot, string todayDate, string startTime, string versionBuild, string runningLog, string duration)
         {
             DuDirectory.ForceExist(sysLogRoot);
 
-            var dailyLogBlueprint = Redprint.DailyLog();
-
-            var logContent = dailyLogBlueprint.Replace("~VERSION~BUILD~", versionBuild)
-                                              .Replace("~STARTIME~", startTime)
-                                              .Replace("~RUNNING~LOG~", runningLog)
-                                              .Replace("~DURATION~", duration);
+            string logContent = Redprint.DailyLog().Replace("~VERSION~BUILD~", versionBuild)
+                                                   .Replace("~STARTIME~", startTime)
+                                                   .Replace("~RUNNING~LOG~", runningLog)
+                                                   .Replace("~DURATION~", duration);
 
             LogWriter.WriteLocal(sysLogRoot, $"{todayDate}.daily", logContent);
         }
 
-
         /// <summary>Logs an error event with the specified details.</summary>
         /// <param name="sysLogRoot">The root folder of the system log files.</param>
-        /// <param name="bpRoot">The root folder of the blueprint files.</param>
+        /// <param name="blueprintRoot">The root folder of the blueprint files.</param>
         /// <param name="sessStartDateTime">The start date and time of the session.</param>
         /// <param name="errCode">The error code.</param>
         /// <param name="errMsg">The error message.</param>
-        internal static void Error(string sysLogRoot, string bpRoot, string sessStartDateTime, string errCode, string errMsg)
+        internal static void Error(string sysLogRoot, string blueprintRoot, string sessStartDateTime, string errCode, string errMsg)
         {
             DuDirectory.ForceExist(sysLogRoot);
 
-            var errorLogBlueprint = File.ReadAllText(Path.Combine(bpRoot, "ErrorLogTxt.blueprint"));
+            var errorLogBlueprint = File.ReadAllText(Path.Combine(blueprintRoot, "ErrorLogTxt.blueprint"));
+
             var logContent = errorLogBlueprint.Replace("~SESSION~DATE~TIME~", $"{sessStartDateTime}")
                                               .Replace("~ERROR~CODE~", errCode)
                                               .Replace("~ERROR~MESSAGE~", errMsg);
@@ -84,7 +89,7 @@ namespace TingenWebService.Core.Logger
             var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RuntimeSetting.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
             var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RuntimeSetting.CurrentMs, "fffffff", null)).ToString("fffffff");
 
-            if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessTimeout}"))
+            if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessionTimeout}"))
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
@@ -99,7 +104,7 @@ namespace TingenWebService.Core.Logger
 
             // TODO - these need to be combined.
 
-            if (sess.TwsSetting.SessLogTxt)
+            if (sess.TwsSetting.SessionLogTextFormat)
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
@@ -120,7 +125,7 @@ namespace TingenWebService.Core.Logger
 
             LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-            if (sess.TwsSetting.SessLogMd)
+            if (sess.TwsSetting.SessionLogMarkdownFormat)
             {
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
@@ -163,7 +168,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
+            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
 
             LogWriter.WriteLocal(logFolder, logName, logContent);
 

@@ -1,5 +1,5 @@
-﻿// 260805_code
-// 260805_documentation
+﻿// 260806_code
+// 260806_documentation
 
 using System;
 using TingenWebService.Core.Framework;
@@ -8,7 +8,7 @@ using TingenWebService.Module.OpenIncident;
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Preset messages and strings.</summary>
-    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutRedprints/*'/></remarks>
+    /// <remarks><include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/AboutRedprints/*'/></remarks>
     internal class Redprint
     {
         internal static string DailyLog()
@@ -19,6 +19,16 @@ namespace TingenWebService.Core.Trove
                    $"~DURATION~";
         }
 
+        /// <summary>Build the runtime details message.</summary>
+        /// <param name="rtConfig">The runtime configuration.</param>
+        /// <returns>The runtime details message.</returns>
+        internal static string RuntimeDetails(RuntimeSetting rtConfig)
+        {
+            return $"Version (build): v{rtConfig.VersionBuild}{Environment.NewLine}" +
+                   $"Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
+                   $"Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
+        }
+
         /// <summary>Build the framework details message.</summary>
         /// <param name="framework">The framework configuration.</param>
         /// <returns>The framework details message.</returns>
@@ -26,21 +36,21 @@ namespace TingenWebService.Core.Trove
         {
             // TODO - Do the same things for Blueprints
 
-            return $"        Framework settings{Environment.NewLine}" +
-                   $"--------------------------{Environment.NewLine}" +
-                   $"Avatar Generated Data Root: {framework.AvatarGeneratedDataRoot}{Environment.NewLine}" +
-                   $"               Config Root: {framework.ConfigRoot}{Environment.NewLine}" +
-                   $"               Export Root: {framework.ExportRoot}{Environment.NewLine}" +
-                   $"               Import Root: {framework.ImportRoot}{Environment.NewLine}" +
-                   $"               SysLog Root: {framework.SysLogRoot}{Environment.NewLine}" +
-                   $"            Blueprint Root: {framework.BlueprintRoot}{Environment.NewLine}" +
-                   $"              Session Root: {framework.SessionRoot}{Environment.NewLine}" +
-                   $"          Translation Root: {framework.TranslationRoot}{Environment.NewLine}";
+            return
+                   $"Avatar Generated Data: {framework.AvatarGeneratedDataRoot}{Environment.NewLine}" +
+                   $"Configuration files: {framework.ConfigRoot}{Environment.NewLine}" +
+                   $"Exports: {framework.ExportRoot}{Environment.NewLine}" +
+                   $"Imports: {framework.ImportRoot}{Environment.NewLine}" +
+                   $"System Logs: {framework.SysLogRoot}{Environment.NewLine}" +
+                   $"Blueprints: {framework.BlueprintRoot}{Environment.NewLine}" +
+                   $"Session data: {framework.SessionRoot}{Environment.NewLine}" +
+                   $"Translations: {framework.TranslationRoot}{Environment.NewLine}";
         }
 
         /// <summary>Build the message indicating that blueprints have been exported.</summary>
         /// <returns>The blueprints exported message.</returns>
-        internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
+        internal static string BlueprintsExported()
+            => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
 
         /// <summary>Build the configuration details message.</summary>
         /// <param name="appSetting">The Tingen Web Service configuration.</param>
@@ -52,31 +62,19 @@ namespace TingenWebService.Core.Trove
                    $"                          Mode: {appSetting.Mode}{Environment.NewLine}" +
                    $"             Trace Level Limit: {appSetting.TraceLimit}{Environment.NewLine}" +
                    $"                     Log Delay: {appSetting.LogDelay}{Environment.NewLine}" +
-                   $"      Session Log Detail Level: {appSetting.SessLogDetailLevel}{Environment.NewLine}" +
-                   $"       Session Log text format: {appSetting.SessLogTxt}{Environment.NewLine}" +
-                   $"   Session Log Markdown format: {appSetting.SessLogMd}{Environment.NewLine}" +
-                   $"               Session Timeout: {appSetting.SessTimeout}{Environment.NewLine}" +
-                   $"         Error Log text format: {appSetting.ErrorLogTxt}{Environment.NewLine}" +
-                   $"     Error Log Markdown format: {appSetting.ErrorLogMd}{Environment.NewLine}" +
-                   $"         Error Log HTML format: {appSetting.ErrorLogHtml}{Environment.NewLine}" +
+                   $"      Session Log Detail Level: {appSetting.SessionLogDetailLevel}{Environment.NewLine}" +
+                   $"       Session Log text format: {appSetting.SessionLogTextFormat}{Environment.NewLine}" +
+                   $"   Session Log Markdown format: {appSetting.SessionLogMarkdownFormat}{Environment.NewLine}" +
+                   $"               Session Timeout: {appSetting.SessionTimeout}{Environment.NewLine}" +
+                   $"         Error Log text format: {appSetting.ErrorLogTextFormat}{Environment.NewLine}" +
+                   $"     Error Log Markdown format: {appSetting.ErrorLogMarkdownFormat}{Environment.NewLine}" +
+                   $"         Error Log HTML format: {appSetting.ErrorLogHtmlFormat}{Environment.NewLine}" +
                    $"            From Email Address: {appSetting.FromEmailAddress}{Environment.NewLine}" +
                    $"           From Email Password: Please see TngnWsvc.config{Environment.NewLine}" +
                    $"              To Email Address: {string.Join(", ", appSetting.ToEmailAddress)}{Environment.NewLine}" +
                    $"                  Email Format: {appSetting.EmailFormat}{Environment.NewLine}" +
                    $"Netsmart web services username: {appSetting.NtstWsvcUserName}{Environment.NewLine}" +
                    $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
-        }
-
-        /// <summary>Build the runtime details message.</summary>
-        /// <param name="rtConfig">The runtime configuration.</param>
-        /// <returns>The runtime details message.</returns>
-        internal static string RuntimeDetails(RuntimeSetting rtConfig)
-        {
-            return $"Runtime settings{Environment.NewLine}" +
-                   $"----------------{Environment.NewLine}" +
-                   $"   Release Build: {rtConfig.VersionBuild}{Environment.NewLine}" +
-                   $"   Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
-                   $"       Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
         }
 
         internal static string OpenIncidentConfig(OpenIncidentConfig openIncidentConfig)

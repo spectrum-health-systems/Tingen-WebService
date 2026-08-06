@@ -1,12 +1,12 @@
 ﻿// 260806_code
-// 260805_documentation
+// 260806_documentation
 
 using System.Collections.Generic;
 
 namespace TingenWebService.Core.Trove
 {
     /// <summary>Internal preset collections.</summary>
-    /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutCatalogs/*'/></remarks>
+    /// <remarks><include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/AboutCatalogs/*'/></remarks>
     internal static class Catalog
     {
         /// <summary>Build the list of required framework folders.</summary>
@@ -67,6 +67,7 @@ namespace TingenWebService.Core.Trove
         ////internal static string TranslateFormIdToName() =>
         ////    "INCIDENT1=OpenIncident";
 
-        internal static string TranslationFilesExported() => $"[Translation files built]{System.Environment.NewLine}";
+        internal static string TranslationFilesExported()
+            => $"[Translation files built]{System.Environment.NewLine}";
     }
 }

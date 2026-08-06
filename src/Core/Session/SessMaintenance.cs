@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260729_documentation
+// 260806_documentation
 
 namespace TingenWebService.Core.Session
 {

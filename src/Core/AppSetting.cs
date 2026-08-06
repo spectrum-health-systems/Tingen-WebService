@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260805_documentation
+// 260806_documentation
 
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +9,7 @@ namespace TingenWebService.Core
 {
     /// <summary>Tingen Web Service setting logic.</summary>
     /// <remarks>
-    /// The TngnWsvcConfiguration contains configuration and setting information that the Tingen Web Service needs to
-    /// know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
-    /// other configuration components.
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AppSetting"]/AboutAppSetting/*'/>
     /// </remarks>
     internal class AppSetting
     {
@@ -42,25 +40,25 @@ namespace TingenWebService.Core
         public int LogDelay { get; set; }
 
         /// <summary>Session log detail level.</summary>
-        public int SessLogDetailLevel { get; set; }
+        public int SessionLogDetailLevel { get; set; }
 
         /// <summary>Indicates whether session logs should be written in plain text format.</summary>
-        public bool SessLogTxt { get; set; }
+        public bool SessionLogTextFormat { get; set; }
 
         /// <summary>Indicates whether session logs should be written in Markdown format.</summary>
-        public bool SessLogMd { get; set; }
+        public bool SessionLogMarkdownFormat { get; set; }
 
         /// <summary>Session timeout is too damn high!</summary>
-        public string SessTimeout { get; set; }
+        public string SessionTimeout { get; set; }
 
         /// <summary>Indicates whether error logs should be written in plain text format.</summary>
-        public bool ErrorLogTxt { get; set; }
+        public bool ErrorLogTextFormat { get; set; }
 
         /// <summary>Indicates whether error logs should be written in Markdown format.</summary>
-        public bool ErrorLogMd { get; set; }
+        public bool ErrorLogMarkdownFormat { get; set; }
 
         /// <summary>Indicates whether error logs should be written in HTML format.</summary>
-        public bool ErrorLogHtml { get; set; }
+        public bool ErrorLogHtmlFormat { get; set; }
 
         /// <summary>Email address the web services uses to send notifications.</summary>
         public string FromEmailAddress { get; set; }
@@ -109,22 +107,22 @@ namespace TingenWebService.Core
 
             AppSetting tngnWsvcConfig = new AppSetting()
             {
-                Mode               = "enabled",
-                TraceLimit         = 0,
-                LogDelay           = 0,
-                SessLogDetailLevel = 0,
-                SessLogTxt         = true,
-                SessLogMd          = false,
-                SessTimeout        = "05",
-                ErrorLogTxt        = true,
-                ErrorLogMd         = false,
-                ErrorLogHtml       = false,
-                FromEmailAddress   = "unassigned",
-                FromEmailPassword  = "unassigned",
-                ToEmailAddress     = new List<string>() { "unassigned" },
-                EmailFormat        = "html",
-                NtstWsvcUserName   = "unassigned",
-                NtstWsvcPassword   = "unassigned"
+                Mode                     = "enabled",
+                TraceLimit               = 0,
+                LogDelay                 = 0,
+                SessionLogDetailLevel    = 0,
+                SessionLogTextFormat     = true,
+                SessionLogMarkdownFormat = false,
+                SessionTimeout           = "05",
+                ErrorLogTextFormat       = true,
+                ErrorLogMarkdownFormat   = false,
+                ErrorLogHtmlFormat       = false,
+                FromEmailAddress         = "unassigned",
+                FromEmailPassword        = "unassigned",
+                ToEmailAddress           = new List<string>() { "unassigned" },
+                EmailFormat              = "html",
+                NtstWsvcUserName         = "unassigned",
+                NtstWsvcPassword         = "unassigned"
             };
 
             DuJson.ExportFile(tngnWsvcConfig, configPath, true);

@@ -1,6 +1,5 @@
-﻿// 260804_code
-// 260804_documentation
-
+﻿// 260806_code
+// 260806_documentation
 using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Du;
