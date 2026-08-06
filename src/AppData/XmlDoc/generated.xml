@@ -159,42 +159,52 @@
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrameworkConfig"/> instance with the specified paths.</returns>
         </member>
         <member name="T:TingenWebService.Core.RuntimeSetting">
-            <summary>Runtime configuration/settings logic.</summary>
+            <summary>Runtime settings logic.</summary>
             <remarks>
-            The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
-            It contains information that the web service needs to know before anything else can be loaded.
+            <para>
+                <note type="information" title="The runtime settings">
+                    The runtime settings are the first thing that is loaded when the Tingen Web Service starts up.
+                    <list type="bullet">
+                        <item>Runtime start date/time</item>
+                        <item>Current Tingen Web Service release/build</item>
+                        <item>The Avatar system that the Tingen Web Service will interface with</item>
+                        <item>The root directory for Tingen Web Service data</item>
+                    </list>
+                    The last three items are loaded from the <c>web.config</c> file.
+                </note>
+            </para>
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartDate">
-            <summary>The current date (yyMMdd).</summary>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurentDate">
+            <summary>The current date.</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartTime">
-            <summary>The current time (HHmmss).</summary>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentTime">
+            <summary>The current time.</summary>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.RuntimeStartMs">
-            <summary>The current milliseconds (fffffff).</summary>
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentMs">
+            <summary>The current milliseconds.</summary>
+            <remarks>This is used to calculate durations.</remarks>
         </member>
         <member name="P:TingenWebService.Core.RuntimeSetting.ReleaseBuild">
-            <summary>Release and build information.</summary>
-            <remarks>
-            These two pieces of information are combined to form a single string that is used to identify the version of
-            the Tingen Web Service that is running.
-            </remarks>
+            <summary>Release version and build information.</summary>
+            <remarks>The release version and build information are combined to form a single string for readability.</remarks>
         </member>
         <member name="P:TingenWebService.Core.RuntimeSetting.AvatarSystem">
             <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
+            <value>e.g., "LIVE", "UAT"</value>
         </member>
         <member name="P:TingenWebService.Core.RuntimeSetting.DataRoot">
             <summary>The root directory for Tingen Web Service data.</summary>
+            <value>e.g., "C:\Tingen_Data"</value>
         </member>
         <member name="M:TingenWebService.Core.RuntimeSetting.Load(System.String)">
-            <summary>Load the runtime configuration.</summary>
-            <param name="twsRelease">The release version of the Tingen Web Service.</param>
-            <returns>The loaded <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance.</returns>
+            <summary>Loads the runtime settings.</summary>
+            <param name="appVersion">The current version of the Tingen Web Service.</param>
+            <returns>The runtime settings.</returns>
         </member>
         <member name="M:TingenWebService.Core.RuntimeSetting.Build(System.String)">
-            <summary>Build the runtime configuration.</summary>
-            <param name="twsRelease">The release version of the Tingen Web Service.</param>
+            <summary>Builds the runtime settings.</summary>
+            <param name="appVersion">The release version of the Tingen Web Service.</param>
             <returns>A <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance with the current settings.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.ErrorMessage.ERR1110(System.String)">
@@ -279,7 +289,7 @@
             <summary>Build the message indicating that blueprints have been exported.</summary>
             <returns>The blueprints exported message.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.ConfigurationDetails(TingenWebService.Core.TwsConfig)">
+        <member name="M:TingenWebService.Core.Trove.Redprint.ConfigurationDetails(TingenWebService.Core.AppSetting)">
             <summary>Build the configuration details message.</summary>
             <param name="twsConfig">The Tingen Web Service configuration.</param>
             <returns>The configuration details message.</returns>
@@ -337,15 +347,15 @@
             <param name="errorMessage">The error message.</param>
             <returns>The maintenance failure message.</returns>
         </member>
-        <member name="T:TingenWebService.Core.TwsConfig">
-            <summary>Tingen Web Service configuration/settings logic.</summary>
+        <member name="T:TingenWebService.Core.AppSetting">
+            <summary>Tingen Web Service setting logic.</summary>
             <remarks>
             The TngnWsvcConfiguration contains configuration and setting information that the Tingen Web Service needs to
             know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
             other configuration components.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.Mode">
+        <member name="P:TingenWebService.Core.AppSetting.Mode">
             <summary>Tingen Web Service mode</summary>
             <remarks>
             <list type="bullet">
@@ -355,13 +365,13 @@
             </list>
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.TraceLimit">
+        <member name="P:TingenWebService.Core.AppSetting.TraceLimit">
             <summary>Trace level limit.</summary>
             <remarks>
             LINKTO Logging/TraceLevelLimit documentation
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.LogDelay">
+        <member name="P:TingenWebService.Core.AppSetting.LogDelay">
             <summary>Log delay.</summary>
             <remarks>
             In some cases the Tingen Web Service may create a large number of log entries in a short period of time. The
@@ -371,49 +381,49 @@
             </remarks>
             <value>Default: 10</value>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.SessLogDetailLevel">
+        <member name="P:TingenWebService.Core.AppSetting.SessLogDetailLevel">
             <summary>Session log detail level.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.SessLogTxt">
+        <member name="P:TingenWebService.Core.AppSetting.SessLogTxt">
             <summary>Indicates whether session logs should be written in plain text format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.SessLogMd">
+        <member name="P:TingenWebService.Core.AppSetting.SessLogMd">
             <summary>Indicates whether session logs should be written in Markdown format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.SessLogHtml">
+        <member name="P:TingenWebService.Core.AppSetting.SessLogHtml">
             <summary>Indicates whether session logs should be written in HTML format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.SessTimeout">
+        <member name="P:TingenWebService.Core.AppSetting.SessTimeout">
             <summary>Session timeout is too damn high!</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogTxt">
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogTxt">
             <summary>Indicates whether error logs should be written in plain text format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogMd">
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogMd">
             <summary>Indicates whether error logs should be written in Markdown format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.ErrorLogHtml">
+        <member name="P:TingenWebService.Core.AppSetting.ErrorLogHtml">
             <summary>Indicates whether error logs should be written in HTML format.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.FromEmailAddress">
+        <member name="P:TingenWebService.Core.AppSetting.FromEmailAddress">
             <summary>Email address the web services uses to send notifications.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.FromEmailPassword">
+        <member name="P:TingenWebService.Core.AppSetting.FromEmailPassword">
             <summary>Email password the web services uses to send notifications.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.ToEmailAddress">
+        <member name="P:TingenWebService.Core.AppSetting.ToEmailAddress">
             <summary>Email addresses the web services uses to send notifications.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.EmailFormat">
+        <member name="P:TingenWebService.Core.AppSetting.EmailFormat">
             <summary>The format of the email messages sent by the web services.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.NtstWsvcUserName">
+        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcUserName">
             <summary>The username used to authenticate with NTST web services.</summary>
         </member>
-        <member name="P:TingenWebService.Core.TwsConfig.NtstWsvcPassword">
+        <member name="P:TingenWebService.Core.AppSetting.NtstWsvcPassword">
             <summary>The password used to authenticate with NTST web services.</summary>
         </member>
-        <member name="M:TingenWebService.Core.TwsConfig.Load(System.String)">
+        <member name="M:TingenWebService.Core.AppSetting.Load(System.String)">
             <summary>Load the Tingen Web Service configuration from a file.</summary>
             <param name="configPath">The path to the configuration file.</param>
             <remarks>
@@ -421,14 +431,14 @@
             </remarks>
             <returns>The loaded Tingen Web Service configuration.</returns>
         </member>
-        <member name="M:TingenWebService.Core.TwsConfig.Build(System.String)">
+        <member name="M:TingenWebService.Core.AppSetting.Build(System.String)">
             <summary>Create a new Tingen Web Service configuration file.</summary>
             <param name="configPath">The path to the configuration file.</param>
         </member>
         <member name="T:TingenWebService.Core.Logger.LogMaintenance">
             <summary>Provides methods for maintaining system log files.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.TwsConfig)">
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkConfig,TingenWebService.Core.AppSetting)">
             <summary>Verifies the existence of system log files and resets them if necessary.</summary>
             <param name="frameworkSetting">The framework configuration.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
@@ -624,7 +634,7 @@
             <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Session.Sess.TwsSetting">
-            <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.TwsConfig"> configuration settings</see>.</summary>
+            <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.AppSetting"> configuration settings</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Session.Sess.SentScriptParameter">
             <remarks>Used to create the session folder.</remarks>
@@ -880,23 +890,33 @@
         <member name="T:TingenWebService.TingenWebService">
             <summary>The Tingen Web Service entry class.</summary>
         </member>
-        <member name="P:TingenWebService.TingenWebService._releaseBuild">
-            <summary>The current Tingen Web Service release.</summary>
+        <member name="P:TingenWebService.TingenWebService._appVersion">
+            <summary>Gets the current version of the Tingen Web Service.</summary>
             <remarks>
-            Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering  why I define it
-            here, so that's why this comment exists. Hello future me (again).
+            <para>
+                Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
+                here, so that's why this comment exists. Hello future me (again).
+            </para>
+            This is set in <c>Properties.AssemblyInfo.cs</c>.
             </remarks>
             <returns>A string representing the current release.</returns>
+            <value>e.g., "R26.8"</value>
         </member>
         <member name="P:TingenWebService.TingenWebService._sess">
-            <summary>The Tingen Web Service session instance.</summary>
+            <summary>Initializes a Tingen Web Service session instance.</summary>
             <remarks>
-            Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think this is easier to
-            read/understand than <c>twsSession = StartApp()</c>
+            <para>
+                Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is
+                easier to read/understand than something like:<br />
+                <br />
+        <code>
+        twsSession = StartApp();
+        </code>
+            </para>
             </remarks>
         </member>
         <member name="M:TingenWebService.TingenWebService.GetVersion">
-            <summary>Get the current version of the Tingen Web Service.</summary>
+            <summary>Display the current version of the Tingen Web Service.</summary>
             <remarks>This method is required by Avatar.</remarks>
             <returns>A string representing the current version.</returns>
         </member>
@@ -923,7 +943,7 @@
                 Avatar from a single location, regardless of whether the request was successful or not.
             </para><para>
                 <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
-                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named 
+                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named
                     "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process the response.
                     This is only the case for the <c>RunScript()</c> method.
                 </note>

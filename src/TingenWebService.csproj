@@ -114,7 +114,7 @@
     <Compile Include="Core\Trove\ErrorMessage.cs" />
     <Compile Include="Core\Trove\Translation.cs" />
     <Compile Include="Core\Trove\RunningLog.cs" />
-    <Compile Include="Core\TwsConfig.cs" />
+    <Compile Include="Core\AppSetting.cs" />
     <Compile Include="Core\Framework\FrameworkMaintenance.cs" />
     <Compile Include="Core\Logger\LogMaintenance.cs" />
     <Compile Include="Core\Session\SessMaintenance.cs" />

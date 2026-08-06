@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="frameworkSetting">The framework configuration.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="twsSetting">The TWS configuration.</param>
-        internal static void VerifySystemLogs(RuntimeSetting runtimeSetting, FrameworkConfig frameworkSetting, TwsConfig twsConfig)
+        internal static void VerifySystemLogs(RuntimeSetting runtimeSetting, FrameworkConfig frameworkSetting, AppSetting twsConfig)
         {
             if (!File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
             {

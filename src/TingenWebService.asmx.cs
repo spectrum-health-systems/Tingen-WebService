@@ -18,26 +18,26 @@ namespace TingenWebService
     [System.ComponentModel.ToolboxItem(false)]
     public class TingenWebService : WebService
     {
-        /// <summary>The current Tingen Web Service release.</summary>
+        /// <summary>Gets the current version of the Tingen Web Service.</summary>
         /// <remarks>
-        /// Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering  why I define it
-        /// here, so that's why this comment exists. Hello future me (again).
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/AppVersion/*'/>
+        /// This is set in <c>Properties.AssemblyInfo.cs</c>.
         /// </remarks>
         /// <returns>A string representing the current release.</returns>
-        private static string _releaseBuild { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        /// <value>e.g., "R26.8"</value>
+        private static string _appVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        /// <summary>The Tingen Web Service session instance.</summary>
+        /// <summary>Initializes a Tingen Web Service session instance.</summary>
         /// <remarks>
-        /// Defined here because it is initialized in <c>StartApp()</c>, but used in <c>RunScript()</c>, and I think this is easier to
-        /// read/understand than <c>twsSession = StartApp()</c>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/Sess/*'/>
         /// </remarks>
         private Sess _sess { get; set; }
 
-        /// <summary>Get the current version of the Tingen Web Service.</summary>
+        /// <summary>Display the current version of the Tingen Web Service.</summary>
         /// <remarks>This method is required by Avatar.</remarks>
         /// <returns>A string representing the current version.</returns>
         [WebMethod]
-        public string GetVersion() => $"VERSION {_releaseBuild}";
+        public string GetVersion() => $"VERSION {_appVersion}";
 
         /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
@@ -81,14 +81,14 @@ namespace TingenWebService
         {
             //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
-            RuntimeSetting runtimeConfig     = RuntimeSetting.Load(_releaseBuild);
-            FrameworkConfig frameworkConfig = FrameworkConfig.Load(runtimeConfig.DataRoot, runtimeConfig.AvatarSystem);
+            RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
+            FrameworkConfig frameworkConfig = FrameworkConfig.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
 
-            FrameworkMaintenance.DailyVerify(runtimeConfig, frameworkConfig);
+            FrameworkMaintenance.DailyVerify(runtimeSetting, frameworkConfig);
 
-            SessMaintenance.InitializeNewSession(runtimeConfig, frameworkConfig); // TODO - is this really "initialize", or verify?
+            SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 
-            _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeConfig, frameworkConfig);
+            _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
 
             AvatarScriptParameter.Parse(_sess);
         }

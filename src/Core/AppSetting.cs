@@ -7,13 +7,13 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core
 {
-    /// <summary>Tingen Web Service configuration/settings logic.</summary>
+    /// <summary>Tingen Web Service setting logic.</summary>
     /// <remarks>
     /// The TngnWsvcConfiguration contains configuration and setting information that the Tingen Web Service needs to
     /// know for this specific instance of the web service. It is loaded after the RuntimeConfiguration and before any
     /// other configuration components.
     /// </remarks>
-    internal class TwsConfig
+    internal class AppSetting
     {
         /// <summary>Tingen Web Service mode</summary>
         /// <remarks>
@@ -89,7 +89,7 @@ namespace TingenWebService.Core
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static TwsConfig Load(string configPath)
+        internal static AppSetting Load(string configPath)
         {
             //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Load");
 
@@ -100,7 +100,7 @@ namespace TingenWebService.Core
                 Build(configPath);
             }
 
-            return DuJson.ImportFile<TwsConfig>(configPath);
+            return DuJson.ImportFile<AppSetting>(configPath);
         }
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
@@ -109,7 +109,7 @@ namespace TingenWebService.Core
         {
             //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Build");
 
-            TwsConfig tngnWsvcConfig = new TwsConfig()
+            AppSetting tngnWsvcConfig = new AppSetting()
             {
                 Mode               = "enabled",
                 TraceLimit         = 0,

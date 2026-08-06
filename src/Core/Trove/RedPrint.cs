@@ -36,7 +36,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the configuration details message.</summary>
         /// <param name="twsConfig">The Tingen Web Service configuration.</param>
         /// <returns>The configuration details message.</returns>
-        internal static string ConfigurationDetails(TwsConfig twsConfig)
+        internal static string ConfigurationDetails(AppSetting twsConfig)
         {
             return $"         Configuration details{Environment.NewLine}" +
                    $"------------------------------{Environment.NewLine}" +

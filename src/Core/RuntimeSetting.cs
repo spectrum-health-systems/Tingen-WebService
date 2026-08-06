@@ -8,45 +8,44 @@ using TingenWebService.Properties;
 
 namespace TingenWebService.Core
 {
-    /// <summary>Runtime configuration/settings logic.</summary>
+    /// <summary>Runtime settings logic.</summary>
     /// <remarks>
-    /// The RuntimeConfiguration is the first configuration component that is loaded when the Tingen Web Service starts.
-    /// It contains information that the web service needs to know before anything else can be loaded.
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="RuntimeSetting"]/AboutRuntimeSetting/*'/>
     /// </remarks>
     internal class RuntimeSetting
     {
-        /// <summary>The current date (yyMMdd).</summary>
-        public string RuntimeStartDate { get; set; }
+        /// <summary>The current date.</summary>
+        public string CurentDate { get; set; }
 
-        /// <summary>The current time (HHmmss).</summary>
-        public string RuntimeStartTime { get; set; }
+        /// <summary>The current time.</summary>
+        public string CurrentTime { get; set; }
 
-        /// <summary>The current milliseconds (fffffff).</summary>
-        public string RuntimeStartMs { get; set; }
+        /// <summary>The current milliseconds.</summary>
+        /// <remarks>This is used to calculate durations.</remarks>
+        public string CurrentMs { get; set; }
 
-        /// <summary>Release and build information.</summary>
-        /// <remarks>
-        /// These two pieces of information are combined to form a single string that is used to identify the version of
-        /// the Tingen Web Service that is running.
-        /// </remarks>
+        /// <summary>Release version and build information.</summary>
+        /// <remarks>The release version and build information are combined to form a single string for readability.</remarks>
         public string ReleaseBuild { get; set; }
 
         /// <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
+        /// <value>e.g., "LIVE", "UAT"</value>
         public string AvatarSystem { get; set; }
 
         /// <summary>The root directory for Tingen Web Service data.</summary>
+        /// <value>e.g., "C:\Tingen_Data"</value>
         public string DataRoot { get; set; }
 
-        /// <summary>Load the runtime configuration.</summary>
-        /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
-        /// <returns>The loaded <see cref="RuntimeSetting"/> instance.</returns>
-        internal static RuntimeSetting Load(string twsRelease)
+        /// <summary>Loads the runtime settings.</summary>
+        /// <param name="appVersion">The current version of the Tingen Web Service.</param>
+        /// <returns>The runtime settings.</returns>
+        internal static RuntimeSetting Load(string appVersion)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
+            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
 
             try
             {
-                return Build(twsRelease);
+                return Build(appVersion);
             }
             catch (Exception ex)
             {
@@ -56,21 +55,21 @@ namespace TingenWebService.Core
             }
         }
 
-        /// <summary>Build the runtime configuration.</summary>
-        /// <param name="twsRelease">The release version of the Tingen Web Service.</param>
+        /// <summary>Builds the runtime settings.</summary>
+        /// <param name="appVersion">The release version of the Tingen Web Service.</param>
         /// <returns>A <see cref="RuntimeSetting"/> instance with the current settings.</returns>
-        internal static RuntimeSetting Build(string twsRelease)
+        internal static RuntimeSetting Build(string appVersion)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
+            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
 
             return new RuntimeSetting()
             {
-                RuntimeStartDate = DateTime.Now.ToString("yyMMdd"),
-                RuntimeStartTime = DateTime.Now.ToString("HHmmss"),
-                RuntimeStartMs   = DateTime.Now.ToString("fffffff"),
-                ReleaseBuild     = $"{twsRelease} (b{Settings.Default.TwsBuild})",
-                AvatarSystem     = Settings.Default.AvatarSystem,
-                DataRoot         = Settings.Default.HostDataRoot,
+                CurentDate   = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
+                CurrentTime  = DateTime.Now.ToString("HHmmss"), // TODO - HH:mm:ss?
+                CurrentMs    = DateTime.Now.ToString("fffffff"),
+                ReleaseBuild = $"{appVersion} (b{Settings.Default.Build})",
+                AvatarSystem = Settings.Default.AvatarSystem,
+                DataRoot     = Settings.Default.HostDataRoot,
             };
         }
     }

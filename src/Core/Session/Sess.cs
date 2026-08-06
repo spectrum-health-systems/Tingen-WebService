@@ -29,8 +29,8 @@ namespace TingenWebService.Core.Session
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
         public Framework.FrameworkConfig FrameworkSetting { get; set; }
 
-        /// <summary>The Tingen Web Service <see cref="TwsConfig"> configuration settings</see>.</summary>
-        public TwsConfig TwsSetting { get; set; }
+        /// <summary>The Tingen Web Service <see cref="AppSetting"> configuration settings</see>.</summary>
+        public AppSetting TwsSetting { get; set; }
 
         /// <remarks>Used to create the session folder.</remarks>
         public string SentScriptParameter { get; set; }
@@ -59,10 +59,10 @@ namespace TingenWebService.Core.Session
             {
                 RuntimeSetting      = runtimeConfig,
                 FrameworkSetting    = frameworkConfig,
-                TwsSetting          = TwsConfig.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
+                TwsSetting          = AppSetting.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
                 OptionObject        = AvatarOptionObject.Build(sentOptionObject),
                 SentScriptParameter = sentScriptParameter,
-                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.RuntimeStartDate, sentOptionObject.OptionUserId, runtimeConfig.RuntimeStartTime),
+                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.CurentDate, sentOptionObject.OptionUserId, runtimeConfig.CurrentTime),
                 RunningLog          = string.Empty
             };
         }

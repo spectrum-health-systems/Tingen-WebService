@@ -6,6 +6,24 @@
 
     <Topic name ="Asmx">
 
+        <AppVersion> <!-- 260805 -->
+            <para>
+                Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
+                here, so that's why this comment exists. Hello future me (again).
+            </para>
+        </AppVersion>
+
+        <Sess> <!-- 260805 -->
+            <para>
+                Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is
+                easier to read/understand than something like:<br/>
+                <br/>
+        <code>
+        twsSession = StartApp();
+        </code>
+            </para>
+        </Sess>
+
         <RunScript> <!-- 260805 -->
             <para>
                 <note type="information" title="The Magic of RunScript()">
@@ -27,7 +45,7 @@
             </para>
             <para>
                 <note type="caution" title="Why &quot;sentOptObj&quot; and &quot;sentScriptParam&quot;?">
-                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named 
+                    For some unexplainable  - at least to me - the OptionObject and Script Parameter sent from Avatar must be named
                     "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process the response.
                     This is only the case for the <c>RunScript()</c> method.
                 </note>
@@ -56,11 +74,11 @@
     </Topic>
 
 
-    <!-- ===== TingenWebService.Core.RuntimeConfig.cs ================================================================================= -->
+    <!-- ===== TingenWebService.Core.RuntimeSetting.cs ================================================================================= -->
 
-    <Topic name ="RuntimeConfig">
+    <Topic name ="RuntimeSetting">
 
-        <AboutRuntimeConfig> <!-- 260805 -->
+        <AboutRuntimeSetting> <!-- 260805 -->
             <para>
                 <note type="information" title="The runtime settings">
                     The runtime settings are the first thing that is loaded when the Tingen Web Service starts up.
@@ -73,11 +91,33 @@
                     The last three items are loaded from the <c>web.config</c> file.
                 </note>
             </para>
-        </AboutRuntimeConfig>
+        </AboutRuntimeSetting>
 
     </Topic>
-    
-    
+
+    <!-- ===== TingenWebService.Core.AppSetting.cs ================================================================================= -->
+
+    <Topic name ="AppSetting">
+
+        <AboutAppSetting> <!-- 260805 -->
+            <para>
+                <note type="information" title="The Tingen Web Service settings">
+                    The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
+                    runtime settings.<br/>
+                    Tingen Web Service settings are loaded from the <c>TingenWebService.config</c> file, and are used to configure the Tingen Web Service.<br/>
+                    <list type="bullet">
+                        <item>Runtime start date/time</item>
+                        <item>Current Tingen Web Service release/build</item>
+                        <item>The Avatar system that the Tingen Web Service will interface with</item>
+                        <item>The root directory for Tingen Web Service data</item>
+                    </list>
+                    The last three items are loaded from the <c>web.config</c> file.
+                </note>
+            </para>
+        </AboutAppSetting>
+
+    </Topic>
+
 
 
     <!--
