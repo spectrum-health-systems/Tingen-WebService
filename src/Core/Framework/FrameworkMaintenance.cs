@@ -15,7 +15,7 @@ namespace TingenWebService.Core.Framework
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-DailyVerify");
 
-            var dailyLogFileName = $"{DateTime.Now:yyMMdd}.daily";
+            var dailyLogFileName = $"{DateTime.Now:yyyyMMdd}.daily";
 
             if (!File.Exists(Path.Combine(frameworkConfig.SysLogRoot, dailyLogFileName)))
             {
@@ -31,31 +31,28 @@ namespace TingenWebService.Core.Framework
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
-            var verifyStart   = DateTime.Now.ToString("HHmmss");
-            var verifyStartMs = DateTime.Now.ToString("fffffff");
-
-            string runningDailyLog = SysMsg.DailyStart(runtimeSetting.ReleaseBuild);
+            var todayDate = DateTime.Now.ToString("yyyyMMdd");
+            var startTime = DateTime.Now.ToString("HHmmss");
+            var startMs   = DateTime.Now.ToString("fffffff");
 
             VerifyStructure(frameworkSetting);
-            runningDailyLog += SysMsg.FrameworkVerified();
+            string runningDailyLog = $"Framework: OK{Environment.NewLine}";
 
             LogMaintenance.ResetSystemLogs(frameworkSetting, runtimeSetting);
-            runningDailyLog += SysMsg.SystemLogsReset();
+            runningDailyLog += $"System logs: OK{Environment.NewLine}";
 
             Blueprint.ExportBlueprints(frameworkSetting.BlueprintRoot);
-            runningDailyLog += Redprint.BlueprintsExported();
+            runningDailyLog += $"Blueprints: OK{Environment.NewLine}";
 
             Translation.ExportTranslations(frameworkSetting.TranslationRoot);
-            runningDailyLog += Catalog.TranslationFilesExported();
+            runningDailyLog += $"Translation files: OK{Environment.NewLine}";
 
-            var verifyEnd = DateTime.Now.ToString("HHmmss");
-            var verifyEndMs = DateTime.Now.ToString("fffffff");
+            var endTime   = DateTime.Now.ToString("HHmmss");
+            var endMs     = DateTime.Now.ToString("fffffff");
 
-            var duration = Utility.TimeDuration.GetDuration(verifyStart, verifyStartMs, verifyEnd, verifyEndMs);
+            var duration = Utility.TimeDuration.GetDuration(startTime, startMs, endTime, endMs);
 
-            runningDailyLog += $"[End] {verifyEnd}:{verifyEndMs}{Environment.NewLine}[Duration] {duration}";
-
-            LogEvent.SystemLog(frameworkSetting.SysLogRoot, dailyLogFileName, runningDailyLog);
+            LogEvent.Daily(frameworkSetting.SysLogRoot, todayDate, startTime, runtimeSetting.VersionBuild, runningDailyLog, duration);
         }
 
         /// <summary>Verify the Tingen Web Service framework.</summary>

@@ -71,6 +71,7 @@ namespace TingenWebService.Core.Framework
         /// <summary>Build a <see cref="FrameworkSetting"/> instance with the specified paths.</summary>
         /// <param name="dataRoot">The root path for data storage.</param>
         /// <param name="avatarSystem">The avatar system identifier.</param>
+        /// <remarks>Add to redprint.</remarks>
         /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
         internal static FrameworkSetting Build(string dataRoot, string avatarSystem)
         {

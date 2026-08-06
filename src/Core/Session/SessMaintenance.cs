@@ -1,9 +1,6 @@
 ﻿// 260806_code
 // 260729_documentation
 
-using System;
-using System.IO;
-
 namespace TingenWebService.Core.Session
 {
     /// <summary>Session maintenance logic.</summary>
@@ -20,14 +17,14 @@ namespace TingenWebService.Core.Session
         {
             //LogEvent.Primeval("PRELOG-TRACE-SessMaint-InitializeNewSession");
 
-            var dailyDate = DateTime.Now.ToString("yyMMdd");
+            //var dailyDate = DateTime.Now.ToString("yyMMdd");
 
-            if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
-            {
-                var dailyFilePath = Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily");
+            //if (!File.Exists(Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily")))
+            //{
+            //    var dailyFilePath = Path.Combine(twsFramework.SysLogRoot, $"{dailyDate}.daily");
 
-                Framework.FrameworkMaintenance.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
-            }
+            //    Framework.FrameworkMaintenance.VerifyComponents($"{dailyDate}.daily", rtConfig, twsFramework);
+            //}
         }
     }
 }

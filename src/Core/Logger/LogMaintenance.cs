@@ -32,8 +32,10 @@ namespace TingenWebService.Core.Logger
 
             //var systemFileNames = Catalog.PreSystemLogFileNames();
 
+
+
             LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Runtime.settings", Redprint.RuntimeDetails(runtimeSetting));
-            LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Framework.settings", Redprint.FrameworkDetails(frameworkSetting));
+            LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Framework.settings", Redprint.FrameworkSettings(frameworkSetting));
 
             //if (File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Runtime.settings")))
             //{

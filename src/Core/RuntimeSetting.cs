@@ -26,7 +26,7 @@ namespace TingenWebService.Core
 
         /// <summary>Release version and build information.</summary>
         /// <remarks>The release version and build information are combined to form a single string for readability.</remarks>
-        public string ReleaseBuild { get; set; }
+        public string VersionBuild { get; set; }
 
         /// <summary>The Avatar system that the Tingen Web Service will interface with.</summary>
         /// <value>e.g., "LIVE", "UAT"</value>
@@ -67,7 +67,7 @@ namespace TingenWebService.Core
                 CurentDate   = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
                 CurrentTime  = DateTime.Now.ToString("HHmmss"), // TODO - HH:mm:ss?
                 CurrentMs    = DateTime.Now.ToString("fffffff"),
-                ReleaseBuild = $"{appVersion} (b{Settings.Default.Build})",
+                VersionBuild = $"{appVersion} (b{Settings.Default.Build})",
                 AvatarSystem = Settings.Default.AvatarSystem,
                 DataRoot     = Settings.Default.HostDataRoot,
             };

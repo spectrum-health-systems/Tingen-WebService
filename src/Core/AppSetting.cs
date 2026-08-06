@@ -50,9 +50,6 @@ namespace TingenWebService.Core
         /// <summary>Indicates whether session logs should be written in Markdown format.</summary>
         public bool SessLogMd { get; set; }
 
-        /// <summary>Indicates whether session logs should be written in HTML format.</summary>
-        public bool SessLogHtml { get; set; }
-
         /// <summary>Session timeout is too damn high!</summary>
         public string SessTimeout { get; set; }
 
@@ -105,6 +102,7 @@ namespace TingenWebService.Core
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
         /// <param name="configPath">The path to the configuration file.</param>
+        /// <remarks>Add to redprint.</remarks>
         private static void Build(string configPath)
         {
             //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
@@ -117,7 +115,6 @@ namespace TingenWebService.Core
                 SessLogDetailLevel = 0,
                 SessLogTxt         = true,
                 SessLogMd          = false,
-                SessLogHtml        = false,
                 SessTimeout        = "05",
                 ErrorLogTxt        = true,
                 ErrorLogMd         = false,

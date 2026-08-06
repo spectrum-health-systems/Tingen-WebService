@@ -2,6 +2,7 @@
 // 260805_documentation
 
 using System;
+using TingenWebService.Core.Framework;
 using TingenWebService.Module.OpenIncident;
 
 namespace TingenWebService.Core.Trove
@@ -10,23 +11,31 @@ namespace TingenWebService.Core.Trove
     /// <remarks><include file='AppData/XmlDoc/Topics.xml' path='Topics/Topic[@name="Trove"]/AboutRedprints/*'/></remarks>
     internal class Redprint
     {
+        internal static string DailyLog()
+        {
+            return $"v~VERSION~BUILD~{Environment.NewLine}" +
+                   $"~STARTIME~{Environment.NewLine}" +
+                   $"~RUNNING~LOG~" +
+                   $"~DURATION~";
+        }
+
         /// <summary>Build the framework details message.</summary>
         /// <param name="framework">The framework configuration.</param>
         /// <returns>The framework details message.</returns>
-        internal static string FrameworkDetails(Framework.FrameworkSetting framework)
+        internal static string FrameworkSettings(FrameworkSetting framework)
         {
             // TODO - Do the same things for Blueprints
 
-            return $"         Framework details{Environment.NewLine}" +
+            return $"        Framework settings{Environment.NewLine}" +
                    $"--------------------------{Environment.NewLine}" +
                    $"Avatar Generated Data Root: {framework.AvatarGeneratedDataRoot}{Environment.NewLine}" +
                    $"               Config Root: {framework.ConfigRoot}{Environment.NewLine}" +
                    $"               Export Root: {framework.ExportRoot}{Environment.NewLine}" +
                    $"               Import Root: {framework.ImportRoot}{Environment.NewLine}" +
                    $"               SysLog Root: {framework.SysLogRoot}{Environment.NewLine}" +
-                   $"           Blueprints Root: {framework.BlueprintRoot}{Environment.NewLine}" +
+                   $"            Blueprint Root: {framework.BlueprintRoot}{Environment.NewLine}" +
                    $"              Session Root: {framework.SessionRoot}{Environment.NewLine}" +
-                   $"    Translation Table Root: {framework.TranslationRoot}{Environment.NewLine}";
+                   $"          Translation Root: {framework.TranslationRoot}{Environment.NewLine}";
         }
 
         /// <summary>Build the message indicating that blueprints have been exported.</summary>
@@ -34,20 +43,27 @@ namespace TingenWebService.Core.Trove
         internal static string BlueprintsExported() => $"[Blueprints exported]{Environment.NewLine}"; // TODO - Do the same things we did with FrameworkDetails
 
         /// <summary>Build the configuration details message.</summary>
-        /// <param name="twsConfig">The Tingen Web Service configuration.</param>
+        /// <param name="appSetting">The Tingen Web Service configuration.</param>
         /// <returns>The configuration details message.</returns>
-        internal static string ConfigurationDetails(AppSetting twsConfig)
+        internal static string ApplicationSettings(AppSetting appSetting)
         {
-            return $"         Configuration details{Environment.NewLine}" +
+            return $"          Application settings{Environment.NewLine}" +
                    $"------------------------------{Environment.NewLine}" +
-                   $"                          Mode: {twsConfig.Mode}{Environment.NewLine}" +
-                   $"             Trace Level Limit: {twsConfig.TraceLimit}{Environment.NewLine}" +
-                   $"                     Log Delay: {twsConfig.LogDelay}{Environment.NewLine}" +
-                   $"               Session Timeout: {twsConfig.SessTimeout}{Environment.NewLine}" +
-                   $"            From Email Address: {twsConfig.FromEmailAddress}{Environment.NewLine}" +
+                   $"                          Mode: {appSetting.Mode}{Environment.NewLine}" +
+                   $"             Trace Level Limit: {appSetting.TraceLimit}{Environment.NewLine}" +
+                   $"                     Log Delay: {appSetting.LogDelay}{Environment.NewLine}" +
+                   $"      Session Log Detail Level: {appSetting.SessLogDetailLevel}{Environment.NewLine}" +
+                   $"       Session Log text format: {appSetting.SessLogTxt}{Environment.NewLine}" +
+                   $"   Session Log Markdown format: {appSetting.SessLogMd}{Environment.NewLine}" +
+                   $"               Session Timeout: {appSetting.SessTimeout}{Environment.NewLine}" +
+                   $"         Error Log text format: {appSetting.ErrorLogTxt}{Environment.NewLine}" +
+                   $"     Error Log Markdown format: {appSetting.ErrorLogMd}{Environment.NewLine}" +
+                   $"         Error Log HTML format: {appSetting.ErrorLogHtml}{Environment.NewLine}" +
+                   $"            From Email Address: {appSetting.FromEmailAddress}{Environment.NewLine}" +
                    $"           From Email Password: Please see TngnWsvc.config{Environment.NewLine}" +
-                   $"              To Email Address: {string.Join(", ", twsConfig.ToEmailAddress)}{Environment.NewLine}" +
-                   $"Netsmart web services username: {twsConfig.NtstWsvcUserName}{Environment.NewLine}" +
+                   $"              To Email Address: {string.Join(", ", appSetting.ToEmailAddress)}{Environment.NewLine}" +
+                   $"                  Email Format: {appSetting.EmailFormat}{Environment.NewLine}" +
+                   $"Netsmart web services username: {appSetting.NtstWsvcUserName}{Environment.NewLine}" +
                    $"Netsmart web services password: Please see TngnWsvc.config{Environment.NewLine}";
         }
 
@@ -56,11 +72,11 @@ namespace TingenWebService.Core.Trove
         /// <returns>The runtime details message.</returns>
         internal static string RuntimeDetails(RuntimeSetting rtConfig)
         {
-            return $"Runtime details{Environment.NewLine}" +
-                   $"---------------{Environment.NewLine}" +
-                   $"Release Build: {rtConfig.ReleaseBuild}{Environment.NewLine}" +
-                   $"Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
-                   $"    Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
+            return $"Runtime settings{Environment.NewLine}" +
+                   $"----------------{Environment.NewLine}" +
+                   $"   Release Build: {rtConfig.VersionBuild}{Environment.NewLine}" +
+                   $"   Avatar System: {rtConfig.AvatarSystem}{Environment.NewLine}" +
+                   $"       Data Root: {rtConfig.DataRoot}{Environment.NewLine}";
         }
 
         internal static string OpenIncidentConfig(OpenIncidentConfig openIncidentConfig)
@@ -82,11 +98,6 @@ namespace TingenWebService.Core.Trove
                    $"        Not Original Author Submit Error Code: {openIncidentConfig.NotOriginalAuthorSubmitErrCode}{Environment.NewLine}" +
                    $"          Invalid Program of Incident Message: {openIncidentConfig.InvalidProgramOfIncidentMsg}{Environment.NewLine}" +
                    $"       Invalid Program of Incident Error Code: {openIncidentConfig.InvalidProgramOfIncidentErrCode}{Environment.NewLine}";
-        }
-
-        internal static string DailyLogStart(string verifyStart, string verifyStartMs)
-        {
-            return $"[Start] {verifyStart}({verifyStartMs}){Environment.NewLine}";
         }
     }
 }

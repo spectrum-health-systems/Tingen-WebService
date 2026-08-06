@@ -14,6 +14,21 @@ namespace TingenWebService.Core.Logger
     /// <summary>Provides methods for logging various types of events.</summary>
     internal static class LogEvent
     {
+        internal static void Daily(string sysLogRoot, string todayDate, string startTime, string versionBuild, string runningLog, string duration)
+        {
+            DuDirectory.ForceExist(sysLogRoot);
+
+            var dailyLogBlueprint = Redprint.DailyLog();
+
+            var logContent = dailyLogBlueprint.Replace("~VERSION~BUILD~", versionBuild)
+                                              .Replace("~STARTIME~", startTime)
+                                              .Replace("~RUNNING~LOG~", runningLog)
+                                              .Replace("~DURATION~", duration);
+
+            LogWriter.WriteLocal(sysLogRoot, $"{todayDate}.daily", logContent);
+        }
+
+
         /// <summary>Logs an error event with the specified details.</summary>
         /// <param name="sysLogRoot">The root folder of the system log files.</param>
         /// <param name="bpRoot">The root folder of the blueprint files.</param>
@@ -90,7 +105,7 @@ namespace TingenWebService.Core.Logger
 
                 var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogTxt.blueprint"));
 
-                var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                var logContent = sessLogTxtBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.VersionBuild)
                                              .Replace("~SESSION~DATE~", sess.RuntimeSetting.CurentDate)
                                              .Replace("~SESSION~START~", $"{sess.RuntimeSetting.CurrentTime}:{sess.RuntimeSetting.CurrentMs}")
                                              .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
@@ -110,7 +125,7 @@ namespace TingenWebService.Core.Logger
                 LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogMd.blueprint"));
-                var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
+                var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.VersionBuild)
                                             .Replace("~SESSION~DATE~", sess.RuntimeSetting.CurentDate)
                                             .Replace("~SESSION~START~", $"{sess.RuntimeSetting.CurrentTime}:{sess.RuntimeSetting.CurrentMs}")
                                             .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
@@ -123,23 +138,23 @@ namespace TingenWebService.Core.Logger
                 LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
             }
 
-            if (sess.TwsSetting.SessLogHtml)
-            {
-                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            //if (sess.TwsSetting.SessLogHtml)
+            //{
+            //    LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
 
-                var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogHtml.blueprint"));
-                var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.ReleaseBuild)
-                                              .Replace("~SESSION~DATE~", sess.RuntimeSetting.CurentDate)
-                                              .Replace("~SESSION~START~", $"{sess.RuntimeSetting.CurrentTime}:{sess.RuntimeSetting.CurrentMs}")
-                                              .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
-                                              .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
-                                              .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
-                                              .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
-                                              .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
-                                              .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+            //    var sessLogHtmlBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogHtml.blueprint"));
+            //    var logContent = sessLogHtmlBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.VersionBuild)
+            //                                  .Replace("~SESSION~DATE~", sess.RuntimeSetting.CurentDate)
+            //                                  .Replace("~SESSION~START~", $"{sess.RuntimeSetting.CurrentTime}:{sess.RuntimeSetting.CurrentMs}")
+            //                                  .Replace("~SESSION~END~", $"{sessionEndTime}:{sessionEndMilliseconds}")
+            //                                  .Replace("~SESSION~DURATION~", $"{sessionDurationTime}:{sessionDurationMilliseconds}")
+            //                                  .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
+            //                                  .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
+            //                                  .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
+            //                                  .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.html", logContent); // simplify
-            }
+            //    LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.html", logContent); // simplify
+            //}
         }
 
         /// <summary>Logs a system event with the specified details.</summary>
@@ -148,16 +163,18 @@ namespace TingenWebService.Core.Logger
         /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
+            LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
 
-            if (File.Exists(Path.Combine(logFolder, logName)))
-            {
-                LogWriter.AppendLocal(logFolder, logName, logContent);
-            }
-            else
-            {
-                LogWriter.WriteLocal(logFolder, logName, logContent);
-            }
+            LogWriter.WriteLocal(logFolder, logName, logContent);
+
+            //if (File.Exists(Path.Combine(logFolder, logName)))
+            //{
+            //    LogWriter.AppendLocal(logFolder, logName, logContent);
+            //}
+            //else
+            //{
+            //    LogWriter.WriteLocal(logFolder, logName, logContent);
+            //}
         }
 
         /// <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
