@@ -1,4 +1,4 @@
-﻿// 260804_code
+﻿// 260806_code
 // 260729_documentation
 
 using System;
@@ -16,7 +16,7 @@ namespace TingenWebService.Core.Session
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework instance.</param>
         /// <param name="twsConfig">The TWS configuration.</param>
-        internal static void InitializeNewSession(RuntimeSetting rtConfig, Framework.FrameworkConfig twsFramework)
+        internal static void InitializeNewSession(RuntimeSetting rtConfig, Framework.FrameworkSetting twsFramework)
         {
             //LogEvent.Primeval("PRELOG-TRACE-SessMaint-InitializeNewSession");
 

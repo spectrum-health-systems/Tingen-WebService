@@ -27,7 +27,7 @@ namespace TingenWebService.Core.Session
         public RuntimeSetting RuntimeSetting { get; set; }
 
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
-        public Framework.FrameworkConfig FrameworkSetting { get; set; }
+        public Framework.FrameworkSetting FrameworkSetting { get; set; }
 
         /// <summary>The Tingen Web Service <see cref="AppSetting"> configuration settings</see>.</summary>
         public AppSetting TwsSetting { get; set; }
@@ -51,7 +51,7 @@ namespace TingenWebService.Core.Session
         /// <param name="runtimeConfig">The <see cref="Core.RuntimeSetting"> runtime configuration settings</see>.</param>
         /// <param name="frameworkConfig">The <see cref="FrameworkSetting"> framework components</see>.</param>
         /// <returns>A new Tingen Web Service session object.</returns>
-        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeConfig, Framework.FrameworkConfig frameworkConfig)
+        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeConfig, Framework.FrameworkSetting frameworkConfig)
         {
             //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 

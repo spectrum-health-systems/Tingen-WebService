@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260806_code
 // 260805_documentation
 
 using System;
@@ -41,7 +41,7 @@ namespace TingenWebService.Core
         /// <returns>The runtime settings.</returns>
         internal static RuntimeSetting Load(string appVersion)
         {
-            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
 
             try
             {
@@ -49,7 +49,7 @@ namespace TingenWebService.Core
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR1110-FailedToLoadRuntimeSettings", ErrorMessage.ERR1110(ex.Message)[1]);
+                LogEvent.Primeval("ERR1000-FailedToLoadRuntimeSettings", ErrorMessage.ERR1000(ex.Message));
 
                 throw;
             }
@@ -60,7 +60,7 @@ namespace TingenWebService.Core
         /// <returns>A <see cref="RuntimeSetting"/> instance with the current settings.</returns>
         internal static RuntimeSetting Build(string appVersion)
         {
-            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
 
             return new RuntimeSetting()
             {

@@ -82,7 +82,7 @@ namespace TingenWebService
             //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
             RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
-            FrameworkConfig frameworkConfig = FrameworkConfig.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
+            FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
 
             FrameworkMaintenance.DailyVerify(runtimeSetting, frameworkConfig);
 

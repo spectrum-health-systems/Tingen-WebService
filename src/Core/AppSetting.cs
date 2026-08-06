@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260806_code
 // 260805_documentation
 
 using System.Collections.Generic;
@@ -91,7 +91,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static AppSetting Load(string configPath)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Load");
 
             if (!File.Exists(configPath))
             {
@@ -107,7 +107,7 @@ namespace TingenWebService.Core
         /// <param name="configPath">The path to the configuration file.</param>
         private static void Build(string configPath)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TwsConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
 
             AppSetting tngnWsvcConfig = new AppSetting()
             {

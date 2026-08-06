@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="frameworkSetting">The framework configuration.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="twsSetting">The TWS configuration.</param>
-        internal static void VerifySystemLogs(RuntimeSetting runtimeSetting, FrameworkConfig frameworkSetting, AppSetting twsConfig)
+        internal static void VerifySystemLogs(RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting, AppSetting twsConfig)
         {
             if (!File.Exists(Path.Combine(frameworkSetting.SysLogRoot, "Configuration.current"))) // TODO - better check
             {
@@ -26,7 +26,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="frameworkSetting">The framework configuration.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="twsSetting">The TWS configuration.</param>
-        internal static void ResetSystemLogs(FrameworkConfig frameworkSetting, RuntimeSetting runtimeSetting)
+        internal static void ResetSystemLogs(FrameworkSetting frameworkSetting, RuntimeSetting runtimeSetting)
         {
             //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-ResetSystemLogs");
 
@@ -64,7 +64,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="rtConfig">The runtime configuration.</param>
         /// <param name="twsFramework">The framework configuration.</param>
         /// <param name="twsConfig">The TWS configuration.</param>
-        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeSetting runtimeConfig, FrameworkConfig twsFramework)
+        internal static void BuildSystemLogs(string systemLogRoot, List<string> systemFileNames, RuntimeSetting runtimeConfig, FrameworkSetting twsFramework)
         {
             //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-BuildSystemLogs");
 

@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260806_code
 // 260805_documentation
 using System;
 using System.IO;
@@ -9,7 +9,7 @@ namespace TingenWebService.Core.Framework
 {
     /// <summary>Framework logic.</summary>
     /// <remarks>TBD</remarks>
-    internal class FrameworkConfig
+    internal class FrameworkSetting
     {
         /// <summary>Avatar generated data.</summary>
         /// <remarks>
@@ -51,10 +51,10 @@ namespace TingenWebService.Core.Framework
         /// <summary>Load the Tingen Web Service framework.</summary>
         /// <param name="dataRoot">The root path for data storage.</param>
         /// <param name="avatarSystem">The avatar system identifier.</param>
-        /// <returns>A <see cref="FrameworkConfig"/> instance with the specified paths.</returns>
-        internal static FrameworkConfig Load(string dataRoot, string avatarSystem)
+        /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
+        internal static FrameworkSetting Load(string dataRoot, string avatarSystem)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSettings-Load");
 
             try
             {
@@ -62,24 +62,24 @@ namespace TingenWebService.Core.Framework
             }
             catch (Exception ex)
             {
-                LogEvent.Primeval("ERR1120_TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]);
+                LogEvent.Primeval("ERR100-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
 
                 throw;
             }
         }
 
-        /// <summary>Build a <see cref="FrameworkConfig"/> instance with the specified paths.</summary>
+        /// <summary>Build a <see cref="FrameworkSetting"/> instance with the specified paths.</summary>
         /// <param name="dataRoot">The root path for data storage.</param>
         /// <param name="avatarSystem">The avatar system identifier.</param>
-        /// <returns>A <see cref="FrameworkConfig"/> instance with the specified paths.</returns>
-        internal static FrameworkConfig Build(string dataRoot, string avatarSystem)
+        /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
+        internal static FrameworkSetting Build(string dataRoot, string avatarSystem)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrwkConfig-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSettings-Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);
 
-            return new FrameworkConfig()
+            return new FrameworkSetting()
             {
                 AvatarGeneratedDataRoot = Path.Combine(wsvcRoot, "AvatarGeneratedData"),
                 ConfigRoot              = Path.Combine(avatarSystemRoot, "Config"),

@@ -12,7 +12,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the list of required framework folders.</summary>
         /// <param name="twsFramework">The framework object that contains the folder list.</param>
         /// <returns>A string array of the required framework folders.</returns>
-        internal static string[] RequiredFrameworkFolders(Framework.FrameworkConfig twsFramework) =>
+        internal static string[] RequiredFrameworkFolders(Framework.FrameworkSetting twsFramework) =>
             new string[]
             {
                 twsFramework.AvatarGeneratedDataRoot,

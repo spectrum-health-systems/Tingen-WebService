@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260806_code
 // 260805_documentation
 
 namespace TingenWebService.Core.Trove
@@ -14,6 +14,7 @@ namespace TingenWebService.Core.Trove
         /* =====================================================================
          * 1000 - 1999: Tingen Web Service
          * =====================================================================
+         * ERR1000 - Error message included in file content
          * ERR1010 -
          * ERR1020 -
          * ERR1110 - Failed to load runtime configuration
@@ -26,11 +27,6 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the runtime configuration load failure message.</summary>
         /// <param name="errorMessage">The error message.</param>
         /// <returns>The runtime configuration load failure message.</returns>
-        internal static string[] ERR1110(string errorMessage) =>
-            new string[]
-            {
-                "ERR1110",
-                $"Error message: {errorMessage}"
-            };
+        internal static string ERR1000(string errorMessage) => $"Error message: {errorMessage}";
     }
 }

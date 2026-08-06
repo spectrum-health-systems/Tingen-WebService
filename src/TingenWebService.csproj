@@ -119,12 +119,13 @@
     <Compile Include="Core\Logger\LogMaintenance.cs" />
     <Compile Include="Core\Session\SessMaintenance.cs" />
     <Compile Include="Core\Utility\AvatarForm.cs" />
+    <Compile Include="Core\Utility\TimeDuration.cs" />
     <Compile Include="Du\DuJson.cs" />
     <Compile Include="Core\Logger\LogComponent.cs" />
     <Compile Include="Core\Logger\LogWriter.cs" />
     <Compile Include="Core\Trove\Blueprint.cs" />
     <Compile Include="Core\Trove\Catalog.cs" />
-    <Compile Include="Core\Framework\FrameworkConfig.cs" />
+    <Compile Include="Core\Framework\FrameworkSetting.cs" />
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Core\Logger\LogEvent.cs" />

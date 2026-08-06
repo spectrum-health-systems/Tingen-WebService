@@ -13,7 +13,7 @@ namespace TingenWebService.Core.Trove
         /// <summary>Build the framework details message.</summary>
         /// <param name="framework">The framework configuration.</param>
         /// <returns>The framework details message.</returns>
-        internal static string FrameworkDetails(Framework.FrameworkConfig framework)
+        internal static string FrameworkDetails(Framework.FrameworkSetting framework)
         {
             // TODO - Do the same things for Blueprints
 
