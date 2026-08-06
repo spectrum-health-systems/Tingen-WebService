@@ -1,4 +1,4 @@
-﻿// 260513_code.
+// 260513_code.
 // 260601_documentation.
 
 using System.Collections.Generic;
@@ -13,22 +13,13 @@ using TingenWebService.Properties;
 
 namespace TingenWebService
 {
-    /// <summary>The entry class for the Tingen Web Service.</summary>
+    
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     public class TingenWebService : WebService
     {
-        /// <summary>The current version of the Tingen Web Service.</summary>
-        /// <remarks>To update the version number, modify the AssemblyInfo.cs file.</remarks>
-        /// <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/source-code/Asmx.md">TingenWebService.asmx.cs</seealso>
-        public static string TngnWsvcVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-        /// <summary>Get the current version of the Tingen Web Service.</summary>
-        /// <remarks>This method is required by Avatar.</remarks>
-        /// <returns>The current <see cref="TngnWsvcVersion"/> of the Tingen Web Service.</returns>
-        [WebMethod]
-        public string GetVersion() => $"VERSION {TngnWsvcVersion}";
 
         /// <summary>Determines what the Tingen Web Service will do, if anything.</summary>
         /// <remarks>
@@ -49,12 +40,6 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 origOptObj, string origScriptParam)
         {
-            /* Since it's too early to call a Trace log event, you'll need to use a Debug log event here for
-             * troubleshooting. Leave this commented out when not needed.
-             */
-            //LogEvent.Debug();
-
-            Dictionary<string, string> runtimeConfig = RuntimeConfig.Load(Settings.Default, TngnWsvcVersion);
 
             if (CriticalFailureOccurred(origOptObj, origScriptParam, runtimeConfig["Mode"]))
             {
@@ -105,15 +90,7 @@ namespace TingenWebService
         /// <returns><c>true</c> if a critical failure condition is detected; otherwise, <c>false</c>.</returns>
         internal static bool CriticalFailureOccurred(OptionObject2015 origOptObj, string origScriptParam, string tngnWsvcMode)
         {
-            if (origOptObj == null || string.IsNullOrWhiteSpace(origScriptParam))
-            {
-                /* Eventually we'll want to generate a specific error log for this scenario (and probably
-                 * send an email), but for now we'll just call a Debug log event.
-                 */
-                LogEvent.Debug(msg_TngnWscv.MissingComponent(origOptObj, origScriptParam));
 
-                return true;
-            }
             else
             {
                 switch (tngnWsvcMode)

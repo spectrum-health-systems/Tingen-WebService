@@ -25,16 +25,6 @@ namespace TingenWebService.Core.Logger
         public static void Debug(string logMsg = "", [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0) =>
             DebugLog.Create(logMsg, classPath, methodName, lineNumber);
 
-        /// <summary>Writes a session log entry for the current Tingen Web Service session.</summary>
-        /// <param name="wsvcSession">The current Tingen Web Service session object.</param>
-        /// <example>
-        /// <code>
-        /// LogEvent.Session(tngnWsvcSession);
-        /// </code>
-        /// </example>
-        public static void Session(dynamic wsvcSession) =>
-            SessionLog.Create(wsvcSession);
-
         /// <summary>Writes a critical log entry to the session and shared log folders.</summary>
         /// <remarks>
         /// The <paramref name="classPath"/>, <paramref name="methodName"/>, and <paramref name="lineNumber"/>

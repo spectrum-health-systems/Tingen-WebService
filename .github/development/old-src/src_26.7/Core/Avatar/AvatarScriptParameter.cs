@@ -61,34 +61,20 @@ namespace TingenWebService.Core.Avatar
         /// </example>
         public static void Parse(TngnWsvcSession tngnWsvcSession)
         {
-            var pathASP            = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP.txt");
-            File.WriteAllText(pathASP, "Path ASP");
-
             if (tngnWsvcSession.ScriptParameter.OriginalScriptParameter.StartsWith("_", StringComparison.OrdinalIgnoreCase))
             {
-                var pathASP1            = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP1.txt");
-                File.WriteAllText(pathASP1, "Path ASP1");
 
                 var specificFormName = GetFormName(tngnWsvcSession);
-
-                var pathASP2           = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP2.txt");
-                File.WriteAllText(pathASP2, "Path ASP2");
 
                 SpecificFormRequest(specificFormName, tngnWsvcSession);
             }
             else
             {
-                var pathASP3           = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP3.txt");
-                File.WriteAllText(pathASP3, "Path ASP3");
 
                 StandAloneRequest(tngnWsvcSession);
 
-                var pathASP4           = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP4.txt");
-                File.WriteAllText(pathASP4, "Path ASP4");
             }
 
-            var pathASP5           = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathASP5.txt");
-            File.WriteAllText(pathASP5, "Path ASP5");
         }
 
         /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
@@ -162,30 +148,6 @@ namespace TingenWebService.Core.Avatar
             {
                 tngnWsvcSession.TngnWsvcSessionError.HardError(tngnWsvcSession, 1, $"[WSVC9321] The Script Parameter request '{tngnWsvcSession.ScriptParameter.OriginalScriptParameter}' was not found in the translation table.");
             }
-        }
-
-        /// <summary>Gets the form name from the translation table based on the original option ID sent by Avatar.</summary>
-        /// <param name="tngnWsvcSession">The session object containing the original option ID and translation table.</param>
-        /// <returns>The name of the form corresponding to the original option ID.</returns>
-        /// <example>
-        /// <code>
-        /// var formName = AvatarScriptParameter.GetFormName(tngnWsvcSession);
-        /// Console.WriteLine($"Resolved form name: {formName}");
-        /// </code>
-        /// </example>
-        internal static string GetFormName(TngnWsvcSession tngnWsvcSession)
-        {
-            var pathGFN            = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathGFN.txt");
-            File.WriteAllText(pathGFN, $"Path GFN: `{tngnWsvcSession.Framework.TngnWsvcDataFolder.TranslationTable}`");
-
-
-
-            var t = tngnWsvcSession.Translation.FormId.GetFormName(tngnWsvcSession.OptObj.Original.OptionId, tngnWsvcSession.Framework.TngnWsvcDataFolder.TranslationTable, tngnWsvcSession.Framework.TngnWsvcDataFolder.Session, tngnWsvcSession.LogSetting.TraceLogLimit);
-
-            var pathGFN1            = Path.Combine(tngnWsvcSession.Framework.TngnWsvcDataFolder.Config, "pathGFN1.txt");
-            File.WriteAllText(pathGFN1, "Path1 GFN");
-
-            return t;
         }
     }
 }
