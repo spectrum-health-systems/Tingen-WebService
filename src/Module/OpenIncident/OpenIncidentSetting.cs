@@ -8,7 +8,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Module.OpenIncident
 {
-    internal class OpenIncidentConfig
+    internal class OpenIncidentSetting
     {
         /// <summary>The OpenIncident Module operating mode.</summary>
         /// <remarks>
@@ -128,7 +128,7 @@ namespace TingenWebService.Module.OpenIncident
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static OpenIncidentConfig Load(string configPath, int traceLimit, string sessFolder)
+        internal static OpenIncidentSetting Load(string configPath, int traceLimit, string sessFolder)
         {
             LogEvent.Trace(1, traceLimit, sessFolder);
 
@@ -139,7 +139,7 @@ namespace TingenWebService.Module.OpenIncident
                 Build(configPath, traceLimit, sessFolder);
             }
 
-            return DuJson.ImportFile<OpenIncidentConfig>(configPath);
+            return DuJson.ImportFile<OpenIncidentSetting>(configPath);
         }
 
         /// <summary>Create a new Tingen Web Service configuration file.</summary>
@@ -150,7 +150,7 @@ namespace TingenWebService.Module.OpenIncident
         {
             LogEvent.Trace(1, traceLimit, sessFolder);
 
-            OpenIncidentConfig openIncidentConfig = new OpenIncidentConfig()
+            OpenIncidentSetting openIncidentConfig = new OpenIncidentSetting()
             {
                 UseLocalTranslations                = true,
                 BriefIncidentDescriptionFieldId     = "2",

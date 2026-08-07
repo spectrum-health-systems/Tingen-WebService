@@ -1,4 +1,4 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System;
@@ -27,12 +27,8 @@ namespace TingenWebService.Core.Logger
         /// // Output: AvatarOptionObject-ToReturn-57
         /// </code>
         /// </example>
-        internal static string GetCallerInfo([CallerFilePath] string className = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
-        {
-            var classOnly = Path.GetFileNameWithoutExtension(className);
-
-            return $"{classOnly}-{methodName}-{lineNumber}";
-        }
+        internal static string GetCallerInfo([CallerFilePath] string className = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0) =>
+            $"{Path.GetFileNameWithoutExtension(className)}-{methodName}-{lineNumber}";
 
         /// <summary>Formats raw XML content into a Markdown-style XML code block for log output.</summary>
         /// <param name="rawXml">The raw XML string to format.</param>
@@ -48,11 +44,9 @@ namespace TingenWebService.Core.Logger
         /// // ```
         /// </code>
         /// </example>
-        internal static string FormatXml(string rawXml)
-        {
-            return $"```xml{Environment.NewLine}" +
-                   $"    {XDocument.Parse(rawXml)}{Environment.NewLine}" +
-                   $"```{Environment.NewLine}";
-        }
+        internal static string FormatXml(string rawXml) =>
+            $"```xml{Environment.NewLine}" +
+            $"    {XDocument.Parse(rawXml)}{Environment.NewLine}" +
+            $"```{Environment.NewLine}";
     }
 }

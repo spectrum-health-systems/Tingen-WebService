@@ -25,10 +25,10 @@ namespace TingenWebService.Module.OpenIncident
         /// </example>
         internal static void Parse(Sess sess)
         {
-            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+            LogEvent.Trace(1, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
 
             var configPath = Path.Combine(sess.FrameworkSetting.ConfigRoot, "OpenIncident.config");
-            var openIncidentConfig = OpenIncidentConfig.Load(configPath, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+            var openIncidentConfig = OpenIncidentSetting.Load(configPath, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
 
             var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
 
@@ -36,7 +36,7 @@ namespace TingenWebService.Module.OpenIncident
 
             if (bypassUser)
             {
-                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
 
                 sess.RunningLog += $"Bypass user {sess.OptionObject.SentOptionObject.OptionUserId} detected. OpenIncident module will not be processed.\n";
 

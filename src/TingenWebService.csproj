@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Core\AvatarData\AvatarOptionObject.cs" />
     <Compile Include="Core\AvatarData\AvatarScriptParameter.cs" />
+    <Compile Include="Core\Logger\LogUtility.cs" />
     <Compile Include="Core\RuntimeSetting.cs" />
     <Compile Include="Core\Trove\ErrorMessage.cs" />
     <Compile Include="Core\Trove\Translation.cs" />

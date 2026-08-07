@@ -112,7 +112,7 @@ namespace TingenWebService.Core
                 LogDelay                 = 0,
                 SessionLogDetailLevel    = 0,
                 SessionLogTextFormat     = true,
-                SessionLogMarkdownFormat = false,
+                SessionLogMarkdownFormat = true,
                 SessionTimeout           = "05",
                 ErrorLogTextFormat       = true,
                 ErrorLogMarkdownFormat   = false,

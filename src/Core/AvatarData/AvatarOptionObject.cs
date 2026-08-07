@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260806_documentation
+// 260807_documentation
 
 using System;
 using System.IO;
@@ -42,6 +42,10 @@ namespace TingenWebService.Core.Avatar
         /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
         internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
+            /* DEVNOTE - This method could be a simple expression-bodied member, for debugging purposes it is written as a full method so
+             * that a debug log can created.
+             */
+
             //LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
 
             return new AvatarOptionObject
@@ -120,10 +124,9 @@ namespace TingenWebService.Core.Avatar
         /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </code>
         /// </example>
-        internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath)
+        internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath, int traceLimit, string sessionFolder)
         {
-            // TODO - Enable this eventually
-            //LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            LogEvent.Trace(1, traceLimit, sessionFolder);
 
             var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 

@@ -1,5 +1,6 @@
 ﻿// 260806_code
 // 260806_documentation
+
 using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Du;
@@ -25,7 +26,7 @@ namespace TingenWebService.Core.Trove
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
 
-            foreach (var translationFileName in Catalog.TranslationFileNames())
+            foreach (var translationFileName in Catalog.TranslationNames())
             {
                 var translationPath = Path.Combine(translationRoot, $"{translationFileName}.translation");
 

@@ -1,4 +1,4 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System;
@@ -69,17 +69,20 @@ namespace TingenWebService.Core.Avatar
         /// </remarks>
         internal static void Parse(Sess sess)
         {
-            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+            LogEvent.Trace(1, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
             sess.RunningLog += RunningLog.ParseRequest(sess.SentScriptParameter);
 
             if (sess.SentScriptParameter.StartsWith("_", StringComparison.OrdinalIgnoreCase))
             {
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.SessionFolder);
+
                 var formName = AvatarForm.GetFormName(sess.FrameworkSetting.TranslationRoot, sess.OptionObject.SentOptionObject.OptionId);
                 sess.RunningLog += RunningLog.TranslateFormId(sess.OptionObject.SentOptionObject.OptionId, formName);
             }
             else
             {
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.SessionFolder);
                 // SpecificFormRequest
             }
         }

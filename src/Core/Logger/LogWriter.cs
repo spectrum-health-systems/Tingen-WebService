@@ -1,9 +1,7 @@
 ﻿// 260806_code
 // 260806_documentation
 
-using System;
 using System.IO;
-using System.Linq;
 using TingenWebService.Du;
 
 namespace TingenWebService.Core.Logger
@@ -11,27 +9,6 @@ namespace TingenWebService.Core.Logger
     /// <summary>Provides methods for writing log messages to local files.</summary>
     internal static class LogWriter
     {
-        /// <summary>Extracts the class name (without extension) from a full source file path.</summary>
-        /// <remarks>
-        /// Splits <paramref name="classPath"/> on path separators, takes the final segment, and removes the
-        /// trailing <c>.cs</c> extension.
-        /// </remarks>
-        /// <param name="classPath">The full source file path of the class.</param>
-        /// <returns>The class name with the <c>.cs</c> extension removed.</returns>
-        /// <example>
-        /// <code>
-        /// var name = LogUtility.GetClassName(@"C:\src\Core\Avatar\AvatarOptionObject.cs");
-        /// Console.WriteLine(name);
-        /// // Output: AvatarOptionObject
-        /// </code>
-        /// </example>
-        internal static string GetClassName(string classPath)
-        {
-            string[] fullClassPath = classPath.Split(new char[] { '\\', '/' }, StringSplitOptions.RemoveEmptyEntries);
-
-            return fullClassPath.Last().Replace(".cs", "");
-        }
-
         /// <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
         /// <param name="fileFolder">The folder where the file is located.</param>
         /// <param name="fileName">The name of the file to write.</param>

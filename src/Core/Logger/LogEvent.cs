@@ -1,4 +1,4 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System;
@@ -72,16 +72,18 @@ namespace TingenWebService.Core.Logger
         {
             // TODO - Clean this up (but leave "LogEvent." in front of each call to LogEvent.Trace() so that the trace log will show the correct class name).
 
-            LogEvent.Trace(1, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            LogEvent.Trace(1, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
-            var sessionFolder = Path.Combine(sess.FrameworkSetting.SessionRoot,
-                                             sess.RuntimeSetting.CurentDate,
-                                             sess.OptionObject.SentOptionObject.OptionUserId,
-                                             sess.RuntimeSetting.CurrentTime);
+            sess.RunningDetail = $"Blah blah blah{Environment.NewLine}"; // TESTING
 
-            DuDirectory.ForceExist(sessionFolder);
+            //var sessionFolder = Path.Combine(sess.FrameworkSetting.SessionRoot,
+            //sess.RuntimeSetting.CurentDate,
+            //sess.OptionObject.SentOptionObject.OptionUserId,
+            //sess.RuntimeSetting.CurrentTime);
 
-            var sessionLogName = Path.Combine(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session");
+            DuDirectory.ForceExist(sess.SessionFolder);
+
+            var sessionLogName = Path.Combine(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session");
 
             var sessionEndTime = DateTime.Now.ToString("HHmmss");
             var sessionEndMilliseconds = DateTime.Now.ToString("fffffff");
@@ -89,9 +91,9 @@ namespace TingenWebService.Core.Logger
             var sessionDurationTime = (DateTime.ParseExact(sessionEndTime, "HHmmss", null) - DateTime.ParseExact(sess.RuntimeSetting.CurrentTime, "HHmmss", null)).ToString(@"hh\:mm\:ss");
             var sessionDurationMilliseconds = (DateTime.ParseExact(sessionEndMilliseconds, "fffffff", null) - DateTime.ParseExact(sess.RuntimeSetting.CurrentMs, "fffffff", null)).ToString("fffffff");
 
-            if (sessionDurationTime.StartsWith($"00:00:{sess.TwsSetting.SessionTimeout}"))
+            if (sessionDurationTime.StartsWith($"00:00:{sess.AppSetting.SessionTimeout}"))
             {
-                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
                 var errComponents = SysMsg.ERR1210(sess.OptionObject.SentOptionObject.OptionUserId, sessionDurationMilliseconds);
 
@@ -104,9 +106,9 @@ namespace TingenWebService.Core.Logger
 
             // TODO - these need to be combined.
 
-            if (sess.TwsSetting.SessionLogTextFormat)
+            if (sess.AppSetting.SessionLogTextFormat)
             {
-                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogTxtBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogTxt.blueprint"));
 
@@ -118,16 +120,17 @@ namespace TingenWebService.Core.Logger
                                              .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
                                              .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
                                              .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
-                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog)
+                                             .Replace("~SESSION~DETAILS~", sess.RunningDetail);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session", logContent); // simplify
+                LogWriter.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session", logContent); // simplify
             }
 
-            LogEvent.Trace(9, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+            LogEvent.Trace(9, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
-            if (sess.TwsSetting.SessionLogMarkdownFormat)
+            if (sess.AppSetting.SessionLogMarkdownFormat)
             {
-                LogEvent.Trace(4, sess.TwsSetting.TraceLimit, sess.SessionFolder);
+                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.SessionFolder);
 
                 var sessLogMdBP = File.ReadAllText(Path.Combine(sess.FrameworkSetting.BlueprintRoot, "SessLogMd.blueprint"));
                 var logContent = sessLogMdBP.Replace("~RELEASE~BUILD~", sess.RuntimeSetting.VersionBuild)
@@ -138,9 +141,10 @@ namespace TingenWebService.Core.Logger
                                             .Replace("~AVATAR~USER~NAME~", sess.OptionObject.SentOptionObject.OptionUserId.ToUpper())
                                             .Replace("~AVATAR~SYSTEM~", sess.RuntimeSetting.AvatarSystem.ToUpper())
                                             .Replace("~SCRIPT~PARAMETER~", sess.SentScriptParameter)
-                                            .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog);
+                                            .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog)
+                                            .Replace("~SESSION~DETAILS~", sess.RunningDetail);
 
-                LogWriter.WriteLocal(sessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
+                LogWriter.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
             }
 
             //if (sess.TwsSetting.SessLogHtml)
@@ -211,7 +215,7 @@ namespace TingenWebService.Core.Logger
             {
                 Thread.Sleep(levelLimit);
 
-                var logName = $"{DateTime.Now:ssff-fffff}-{LogWriter.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
+                var logName = $"{DateTime.Now:ssfffffff}-{LogUtility.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
 
                 LogWriter.WriteLocal(sessionFolder, logName);
             }

@@ -1,4 +1,4 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System.IO;
@@ -29,8 +29,8 @@ namespace TingenWebService.Core.Session
         /// <summary>The <see cref="Framework"> framework components</see>.</summary>
         public Framework.FrameworkSetting FrameworkSetting { get; set; }
 
-        /// <summary>The Tingen Web Service <see cref="AppSetting"> configuration settings</see>.</summary>
-        public AppSetting TwsSetting { get; set; }
+        /// <summary>The Tingen Web Service <see cref="Core.AppSetting"> configuration settings</see>.</summary>
+        public AppSetting AppSetting { get; set; }
 
         /// <remarks>Used to create the session folder.</remarks>
         public string SentScriptParameter { get; set; }
@@ -45,25 +45,30 @@ namespace TingenWebService.Core.Session
         /// <remarks>The running log.</remarks>
         public string RunningLog { get; set; }
 
+        /// <summary>Details about the session.</summary>
+        /// <remarks>The running detail.</remarks>
+        public string RunningDetail { get; set; }
+
         /// <summary>Start a new Tingen Web Service session.</summary>
         /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-        /// <param name="runtimeConfig">The <see cref="Core.RuntimeSetting"> runtime configuration settings</see>.</param>
-        /// <param name="frameworkConfig">The <see cref="FrameworkSetting"> framework components</see>.</param>
+        /// <param name="runtimeSetting">The <see cref="Core.RuntimeSetting"> runtime configuration settings</see>.</param>
+        /// <param name="frameworkSetting">The <see cref="FrameworkSetting"> framework components</see>.</param>
         /// <returns>A new Tingen Web Service session object.</returns>
-        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeConfig, Framework.FrameworkSetting frameworkConfig)
+        internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeSetting, Framework.FrameworkSetting frameworkSetting)
         {
             //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 
             return new Sess
             {
-                RuntimeSetting      = runtimeConfig,
-                FrameworkSetting    = frameworkConfig,
-                TwsSetting          = AppSetting.Load(Path.Combine(frameworkConfig.ConfigRoot, "TingenWebService.config")),
+                RuntimeSetting      = runtimeSetting,
+                FrameworkSetting    = frameworkSetting,
+                AppSetting          = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config")),
                 OptionObject        = AvatarOptionObject.Build(sentOptionObject),
                 SentScriptParameter = sentScriptParameter,
-                SessionFolder       = Path.Combine(frameworkConfig.SessionRoot, runtimeConfig.CurentDate, sentOptionObject.OptionUserId, runtimeConfig.CurrentTime),
-                RunningLog          = string.Empty
+                SessionFolder       = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurentDate, runtimeSetting.CurrentTime),
+                RunningLog          = string.Empty,
+                RunningDetail       = string.Empty,
             };
         }
     }

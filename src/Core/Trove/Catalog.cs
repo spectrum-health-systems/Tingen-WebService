@@ -1,7 +1,8 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System.Collections.Generic;
+using TingenWebService.Core.Framework;
 
 namespace TingenWebService.Core.Trove
 {
@@ -10,19 +11,19 @@ namespace TingenWebService.Core.Trove
     internal static class Catalog
     {
         /// <summary>Build the list of required framework folders.</summary>
-        /// <param name="twsFramework">The framework object that contains the folder list.</param>
+        /// <param name="frameworkSetting">The framework object that contains the folder list.</param>
         /// <returns>A string array of the required framework folders.</returns>
-        internal static string[] RequiredFrameworkFolders(Framework.FrameworkSetting twsFramework) =>
+        internal static string[] RequiredFolders(FrameworkSetting frameworkSetting) =>
             new string[]
             {
-                twsFramework.AvatarGeneratedDataRoot,
-                twsFramework.ConfigRoot,
-                twsFramework.ExportRoot,
-                twsFramework.ImportRoot,
-                twsFramework.SysLogRoot,
-                twsFramework.BlueprintRoot,
-                twsFramework.SessionRoot,
-                twsFramework.TranslationRoot
+                frameworkSetting.AvatarGeneratedDataRoot,
+                frameworkSetting.ConfigRoot,
+                frameworkSetting.ExportRoot,
+                frameworkSetting.ImportRoot,
+                frameworkSetting.SysLogRoot,
+                frameworkSetting.BlueprintRoot,
+                frameworkSetting.SessionRoot,
+                frameworkSetting.TranslationRoot
             };
 
         /// <summary>Build the list of system logs that are created during the framework verification process.</summary>
@@ -46,16 +47,15 @@ namespace TingenWebService.Core.Trove
         // TODO - Add ErrorLogMd and ErrorLogHtml. Also rename ErrorLogTxt to ErrLogTxt
         /// <summary>Build the list of blueprint file names.</summary>
         /// <returns>A list of blueprint file names.</returns>
-        internal static List<string> BlueprintFileNames() =>
+        internal static List<string> BlueprintNames() =>
             new List<string>
             {
                 "ErrorLogTxt",
                 "SessLogTxt",
-                "SessLogMd",
-                "SessLogHtml"
+                "SessLogMd"
             };
 
-        internal static List<string> TranslationFileNames() =>
+        internal static List<string> TranslationNames() =>
             new List<string>
             {
                 "FormIdToName"
@@ -67,7 +67,7 @@ namespace TingenWebService.Core.Trove
         ////internal static string TranslateFormIdToName() =>
         ////    "INCIDENT1=OpenIncident";
 
-        internal static string TranslationFilesExported()
-            => $"[Translation files built]{System.Environment.NewLine}";
+        internal static string TranslationFilesExported() =>
+            $"[Translation files built]{System.Environment.NewLine}";
     }
 }

@@ -1,4 +1,4 @@
-﻿// 260806_code
+﻿// 260807_code
 // 260806_documentation
 
 using System;
@@ -45,7 +45,7 @@ namespace TingenWebService.Core.Framework
             VerifyStructure(frameworkSetting);
             string runningDailyLog = $"Framework: OK{Environment.NewLine}";
 
-            LogMaintenance.ResetSystemLogs(frameworkSetting, runtimeSetting);
+            LogMaintenance.RecreateSystemLogs(frameworkSetting, runtimeSetting);
             runningDailyLog += $"System logs: OK{Environment.NewLine}";
 
             Blueprint.ExportBlueprints(frameworkSetting.BlueprintRoot);
@@ -68,11 +68,11 @@ namespace TingenWebService.Core.Framework
         /// The reason why we hand this off is because while currently the configuration contains root paths, it may
         /// contain other data in the future.
         /// </remarks>
-        private static void VerifyStructure(FrameworkSetting frwkConfig)
+        private static void VerifyStructure(FrameworkSetting frameworkSetting)
         {
             //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyStructure");
 
-            foreach (var path in Catalog.RequiredFrameworkFolders(frwkConfig))
+            foreach (var path in Catalog.RequiredFolders(frameworkSetting))
             {
                 try
                 {

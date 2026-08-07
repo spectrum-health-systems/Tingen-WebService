@@ -60,9 +60,9 @@ namespace TingenWebService
             {
                 StartApp(sentOptObj, sentScriptParam);
 
-                LogEvent.Trace(9, _sess.TwsSetting.TraceLimit, _sess.SessionFolder);
+                LogEvent.Trace(9, _sess.AppSetting.TraceLimit, _sess.SessionFolder);
 
-                // TODO - Route to the appropriate place.
+                AvatarScriptParameter.Parse(_sess);
 
                 LogEvent.Session(_sess);
 
@@ -89,8 +89,6 @@ namespace TingenWebService
             SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
-
-            AvatarScriptParameter.Parse(_sess);
         }
     }
 }

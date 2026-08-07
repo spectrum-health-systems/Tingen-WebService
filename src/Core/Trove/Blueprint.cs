@@ -1,13 +1,14 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260807_code
+// 260807_documentation
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Du;
 
 namespace TingenWebService.Core.Trove
 {
-    /// <summary>User-modifiable templates.</summary>
+    /// <summary>User-modifiable templates and logic.</summary>
     /// <remarks>
     /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/AboutBlueprints/*'/>
     /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/RestoringBlueprints/*'/>
@@ -36,39 +37,43 @@ namespace TingenWebService.Core.Trove
             $"Date: ~SESSION~DATE~ " +
             $"Start: ~SESSION~START~ / End: ~SESSION~END~ / Duration: ~SESSION~DURATION~{Environment.NewLine}" +
             $"Logged into ~AVATAR~SYSTEM~ as: ~AVATAR~USER~NAME~{Environment.NewLine}" +
-            $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}";
+            $"Script parameter: ~SCRIPT~PARAMETER~{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"~SESSION~RUNNING~LOG~" +
+            $"{Environment.NewLine}" +
+            $"~SESSION~DETAILS~" +
+            $"{Environment.NewLine}" +
+            $"[END]";
 
         /// <summary>Build the blueprint for markdown session logs.</summary>
         /// <remarks>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Logger"]/AboutLogFormats/*'/><br/>
-        /// This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
-        /// up looking as nice as possible when it's rendered (it can't be perfect).
         /// </remarks>
         /// <returns>A string containing the markdown blueprint for the session log.</returns>
         internal static string SessLogMd() =>
             $"# Tingen Web Service Session Log{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"|                       |                                                        |{Environment.NewLine}" +
-            $"|----------------------:|--------------------------------------------------------|{Environment.NewLine}" +
-            $"| **Release/Build**     | ~RELEASE~BUILD~                                     |{Environment.NewLine}" +
-            $"| **Date**              | ~SESSION~DATE~                                                 |{Environment.NewLine}" +
-            $"| **Start**             | ~SESSION~START~                                         |{Environment.NewLine}" +
-            $"| **Logged in as**      | ~AVATAR~USER~NAME~                                              |{Environment.NewLine}" +
-            $"| **Avatar system**     | ~AVATAR~SYSTEM~                                                   |{Environment.NewLine}" +
-            $"| **Script parameter**  | ~SCRIPT~PARAMETER~                                     |{Environment.NewLine}" +
-            $"| **End**               | ~SESSION~END~                                         |{Environment.NewLine}" +
-            $"| **Duration**          | ~SESSION~DURATION~                                       |{Environment.NewLine}" +
+            $"|                       |                 |{Environment.NewLine}" +
+            $"|----------------------:|-----------------|{Environment.NewLine}" +
+            $"| **Release/Build**     | ~RELEASE~BUILD~ |{Environment.NewLine}" +
+            $"| **Date**              | ~SESSION~DATE~  |{Environment.NewLine}" +
+            $"| **Start**             | ~SESSION~START~ |{Environment.NewLine}" +
+            $"| **Logged in as**      | ~AVATAR~USER~NAME~ |{Environment.NewLine}" +
+            $"| **Avatar system**     | ~AVATAR~SYSTEM~ |{Environment.NewLine}" +
+            $"| **Script parameter**  | ~SCRIPT~PARAMETER~ |{Environment.NewLine}" +
+            $"| **End**               | ~SESSION~END~ |{Environment.NewLine}" +
+            $"| **Duration**          | ~SESSION~DURATION~ |{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"~SESSION~RUNNING~LOG~" +
+            $"***{Environment.NewLine}" +
+            $"{Environment.NewLine}" +
+            $"<sub>{Environment.NewLine}" +
+            $"~SESSION~DETAILS~" +
+            $"<sub>{Environment.NewLine}" +
             $"{Environment.NewLine}" +
             $"***{Environment.NewLine}" +
             $"{Environment.NewLine}" +
-            $"~SESSION~RUNNING~LOG~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"***{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"~SESSION~DETAILS~{Environment.NewLine}" +
-            $"{Environment.NewLine}" +
-            $"***{Environment.NewLine}" +
-            $"<sub>End</sub>{Environment.NewLine}";
+            $"<sub>[END]</sub>{Environment.NewLine}";
 
         ///// <summary>Build the blueprint for HTML session logs.</summary>
         ///// <remarks>
@@ -125,38 +130,27 @@ namespace TingenWebService.Core.Trove
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
         internal static void ExportBlueprints(string blueprintRoot)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportBlueprints");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-ExportBlueprints");
 
-            foreach (var blueprintFileName in Catalog.BlueprintFileNames())
+            var blueprintFactories = new Dictionary<string, Func<string>>
             {
-                var blueprintPath = Path.Combine(blueprintRoot, $"{blueprintFileName}.blueprint");
+                ["SessLogTxt"] = SessLogTxt,
+                ["SessLogMd"]  = SessLogMd
+            };
 
-                if (!File.Exists(blueprintPath))
+            foreach (var blueprintName in Catalog.BlueprintNames())
+            {
+                var blueprintFile = Path.Combine(blueprintRoot, $"{blueprintName}.blueprint");
+
+                if (File.Exists(blueprintFile))
                 {
-                    string blueprintContent = null;
+                    continue;
+                }
 
-                    switch (blueprintFileName)
-                    {
-                        case "SessLogTxt":
-                            blueprintContent = Blueprint.SessLogTxt();
-
-                            break;
-
-                        case "SessLogMd":
-                            blueprintContent = Blueprint.SessLogMd();
-
-                            break;
-
-                            //case "SessLogHtml":
-                            //    blueprintContent = Blueprint.SessLogHtml();
-
-                            //    break;
-                    }
-
-                    if (blueprintContent != null)
-                    {
-                        DuFile.DeadDrop(blueprintPath, blueprintContent);
-                    }
+                if (blueprintFactories.TryGetValue(blueprintName, out var factory))
+                {
+                    var blueprintContent = factory();
+                    DuFile.DeadDrop(blueprintFile, blueprintContent);
                 }
             }
         }
