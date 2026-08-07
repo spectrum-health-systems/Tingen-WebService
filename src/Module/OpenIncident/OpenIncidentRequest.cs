@@ -25,10 +25,11 @@ namespace TingenWebService.Module.OpenIncident
         /// </example>
         internal static void Parse(Sess sess)
         {
-            LogEvent.Trace(1, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
 
             var configPath = Path.Combine(sess.FrameworkSetting.ConfigRoot, "OpenIncident.config");
-            var openIncidentConfig = OpenIncidentSetting.Load(configPath, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+
+            var openIncidentConfig = OpenIncidentSetting.Load(configPath, sess.Trc);
 
             var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
 
@@ -36,7 +37,7 @@ namespace TingenWebService.Module.OpenIncident
 
             if (bypassUser)
             {
-                LogEvent.Trace(4, sess.AppSetting.TraceLimit, sess.FrameworkSetting.SessionRoot);
+                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
 
                 sess.RunningLog += $"Bypass user {sess.OptionObject.SentOptionObject.OptionUserId} detected. OpenIncident module will not be processed.\n";
 
@@ -45,40 +46,7 @@ namespace TingenWebService.Module.OpenIncident
 
             if (moduleEnabled)
             {
-
-                var s = "ste";
-                //    LogEvent.Trace(2, traceLimit, sessionFolder);
-
-                //    switch (scriptParameter)
-                //    {
-                //        case "_formload":
-                //            LogEvent.Trace(3, traceLimit, sessionFolder);
-
-                //            FormLoad(tngnWsvcSession, openIncidentConfig);
-
-                //            break;
-
-                //        case "_prefile":
-                //            LogEvent.Trace(3, traceLimit, sessionFolder);
-
-                //            PreFile(tngnWsvcSession, openIncidentConfig);
-
-                //            break;
-
-                //        case "_postfile":
-                //            LogEvent.Trace(3, traceLimit, sessionFolder);
-
-                //            OpenIncidentRequest.PostFileEvent(tngnWsvcSession, openIncidentConfig);
-
-                //            break;
-
-                //        default:
-                //            LogEvent.Trace(3, traceLimit, sessionFolder);
-
-                //            // TODO Hard error for unsupported script parameter?
-
-                //            break;
-                //    }
+                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
             }
         }
 

@@ -21,7 +21,7 @@ namespace TingenWebService.Core.Framework
         /// <param name="frameworkSetting">The framework instance.</param>
         internal static void DailyValidation(RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-DailyValidation");
+            LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-DailyValidation");
 
             var todayDate = DateTime.Now.ToString("yyyyMMdd");
 
@@ -35,9 +35,9 @@ namespace TingenWebService.Core.Framework
         /// <param name="dailyLogFileName">The name of the daily log file.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="frameworkSetting">The framework instance.</param>
-        internal static void VerifyComponents(string todayDate, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
+        private static void VerifyComponents(string todayDate, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
+            LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyComponents");
 
             var startTime = DateTime.Now.ToString("HHmmss");
             var startMs   = DateTime.Now.ToString("fffffff");
@@ -70,7 +70,7 @@ namespace TingenWebService.Core.Framework
         /// </remarks>
         private static void VerifyStructure(FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyStructure");
+            LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-VerifyStructure");
 
             foreach (var path in Catalog.RequiredFolders(frameworkSetting))
             {

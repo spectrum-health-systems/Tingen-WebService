@@ -13,7 +13,7 @@ namespace TingenWebService.Core.Avatar
     /// <remarks><include file='AppData/XmlDoc/TngnWsvc.xml' path='TngnWsvc/Class[@name="Definition"]/ScriptParameter/*'/></remarks>
     public class AvatarScriptParameter
     {
-        /// <summary>The name of the executing assembly, used for logging purposes.</summary>
+/*        /// <summary>The name of the executing assembly, used for logging purposes.</summary>
         public static string ExeAsm { get; set; } = Assembly.GetExecutingAssembly().GetName().Name;
 
         /// <summary>The original script parameter sent by Avatar.</summary>
@@ -41,7 +41,7 @@ namespace TingenWebService.Core.Avatar
                 ? $"The sent script parameter ('{origScriptParam}') does not exist."
                 : $"The sent script parameter ('{origScriptParam}') does exist.";
         }
-
+*/
         /// <summary>Route the request.</summary>
         /// <remarks>
         /// Routes to <see cref="SpecificFormRequest"/> when the original script parameter starts with an underscore;
@@ -77,7 +77,7 @@ namespace TingenWebService.Core.Avatar
 
         }
 
-        /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
+/*        /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
         /// <remarks>
         /// Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
         /// translation table.<br/>
@@ -116,9 +116,9 @@ namespace TingenWebService.Core.Avatar
                          */
                 }
             }
-        }
+        }*/
 
-        /// <summary>Handles stand-alone requests by routing to the appropriate module or generating an error.</summary>
+/*        /// <summary>Handles stand-alone requests by routing to the appropriate module or generating an error.</summary>
         /// <remarks>
         /// Reserves script parameters that start with <c>tngnwsvc</c> for administrative requests, dispatches
         /// <c>catchoptionobject</c> to the option object utility, and otherwise emits a hard error indicating the
@@ -148,6 +148,6 @@ namespace TingenWebService.Core.Avatar
             {
                 tngnWsvcSession.TngnWsvcSessionError.HardError(tngnWsvcSession, 1, $"[WSVC9321] The Script Parameter request '{tngnWsvcSession.ScriptParameter.OriginalScriptParameter}' was not found in the translation table.");
             }
-        }
+        }*/
     }
 }

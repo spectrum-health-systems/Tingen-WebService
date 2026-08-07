@@ -86,7 +86,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static AppSetting Load(string configPath)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Load");
+            Logger.LogEvent.Primeval("PRELOG-TRACE-AppSetting-Load");
 
             if (!File.Exists(configPath))
             {
@@ -103,7 +103,7 @@ namespace TingenWebService.Core
         /// <remarks>Add to redprint.</remarks>
         private static void Build(string configPath)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
+            Logger.LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
 
             AppSetting tngnWsvcConfig = new AppSetting()
             {

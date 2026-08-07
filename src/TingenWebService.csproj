@@ -129,7 +129,7 @@
     <Compile Include="Du\DuDirectory.cs" />
     <Compile Include="Du\DuFile.cs" />
     <Compile Include="Core\Logger\LogEvent.cs" />
-    <Compile Include="Module\OpenIncident\OpenIncidentConfig.cs" />
+    <Compile Include="Module\OpenIncident\OpenIncidentSetting.cs" />
     <Compile Include="Module\OpenIncident\OpenIncidentEvent.cs" />
     <Compile Include="Module\OpenIncident\OpenIncidentRequest.cs" />
     <Compile Include="ProjectInfo.cs">

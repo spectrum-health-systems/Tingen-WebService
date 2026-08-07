@@ -188,7 +188,7 @@
             <remarks>TBD</remarks>
             <returns>True if an <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> was sent; otherwise, false.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptObj(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
+        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptObj(ScriptLinkStandard.Objects.OptionObject2015,System.String,System.Int32,System.String)">
             <summary>Export a <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to HTML and JSON files.</summary>
             <remarks>
             Writes the <paramref name="sentOptObj"/> contents to HTML/JSON files.<br/> <br/> This is primarily used for
@@ -289,6 +289,175 @@
             TBD
             </remarks>
         </member>
+        <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.SpecificFormRequest(System.String,TingenWebService.Core.Session.Sess)">
+            <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
+            <remarks>
+            Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
+            translation table.<br/>
+            <br/>
+            Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
+            respective event parsers.
+            </remarks>
+            <param name="formName">The name of the specific form to handle.</param>
+            <param name="sess">The web service session object containing form data and module event parsers.</param>
+            <example>
+            <code>
+            AvatarScriptParameter.SpecificFormRequest("OpenIncident", sess);
+            AvatarScriptParameter.SpecificFormRequest("DoseChangeEvaluationOtp", sess);
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.GetClassName(System.String)">
+            <summary>Extracts the class name (without extension) from a full source file path.</summary>
+            <remarks>
+            Splits <paramref name="classPath"/> on path separators, takes the final segment, and removes the
+            trailing <c>.cs</c> extension.
+            </remarks>
+            <param name="classPath">The full source file path of the class.</param>
+            <returns>The class name with the <c>.cs</c> extension removed.</returns>
+            <example>
+            <code>
+            var name = LogUtility.GetClassName(@"C:\src\Core\Avatar\AvatarOptionObject.cs");
+            Console.WriteLine(name);
+            // Output: AvatarOptionObject
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogMaintenance">
+            <summary>Provides methods for maintaining system log files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RecreateSystemLogs(TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.RuntimeSetting)">
+            <summary>Recreates the system log files.</summary>
+            <param name="frameworkSetting">The framework settings.</param>
+            <param name="runtimeSetting">The runtime settings.</param>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogComponents">
+            <summary>Provides logging-related helper methods.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogComponents.GetCallerInfo(System.String,System.String,System.Int32)">
+            <summary>Returns a formatted caller information string built from the calling source location.</summary>
+            <remarks>
+            Uses caller-info attributes to capture the source file, member name, and line number, then returns them in
+            the form <c>{class}-{method}-{line}</c>.
+            </remarks>
+            <param name="className">The full source file path of the caller, supplied automatically by the compiler.</param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
+            <returns>A string in the form <c>{class}-{method}-{line}</c>.</returns>
+            <example>
+            <code>
+            var info = LogComponents.GetCallerInfo();
+            Console.WriteLine(info);
+            // Output: AvatarOptionObject-ToReturn-57
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogComponents.FormatXml(System.String)">
+            <summary>Formats raw XML content into a Markdown-style XML code block for log output.</summary>
+            <param name="rawXml">The raw XML string to format.</param>
+            <returns>A Markdown-formatted XML code block representing the supplied XML.</returns>
+            <example>
+            <code>
+            var rawXml    = "&lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;";
+            var formatted = LogComponents.FormatXml(rawXml);
+            Console.WriteLine(formatted);
+            // Output:
+            // ```xml
+            //     &lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;
+            // ```
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogWriter">
+            <summary>Provides methods for writing log messages to local files.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogWriter.WriteLocal(System.String,System.String,System.String)">
+            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to write.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogWriter.AppendLocal(System.String,System.String,System.String)">
+            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to append to.</param>
+            <param name="fileContent">The content to append to the file.</param>
+            <example>
+            <code>
+            LogUtility.AppendLocal(
+                @"C:\Tingen_Data\LIVE\AppData\History",
+                "2026-05-15.history",
+                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
+            </code>
+            </example>
+        </member>
+        <member name="T:TingenWebService.Core.Logger.LogEvent">
+            <summary>Provides methods for logging various types of events.</summary>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Daily(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>Logs a daily event with the specified details.</summary>
+            <param name="sysLogRoot">The root folder of the system log files.</param>
+            <param name="todayDate">The current date.</param>
+            <param name="startTime">The start time of the event.</param>
+            <param name="versionBuild">The version and build information.</param>
+            <param name="runningLog">The running log content.</param>
+            <param name="duration">The duration of the event.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Error(System.String,System.String,System.String,System.String,System.String)">
+            <summary>Logs an error event with the specified details.</summary>
+            <param name="sysLogRoot">The root folder of the system log files.</param>
+            <param name="blueprintRoot">The root folder of the blueprint files.</param>
+            <param name="sessStartDateTime">The start date and time of the session.</param>
+            <param name="errCode">The error code.</param>
+            <param name="errMsg">The error message.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Primeval(System.String,System.String)">
+            <summary>Logs a primeval event with the specified name and content.</summary>
+            <param name="logName">The name of the log file.</param>
+            <param name="logContent">The content of the log file.</param>
+            <remarks>
+            There is a 5-millisecond delay before writing the log to ensure that the log file name is unique and does
+            not conflict with other log entries.
+            </remarks>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(TingenWebService.Core.Session.Sess)">
+            <summary>Logs a session event with the specified session details.</summary>
+            <param name="sess">The session object containing session details.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.SystemLog(System.String,System.String,System.String)">
+            <summary>Logs a system event with the specified details.</summary>
+            <param name="logFolder">The folder where the log file will be written.</param>
+            <param name="logName">The name of the log file.</param>
+            <param name="logContent">The content of the log entry.</param>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
+            <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
+            <remarks>
+            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Logger&quot;]/TraceLogLevels/*" />
+            <br /> The <paramref name="classPath" />, <paramref name="methodName" />, and <paramref name="lineNumber" />
+            parameters are populated automatically by the compiler via caller-info attributes.
+            </remarks>
+            <param name="traceLevel">The trace level for this log entry.</param>
+            <param name="levelLimit">The configured maximum trace level that should be written.</param>
+            <param name="sessionFolder">The session folder where the trace log file will be written.</param>
+            <param name="classPath">
+            The full source file path of the caller, supplied automatically by the compiler.
+            </param>
+            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
+            <param name="lineNumber">
+            The source line number of the caller, supplied automatically by the compiler.
+            </param>
+            <example>
+            <code>
+            LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
+            </code>
+            </example>
+        </member>
         <member name="T:TingenWebService.Core.RuntimeSetting">
             <summary>Runtime settings logic.</summary>
             <remarks>
@@ -307,7 +476,7 @@
             </para>
             </remarks>
         </member>
-        <member name="P:TingenWebService.Core.RuntimeSetting.CurentDate">
+        <member name="P:TingenWebService.Core.RuntimeSetting.CurrentDate">
             <summary>The current date.</summary>
         </member>
         <member name="P:TingenWebService.Core.RuntimeSetting.CurrentTime">
@@ -340,9 +509,9 @@
             <returns>A <see cref="T:TingenWebService.Core.RuntimeSetting"/> instance with the current settings.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.ErrorMessage.ERR1000(System.String)">
-            <summary>Build the runtime configuration load failure message.</summary>
+            <summary>Generic error with message.</summary>
             <param name="errorMessage">The error message.</param>
-            <returns>The runtime configuration load failure message.</returns>
+            <returns>The formatted error message.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Translation">
             <summary>Represents a JSON object used within the Tingen Web Service.</summary>
@@ -358,32 +527,134 @@
             <param name="translationRoot">The root directory where the translations will be exported.</param>
         </member>
         <member name="T:TingenWebService.Core.Trove.Blueprint">
-            <summary>User-modifiable templates.</summary>
+            <summary>User-modifiable templates and logic.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Trove&quot;]/AboutBlueprints/*" />
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Trove&quot;]/RestoringBlueprints/*" />
+            <note type="note" title="About blueprints">
+                <b>Blueprints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
+                error messages, and other data in a consistent manner.<br />
+                <br />
+                When the Tingen Web Service is initialized, these templates are exported to the <c>blueprints\</c> folder.
+                The external templates can then be modified by the user to customize the log output.
+
+            </note>
+            <note type="note" title="Restoring blueprints">
+                To restore a template to its original state:
+                <list type="number">
+                    <item>Delete the template file from the blueprints folder</item>
+                    <item>Restart the Tingen Web Service.</item>
+                </list>
+                The original template will be copied back to the blueprints folder.
+            </note>
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.Blueprint.ErrorLogTxt">
             <summary>Build the blueprint for text error logs.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note> <br />
             </remarks>
             <returns>The text error log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogTxt">
             <summary>Build the blueprint for text session logs.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /> <br />
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note> <br />
             </remarks>
             <returns>The text session log template string.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.Blueprint.SessLogMd">
             <summary>Build the blueprint for markdown session logs.</summary>
             <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/TopicDoc[@name=&quot;Logger&quot;]/AboutLogFormats/*" /><br />
-            This markdown table alignment looks wonky, but leaving it this way is the best compromise to keep the table
-            up looking as nice as possible when it's rendered (it can't be perfect).
+            <note type="note" title="About log formats">
+                Logs can be exported using any of the following formats:<br />
+                <br />
+                <b>Plain text (default)</b><br />
+                + Smallest file size (good for raw speed)<br />
+                + Can be opened in any text editor<br />
+                + Easy to customize<br />
+                - Does not support any formatting/styling (totally boring!)<br />
+                - Super compact, not the easiest to read<br />
+                <br />
+                <b>Markdown</b><br />
+                + Allows for formatting, so logs look nice and are easy to read<br />
+                + Super easy to customize<br />
+                + The coolest format!<br />
+                - Not as widely supported as plain text<br />
+                - Probably not the best choice for emailing logs<br />
+                <br />
+                <b>HTML</b><br />
+                + Allows for complex formatting<br />
+                + Can be opened in any web browser (and most email clients)<br />
+                - Largest file size<br />
+                - More difficult to customize than plain text or markdown<br />
+                <br />
+                In general:
+                <list type="number">
+                    <item>Use plain text it you aren't constantly looking at logs.</item>
+                    <item>Use Markdown if you are constantly looking at logs.</item>
+                    <item>Use HTML if you are emailing logs.</item>
+                </list>
+                You can change the log format by in the <c>TingenWebService.config</c> file.
+            </note><br />
             </remarks>
             <returns>A string containing the markdown blueprint for the session log.</returns>
         </member>
@@ -393,11 +664,16 @@
         </member>
         <member name="T:TingenWebService.Core.Trove.Catalog">
             <summary>Internal preset collections.</summary>
-            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutCatalogs/*" /></remarks>
+            <remarks><note type="note" title="About catalogs">
+                <b>Catalogs</b> are preset collections of data (lists, strings, etc.) that are used throughout the
+                Tingen Web Service.<br />
+                <br />
+                Catalogs are hard-coded into the Tingen Web Service, and are not meant to be modified by the user.<br />
+            </note></remarks>
         </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.RequiredFrameworkFolders(TingenWebService.Core.Framework.FrameworkSetting)">
+        <member name="M:TingenWebService.Core.Trove.Catalog.RequiredFolders(TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Build the list of required framework folders.</summary>
-            <param name="twsFramework">The framework object that contains the folder list.</param>
+            <param name="frameworkSetting">The framework object that contains the folder list.</param>
             <returns>A string array of the required framework folders.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.Catalog.PreSystemLogFileNames">
@@ -408,32 +684,35 @@
             <summary>Build the list of system log file names.</summary>
             <returns>A list of system log file names.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Trove.Catalog.BlueprintFileNames">
+        <member name="M:TingenWebService.Core.Trove.Catalog.BlueprintNames">
             <summary>Build the list of blueprint file names.</summary>
             <returns>A list of blueprint file names.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.Redprint">
             <summary>Preset messages and strings.</summary>
-            <remarks><!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Trove&quot;]/AboutRedprints/*" /></remarks>
+            <remarks><note type="note" title="About RedPrints">
+                <b>RedPrints</b> are templates for output generated by the Tingen Web Service. They are used to format logs,
+                error messages, and other data in a consistent manner.<br />
+                <br />
+                Like <c>BluePrints</c>, RedPrints can use plain text, Markdown, or HTML for formatting.
+                <br />
+                Unlike <c>BluePrints</c> RedPrints are <i>not</i> exported externally, and are <i>not</i> modifiable by
+                the user.<br />
+            </note></remarks>
         </member>
         <member name="M:TingenWebService.Core.Trove.Redprint.RuntimeDetails(TingenWebService.Core.RuntimeSetting)">
             <summary>Build the runtime details message.</summary>
-            <param name="rtConfig">The runtime configuration.</param>
+            <param name="runtimeSetting">The runtime configuration.</param>
             <returns>The runtime details message.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.Redprint.FrameworkSettings(TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Build the framework details message.</summary>
-            <param name="framework">The framework configuration.</param>
+            <param name="frameworkSetting">The framework configuration.</param>
             <returns>The framework details message.</returns>
         </member>
         <member name="M:TingenWebService.Core.Trove.Redprint.BlueprintsExported">
             <summary>Build the message indicating that blueprints have been exported.</summary>
             <returns>The blueprints exported message.</returns>
-        </member>
-        <member name="M:TingenWebService.Core.Trove.Redprint.ApplicationSettings(TingenWebService.Core.AppSetting)">
-            <summary>Build the configuration details message.</summary>
-            <param name="appSetting">The Tingen Web Service configuration.</param>
-            <returns>The configuration details message.</returns>
         </member>
         <member name="T:TingenWebService.Core.Trove.SysMsg">
             <summary>Provides system messages for the Tingen Web Service.</summary>
@@ -646,177 +925,6 @@
             <remarks>Add to redprint.</remarks>
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrameworkSetting"/> instance with the specified paths.</returns>
         </member>
-        <member name="T:TingenWebService.Core.Logger.LogMaintenance">
-            <summary>Provides methods for maintaining system log files.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.VerifySystemLogs(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
-            <summary>Verifies the existence of system log files and resets them if necessary.</summary>
-            <param name="frameworkSetting">The framework configuration.</param>
-            <param name="runtimeSetting">The runtime configuration.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.ResetSystemLogs(TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.RuntimeSetting)">
-            <summary>Resets the system log files by removing existing logs and rebuilding them.</summary>
-            <param name="frameworkSetting">The framework configuration.</param>
-            <param name="runtimeSetting">The runtime configuration.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RemoveSystemLogs(System.String,System.Collections.Generic.List{System.String})">
-            <summary>Removes the specified system log files.</summary>
-            <param name="systemLogRoot">The root folder of the system log files.</param>
-            <param name="systemFileNames">The list of system log file names to remove.</param>
-            <param name="traceLimit">The trace limit for logging.</param>
-            <param name="sessionFolder">The session folder for logging.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.BuildSystemLogs(System.String,System.Collections.Generic.List{System.String},TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
-            <summary>Builds the specified system log files.</summary>
-            <param name="systemLogRoot">The root folder of the system log files.</param>
-            <param name="systemFileNames">The list of system log file names to build.</param>
-            <param name="rtConfig">The runtime configuration.</param>
-            <param name="twsFramework">The framework configuration.</param>
-            <param name="twsConfig">The TWS configuration.</param>
-        </member>
-        <member name="T:TingenWebService.Core.Logger.LogComponents">
-            <summary>Provides logging-related helper methods.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogComponents.GetCallerInfo(System.String,System.String,System.Int32)">
-            <summary>Returns a formatted caller information string built from the calling source location.</summary>
-            <remarks>
-            Uses caller-info attributes to capture the source file, member name, and line number, then returns them in
-            the form <c>{class}-{method}-{line}</c>.
-            </remarks>
-            <param name="className">The full source file path of the caller, supplied automatically by the compiler.</param>
-            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
-            <param name="lineNumber">The source line number of the caller, supplied automatically by the compiler.</param>
-            <returns>A string in the form <c>{class}-{method}-{line}</c>.</returns>
-            <example>
-            <code>
-            var info = LogComponents.GetCallerInfo();
-            Console.WriteLine(info);
-            // Output: AvatarOptionObject-ToReturn-57
-            </code>
-            </example>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogComponents.FormatXml(System.String)">
-            <summary>Formats raw XML content into a Markdown-style XML code block for log output.</summary>
-            <param name="rawXml">The raw XML string to format.</param>
-            <returns>A Markdown-formatted XML code block representing the supplied XML.</returns>
-            <example>
-            <code>
-            var rawXml    = "&lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;";
-            var formatted = LogComponents.FormatXml(rawXml);
-            Console.WriteLine(formatted);
-            // Output:
-            // ```xml
-            //     &lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;
-            // ```
-            </code>
-            </example>
-        </member>
-        <member name="T:TingenWebService.Core.Logger.LogWriter">
-            <summary>Provides methods for writing log messages to local files.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogWriter.GetClassName(System.String)">
-            <summary>Extracts the class name (without extension) from a full source file path.</summary>
-            <remarks>
-            Splits <paramref name="classPath"/> on path separators, takes the final segment, and removes the
-            trailing <c>.cs</c> extension.
-            </remarks>
-            <param name="classPath">The full source file path of the class.</param>
-            <returns>The class name with the <c>.cs</c> extension removed.</returns>
-            <example>
-            <code>
-            var name = LogUtility.GetClassName(@"C:\src\Core\Avatar\AvatarOptionObject.cs");
-            Console.WriteLine(name);
-            // Output: AvatarOptionObject
-            </code>
-            </example>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogWriter.WriteLocal(System.String,System.String,System.String)">
-            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
-            <param name="fileFolder">The folder where the file is located.</param>
-            <param name="fileName">The name of the file to write.</param>
-            <param name="fileContent">The content to write to the file.</param>
-            <example>
-            <code>
-            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
-            </code>
-            </example>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogWriter.AppendLocal(System.String,System.String,System.String)">
-            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
-            <param name="fileFolder">The folder where the file is located.</param>
-            <param name="fileName">The name of the file to append to.</param>
-            <param name="fileContent">The content to append to the file.</param>
-            <example>
-            <code>
-            LogUtility.AppendLocal(
-                @"C:\Tingen_Data\LIVE\AppData\History",
-                "2026-05-15.history",
-                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
-            </code>
-            </example>
-        </member>
-        <member name="T:TingenWebService.Core.Logger.LogEvent">
-            <summary>Provides methods for logging various types of events.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Daily(System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>Logs a daily event with the specified details.</summary>
-            <param name="sysLogRoot">The root folder of the system log files.</param>
-            <param name="todayDate">The current date.</param>
-            <param name="startTime">The start time of the event.</param>
-            <param name="versionBuild">The version and build information.</param>
-            <param name="runningLog">The running log content.</param>
-            <param name="duration">The duration of the event.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Error(System.String,System.String,System.String,System.String,System.String)">
-            <summary>Logs an error event with the specified details.</summary>
-            <param name="sysLogRoot">The root folder of the system log files.</param>
-            <param name="blueprintRoot">The root folder of the blueprint files.</param>
-            <param name="sessStartDateTime">The start date and time of the session.</param>
-            <param name="errCode">The error code.</param>
-            <param name="errMsg">The error message.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Primeval(System.String,System.String)">
-            <summary>Logs a primeval event with the specified name and content.</summary>
-            <param name="logName">The name of the log file.</param>
-            <param name="logContent">The content of the log file.</param>
-            <remarks>
-            There is a 5-millisecond delay before writing the log to ensure that the log file name is unique and does
-            not conflict with other log entries.
-            </remarks>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Session(TingenWebService.Core.Session.Sess)">
-            <summary>Logs a session event with the specified session details.</summary>
-            <param name="sess">The session object containing session details.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.SystemLog(System.String,System.String,System.String)">
-            <summary>Logs a system event with the specified details.</summary>
-            <param name="logFolder">The folder where the log file will be written.</param>
-            <param name="logName">The name of the log file.</param>
-            <param name="logContent">The content of the log entry.</param>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogEvent.Trace(System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
-            <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
-            <remarks>
-            <!-- Failed to insert some or all of included XML --><include file="AppData/XmlDoc/Topics.xml" path="Topics/Topic[@name=&quot;Logger&quot;]/TraceLogLevels/*" />
-            <br /> The <paramref name="classPath" />, <paramref name="methodName" />, and <paramref name="lineNumber" />
-            parameters are populated automatically by the compiler via caller-info attributes.
-            </remarks>
-            <param name="traceLevel">The trace level for this log entry.</param>
-            <param name="levelLimit">The configured maximum trace level that should be written.</param>
-            <param name="sessionFolder">The session folder where the trace log file will be written.</param>
-            <param name="classPath">
-            The full source file path of the caller, supplied automatically by the compiler.
-            </param>
-            <param name="methodName">The name of the calling member, supplied automatically by the compiler.</param>
-            <param name="lineNumber">
-            The source line number of the caller, supplied automatically by the compiler.
-            </param>
-            <example>
-            <code>
-            LogEvent.Trace(9, TwsSession.TwsConfig.TraceLevelLimit, TwsSession.SessionFolder);
-            </code>
-            </example>
-        </member>
         <member name="T:TingenWebService.Core.Session.SessMaintenance">
             <summary>Session maintenance logic.</summary>
         </member>
@@ -851,7 +959,7 @@
         <member name="P:TingenWebService.Core.Session.Sess.FrameworkSetting">
             <summary>The <see cref="N:TingenWebService.Core.Framework"> framework components</see>.</summary>
         </member>
-        <member name="P:TingenWebService.Core.Session.Sess.TwsSetting">
+        <member name="P:TingenWebService.Core.Session.Sess.AppSetting">
             <summary>The Tingen Web Service <see cref="T:TingenWebService.Core.AppSetting"> configuration settings</see>.</summary>
         </member>
         <member name="P:TingenWebService.Core.Session.Sess.SentScriptParameter">
@@ -860,6 +968,9 @@
         <member name="P:TingenWebService.Core.Session.Sess.OptionObject">
             <summary>The Avatar OptionObjects associated with the session.</summary>
         </member>
+        <member name="P:TingenWebService.Core.Session.Sess.Trc">
+            <summary>The tracer information for the session.</summary>
+        </member>
         <member name="P:TingenWebService.Core.Session.Sess.SessionFolder">
             <summary>The folder path that will store session data.</summary>
         </member>
@@ -867,15 +978,19 @@
             <summary>Details about the session.</summary>
             <remarks>The running log.</remarks>
         </member>
+        <member name="P:TingenWebService.Core.Session.Sess.RunningDetail">
+            <summary>Details about the session.</summary>
+            <remarks>The running detail.</remarks>
+        </member>
         <member name="M:TingenWebService.Core.Session.Sess.StartSession(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Start a new Tingen Web Service session.</summary>
             <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> sent from Avatar.</param>
             <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-            <param name="runtimeConfig">The <see cref="T:TingenWebService.Core.RuntimeSetting"> runtime configuration settings</see>.</param>
-            <param name="frameworkConfig">The <see cref="P:TingenWebService.Core.Session.Sess.FrameworkSetting"> framework components</see>.</param>
+            <param name="runtimeSetting">The <see cref="T:TingenWebService.Core.RuntimeSetting"> runtime configuration settings</see>.</param>
+            <param name="frameworkSetting">The <see cref="P:TingenWebService.Core.Session.Sess.FrameworkSetting"> framework components</see>.</param>
             <returns>A new Tingen Web Service session object.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Utility.AvatarForm.GetFormName(System.String,System.String)">
+        <member name="M:TingenWebService.Core.Utility.AvatarForm.GetFormName(System.String,System.String,TingenWebService.Core.Session.Tracer)">
             <summary>
             Gets the form name from the translation table based on the original option ID sent by Avatar.
             </summary>
@@ -960,7 +1075,7 @@
             </code>
             </example>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Mode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.Mode">
             <summary>The OpenIncident Module operating mode.</summary>
             <remarks>
             <list type="bullet">
@@ -970,107 +1085,107 @@
             </remarks>
             <value>The configured mode value, such as <c>enabled</c>.</value>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UseLocalTranslations">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.UseLocalTranslations">
             <summary>Determines if local translations are used.</summary>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.BypassList">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.BypassList">
             <summary>The list of Avatar usernames that bypass the OpenIncident module.</summary>
             <remarks>
             If an Avatar username (e.g., "JSMITH") is included in this list, they will bypass the OpenIncident module
             functionality, and the Open Incident form will behave normally.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.AuthorizedUserRoles">
             <summary>The list of authorized Avatar User Roles that are permitted to view incidents.</summary>
             <remarks>
             If an Avatar User Role (e.g., "NXOPNURSE") is included in this list, it's members will be able to view Open
             Incident forms, regardless of whether they are the original author of the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.BriefIncidentDescriptionFieldId">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.BriefIncidentDescriptionFieldId">
             <summary>The Brief Incident Description field ID.</summary>
             <remarks>
             TBD - What this is used for.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.ProgramOfIncidentFieldId">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.ProgramOfIncidentFieldId">
             <summary>The Program of Incident field ID.</summary>
             <remarks>
             TBD - What this is used for.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.PersonCompletingIncidentFormFieldId">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.PersonCompletingIncidentFormFieldId">
             <summary>The Person Completing the Incident Form field ID.</summary>
             <remarks>
             TBD - What this is used for.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleMsg">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotMemberOfAuthorizedUserRoleMsg">
             <summary>The message returned when the user lacks an authorized role.</summary>
             <remarks>
-            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles"/>, this message
+            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.AuthorizedUserRoles"/>, this message
             will be displayed to the user when they attempt to view an Open Incident form.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotMemberOfAuthorizedUserRoleErrCode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotMemberOfAuthorizedUserRoleErrCode">
             <summary>The error code returned when the user lacks an authorized role.</summary>
             <remarks>
-            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.AuthorizedUserRoles"/>, this error code
+            If the user is not a member of any of the roles specified in <see cref="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.AuthorizedUserRoles"/>, this error code
             will be returned when they attempt to view an Open Incident form.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenMsg">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotOriginalAuthorOpenMsg">
             <summary>The message returned when a non-author opens an incident.</summary>
             <remarks>
             If the user is not the original author of the incident, this message will be displayed to the user when they
             attempt to open the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorOpenErrCode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotOriginalAuthorOpenErrCode">
             <summary>The error code returned when a non-author opens an incident.</summary>
             <remarks>
             If the user is not the original author of the incident, this error code will be returned when they attempt to open the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitMsg">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotOriginalAuthorSubmitMsg">
             <summary>The message returned when a non-author attempts to submit an incident.</summary>
             <remarks>
             If the user is not the original author of the incident, this message will be displayed to the user when they attempt to submit the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.NotOriginalAuthorSubmitErrCode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.NotOriginalAuthorSubmitErrCode">
             <summary>The error code returned when a non-author attempts to submit an incident.</summary>
             <remarks>
             If the user is not the original author of the incident, this error code will be returned when they attempt to submit the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentMsg">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.InvalidProgramOfIncidentMsg">
             <summary>The message returned when the program of incident is invalid.</summary>
             <remarks>
             The message displayed to the user when the program of incident value is not valid and must be corrected
             before submitting the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.InvalidProgramOfIncidentErrCode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.InvalidProgramOfIncidentErrCode">
             <summary>The error code returned when the program of incident is invalid.</summary>
             <remarks>
             The error code returned when the program of incident value is not valid and must be corrected before
             submitting the incident.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionMsg">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.UnknownUserDescriptionMsg">
             <summary>The message returned when the user description cannot be resolved.</summary>
             <remarks>
             The message displayed to the user when the current username is missing from the translation table.
             </remarks>
         </member>
-        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentConfig.UnknownUserDescriptionErrCode">
+        <member name="P:TingenWebService.Module.OpenIncident.OpenIncidentSetting.UnknownUserDescriptionErrCode">
             <summary>The error code returned when the user description cannot be resolved.</summary>
             <remarks>
             The numeric error code associated with an unknown user description result.
             </remarks>
         </member>
-        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Load(System.String,System.Int32,System.String)">
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentSetting.Load(System.String,TingenWebService.Core.Session.Tracer)">
             <summary>Load the Tingen Web Service configuration from a file.</summary>
             <param name="configPath">The path to the configuration file.</param>
             <param name="traceLimit">The trace limit for logging.</param>
@@ -1080,7 +1195,7 @@
             </remarks>
             <returns>The loaded Tingen Web Service configuration.</returns>
         </member>
-        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentConfig.Build(System.String,System.Int32,System.String)">
+        <member name="M:TingenWebService.Module.OpenIncident.OpenIncidentSetting.Build(System.String,TingenWebService.Core.Session.Tracer)">
             <summary>Create a new Tingen Web Service configuration file.</summary>
             <param name="configPath">The path to the configuration file.</param>
             <param name="traceLimit">The trace limit for logging.</param>

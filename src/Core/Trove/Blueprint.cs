@@ -130,7 +130,7 @@ namespace TingenWebService.Core.Trove
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
         internal static void ExportBlueprints(string blueprintRoot)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-ExportBlueprints");
+            Logger.LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-ExportBlueprints");
 
             var blueprintFactories = new Dictionary<string, Func<string>>
             {

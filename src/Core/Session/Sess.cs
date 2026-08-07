@@ -4,6 +4,7 @@
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Avatar;
+using TingenWebService.Module.OpenIncident;
 
 namespace TingenWebService.Core.Session
 {
@@ -32,11 +33,16 @@ namespace TingenWebService.Core.Session
         /// <summary>The Tingen Web Service <see cref="Core.AppSetting"> configuration settings</see>.</summary>
         public AppSetting AppSetting { get; set; }
 
+        public ModuleSetting ModuleSetting { get; set; }
+
         /// <remarks>Used to create the session folder.</remarks>
         public string SentScriptParameter { get; set; }
 
         /// <summary>The Avatar OptionObjects associated with the session.</summary>
         public AvatarOptionObject OptionObject { get; set; }
+
+        /// <summary>The tracer information for the session.</summary>
+        public Tracer Trc { get; set; }
 
         /// <summary>The folder path that will store session data.</summary>
         public string SessionFolder { get; set; }
@@ -57,19 +63,46 @@ namespace TingenWebService.Core.Session
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeSetting, Framework.FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
+            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
+
+            AppSetting appSetting = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config"));
+            string sessionFolder  = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurrentDate, runtimeSetting.CurrentTime);
 
             return new Sess
             {
                 RuntimeSetting      = runtimeSetting,
                 FrameworkSetting    = frameworkSetting,
-                AppSetting          = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config")),
+                AppSetting          = appSetting,
                 OptionObject        = AvatarOptionObject.Build(sentOptionObject),
                 SentScriptParameter = sentScriptParameter,
-                SessionFolder       = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurentDate, runtimeSetting.CurrentTime),
+                Trc                 = Tracer.Build(appSetting.TraceLimit, sessionFolder),
+                SessionFolder       = sessionFolder,
                 RunningLog          = string.Empty,
                 RunningDetail       = string.Empty,
             };
         }
     }
+
+    internal class Tracer
+    {
+        public int Lmt { get; set; }
+        public string Fld { get; set; }
+
+        public static Tracer Build(int traceLimit, string sessionFolder)
+        {
+            return new Tracer()
+            {
+                Lmt   = traceLimit,
+                Fld = sessionFolder
+            };
+        }
+    }
+
+    public class ModuleSetting
+    {
+        public OpenIncidentSetting OpenIncidentConfig { get; set; }
+
+
+    }
+
 }

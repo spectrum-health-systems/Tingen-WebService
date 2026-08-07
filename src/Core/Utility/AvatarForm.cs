@@ -1,6 +1,8 @@
 ﻿// 260806_code
 // 260806_documentation
 using System.IO;
+using TingenWebService.Core.Logger;
+using TingenWebService.Core.Session;
 using TingenWebService.Core.Trove;
 using TingenWebService.Du;
 
@@ -25,9 +27,9 @@ namespace TingenWebService.Core.Utility
         /// Console.WriteLine($"Resolved form name: {formName}");
         /// </code>
         /// </example>
-        internal static string GetFormName(string translationPath, string formId)
+        internal static string GetFormName(string translationPath, string formId, Tracer trc)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-GetFormName");
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
             var path  = Path.Combine(translationPath, "FormIdToName.translation");
             var forms = DuJson.ImportFile<Translation.FormId>(path);

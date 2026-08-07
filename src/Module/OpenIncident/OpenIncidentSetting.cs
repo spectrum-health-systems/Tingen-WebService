@@ -4,11 +4,12 @@
 using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Core.Logger;
+using TingenWebService.Core.Session;
 using TingenWebService.Du;
 
 namespace TingenWebService.Module.OpenIncident
 {
-    internal class OpenIncidentSetting
+    public class OpenIncidentSetting
     {
         /// <summary>The OpenIncident Module operating mode.</summary>
         /// <remarks>
@@ -128,15 +129,15 @@ namespace TingenWebService.Module.OpenIncident
         /// If the configuration file does not exist, a new configuration file is created with default values.
         /// </remarks>
         /// <returns>The loaded Tingen Web Service configuration.</returns>
-        internal static OpenIncidentSetting Load(string configPath, int traceLimit, string sessFolder)
+        internal static OpenIncidentSetting Load(string configPath, Tracer trc)
         {
-            LogEvent.Trace(1, traceLimit, sessFolder);
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
             if (!File.Exists(configPath))
             {
-                LogEvent.Trace(4, traceLimit, sessFolder);
+                LogEvent.Trace(4, trc.Lmt, trc.Fld);
 
-                Build(configPath, traceLimit, sessFolder);
+                Build(configPath, trc);
             }
 
             return DuJson.ImportFile<OpenIncidentSetting>(configPath);
@@ -146,9 +147,9 @@ namespace TingenWebService.Module.OpenIncident
         /// <param name="configPath">The path to the configuration file.</param>
         /// <param name="traceLimit">The trace limit for logging.</param>
         /// <param name="sessFolder">The session folder for logging.</param>
-        private static void Build(string configPath, int traceLimit, string sessFolder)
+        private static void Build(string configPath, Tracer trc)
         {
-            LogEvent.Trace(1, traceLimit, sessFolder);
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
             OpenIncidentSetting openIncidentConfig = new OpenIncidentSetting()
             {

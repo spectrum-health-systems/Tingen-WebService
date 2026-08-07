@@ -46,7 +46,7 @@ namespace TingenWebService.Core.Avatar
              * that a debug log can created.
              */
 
-            //LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
+            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
 
             return new AvatarOptionObject
             {
@@ -66,7 +66,7 @@ namespace TingenWebService.Core.Avatar
              * is a critical error and needs to be logged.
              */
 
-            //LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
+            LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
 
             if (sentOptionObject == null)
             {

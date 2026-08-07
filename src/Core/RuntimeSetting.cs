@@ -15,7 +15,7 @@ namespace TingenWebService.Core
     internal class RuntimeSetting
     {
         /// <summary>The current date.</summary>
-        public string CurentDate { get; set; }
+        public string CurrentDate { get; set; }
 
         /// <summary>The current time.</summary>
         public string CurrentTime { get; set; }
@@ -41,7 +41,7 @@ namespace TingenWebService.Core
         /// <returns>The runtime settings.</returns>
         internal static RuntimeSetting Load(string appVersion)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
+            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Load");
 
             try
             {
@@ -60,11 +60,11 @@ namespace TingenWebService.Core
         /// <returns>A <see cref="RuntimeSetting"/> instance with the current settings.</returns>
         internal static RuntimeSetting Build(string appVersion)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
+            LogEvent.Primeval("PRELOG-TRACE-RuntimeSetting-Build");
 
             return new RuntimeSetting()
             {
-                CurentDate   = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
+                CurrentDate   = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
                 CurrentTime  = DateTime.Now.ToString("HHmmss"), // TODO - HH:mm:ss?
                 CurrentMs    = DateTime.Now.ToString("fffffff"),
                 VersionBuild = $"{appVersion} (b{Settings.Default.Build})",

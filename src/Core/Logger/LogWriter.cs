@@ -20,6 +20,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void WriteLocal(string fileFolder, string fileName, string fileContent = null)
         {
+            LogEvent.Primeval("PRELOG-TRACE-LogWriter-WriteLocal");
+
             DuDirectory.ForceExist(fileFolder);
 
             File.WriteAllText(Path.Combine(fileFolder, fileName), fileContent);
@@ -39,6 +41,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void AppendLocal(string fileFolder, string fileName, string fileContent)
         {
+            LogEvent.Primeval("PRELOG-TRACE-LogWriter-AppendLocal");
+
             DuDirectory.ForceExist(fileFolder);
 
             File.AppendAllText(Path.Combine(fileFolder, fileName), fileContent);

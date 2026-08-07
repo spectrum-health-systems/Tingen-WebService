@@ -24,6 +24,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static string GetClassName(string classPath)
         {
+            /* Don't put a log file here */
+
             string[] fullClassPath = classPath.Split(new char[] { '\\', '/' }, StringSplitOptions.RemoveEmptyEntries);
 
             return fullClassPath.Last().Replace(".cs", "");

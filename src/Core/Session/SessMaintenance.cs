@@ -15,7 +15,7 @@ namespace TingenWebService.Core.Session
         /// <param name="twsConfig">The TWS configuration.</param>
         internal static void InitializeNewSession(RuntimeSetting runtimeSetting, Framework.FrameworkSetting frameworkSetting)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-SessMaint-InitializeNewSession");
+            Logger.LogEvent.Primeval("PRELOG-TRACE-SessMaint-InitializeNewSession");
 
             //var dailyDate = DateTime.Now.ToString("yyMMdd");
 

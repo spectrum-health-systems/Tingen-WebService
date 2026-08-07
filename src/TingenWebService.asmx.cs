@@ -50,24 +50,26 @@ namespace TingenWebService
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
+            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
 
-            if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
-            {
-                return sentOptObj.ToReturnOptionObject(0, "");
-            }
-            else
-            {
-                StartApp(sentOptObj, sentScriptParam);
+            return sentOptObj.ToReturnOptionObject(0, "");
 
-                LogEvent.Trace(9, _sess.AppSetting.TraceLimit, _sess.SessionFolder);
+            //if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
+            //{
+            //    return sentOptObj.ToReturnOptionObject(0, "");
+            //}
+            //else
+            //{
+            //    StartApp(sentOptObj, sentScriptParam);
 
-                AvatarScriptParameter.Parse(_sess);
+            //    LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
 
-                LogEvent.Session(_sess);
+            //    AvatarScriptParameter.Parse(_sess);
 
-                return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
-            }
+            //    LogEvent.Session(_sess);
+
+            //    return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
+            //}
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
@@ -79,7 +81,7 @@ namespace TingenWebService
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
+            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
             RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
             FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
