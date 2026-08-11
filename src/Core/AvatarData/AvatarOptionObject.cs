@@ -50,12 +50,24 @@ namespace TingenWebService.Core.Avatar
 
             LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
 
-            return new AvatarOptionObject
-            {
-                SentOptionObject      = sentOptionObject,
-                WorkerOptionObject    = sentOptionObject.Clone(),
-                CompleteOptionObject  = null
-            };
+            // TESTING BLOCK
+            var ao = new AvatarOptionObject();
+            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build1");
+            ao.SentOptionObject = sentOptionObject;
+            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build2");
+            ao.WorkerOptionObject = sentOptionObject.Clone();
+            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build3");
+            ao.CompleteOptionObject = null;
+            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build4");
+
+            return ao;
+
+            //return new AvatarOptionObject
+            //{
+            //    SentOptionObject      = sentOptionObject,
+            //    WorkerOptionObject    = sentOptionObject.Clone(),
+            //    CompleteOptionObject  = null
+            //};
         }
 
         /// <summary>Verify whether an <see cref="OptionObject2015"/> was received from Avatar.</summary>

@@ -64,7 +64,7 @@ namespace TingenWebService.Core
 
             return new RuntimeSetting()
             {
-                CurrentDate   = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
+                CurrentDate  = DateTime.Now.ToString("yyMMdd"), // TODO - yy:MM:dd?
                 CurrentTime  = DateTime.Now.ToString("HHmmss"), // TODO - HH:mm:ss?
                 CurrentMs    = DateTime.Now.ToString("fffffff"),
                 VersionBuild = $"{appVersion} (b{Settings.Default.Build})",

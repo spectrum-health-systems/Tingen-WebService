@@ -70,7 +70,7 @@ namespace TingenWebService.Core.Logger
 
             Thread.Sleep(5);
 
-            LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:fffffff}-{logName}.primeval", logContent);
+            LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:mmssfffffff}-{logName}.primeval", logContent);
         }
 
         /// <summary>Logs a session event with the specified session details.</summary>

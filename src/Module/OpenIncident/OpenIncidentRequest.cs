@@ -1,6 +1,7 @@
 ﻿// 260805_code
 // 260805_documentation
 
+using System.Collections.Generic;
 using System.IO;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
@@ -30,12 +31,18 @@ namespace TingenWebService.Module.OpenIncident
             var configPath = Path.Combine(sess.FrameworkSetting.ConfigRoot, "OpenIncident.config");
 
             var openIncidentConfig = OpenIncidentSetting.Load(configPath, sess.Trc);
+            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
+            // var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
+            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
+            //var bypassUser = openIncidentConfig.BypassList.Contains(sess.OptionObject.SentOptionObject.OptionUserId);
+            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
 
-            var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
+            if (ModuleEnabled(openIncidentConfig.Mode, sess.Trc))
+            {
+                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
+            }
 
-            var bypassUser = openIncidentConfig.BypassList.Contains(sess.OptionObject.SentOptionObject.OptionUserId);
-
-            if (bypassUser)
+            if (BypassUser(sess.OptionObject.SentOptionObject.OptionUserId, openIncidentConfig.BypassList, sess.Trc))
             {
                 LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
 
@@ -44,12 +51,53 @@ namespace TingenWebService.Module.OpenIncident
                 return;
             }
 
-            if (moduleEnabled)
-            {
-                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
-            }
+            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
+
+
         }
 
-    }
 
+        private static bool ModuleEnabled(string mode, Tracer trc)
+        {
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
+
+            return !string.IsNullOrEmpty(mode) && mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static bool BypassUser(string userId, List<string> bypassList, Tracer trc)
+        {
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return false;
+            }
+
+            var bypassListNormalized = GetBypassList(bypassList, trc);
+
+            foreach (var bypassUser in bypassListNormalized)
+            {
+                if (userId.Equals(bypassUser, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+
+        private static List<string> GetBypassList(List<string> bypassList, Tracer trc)
+        {
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
+
+            if (bypassList == null)
+            {
+                return new List<string>();
+            }
+
+            return bypassList;
+        }
+    }
 }

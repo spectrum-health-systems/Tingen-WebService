@@ -15,6 +15,9 @@ TingenWebService.NsDoc.cs
 * Note about how Primeval logs only use the `returned[1]` value.
 * Verify `throw` works in StartApp()
 
+* How to reset everything using the daily file
+* how to comment/uncomment primeval logs in source code files
+
 ## Error codes
 
 1124

@@ -59,11 +59,11 @@ namespace TingenWebService
             else
             {
                 StartApp(sentOptObj, sentScriptParam);
-
+                LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
                 LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
 
                 AvatarScriptParameter.Parse(_sess);
-
+                LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
                 LogEvent.Session(_sess);
 
                 return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
@@ -89,6 +89,8 @@ namespace TingenWebService
             SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
+
+            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StopApp"); // TESTING
         }
     }
 }
