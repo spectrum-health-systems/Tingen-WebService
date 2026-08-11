@@ -1,5 +1,5 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260811_code
+// 260811_documentation
 
 using System.IO;
 using TingenWebService.Du;
@@ -20,7 +20,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void WriteLocal(string fileFolder, string fileName, string fileContent = null)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogWriter-WriteLocal");
+            /* DEVNOTE: Do not put logger functionality here, it will cause havoc!
+             */
 
             DuDirectory.ForceExist(fileFolder);
 
@@ -41,7 +42,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void AppendLocal(string fileFolder, string fileName, string fileContent)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogWriter-AppendLocal");
+            /* DEVNOTE: Do not put logger functionality here, it will cause havoc!
+             */
 
             DuDirectory.ForceExist(fileFolder);
 

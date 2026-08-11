@@ -1,5 +1,5 @@
 ﻿// 260807_code
-// 260806_documentation
+// 260811_documentation
 
 using System;
 using TingenWebService.Core.Logger;
@@ -44,8 +44,10 @@ namespace TingenWebService.Core.Avatar
         /// <returns>True if a script parameter was sent; otherwise, false.</returns>
         internal static bool WasSent(string sentScriptParameter)
         {
-            /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
+            /* DEVNOTE: This method could be a simple expression-bodied member, but it is written as a full method this
              * is a critical error and needs to be logged.
+             *
+             * Do not put logger functionality here, it will cause havoc!
              */
 
             LogEvent.Primeval("PRELOG-TRACE-WasSent-ScriptParameter");

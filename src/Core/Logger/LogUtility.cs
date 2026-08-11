@@ -1,5 +1,5 @@
 ﻿// 260807_code
-// 260807_documentation
+// 260811_documentation
 
 using System;
 using System.Linq;
@@ -24,7 +24,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static string GetClassName(string classPath)
         {
-            /* Don't put a log file here */
+            /* DEVNOTE: Do not put logger functionality here, it will cause havoc!
+             */
 
             string[] fullClassPath = classPath.Split(new char[] { '\\', '/' }, StringSplitOptions.RemoveEmptyEntries);
 

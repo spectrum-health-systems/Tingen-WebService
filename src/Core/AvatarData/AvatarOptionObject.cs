@@ -1,5 +1,5 @@
 ﻿// 260806_code
-// 260807_documentation
+// 260811_documentation
 
 using System;
 using System.IO;
@@ -42,8 +42,10 @@ namespace TingenWebService.Core.Avatar
         /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
         internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
-            /* DEVNOTE - This method could be a simple expression-bodied member, for debugging purposes it is written as a full method so
+            /* DEVNOTE: This method could be a simple expression-bodied member, for debugging purposes it is written as a full method so
              * that a debug log can created.
+             *
+             * Do not put logger functionality here, it will cause havoc!
              */
 
             LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
@@ -62,8 +64,10 @@ namespace TingenWebService.Core.Avatar
         /// <returns>True if an <see cref="OptionObject2015"/> was sent; otherwise, false.</returns>
         internal static bool WasSent(OptionObject2015 sentOptionObject)
         {
-            /* DEVNOTE - This method could be a simple expression-bodied member, but it is written as a full method this
+            /* DEVNOTE: This method could be a simple expression-bodied member, but it is written as a full method this
              * is a critical error and needs to be logged.
+             *
+             * Do not put logger functionality here, it will cause havoc!
              */
 
             LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");

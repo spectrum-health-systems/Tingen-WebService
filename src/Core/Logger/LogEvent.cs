@@ -1,5 +1,5 @@
-﻿// 260807_code
-// 260806_documentation
+﻿// 260811_code
+// 260811_documentation
 
 using System;
 using System.IO;
@@ -65,7 +65,8 @@ namespace TingenWebService.Core.Logger
         /// </remarks>
         internal static void Primeval(string logName, string logContent = "")
         {
-            // No logs here!
+            /* DEVNOTE: Do not put logger functionality here, it will cause havoc!
+             */
 
             Thread.Sleep(5);
 
@@ -184,7 +185,8 @@ namespace TingenWebService.Core.Logger
         /// </example>
         internal static void Trace(int traceLevel, int levelLimit, string sessionFolder, [CallerFilePath] string classPath = "", [CallerMemberName] string methodName = "", [CallerLineNumber] int lineNumber = 0)
         {
-            // Can't put a trace log here!
+            /* DEVNOTE: Do not put logger functionality here, it will cause havoc!
+             */
 
             if (levelLimit != 0 && (traceLevel <= levelLimit))
             {

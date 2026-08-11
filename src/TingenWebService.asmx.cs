@@ -1,4 +1,4 @@
-﻿// 260805_code
+﻿// 260811_code
 // 260806_documentation
 
 using System.Reflection;
@@ -52,24 +52,22 @@ namespace TingenWebService
         {
             LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
 
-            return sentOptObj.ToReturnOptionObject(0, "");
+            if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
+            {
+                return sentOptObj.ToReturnOptionObject(0, "");
+            }
+            else
+            {
+                StartApp(sentOptObj, sentScriptParam);
 
-            //if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
-            //{
-            //    return sentOptObj.ToReturnOptionObject(0, "");
-            //}
-            //else
-            //{
-            //    StartApp(sentOptObj, sentScriptParam);
+                LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
 
-            //    LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
+                AvatarScriptParameter.Parse(_sess);
 
-            //    AvatarScriptParameter.Parse(_sess);
+                LogEvent.Session(_sess);
 
-            //    LogEvent.Session(_sess);
-
-            //    return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
-            //}
+                return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
+            }
         }
 
         /// <summary>Start the Tingen Web Service.</summary>
