@@ -1,5 +1,5 @@
-﻿// 260807_code
-// 260806_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System.IO;
 using ScriptLinkStandard.Objects;
@@ -63,48 +63,45 @@ namespace TingenWebService.Core.Session
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeSetting, Framework.FrameworkSetting frameworkSetting)
         {
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
+            //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 
             AppSetting appSetting = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config"));
             string sessionFolder  = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurrentDate, runtimeSetting.CurrentTime);
 
-            var s = new Sess();
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess1");
-            s.RuntimeSetting = runtimeSetting;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess2");
-            s.FrameworkSetting = frameworkSetting;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess3");
-            s.AppSetting = appSetting;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess4");
-            s.OptionObject = AvatarOptionObject.Build(sentOptionObject);
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess5");
-            s.SentScriptParameter = sentScriptParameter;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess6");
-            s.Trc = Tracer.Build(appSetting.TraceLimit, sessionFolder);
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess7");
-            s.SessionFolder = sessionFolder;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess8");
-            s.RunningLog = string.Empty;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess9");
-            s.RunningDetail = string.Empty;
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess10");
+            ////var s = new Sess();
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess1");
+            ////s.RuntimeSetting = runtimeSetting;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess2");
+            ////s.FrameworkSetting = frameworkSetting;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess3");
+            ////s.AppSetting = appSetting;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess4");
+            ////s.OptionObject = AvatarOptionObject.Build(sentOptionObject);
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess5");
+            ////s.SentScriptParameter = sentScriptParameter;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess6");
+            ////s.Trc = Tracer.Build(appSetting.TraceLimit, sessionFolder);
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess7");
+            ////s.SessionFolder = sessionFolder;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess8");
+            ////s.RunningLog = string.Empty;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess9");
+            ////s.RunningDetail = string.Empty;
+            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess10");
+            //return s;
 
-
-
-            return s;
-
-            //return new Sess
-            //{
-            //    RuntimeSetting      = runtimeSetting,
-            //    FrameworkSetting    = frameworkSetting,
-            //    AppSetting          = appSetting,
-            //    OptionObject        = AvatarOptionObject.Build(sentOptionObject),
-            //    SentScriptParameter = sentScriptParameter,
-            //    Trc                 = Tracer.Build(appSetting.TraceLimit, sessionFolder),
-            //    SessionFolder       = sessionFolder,
-            //    RunningLog          = string.Empty,
-            //    RunningDetail       = string.Empty,
-            //};
+            return new Sess
+            {
+                RuntimeSetting      = runtimeSetting,
+                FrameworkSetting    = frameworkSetting,
+                AppSetting          = appSetting,
+                OptionObject        = AvatarOptionObject.Build(sentOptionObject),
+                SentScriptParameter = sentScriptParameter,
+                Trc                 = Tracer.Build(appSetting.TraceLimit, sessionFolder),
+                SessionFolder       = sessionFolder,
+                RunningLog          = string.Empty,
+                RunningDetail       = string.Empty,
+            };
         }
     }
 

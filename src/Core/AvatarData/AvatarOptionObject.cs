@@ -12,7 +12,7 @@ namespace TingenWebService.Core.Avatar
     /// <summary>Objects and logic related to Avatar <see cref="OptionObject2015">OptionObjects</see></summary>
     /// <remarks>
     /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/> <br/>
-    /// This class focuses on <see cref="AvatarOptionObject">OptionObjects</see>.
+    /// This class focuses on <b>OptionObjects</b>.
     /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
     /// </remarks>
     internal class AvatarOptionObject
@@ -36,8 +36,11 @@ namespace TingenWebService.Core.Avatar
         public OptionObject2015 CompleteOptionObject { get; set; }
 
         /// <summary>Initialize a new <see cref="AvatarOptionObject"/>.</summary>
-        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar.</param>
-        /// <remarks>The <see cref="AvatarOptionObject">OptionObjects</see> that the Tingen Web Service needs are bundled into this single object.</remarks>
+        /// <param name="sentOptionObject">The <see cref="SentOptionObject">OptionObject</see> sent from Avatar.</param>
+        /// <remarks>
+        /// The <see cref="AvatarOptionObject"/> instance bundles all of the necessary OptionObjects that the Tingen Web
+        /// Service needs to process a request, all in a cute little package that laughs when tickled.
+        /// </remarks>
         /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
         internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
@@ -57,12 +60,17 @@ namespace TingenWebService.Core.Avatar
             };
         }
 
-        /// <summary>Verify whether an <see cref="AvatarOptionObject">OptionObject</see> was sent from Avatar.</summary>
-        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> to verify.</param>
+        /// <summary>Verify whether the <see cref="SentOptionObject">OptionObject</see> was sent from Avatar.</summary>
+        /// <param name="sentOptionObject">The <see cref="SentOptionObject">OptionObject</see> to verify.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/MissingOptionObject/*'/>
+        /// <para>The <see cref="AvatarOptionObject">sent OptionObject</see> is required, so if Avatar didn't send one, it's game over,
+        /// man! <i>It's game over!</i><br/>
+        /// <br/>
+        /// And by "game over", I mean that the Tingen Web Service will log an error and return an unmodified
+        /// <see cref="AvatarOptionObject">OptionObject</see> back to Avatar.
+        /// </para>
         /// </remarks>
-        /// <returns>True if an <see cref="AvatarOptionObject">OptionObject</see> was sent; otherwise, false.</returns>
+        /// <returns><c>True</c> if an <see cref="AvatarOptionObject">OptionObject</see> was sent; otherwise, <c>false</c>.</returns>
         internal static bool WasSent(OptionObject2015 sentOptionObject)
         {
             /* DEVNOTE: This method could be a simplified but it is written as is because this is a critical error and needs to be logged.
@@ -112,31 +120,29 @@ namespace TingenWebService.Core.Avatar
         //////    twsSession.OptObj.Complete.ToReturnOptionObject(optionObjectErrorCode, optionObjectErrorMessage);
         //////}
 
-        /// <summary>Export a <see cref="OptionObject2015"/> to HTML and JSON files.</summary>
+        /// <summary>Export a <see cref="OptionObject2015"/> as HTML and JSON formatted data.</summary>
         /// <remarks>This is primarily used for troubleshooting.</remarks>
-        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar.</param>
+        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar. </param>
         /// <param name="exportPath">The directory path where the exported files will be saved.</param>
         /// <example>
         /// <code>
         /// AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\WebService\%AvatarSystem%\Export\");
-        /// // Exports:
-        /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
-        /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </code>
+        /// Exports:
+        /// C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
+        /// C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </example>
-        internal static void ExportOptObj(OptionObject2015 sentOptionObject, string exportPath, Tracer trc)
+        internal static void ExportOptionObject(OptionObject2015 sentOptionObject, string exportPath, Tracer trc)
         {
             //TODO: Test this functionality.
 
             LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
-            var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            var todayDateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
-            var htmlVersion = sentOptionObject.ToHtmlString(true);
-            File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{dateTime}.html"), htmlVersion);
+            File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{todayDateTime}.html"), sentOptionObject.ToHtmlString(true));
 
-            var jsonVersion = sentOptionObject.ToJson();
-            File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{dateTime}.json"), jsonVersion);
+            File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{todayDateTime}.json"), sentOptionObject.ToJson());
         }
     }
 }

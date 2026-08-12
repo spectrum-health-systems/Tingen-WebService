@@ -21,16 +21,22 @@ namespace TingenWebService.Core.Avatar
         /// <summary>The original <see cref="AvatarScriptParameter"> Script Parameter</see> sent from Avatar.</summary>
         public string SentScriptParameter { get; set; }
 
-        /// <summary>Verify whether a <see cref="AvatarScriptParameter">Script Parameter</see> was sent from Avatar.</summary>
-        /// <param name="sentScriptParameter">The <see cref="AvatarScriptParameter">Script Parameter</see> to verify.</param>
+        /// <summary>
+        /// Verify whether a <see cref="AvatarScriptParameter">Script Parameter</see> was sent from Avatar.
+        /// </summary>
+        /// <param name="sentScriptParameter">
+        /// The <see cref="AvatarScriptParameter">Script Parameter</see> to verify.
+        /// </param>
         /// <remarks>
-        /// <para>
-        /// The <see cref="AvatarScriptParameter">Script Parameter</see> is required, so if Avatar doesn't send one, that's a big mistake!
-        /// <i>Big!</i> <i><b>Huge!</b></i><br/>
+        /// <para>The <see cref="AvatarScriptParameter">Script Parameter</see> is required, so if Avatar didn't sendone, that's a big
+        /// mistake! <i>Big!</i> <i><b>Huge!</b></i><br/>
         /// <br/>
-        /// And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">
-        /// OptionObject</see> back to Avatar. </para>
-        /// </remarks>True if a <see cref="AvatarScriptParameter">Script Parameter</see> was sent; otherwise, false. </returns>
+        /// And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified
+        /// <see cref="AvatarOptionObject">OptionObject</see> back to Avatar. </para>
+        /// </remarks>
+        /// <returns>
+        /// <c>True</c> if a <see cref="AvatarScriptParameter">Script Parameter</see> was sent; otherwise, <c>false</c>.
+        /// </returns>
         internal static bool WasSent(string sentScriptParameter)
         {
             /* DEVNOTE: This method could be a simplified but it is written as is because this is a critical error and needs to be logged.
@@ -57,6 +63,7 @@ namespace TingenWebService.Core.Avatar
         /// <param name="sess">The Tingen Web Service <see cref="Session">session</see> data.</param>
         /// <remarks>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Trove"]/AboutTranslations/*'/>
         /// </remarks>
         internal static void Parse(Sess sess)
         {
@@ -82,9 +89,9 @@ namespace TingenWebService.Core.Avatar
             }
         }
 
-        /// <summary>Handles requests for specific forms.</summary>
+        /// <summary>Requests handling for a specific form.</summary>
         /// <param name="formName">The name of the specific form to handle.</param>
-        /// <param name="sess">The web service session object containing form data and module event parsers.</param>
+        /// <param name="sess">The web service session object.</param>
         /// <example>
         /// <code>
         /// AvatarScriptParameter.SpecificFormRequest("OpenIncident", sess);
@@ -103,16 +110,16 @@ namespace TingenWebService.Core.Avatar
 
                     break;
 
-                    //    case "DoseChangeEvaluationOtp":
-                    //        sess.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(sess);
-                    //        break;
+                //    case "DoseChangeEvaluationOtp":
+                //        sess.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(sess);
+                //        break;
 
-                    //    default:
-                    //        sess.TngnWsvcSessionError.HardError(sess, 1, $"[WSVC9321] The form name '{formName}' was not found in the translation table.");
-                    //        break;
-                    //
+                default:
+                    //TODO: Implement this.
+                    //sess.TngnWsvcSessionError.HardError(sess, 1, $"[WSVC9321] The form name '{formName}' was not found in the translation table.");
+
+                    break;
             }
-
         }
 
         ///// <summary>Handles stand-alone requests by routing to the appropriate module or generating an error.</summary>
@@ -148,33 +155,3 @@ namespace TingenWebService.Core.Avatar
         //}
     }
 }
-
-
-/*
-         internal static void SpecificFormRequest(string formName, Sess sess)
-        {
-            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
-
-
-
-
-
-            if (formName == "WSVC2491")
-            {
-                //sess.TngnWsvcSessionError.HardError(tngnWsvcSession, 1, $"[WSVC2491] The form ID '{tngnWsvcSession.OptObj.Original.OptionId}' was not found in the translation table.");
-            }
-            else
-            {
-                switch (formName)
-                {
-                    case "OpenIncident":
-                        //sess.Module.OpenIncident.OpenIncidentEvent.Parse(sess);
-                        break;
-
-                        //case "DoseChangeEvaluationOtp":
-                        //    sess.Module.DoseChangeEvaluationOtp.DoseChangeEvaluationOtpEvent.Parse(sess);
-                        //    break;
-
-                        /* TODO
-                         * Error catch should be here.
-                         */

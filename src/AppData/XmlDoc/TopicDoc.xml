@@ -12,14 +12,16 @@
 
     <Topic name ="Asmx">
 
-        <AppVersion> <!-- 260805 -->
+        <!-- 260805 -->
+        <AppVersion>
             <para>
                 Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
                 here, so that's why this comment exists. Hello future me (again).
             </para>
         </AppVersion>
 
-        <Sess> <!-- 260805 -->
+        <!-- 260805 -->
+        <Sess>
             <para>
                 Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is
                 easier to read/understand than something like:<br/>
@@ -30,7 +32,8 @@
             </para>
         </Sess>
 
-        <RunScript> <!-- 260811 -->
+        <!-- 260811 -->
+        <RunScript>
             <para>
                 <note type="information" title="The Magic of RunScript()">
                     The <c>RunScript()</c> method:
@@ -51,7 +54,8 @@
             </para>
         </RunScript>
 
-        <StartApp> <!-- 260805 -->
+        <!-- 260805 -->
+        <StartApp>
             <para>
                 <note type="information" title="The Magic of StartApp()">
                     A lot of stuff happens in the <c>StartApp()</c> method,:
@@ -74,10 +78,10 @@
 
     <!-- ===== N:TingenWebService.Core ================================================================================================ -->
 
-    <Topic name ="RuntimeSetting">
+    <Topic name ="Core">
 
+        <!-- 260805 -->
         <AboutRuntimeSetting>
-            <!-- 260805 -->
             <para>
                 <note type="information" title="The runtime settings">
                     The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
@@ -93,12 +97,8 @@
             </para>
         </AboutRuntimeSetting>
 
-    </Topic>
-
-    <Topic name ="AppSetting">
-
+        <!-- 260805 -->
         <AboutAppSetting>
-            <!-- 260805 -->
             <para>
                 <note type="information" title="The Tingen Web Service settings">
                     The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
@@ -120,7 +120,8 @@
 
     <Topic name ="AvatarData">
 
-        <AboutAvatarData> <!-- 260811 -->
+        <!-- 260811 -->
+        <AboutAvatarData>
             <para>
                 <note type="tip" title="About Avatar data">
                     Avatar sends two pieces of data to the Tingen Web Service:
@@ -137,7 +138,8 @@
             </para>
         </AboutAvatarData>
 
-        <AboutOptionObjects> <!-- 260811 -->
+        <!-- 260811 -->
+        <AboutOptionObjects>
             <para>
                 <note type="tip" title="About OptionObjects">
                     An Avatar <see cref="AvatarOptionObject">OptionObject</see> defines the web service contract for use with Avatar.<br/>
@@ -167,7 +169,8 @@
             </para>
         </AboutOptionObjects>
 
-        <TypesOfOptionObjects> <!-- 260811 -->
+        <!-- 260811 -->
+        <TypesOfOptionObjects>
             <para>
                 <note type="tip" title="Types of OptionObjects">
                     The Tingen Web Service defines three types of <see cref="AvatarOptionObject">OptionObjects</see>:<br/>
@@ -189,20 +192,8 @@
             </para>
         </TypesOfOptionObjects>
 
-        <MissingOptionObject> <!-- 260811 -->
-            <para>
-                <note type="important" title="The OptionObject is required!">
-                    The <see cref="AvatarOptionObject">OptionObject</see> is required, so if Avatar doesn't send one, it's game over, man!
-                    <i>It's game over!</i><br/>
-                    <br/>
-                    And by "game over", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">OptionObject</see>
-                    back to Avatar.
-                </note>
-            </para>
-        </MissingOptionObject>
-
+        <!-- 260811 -->
         <AboutTheScriptParameter>
-            <!-- 260811 -->
             <para>
                 <note type="note" title="About the Avatar Script Parameter">
                     The Avatar <see cref="AvatarScriptParameter">Script Parameter</see> is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.<br/>
@@ -227,8 +218,8 @@
             </para>
         </AboutTheScriptParameter>
 
+        <!-- 260811 -->
         <TypesOfScriptParameters>
-            <!-- 260811 -->
             <para>
                 <note type="note" title="Types of Script Parameters">
                     There are two types of <see cref="AvatarScriptParameter">Script Parameters</see>:<br/>
@@ -259,9 +250,10 @@
 
     <Topic name ="Framework">
 
-        <AboutTheFramework> <!-- 260812 -->
+        <!-- 260812 -->
+        <AboutTheFramework>
             <para>
-                
+
             </para>
         </AboutTheFramework>
 
@@ -271,6 +263,7 @@
 
     <Topic name = "Logger">
 
+        <!-- 260812 -->
         <AboutLogFormats>
             <note type="note" title="About log formats">
                 Logs can be exported using any of the following formats:<br/>
@@ -305,6 +298,7 @@
             </note>
         </AboutLogFormats>
 
+        <!-- 260812 -->
         <TraceLogLevels>
             <note type="note" title="Trace log levels">
                 The Tingen Web Service supports the following trace log levels:<br/>
@@ -371,6 +365,15 @@
                 the user.<br/>
             </note>
         </AboutRedprints>
+
+        <AboutTranslations>
+            <note type="note" title="About Translations">
+                On occasion, Avatar will store information in a format that isn't easily translatable to what the Tingen Web Service
+                expects/needs. In those cases, the Tingen Web Service will use a translation to convert the data into a something it can work with.<br/>
+                For example, an Avatar FormID may be <c>INCIDENT1</c>, but the Tingen Web Service may expect it to be <c>OpenIncident</c>.<br/>
+                Translation files are used to convert <c>INCIDENT1</c> to <c>OpenIncident</c>.
+            </note>
+        </AboutTranslations>
 
     </Topic>
 

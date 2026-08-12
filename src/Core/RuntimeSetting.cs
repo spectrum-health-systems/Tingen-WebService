@@ -1,5 +1,5 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System;
 using TingenWebService.Core.Logger;
@@ -10,7 +10,7 @@ namespace TingenWebService.Core
 {
     /// <summary>Runtime settings logic.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="RuntimeSetting"]/AboutRuntimeSetting/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Core"]/AboutRuntimeSetting/*'/>
     /// </remarks>
     internal class RuntimeSetting
     {

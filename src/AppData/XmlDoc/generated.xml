@@ -8,19 +8,23 @@
             <summary>Objects and logic related to Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see></summary>
             <remarks>
             <para>
-                <note type="note" title="About Avatar data">
+                <note type="tip" title="About Avatar data">
                     Avatar sends two pieces of data to the Tingen Web Service:
                     <list type="number">
-                        <item> The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> (which you may see referred to as a <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" />)</item>
-                        <item> The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see></item>
+                        <item>
+                            The <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> (which you may see referred to as a "<c>OptionObject2015</c>")
+                        </item>
+                        <item>
+                            The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see>
+                        </item>
                     </list>
                     Both of these components are required; if either of these components are missing, the Tingen Web Service cannot function properly.
                 </note>
             </para> <br />
-            This class focuses on <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see>.
+            This class focuses on <b>OptionObjects</b>.
             <para>
-                <note type="note" title="About OptionObjects">
-                    An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> defines the web service contract for use with Avatar.<br />
+                <note type="tip" title="About OptionObjects">
+                    An Avatar <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> defines the web service contract for use with Avatar.<br />
                     <br />
                     You can think of it as a box that contains all of the information that is in a form. Avatar sends that
                     box to the Tingen Web Service, and the Tingen Web Service:
@@ -34,7 +38,9 @@
                     </list>
                     The box is then returned to Avatar.<br>
                         <br />
-                        <b><u>Additional information</u></b><br />
+                        <b>
+                            <u>Additional information</u>
+                        </b><br />
                         The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
                         class library to define the <c>OptionObject</c> and its properties.<br />
                         <br />
@@ -46,47 +52,22 @@
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">
-            <summary>The original <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> sent from Avatar.</summary>
+            <summary>The <b>original</b> <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> <b>sent</b> from Avatar.</summary>
             <remarks>
             <para>
-                <note type="note" title="About OptionObjects">
-                    An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> defines the web service contract for use with Avatar.<br />
+                <note type="tip" title="Types of OptionObjects">
+                    The Tingen Web Service defines three types of <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObjects</see>:<br />
                     <br />
-                    You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                    box to the Tingen Web Service, and the Tingen Web Service:
-                    <list type="number">
-                        <item>Opens the box</item>
-                        <item>Looks through the box for specific information</item>
-                        <item>Uses that information to do something</item>
-                        <item>Potentially modifies the contents</item>
-                        <item>Makes sure everything is in order to be returned to Avatar</item>
-                        <item>Closes the box</item>
-                    </list>
-                    The box is then returned to Avatar.<br>
-                        <br />
-                        <b><u>Additional information</u></b><br />
-                        The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                        class library to define the <c>OptionObject</c> and its properties.<br />
-                        <br />
-                        You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                        and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                    </br>
-                </note>
-            </para>
-            <para>
-                <note type="note" title="Types of OptionObjects">
-                    The Tingen Web Service defines three types of <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see>:<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">SentOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">SentOptionObject</see><br />
                     This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                     that the Tingen Web Service needs to process a request.<br />
-                    The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                    The SentOptionObject is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">WorkerOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.WorkerOptionObject">WorkerOptionObject</see><br />
                     This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                     the Tingen Web Service.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">CompleteOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">CompleteOptionObject</see><br />
                     This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                     Tingen Web Service.<br />
                     <br />
@@ -95,47 +76,22 @@
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.WorkerOptionObject">
-            <summary>The worker <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> used during processing.</summary>
+            <summary>The <b>worker</b> <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> used during processing.</summary>
             <remarks>
             <para>
-                <note type="note" title="About OptionObjects">
-                    An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> defines the web service contract for use with Avatar.<br />
+                <note type="tip" title="Types of OptionObjects">
+                    The Tingen Web Service defines three types of <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObjects</see>:<br />
                     <br />
-                    You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                    box to the Tingen Web Service, and the Tingen Web Service:
-                    <list type="number">
-                        <item>Opens the box</item>
-                        <item>Looks through the box for specific information</item>
-                        <item>Uses that information to do something</item>
-                        <item>Potentially modifies the contents</item>
-                        <item>Makes sure everything is in order to be returned to Avatar</item>
-                        <item>Closes the box</item>
-                    </list>
-                    The box is then returned to Avatar.<br>
-                        <br />
-                        <b><u>Additional information</u></b><br />
-                        The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                        class library to define the <c>OptionObject</c> and its properties.<br />
-                        <br />
-                        You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                        and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                    </br>
-                </note>
-            </para>
-            <para>
-                <note type="note" title="Types of OptionObjects">
-                    The Tingen Web Service defines three types of <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see>:<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">SentOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">SentOptionObject</see><br />
                     This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                     that the Tingen Web Service needs to process a request.<br />
-                    The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                    The SentOptionObject is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">WorkerOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.WorkerOptionObject">WorkerOptionObject</see><br />
                     This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                     the Tingen Web Service.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">CompleteOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">CompleteOptionObject</see><br />
                     This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                     Tingen Web Service.<br />
                     <br />
@@ -144,47 +100,22 @@
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">
-            <summary>The complete <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> that is returned to Avatar.</summary>
+            <summary>The <b>complete</b> <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see>.</summary>
             <remarks>
             <para>
-                <note type="note" title="About OptionObjects">
-                    An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> defines the web service contract for use with Avatar.<br />
+                <note type="tip" title="Types of OptionObjects">
+                    The Tingen Web Service defines three types of <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObjects</see>:<br />
                     <br />
-                    You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                    box to the Tingen Web Service, and the Tingen Web Service:
-                    <list type="number">
-                        <item>Opens the box</item>
-                        <item>Looks through the box for specific information</item>
-                        <item>Uses that information to do something</item>
-                        <item>Potentially modifies the contents</item>
-                        <item>Makes sure everything is in order to be returned to Avatar</item>
-                        <item>Closes the box</item>
-                    </list>
-                    The box is then returned to Avatar.<br>
-                        <br />
-                        <b><u>Additional information</u></b><br />
-                        The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                        class library to define the <c>OptionObject</c> and its properties.<br />
-                        <br />
-                        You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                        and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                    </br>
-                </note>
-            </para>
-            <para>
-                <note type="note" title="Types of OptionObjects">
-                    The Tingen Web Service defines three types of <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see>:<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">SentOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">SentOptionObject</see><br />
                     This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
                     that the Tingen Web Service needs to process a request.<br />
-                    The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
+                    The SentOptionObject is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">WorkerOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.WorkerOptionObject">WorkerOptionObject</see><br />
                     This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
                     the Tingen Web Service.<br />
                     <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">CompleteOptObj</see><br />
+                    The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">CompleteOptionObject</see><br />
                     This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
                     Tingen Web Service.<br />
                     <br />
@@ -193,101 +124,64 @@
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.Build(ScriptLinkStandard.Objects.OptionObject2015)">
-            <summary>Initialize a new AvatarOptionObject object.</summary>
-            <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015" /> sent from Avatar.</param>
+            <summary>Initialize a new <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject"/>.</summary>
+            <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">OptionObject</see> sent from Avatar.</param>
             <remarks>
-            <para>
-                <note type="note" title="About OptionObjects">
-                    An Avatar <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> defines the web service contract for use with Avatar.<br />
-                    <br />
-                    You can think of it as a box that contains all of the information that is in a form. Avatar sends that
-                    box to the Tingen Web Service, and the Tingen Web Service:
-                    <list type="number">
-                        <item>Opens the box</item>
-                        <item>Looks through the box for specific information</item>
-                        <item>Uses that information to do something</item>
-                        <item>Potentially modifies the contents</item>
-                        <item>Makes sure everything is in order to be returned to Avatar</item>
-                        <item>Closes the box</item>
-                    </list>
-                    The box is then returned to Avatar.<br>
-                        <br />
-                        <b><u>Additional information</u></b><br />
-                        The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
-                        class library to define the <c>OptionObject</c> and its properties.<br />
-                        <br />
-                        You can read more about OptionObjects <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/">here</see>,
-                        and the specific <c>OptionObject2015</c> implementation <see href="https://rcskids.github.io/ScriptLinkStandard/api/scriptlinkstandard.objects/optionobject2015.html">here</see>.
-                    </br>
-                </note>
-            </para>
-            <para>
-                <note type="note" title="Types of OptionObjects">
-                    The Tingen Web Service defines three types of <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see>:<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">SentOptObj</see><br />
-                    This is the OptionObject that Avatar sends to the Tingen Web Service. It contains all of the information
-                    that the Tingen Web Service needs to process a request.<br />
-                    The SentOptObj is <i>never</i> modified by the Tingen Web Service; it is the One Source Of Truth.<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">WorkerOptObj</see><br />
-                    This is the OptionObject that is used to process a request, and <i>may potentially</i> be modified by
-                    the Tingen Web Service.<br />
-                    <br />
-                    The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">CompleteOptObj</see><br />
-                    This is the OptionObject that is returned to Avatar after <i>potentially</i> being modified by the
-                    Tingen Web Service.<br />
-                    <br />
-                </note>
-            </para>
-            The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObjects</see> that the Tingen Web Service needs are bundled into this single object.
+            The <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject"/> instance bundles all of the necessary OptionObjects that the Tingen Web
+            Service needs to process a request, all in a cute little package that laughs when tickled.
             </remarks>
-            <returns>A new instance of <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject" />.</returns>
+            <returns>A new instance of <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject"/>.</returns>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.WasSent(ScriptLinkStandard.Objects.OptionObject2015)">
-            <summary>Verify whether an <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> was received from Avatar.</summary>
-            <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> to verify.</param>
+            <summary>Verify whether the <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">OptionObject</see> was sent from Avatar.</summary>
+            <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject">OptionObject</see> to verify.</param>
             <remarks>
-            <para>The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> is required, so if Avatar doesn't send one, it's
-            game over, man! It's game over!<br/>
+            <para>The <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">sent OptionObject</see> is required, so if Avatar didn't send one, it's game over,
+            man! <i>It's game over!</i><br/>
             <br/>
-            And by "game over", I mean that the Tingen Web Service will log  an error return an unmodified
-            <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> back to Avatar. </para>
+            And by "game over", I mean that the Tingen Web Service will log an error and return an unmodified
+            <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> back to Avatar.
+            </para>
             </remarks>
-            <returns>True if an <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> was sent; otherwise, false.</returns>
+            <returns><c>True</c> if an <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> was sent; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptObj(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.Session.Tracer)">
-            <summary>Export a <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to HTML and JSON files.</summary>
+        <member name="M:TingenWebService.Core.Avatar.AvatarOptionObject.ExportOptionObject(ScriptLinkStandard.Objects.OptionObject2015,System.String,TingenWebService.Core.Session.Tracer)">
+            <summary>Export a <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> as HTML and JSON formatted data.</summary>
             <remarks>This is primarily used for troubleshooting.</remarks>
-            <param name="sentOptionObject">The <see cref="T:ScriptLinkStandard.Objects.OptionObject2015"/> to export.</param>
+            <param name="sentOptionObject">The <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> sent from Avatar. </param>
             <param name="exportPath">The directory path where the exported files will be saved.</param>
             <example>
             <code>
             AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\WebService\%AvatarSystem%\Export\");
-            // Exports:
-            //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
-            //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
             </code>
+            Exports:
+            C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
+            C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
             </example>
         </member>
         <member name="T:TingenWebService.Core.Avatar.AvatarScriptParameter">
-            <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
+            <summary>Objects and logic related to the Avatar <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see></summary>
             <remarks>
             <para>
-                <note type="note" title="About Avatar data">
+                <note type="tip" title="About Avatar data">
                     Avatar sends two pieces of data to the Tingen Web Service:
                     <list type="number">
-                        <item> The <see cref="!:OptionObject2015">OptionObject</see> (which you may see referred to as a <see cref="!:OptionObject2015" />)</item>
-                        <item> The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see></item>
+                        <item>
+                            The <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> (which you may see referred to as a "<c>OptionObject2015</c>")
+                        </item>
+                        <item>
+                            The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see>
+                        </item>
                     </list>
                     Both of these components are required; if either of these components are missing, the Tingen Web Service cannot function properly.
                 </note>
-            </para><br />
+            </para>
+            This class focuses on the <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see>.
             <para>
                 <note type="note" title="About the Avatar Script Parameter">
-                    The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
+                    The Avatar <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.<br />
                     <br />
-                    Here are the syntax rules for the Script Parameter:
+                    The syntax for the Script Parameter is as follows:<br />
                     <list type="bullet">
                         <item>The Script Parameter cannot be null or empty.</item>
                         <item>The Script Parameter cannot exceed 50 characters in length.</item>
@@ -304,74 +198,68 @@
                     </list>
                     For a list of the Script Parameters that are currently supported by the Tingen Web Service, see [NEED-LINK-HERE].
                 </note>
-            </para><br />
+            </para>
             </remarks>
         </member>
         <member name="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter">
-            <summary>The original script parameter sent from Avatar.</summary>
-            <remarks>
-            <para>
-                <note type="note" title="About the Avatar Script Parameter">
-                    The Avatar Script Parameter is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.
-                    <br />
-                    Here are the syntax rules for the Script Parameter:
-                    <list type="bullet">
-                        <item>The Script Parameter cannot be null or empty.</item>
-                        <item>The Script Parameter cannot exceed 50 characters in length.</item>
-                        <item>The Script Parameter can only contain letters, numbers, underscores (`_`), and hyphens (`-`).</item>
-                    </list>
-                    Aside from those rules, the Script Parameter can be structured in any way that makes sense, as long as the Tingen Web Service can interpret it.<br />
-                    <br />
-                    For example, the following are all valid Script Parameters:
-                    <list type="bullet">
-                        <item>`_FormName-DoSomething`</item>
-                        <item>`_FormName-DoSomething-Else`</item>
-                        <item>`DoSomething`</item>
-                        <item>`DoSomething-Else-Please`</item>
-                    </list>
-                    For a list of the Script Parameters that are currently supported by the Tingen Web Service, see [NEED-LINK-HERE].
-                </note>
-            </para>
-            <para>
-                <note type="note" title="Types of Script Parameters">
-                    There are two types of Script Parameters:<br />
-                    <br />
-                    <b>Form-specific</b><br />
-                    If a Script Parameter starts with an underscore (`_`), the Tingen Web Service will route the request to a specific form.<br />
-                    For example, if the Script Parameter is `_OpenIncident-DoSomething`, the Tingen Web Service will route the request to `Module.OpenIncident` for further processing.
-                    <br />
-                    The <b>General</b><br />
-                    If a Script Parameter does not start with an underscore (`_`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br />
-                    For example, if the Script Parameter is `DoSomething`, the Tingen Web Service will route that command to the appropriate code for processing.
-                    <br />
-                </note>
-            </para>
-            </remarks>
+            <summary>The original <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter"> Script Parameter</see> sent from Avatar.</summary>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.WasSent(System.String)">
-            <summary>Verify whether a script parameter was received from Avatar.</summary>
-            <param name="sentScriptParameter">The script parameter to verify.</param>
-            <remarks>TBD</remarks>
-            <returns>True if a script parameter was sent; otherwise, false.</returns>
+            <summary>
+            Verify whether a <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> was sent from Avatar.
+            </summary>
+            <param name="sentScriptParameter">
+            The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> to verify.
+            </param>
+            <remarks>
+            <para>The <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> is required, so if Avatar didn't sendone, that's a big
+            mistake! <i>Big!</i> <i><b>Huge!</b></i><br/>
+            <br/>
+            And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified
+            <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> back to Avatar. </para>
+            </remarks>
+            <returns>
+            <c>True</c> if a <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> was sent; otherwise, <c>false</c>.
+            </returns>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.Parse(TingenWebService.Core.Session.Sess)">
-            <summary>Parses the incoming request for the given session.</summary>
-            <param name="sess">The web service session object containing form data and module event parsers.</param>
+            <summary>Parses the sent <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameter</see> to determine the appropriate action.</summary>
+            <param name="sess">The Tingen Web Service <see cref="N:TingenWebService.Core.Session">session</see> data.</param>
             <remarks>
-            TBD
+            <para>
+                <note type="note" title="Types of Script Parameters">
+                    There are two types of <see cref="T:TingenWebService.Core.Avatar.AvatarScriptParameter">Script Parameters</see>:<br />
+                    <br />
+                    <para>
+                        <b>Form-specific request</b><br />
+                        If a Script Parameter <b>
+                            <i>starts</i>
+                        </b> with an underscore (`<c>_</c>`), the Tingen Web Service will route the request to a specific form.<br />
+                        <br />
+                        For example, if the Script Parameter is `_OpenIncident-DoSomething`, the Tingen Web Service will route the request to `Module.OpenIncident` for further processing.
+                    </para>
+                    <para>
+                        <b>General request</b><br />
+                        If a Script Parameter <b>
+                            <i>does not start</i>
+                        </b> with an underscore (`<c>_</c>`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br />
+                        <br />
+                        For example, if the Script Parameter is simply `DoSomething`, the Tingen Web Service will route that command to the appropriate code for processing.
+                    </para>
+                </note>
+            </para>
+            <note type="note" title="About Translations">
+                On occasion, Avatar will store information in a format that isn't easily translatable to what the Tingen Web Service
+                expects/needs. In those cases, the Tingen Web Service will use a translation to convert the data into a something it can work with.<br />
+                For example, an Avatar FormID may be <c>INCIDENT1</c>, but the Tingen Web Service may expect it to be <c>OpenIncident</c>.<br />
+                Translation files are used to convert <c>INCIDENT1</c> to <c>OpenIncident</c>.
+            </note>
             </remarks>
         </member>
         <member name="M:TingenWebService.Core.Avatar.AvatarScriptParameter.SpecificFormRequest(System.String,TingenWebService.Core.Session.Sess)">
-            <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
-            <remarks>
-            Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
-            translation table.<br/>
-            <br/>
-            Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
-            respective event parsers.
-            </remarks>
+            <summary>Requests handling for a specific form.</summary>
             <param name="formName">The name of the specific form to handle.</param>
-            <param name="sess">The web service session object containing form data and module event parsers.</param>
+            <param name="sess">The web service session object.</param>
             <example>
             <code>
             AvatarScriptParameter.SpecificFormRequest("OpenIncident", sess);
@@ -918,7 +806,7 @@
             <remarks>Add to redprint.</remarks>
         </member>
         <member name="T:TingenWebService.Core.Framework.FrameworkMaintenance">
-            <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
+            <summary>Framework maintenance logic.</summary>
             <remarks>
             The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
             Web Service to function properly.
@@ -944,21 +832,16 @@
             </remarks>
         </member>
         <member name="T:TingenWebService.Core.Framework.FrameworkSetting">
-            <summary>Framework logic.</summary>
+            <summary>Tingen Web Service framework settings.</summary>
             <remarks>TBD</remarks>
         </member>
         <member name="P:TingenWebService.Core.Framework.FrameworkSetting.AvatarGeneratedDataRoot">
             <summary>Avatar generated data.</summary>
-            <remarks>
-            Any data that is generated by Avatar is stored here.<br/>
-            This folder is available to all Tingen Web Services.
-            </remarks>
+            <remarks>Any data that is generated by Avatar is stored here.</remarks>
         </member>
         <member name="P:TingenWebService.Core.Framework.FrameworkSetting.ConfigRoot">
             <summary>Configuration data.</summary>
-            <remarks>
-            All *.config files are stored here.
-            </remarks>
+            <remarks>All *.config files are stored here.</remarks>
         </member>
         <member name="P:TingenWebService.Core.Framework.FrameworkSetting.ExportRoot">
             <summary>Export data.</summary>
@@ -981,8 +864,15 @@
             <remarks>All session data is stored here.</remarks>
         </member>
         <member name="P:TingenWebService.Core.Framework.FrameworkSetting.TranslationRoot">
-            <summary>Translation table data.</summary>
-            <remarks>All translation table data is stored here.</remarks>
+            <summary>Translation files.</summary>
+            <remarks>
+            <note type="note" title="About Translations">
+                On occasion, Avatar will store information in a format that isn't easily translatable to what the Tingen Web Service
+                expects/needs. In those cases, the Tingen Web Service will use a translation to convert the data into a something it can work with.<br />
+                For example, an Avatar FormID may be <c>INCIDENT1</c>, but the Tingen Web Service may expect it to be <c>OpenIncident</c>.<br />
+                Translation files are used to convert <c>INCIDENT1</c> to <c>OpenIncident</c>.
+            </note>
+            All translation files are stored here.</remarks>
         </member>
         <member name="M:TingenWebService.Core.Framework.FrameworkSetting.Load(System.String,System.String)">
             <summary>Load the Tingen Web Service framework.</summary>
@@ -1062,16 +952,13 @@
             <param name="frameworkSetting">The <see cref="P:TingenWebService.Core.Session.Sess.FrameworkSetting"> framework components</see>.</param>
             <returns>A new Tingen Web Service session object.</returns>
         </member>
-        <member name="M:TingenWebService.Core.Utility.AvatarForm.GetFormName(System.String,System.String,TingenWebService.Core.Session.Tracer)">
-            <summary>
-            Gets the form name from the translation table based on the original option ID sent by Avatar.
-            </summary>
-            <param name="tngnWsvcSession">
-            The session object containing the original option ID and translation table.
-            </param>
+        <member name="M:TingenWebService.Core.Utility.AvatarForm.GetTranslatedName(System.String,System.String,TingenWebService.Core.Session.Tracer)">
+            <summary>Gets the form name from the translation table based on the original option ID sent by Avatar.</summary>
+            <param name="translationPath">The path to the translation files.</param>
+            <param name="formId">The original option ID sent by Avatar.</param>
+            <param name="trc">The tracer object for logging.</param>
             <remarks>
-            This translates the FormId to the corresponding FormName using the translation table located at <c>
-            FormIdToName.translation</c> in the translation path.
+            This translates the FormId to the corresponding FormName using the translation table located at <c>FormIdToName.translation</c> in the translation path.
             </remarks>
             <returns>The name of the form corresponding to the original option ID.</returns>
             <example>
@@ -1348,11 +1235,11 @@
                 is returned to Avatar from a single location, regardless of whether the request was successful or not.
             </para>
             
-             <para><b>Important! Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</b><br /> For some
-             unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be named
-             "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process
-             the response.<br /> <br /> This is only the case for the<c> RunScript()</c> method.<br /> <br /> If somebody
-             knows why this is the case, please let me know. </para>
+             <para><b><i>IMPORTANT</i>: Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</b><br /> For
+             some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
+             named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to
+             process the response.<br /> <br /> This is only the case for the<c> RunScript()</c> method.<br /> <br /> If
+             somebody knows why this is the case, please let me know. </para>
             
              This method is required by Avatar.
              </remarks>
@@ -1375,7 +1262,7 @@
                     </list>
                     The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
                     <list>
-                        <item>6 - Return a (potentially) modified <see cref="T:ScriptLinkStandard.Objects.OptionObject2015">OptionObject</see> to <c>RunScript()</c></item>
+                        <item>6 - Return a (potentially) modified <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> to <c>RunScript()</c></item>
                     </list>
                 </note>
             </para>

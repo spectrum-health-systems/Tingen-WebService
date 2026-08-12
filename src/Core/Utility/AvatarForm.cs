@@ -1,6 +1,5 @@
 ﻿// 260812_code
 // 260812_documentation
-
 using System;
 using System.IO;
 using TingenWebService.Core.Logger;
@@ -17,8 +16,7 @@ namespace TingenWebService.Core.Utility
         /// <param name="formId">The original option ID sent by Avatar.</param>
         /// <param name="trc">The tracer object for logging.</param>
         /// <remarks>
-        /// This translates the FormId to the corresponding FormName using the translation table located at <c>
-        /// FormIdToName.translation</c> in the translation path.
+        /// This translates the FormId to the corresponding FormName using the translation table located at <c>FormIdToName.translation</c> in the translation path.
         /// </remarks>
         /// <returns>The name of the form corresponding to the original option ID.</returns>
         /// <example>

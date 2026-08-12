@@ -9,7 +9,7 @@
 
 * How to reset everything using the daily file
 * how to comment/uncomment primeval logs in source code files
-
+* Check AvatarOptioObject.Export() to see if the example looks right
 
 TraceLogs
 

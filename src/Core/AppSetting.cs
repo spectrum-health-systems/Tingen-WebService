@@ -1,5 +1,5 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ namespace TingenWebService.Core
 {
     /// <summary>Tingen Web Service setting logic.</summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AppSetting"]/AboutAppSetting/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Core"]/AboutAppSetting/*'/>
     /// </remarks>
     internal class AppSetting
     {
@@ -86,7 +86,7 @@ namespace TingenWebService.Core
         /// <returns>The loaded Tingen Web Service configuration.</returns>
         internal static AppSetting Load(string configPath)
         {
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-AppSetting-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Load");
 
             if (!File.Exists(configPath))
             {
@@ -103,7 +103,7 @@ namespace TingenWebService.Core
         /// <remarks>Add to redprint.</remarks>
         private static void Build(string configPath)
         {
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-AppSetting-Build");
 
             AppSetting tngnWsvcConfig = new AppSetting()
             {

@@ -1,5 +1,5 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +24,7 @@ namespace TingenWebService.Core.Trove
         /// <param name="translationRoot">The root directory where the translations will be exported.</param>
         internal static void ExportTranslations(string translationRoot)
         {
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
+            //LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
 
             foreach (var translationFileName in Catalog.TranslationNames())
             {

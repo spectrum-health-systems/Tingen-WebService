@@ -1,5 +1,5 @@
-﻿// 260807_code
-// 260807_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System;
 using System.Collections.Generic;
@@ -130,7 +130,7 @@ namespace TingenWebService.Core.Trove
         /// <param name="blueprintRoot">The root directory where the blueprints will be exported.</param>
         internal static void ExportBlueprints(string blueprintRoot)
         {
-            Logger.//LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-ExportBlueprints");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkMaintenance-ExportBlueprints");
 
             var blueprintFactories = new Dictionary<string, Func<string>>
             {
