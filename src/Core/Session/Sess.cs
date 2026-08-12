@@ -63,31 +63,31 @@ namespace TingenWebService.Core.Session
         /// <returns>A new Tingen Web Service session object.</returns>
         internal static Sess StartSession(OptionObject2015 sentOptionObject, string sentScriptParameter, RuntimeSetting runtimeSetting, Framework.FrameworkSetting frameworkSetting)
         {
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
 
             AppSetting appSetting = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config"));
             string sessionFolder  = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurrentDate, runtimeSetting.CurrentTime);
 
             var s = new Sess();
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess1");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess1");
             s.RuntimeSetting = runtimeSetting;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess2");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess2");
             s.FrameworkSetting = frameworkSetting;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess3");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess3");
             s.AppSetting = appSetting;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess4");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess4");
             s.OptionObject = AvatarOptionObject.Build(sentOptionObject);
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess5");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess5");
             s.SentScriptParameter = sentScriptParameter;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess6");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess6");
             s.Trc = Tracer.Build(appSetting.TraceLimit, sessionFolder);
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess7");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess7");
             s.SessionFolder = sessionFolder;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess8");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess8");
             s.RunningLog = string.Empty;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess9");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess9");
             s.RunningDetail = string.Empty;
-            Logger.LogEvent.Primeval("PRELOG-TRACE-Sess10");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess10");
 
 
 

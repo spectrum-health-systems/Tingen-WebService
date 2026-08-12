@@ -1,93 +1,88 @@
-﻿// 260806_code
+﻿// 260811_code
 // 260811_documentation
 
 using System;
 using System.IO;
 using ScriptLinkStandard.Objects;
 using TingenWebService.Core.Logger;
+using TingenWebService.Core.Session;
 
 namespace TingenWebService.Core.Avatar
 {
-    /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
+    /// <summary>Objects and logic related to Avatar <see cref="OptionObject2015">OptionObjects</see></summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/> <br/>
+    /// This class focuses on <see cref="AvatarOptionObject">OptionObjects</see>.
     /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
     /// </remarks>
     internal class AvatarOptionObject
     {
-        /// <summary>The original <see cref="OptionObject2015"/> sent from Avatar.</summary>
+        /// <summary>The <b>original</b> <see cref="AvatarOptionObject">OptionObject</see> <b>sent</b> from Avatar.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 SentOptionObject { get; set; }
 
-        /// <summary>The worker <see cref="OptionObject2015"/> used during processing.</summary>
+        /// <summary>The <b>worker</b> <see cref="AvatarOptionObject">OptionObject</see> used during processing.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 WorkerOptionObject { get; set; }
 
-        /// <summary>The complete <see cref="OptionObject2015"/> that is returned to Avatar.</summary>
+        /// <summary>The <b>complete</b> <see cref="AvatarOptionObject">OptionObject</see>.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutOptionObjects/*'/>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfOptionObjects/*'/>
         /// </remarks>
         public OptionObject2015 CompleteOptionObject { get; set; }
 
-        /// <summary>Initialize a new AvatarOptionObject object.</summary>
-        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> sent from Avatar.</param>
-        /// <remarks>TBD</remarks>
+        /// <summary>Initialize a new <see cref="AvatarOptionObject"/>.</summary>
+        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar.</param>
+        /// <remarks>
+        /// The <see cref="AvatarOptionObject">OptionObjects</see> that the Tingen Web Service needs are bundled into this single object.
+        /// </remarks>
         /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
         internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
             /* DEVNOTE: This method could be a simple expression-bodied member, for debugging purposes it is written as a full method so
              * that a debug log can created.
              *
-             * Do not put logger functionality here, it will cause havoc!
+             * Do not put trace logs here, it will cause havoc!
              */
 
-            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build");
 
-            // TESTING BLOCK
-            var ao = new AvatarOptionObject();
-            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build1");
-            ao.SentOptionObject = sentOptionObject;
-            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build2");
-            ao.WorkerOptionObject = sentOptionObject.Clone();
-            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build3");
-            ao.CompleteOptionObject = null;
-            LogEvent.Primeval("PRELOG-TRACE-AvatarOptionObject-Build4");
-
-            return ao;
-
-            //return new AvatarOptionObject
-            //{
-            //    SentOptionObject      = sentOptionObject,
-            //    WorkerOptionObject    = sentOptionObject.Clone(),
-            //    CompleteOptionObject  = null
-            //};
+            return new AvatarOptionObject
+            {
+                SentOptionObject     = sentOptionObject,
+                WorkerOptionObject   = sentOptionObject.Clone(),
+                CompleteOptionObject = null
+            };
         }
 
-        /// <summary>Verify whether an <see cref="OptionObject2015"/> was received from Avatar.</summary>
-        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> to verify.</param>
-        /// <remarks>TBD</remarks>
-        /// <returns>True if an <see cref="OptionObject2015"/> was sent; otherwise, false.</returns>
+        /// <summary>Verify whether an <see cref="AvatarOptionObject">OptionObject</see> was sent from Avatar.</summary>
+        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> to verify.</param>
+        /// <remarks>
+        /// <para>The <see cref="AvatarOptionObject">OptionObject</see> is required, so if Avatar doesn't send one, it's game over, man!
+        /// <i>It's game over!</i><br/>
+        /// <br/>
+        /// And by "game over", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">OptionObject</see>
+        /// back to Avatar.
+        /// </para>
+        /// </remarks>
+        /// <returns>True if an <see cref="AvatarOptionObject">OptionObject</see> was sent; otherwise, false.</returns>
         internal static bool WasSent(OptionObject2015 sentOptionObject)
         {
-            /* DEVNOTE: This method could be a simple expression-bodied member, but it is written as a full method this
-             * is a critical error and needs to be logged.
+            /* DEVNOTE: This method could be a simplified but it is written as is because this is a critical error and needs to be logged.
              *
-             * Do not put logger functionality here, it will cause havoc!
+             * Do not put trace logs here, it will cause havoc!
              */
 
-            LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
+            //LogEvent.Primeval("PRELOG-TRACE-WasSent-OptionObject");
 
             if (sentOptionObject == null)
             {
                 LogEvent.Primeval("ERROR-MissingScriptParameter");
-                // TODO - Potentially send an email in addition to the error logs.
+                // TODO: Potentially send an email in addition to the error logs.
 
                 return false;
             }
@@ -97,7 +92,7 @@ namespace TingenWebService.Core.Avatar
             }
         }
 
-        // TODO - Don't use "dynamic`
+        // TODO:Don't use "dynamic`
         ///////// <summary>Finalize the <see cref="OptionObject2015"/> so it can be returned to Avatar.</summary>
         ///////// <remarks>
         ///////// Two things are done here:
@@ -124,32 +119,30 @@ namespace TingenWebService.Core.Avatar
         //////    twsSession.OptObj.Complete.ToReturnOptionObject(optionObjectErrorCode, optionObjectErrorMessage);
         //////}
 
-        // TODO - Test
         /// <summary>Export a <see cref="OptionObject2015"/> to HTML and JSON files.</summary>
-        /// <remarks>
-        /// Writes the <paramref name="sentOptObj"/> contents to HTML/JSON files.<br/> <br/> This is primarily used for
-        /// troubleshooting.
-        /// </remarks>
-        /// <param name="sentOptObj">The <see cref="OptionObject2015"/> to export.</param>
+        /// <remarks>This is primarily used for troubleshooting.</remarks>
+        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> to export.</param>
         /// <param name="exportPath">The directory path where the exported files will be saved.</param>
         /// <example>
         /// <code>
         /// AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\WebService\%AvatarSystem%\Export\");
-        /// // Produces:
+        /// // Exports:
         /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
         /// //   C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </code>
         /// </example>
-        internal static void ExportOptObj(OptionObject2015 sentOptObj, string exportPath, int traceLimit, string sessionFolder)
+        internal static void ExportOptObj(OptionObject2015 sentOptionObject, string exportPath, Tracer trc)
         {
-            LogEvent.Trace(1, traceLimit, sessionFolder);
+            //TODO: Test this functionality.
+
+            LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
             var dateTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
 
-            var htmlVersion = sentOptObj.ToHtmlString(true);
+            var htmlVersion = sentOptionObject.ToHtmlString(true);
             File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{dateTime}.html"), htmlVersion);
 
-            var jsonVersion = sentOptObj.ToJson();
+            var jsonVersion = sentOptionObject.ToJson();
             File.WriteAllText(Path.Combine(exportPath, "OptionObject", $"{dateTime}.json"), jsonVersion);
         }
     }

@@ -18,19 +18,6 @@
 - Test upper/lowercase script parameter parse
 - Fix "Value cannot be null" error when starting fresh
 
-TraceLogs
-
-0 - No trace logs
-1 - Method entry/exit
-2 -
-3 -
-4 - Block
-5 - Block
-6 - Block
-7 - Special case
-8 - Special case
-9 - Debugging (all trace logs)
-
 
 ## Next
 

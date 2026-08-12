@@ -1,4 +1,4 @@
-﻿// 260807_code
+﻿// 260811_code
 // 260811_documentation
 
 using System;
@@ -10,47 +10,35 @@ using TingenWebService.Module.OpenIncident;
 
 namespace TingenWebService.Core.Avatar
 {
-    /// <summary>Data exchanged between Avatar and the Tingen Web Service.</summary>
+    /// <summary>Objects and logic related to the Avatar <see cref="AvatarScriptParameter">Script Parameter</see></summary>
     /// <remarks>
-    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/><br/>
-    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/><br/>
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutAvatarData/*'/>
+    /// This class focuses on the <see cref="AvatarScriptParameter">Script Parameter</see>.
+    /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
     /// </remarks>
     internal class AvatarScriptParameter
     {
-        /// <summary>The original script parameter sent from Avatar.</summary>
-        /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/AboutTheScriptParameter/*'/>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
-        /// </remarks>
+        /// <summary>The original <see cref="AvatarScriptParameter"> Script Parameter</see> sent from Avatar.</summary>
         public string SentScriptParameter { get; set; }
 
-        ///////// <summary>Initialize a new AvatarData object.</summary>
-        ///////// <param name="sentScriptParameter">The script parameter sent from Avatar.</param>
-        ///////// <remarks>TBD</remarks>
-        ///////// <returns>A new instance of <see cref="AvatarScriptParameter"/>.</returns>
-        //////internal static AvatarScriptParameter Build(string sentScriptParameter)
-        //////{
-        //////    LogEvent.Primeval("PRELOG-TRACE-AvatarScriptParameter-Build");
-
-        //////    return new AvatarScriptParameter
-        //////    {
-        //////        SentScriptParameter = sentScriptParameter
-        //////    };
-        //////}
-
-        /// <summary>Verify whether a script parameter was received from Avatar.</summary>
-        /// <param name="sentScriptParameter">The script parameter to verify.</param>
-        /// <remarks>TBD</remarks>
-        /// <returns>True if a script parameter was sent; otherwise, false.</returns>
+        /// <summary>Verify whether a <see cref="AvatarScriptParameter">Script Parameter</see> was sent from Avatar.</summary>
+        /// <param name="sentScriptParameter">The <see cref="AvatarScriptParameter">Script Parameter</see> to verify.</param>
+        /// <remarks>
+        /// <para>
+        /// The <see cref="AvatarScriptParameter">Script Parameter</see> is required, so if Avatar doesn't send  one, that's a big mistake!
+        /// <i>Big!</i> <i><b>Huge!</b></i><br/>
+        /// <br/> And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">
+        /// OptionObject</see> back to Avatar. </para>
+        /// </remarks>
+        /// <returns>True if a <see cref="AvatarScriptParameter">Script Parameter</see> was sent; otherwise, false.</returns>
         internal static bool WasSent(string sentScriptParameter)
         {
-            /* DEVNOTE: This method could be a simple expression-bodied member, but it is written as a full method this
-             * is a critical error and needs to be logged.
+            /* DEVNOTE: This method could be a simplified but it is written as is because this is a critical error and needs to be logged.
              *
-             * Do not put logger functionality here, it will cause havoc!
+             * Do not put trace logs here, it will cause havoc!
              */
 
-            LogEvent.Primeval("PRELOG-TRACE-WasSent-ScriptParameter");
+            //LogEvent.Primeval("PRELOG-TRACE-WasSent-ScriptParameter");
 
             if (string.IsNullOrWhiteSpace(sentScriptParameter))
             {
@@ -65,10 +53,10 @@ namespace TingenWebService.Core.Avatar
             }
         }
 
-        /// <summary>Parses the incoming request for the given session.</summary>
-        /// <param name="sess">The web service session object containing form data and module event parsers.</param>
+        /// <summary>Parses the sent <see cref="AvatarScriptParameter">Script Parameter</see> to determine the appropriate action.</summary>
+        /// <param name="sess">The Tingen Web Service <see cref="Session">session</see> data.</param>
         /// <remarks>
-        /// TBD
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/TypesOfScriptParameters/*'/>
         /// </remarks>
         internal static void Parse(Sess sess)
         {
@@ -78,9 +66,9 @@ namespace TingenWebService.Core.Avatar
 
             if (sess.SentScriptParameter.StartsWith("_", StringComparison.OrdinalIgnoreCase))
             {
-                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
+                LogEvent.Trace(3, sess.Trc.Lmt, sess.Trc.Fld);
 
-                var formName = AvatarForm.GetFormName(sess.FrameworkSetting.TranslationRoot, sess.OptionObject.SentOptionObject.OptionId, sess.Trc);
+                var formName = AvatarForm.GetTranslatedName(sess.FrameworkSetting.TranslationRoot, sess.OptionObject.SentOptionObject.OptionId, sess.Trc);
 
                 sess.RunningLog += RunningLog.TranslateFormId(sess.OptionObject.SentOptionObject.OptionId, formName);
 
@@ -88,7 +76,7 @@ namespace TingenWebService.Core.Avatar
             }
             else
             {
-                LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
+                LogEvent.Trace(3, sess.Trc.Lmt, sess.Trc.Fld);
                 // StandAlongRequest
             }
         }
@@ -116,7 +104,7 @@ namespace TingenWebService.Core.Avatar
             switch (formName)
             {
                 case "OpenIncident":
-                    LogEvent.Trace(4, sess.Trc.Lmt, sess.Trc.Fld);
+                    LogEvent.Trace(3, sess.Trc.Lmt, sess.Trc.Fld);
                     OpenIncidentRequest.Parse(sess);
 
                     break;

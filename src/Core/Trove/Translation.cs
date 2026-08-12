@@ -24,7 +24,7 @@ namespace TingenWebService.Core.Trove
         /// <param name="translationRoot">The root directory where the translations will be exported.</param>
         internal static void ExportTranslations(string translationRoot)
         {
-            Logger.LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
+            Logger.//LogEvent.Primeval("PRELOG-TRACE-FrwkMaint-ExportTranslations");
 
             foreach (var translationFileName in Catalog.TranslationNames())
             {

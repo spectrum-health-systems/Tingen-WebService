@@ -1,5 +1,5 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260811_code
+// 260811_documentation
 
 using System;
 using System.IO;
@@ -8,7 +8,7 @@ using TingenWebService.Core.Trove;
 
 namespace TingenWebService.Core.Framework
 {
-    /// <summary>Framework logic.</summary>
+    /// <summary>Tingen Web Service framework settings.</summary>
     /// <remarks>TBD</remarks>
     internal class FrameworkSetting
     {
@@ -55,7 +55,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
         internal static FrameworkSetting Load(string dataRoot, string avatarSystem)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Load");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Load");
 
             try
             {
@@ -76,7 +76,7 @@ namespace TingenWebService.Core.Framework
         /// <returns>A <see cref="FrameworkSetting"/> instance with the specified paths.</returns>
         internal static FrameworkSetting Build(string dataRoot, string avatarSystem)
         {
-            LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Build");
+            //LogEvent.Primeval("PRELOG-TRACE-FrameworkSetting-Build");
 
             var wsvcRoot         = Path.Combine(dataRoot, "WebService");
             var avatarSystemRoot = Path.Combine(wsvcRoot, avatarSystem);

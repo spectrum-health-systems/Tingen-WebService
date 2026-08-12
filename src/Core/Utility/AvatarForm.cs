@@ -27,7 +27,7 @@ namespace TingenWebService.Core.Utility
         /// Console.WriteLine($"Resolved form name: {formName}");
         /// </code>
         /// </example>
-        internal static string GetFormName(string translationPath, string formId, Tracer trc)
+        internal static string GetTranslatedName(string translationPath, string formId, Tracer trc)
         {
             LogEvent.Trace(1, trc.Lmt, trc.Fld);
 

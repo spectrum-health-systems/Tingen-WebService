@@ -23,7 +23,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="duration">The duration of the event.</param>
         internal static void Daily(string sysLogRoot, string todayDate, string startTime, string versionBuild, string runningLog, string duration)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogEvent-Daily");
+            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-Daily");
 
             DuDirectory.ForceExist(sysLogRoot);
 
@@ -43,7 +43,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="errMsg">The error message.</param>
         internal static void Error(string sysLogRoot, string blueprintRoot, string sessStartDateTime, string errCode, string errMsg)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogEvent-Error");
+            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-Error");
 
             DuDirectory.ForceExist(sysLogRoot);
 
@@ -157,7 +157,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="logContent">The content of the log entry.</param>
         internal static void SystemLog(string logFolder, string logName, string logContent)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
+            //LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
 
             LogWriter.WriteLocal(logFolder, logName, logContent);
         }

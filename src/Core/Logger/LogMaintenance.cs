@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Logger
         /// <param name="runtimeSetting">The runtime settings.</param>
         internal static void RecreateSystemLogs(FrameworkSetting frameworkSetting, RuntimeSetting runtimeSetting)
         {
-            LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-RecreateSystemLogs");
+            //LogEvent.Primeval("PRELOG-TRACE-LogMaintenance-RecreateSystemLogs");
 
             LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Runtime.details", Redprint.RuntimeDetails(runtimeSetting));
             LogEvent.SystemLog(frameworkSetting.SysLogRoot, "Framework.settings", Redprint.FrameworkSettings(frameworkSetting));

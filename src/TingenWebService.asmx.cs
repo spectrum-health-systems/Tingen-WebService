@@ -1,5 +1,5 @@
 ﻿// 260811_code
-// 260806_documentation
+// 260811_documentation
 
 using System.Reflection;
 using System.Web.Services;
@@ -44,13 +44,20 @@ namespace TingenWebService
         /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
         /// <remarks>
         /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/RunScript/*'/>
+        ///
+        /// <para><b><i>IMPORTANT</i>: Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</b><br/> For
+        /// some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
+        /// named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to
+        /// process the response.<br/> <br/> This is only the case for the<c> RunScript()</c> method.<br/> <br/> If
+        /// somebody knows why this is the case, please let me know. </para>
+        ///
         /// This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
         public OptionObject2015 RunScript(OptionObject2015 sentOptObj, string sentScriptParam)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-Runscript", $"{sentScriptParam}");
 
             if (!AvatarOptionObject.WasSent(sentOptObj) || !AvatarScriptParameter.WasSent(sentScriptParam))
             {
@@ -59,11 +66,11 @@ namespace TingenWebService
             else
             {
                 StartApp(sentOptObj, sentScriptParam);
-                LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
+                //LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
                 LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
 
                 AvatarScriptParameter.Parse(_sess);
-                LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
+                //LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
                 LogEvent.Session(_sess);
 
                 return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
@@ -79,7 +86,7 @@ namespace TingenWebService
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
-            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
             RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
             FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
@@ -90,7 +97,7 @@ namespace TingenWebService
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
 
-            LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StopApp"); // TESTING
+            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StopApp"); // TESTING
         }
     }
 }
