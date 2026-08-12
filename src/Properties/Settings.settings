@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Build" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">260811</Value>
+      <Value Profile="(Default)">260812</Value>
     </Setting>
     <Setting Name="AvatarSystem" Type="System.String" Scope="Application">
       <Value Profile="(Default)">UAT</Value>

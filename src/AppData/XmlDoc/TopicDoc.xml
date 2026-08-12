@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    N:TingenWebService
+    N:TingenWebService.Core.AvatarData
+
+-->
+
 <Topics>
 
-    <!-- ===== C:TingenWebService.asmx.cs ============================================================================================= -->
+    <!-- ===== N:TingenWebService ============================================================================================= -->
 
     <Topic name ="Asmx">
 
@@ -66,12 +72,12 @@
 
     </Topic>
 
-
-    <!-- ===== C:TingenWebService.Core.RuntimeSetting.cs ============================================================================== -->
+    <!-- ===== N:TingenWebService.Core ================================================================================================ -->
 
     <Topic name ="RuntimeSetting">
 
-        <AboutRuntimeSetting> <!-- 260805 -->
+        <AboutRuntimeSetting>
+            <!-- 260805 -->
             <para>
                 <note type="information" title="The runtime settings">
                     The runtime settings are the first thing that is loaded when the Tingen Web Service starts up, and contains information
@@ -89,11 +95,10 @@
 
     </Topic>
 
-    <!-- ===== C:TingenWebService.Core.AppSetting.cs ================================================================================== -->
-
     <Topic name ="AppSetting">
 
-        <AboutAppSetting> <!-- 260805 -->
+        <AboutAppSetting>
+            <!-- 260805 -->
             <para>
                 <note type="information" title="The Tingen Web Service settings">
                     The Tingen Web Service settings are the second thing that is loaded when the Tingen Web Service starts up, after the
@@ -115,20 +120,26 @@
 
     <Topic name ="AvatarData">
 
-        <AboutAvatarData> <!-- 260811 -->
+        <AboutAvatarData>
+            <!-- 260811 -->
             <para>
                 <note type="note" title="About Avatar data">
                     Avatar sends two pieces of data to the Tingen Web Service:
                     <list type="number">
-                        <item> The <see cref="AvatarOptionObject">OptionObject</see> (which you may see referred to as a "<c>OptionObject2015</c>")</item>
-                        <item> The <see cref="AvatarScriptParameter">Script Parameter</see></item>
+                        <item>
+                            The <see cref="AvatarOptionObject">OptionObject</see> (which you may see referred to as a "<c>OptionObject2015</c>")
+                        </item>
+                        <item>
+                            The <see cref="AvatarScriptParameter">Script Parameter</see>
+                        </item>
                     </list>
                     Both of these components are required; if either of these components are missing, the Tingen Web Service cannot function properly.
                 </note>
             </para>
         </AboutAvatarData>
 
-        <AboutOptionObjects> <!-- 260811 -->
+        <AboutOptionObjects>
+            <!-- 260811 -->
             <para>
                 <note type="note" title="About OptionObjects">
                     An Avatar <see cref="AvatarOptionObject">OptionObject</see> defines the web service contract for use with Avatar.<br/>
@@ -145,7 +156,9 @@
                     </list>
                     The box is then returned to Avatar.<br>
                         <br/>
-                        <b><u>Additional information</u></b><br/>
+                        <b>
+                            <u>Additional information</u>
+                        </b><br/>
                         The Tingen Web Service uses the <see href="https://rcskids.github.io/ScriptLinkStandard/"> ScriptLink Standard</see>
                         class library to define the <c>OptionObject</c> and its properties.<br/>
                         <br/>
@@ -156,7 +169,8 @@
             </para>
         </AboutOptionObjects>
 
-        <TypesOfOptionObjects> <!-- 260811 -->
+        <TypesOfOptionObjects>
+            <!-- 260811 -->
             <para>
                 <note type="note" title="Types of OptionObjects">
                     The Tingen Web Service defines three types of <see cref="AvatarOptionObject">OptionObjects</see>:<br/>
@@ -178,7 +192,8 @@
             </para>
         </TypesOfOptionObjects>
 
-        <AboutTheScriptParameter> <!-- 260811 -->
+        <AboutTheScriptParameter>
+            <!-- 260811 -->
             <para>
                 <note type="note" title="About the Avatar Script Parameter">
                     The Avatar <see cref="AvatarScriptParameter">Script Parameter</see> is a string that is passed from Avatar, and tells the Tingen Web Service what action(s) to take.<br/>
@@ -203,20 +218,25 @@
             </para>
         </AboutTheScriptParameter>
 
-        <TypesOfScriptParameters> <!-- 260811 -->
+        <TypesOfScriptParameters>
+            <!-- 260811 -->
             <para>
                 <note type="note" title="Types of Script Parameters">
                     There are two types of <see cref="AvatarScriptParameter">Script Parameters</see>:<br/>
                     <br/>
                     <para>
                         <b>Form-specific request</b><br/>
-                        If a Script Parameter <b><i>starts</i></b> with an underscore (`<c>_</c>`), the Tingen Web Service will route the request to a specific form.<br/>
+                        If a Script Parameter <b>
+                            <i>starts</i>
+                        </b> with an underscore (`<c>_</c>`), the Tingen Web Service will route the request to a specific form.<br/>
                         <br/>
                         For example, if the Script Parameter is `_OpenIncident-DoSomething`, the Tingen Web Service will route the request to `Module.OpenIncident` for further processing.
                     </para>
                     <para>
                         <b>General request</b><br/>
-                        If a Script Parameter <b><i>does not start</i></b> with an underscore (`<c>_</c>`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br/>
+                        If a Script Parameter <b>
+                            <i>does not start</i>
+                        </b> with an underscore (`<c>_</c>`), the Tingen Web Service will treat the Script Parameter as a command to be processed.<br/>
                         <br/>
                         For example, if the Script Parameter is simply `DoSomething`, the Tingen Web Service will route that command to the appropriate code for processing.
                     </para>
@@ -225,6 +245,27 @@
         </TypesOfScriptParameters>
 
     </Topic>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!-- ===== N:TingenWebService.Core.Framework ====================================================================================== -->
 

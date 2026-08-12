@@ -1,5 +1,5 @@
-﻿// 260811_code
-// 260811_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System;
 using System.IO;
@@ -9,7 +9,7 @@ using TingenWebService.Du;
 
 namespace TingenWebService.Core.Framework
 {
-    /// <summary>Provides methods for maintaining the Tingen Web Service framework.</summary>
+    /// <summary>Framework maintenance logic.</summary>
     /// <remarks>
     /// The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
     /// Web Service to function properly.

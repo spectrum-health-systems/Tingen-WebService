@@ -1,5 +1,5 @@
-﻿// 260811_code
-// 260811_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System;
 using System.IO;
@@ -121,7 +121,7 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>Export a <see cref="OptionObject2015"/> to HTML and JSON files.</summary>
         /// <remarks>This is primarily used for troubleshooting.</remarks>
-        /// <param name="sentOptionObject">The <see cref="OptionObject2015"/> to export.</param>
+        /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar.</param>
         /// <param name="exportPath">The directory path where the exported files will be saved.</param>
         /// <example>
         /// <code>

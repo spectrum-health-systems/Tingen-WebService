@@ -6,9 +6,21 @@
 
 ***
 
-"${DateTime.Now:yyMMdd-HHmmss-fffffff}-[ERR1120]-TwsConfigLoadFailed", SysMsg.ERR1120(ex.Message)[1]
 
-$"{DateTime.Now:yyMMdd-HHmmss-fffffff}-[DEBUG]-FrwkConfig.Build"
+            foreach (var path in Catalog.RequiredFolders(frameworkSetting))
+            {
+                try
+                {
+                    DuDirectory.ForceExist(path);
+                }
+                catch (Exception ex)
+                {
+                    LogEvent.Primeval("ERR1000-FrameworkValidationFailed", ErrorMessage.ERR1000(ex.Message));
+                    //TODO - Should probably send an email notification.
+                }
+            }
+
+            LogEvent.Primeval("ERR1000-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
 
 ***
 

@@ -8,6 +8,7 @@
 
 ## R26.8
 
+- Add error handling to where needed
 - Review web.config and remove unnecessary settings
 - All XML documentation complete
 - Testing functionality complete

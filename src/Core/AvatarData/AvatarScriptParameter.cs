@@ -1,5 +1,5 @@
-﻿// 260811_code
-// 260811_documentation
+﻿// 260812_code
+// 260812_documentation
 
 using System;
 using TingenWebService.Core.Logger;
@@ -25,12 +25,12 @@ namespace TingenWebService.Core.Avatar
         /// <param name="sentScriptParameter">The <see cref="AvatarScriptParameter">Script Parameter</see> to verify.</param>
         /// <remarks>
         /// <para>
-        /// The <see cref="AvatarScriptParameter">Script Parameter</see> is required, so if Avatar doesn't send  one, that's a big mistake!
+        /// The <see cref="AvatarScriptParameter">Script Parameter</see> is required, so if Avatar doesn't send one, that's a big mistake!
         /// <i>Big!</i> <i><b>Huge!</b></i><br/>
-        /// <br/> And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">
+        /// <br/>
+        /// And by "big, huge mistake", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">
         /// OptionObject</see> back to Avatar. </para>
-        /// </remarks>
-        /// <returns>True if a <see cref="AvatarScriptParameter">Script Parameter</see> was sent; otherwise, false.</returns>
+        /// </remarks>True if a <see cref="AvatarScriptParameter">Script Parameter</see> was sent; otherwise, false. </returns>
         internal static bool WasSent(string sentScriptParameter)
         {
             /* DEVNOTE: This method could be a simplified but it is written as is because this is a critical error and needs to be logged.
@@ -77,18 +77,12 @@ namespace TingenWebService.Core.Avatar
             else
             {
                 LogEvent.Trace(3, sess.Trc.Lmt, sess.Trc.Fld);
-                // StandAlongRequest
+
+                // StandAloneRequest
             }
         }
 
-        /// <summary>Handles specific form requests by routing to the appropriate event parser or generating an error.</summary>
-        /// <remarks>
-        /// Generates a hard error when the form name is <c>WSVC2491</c>, indicating the form ID was not found in the
-        /// translation table.<br/>
-        /// <br/>
-        /// Otherwise, routes the known form names <c>OpenIncident</c> and <c>DoseChangeEvaluationOtp</c> to their
-        /// respective event parsers.
-        /// </remarks>
+        /// <summary>Handles requests for specific forms.</summary>
         /// <param name="formName">The name of the specific form to handle.</param>
         /// <param name="sess">The web service session object containing form data and module event parsers.</param>
         /// <example>

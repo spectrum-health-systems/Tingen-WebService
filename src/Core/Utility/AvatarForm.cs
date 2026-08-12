@@ -1,5 +1,7 @@
-﻿// 260806_code
-// 260806_documentation
+﻿// 260812_code
+// 260812_documentation
+
+using System;
 using System.IO;
 using TingenWebService.Core.Logger;
 using TingenWebService.Core.Session;
@@ -10,12 +12,10 @@ namespace TingenWebService.Core.Utility
 {
     public class AvatarForm
     {
-        /// <summary>
-        /// Gets the form name from the translation table based on the original option ID sent by Avatar.
-        /// </summary>
-        /// <param name="tngnWsvcSession">
-        /// The session object containing the original option ID and translation table.
-        /// </param>
+        /// <summary>Gets the form name from the translation table based on the original option ID sent by Avatar.</summary>
+        /// <param name="translationPath">The path to the translation files.</param>
+        /// <param name="formId">The original option ID sent by Avatar.</param>
+        /// <param name="trc">The tracer object for logging.</param>
         /// <remarks>
         /// This translates the FormId to the corresponding FormName using the translation table located at <c>
         /// FormIdToName.translation</c> in the translation path.
@@ -31,10 +31,23 @@ namespace TingenWebService.Core.Utility
         {
             LogEvent.Trace(1, trc.Lmt, trc.Fld);
 
-            var path  = Path.Combine(translationPath, "FormIdToName.translation");
-            var forms = DuJson.ImportFile<Translation.FormId>(path);
+            try
+            {
+                LogEvent.Trace(3, trc.Lmt, trc.Fld);
 
-            return forms.ToFormName[formId];
+                var path  = Path.Combine(translationPath, "FormIdToName.translation");
+                var forms = DuJson.ImportFile<Translation.FormId>(path);
+
+                return forms.ToFormName[formId];
+            }
+            catch (Exception ex)
+            {
+                LogEvent.Trace(3, trc.Lmt, trc.Fld);
+
+                LogEvent.Primeval("ERR1000-FailedToTranslateFormId", ErrorMessage.ERR1000(ex.Message));
+
+                return string.Empty;
+            }
         }
     }
 }
