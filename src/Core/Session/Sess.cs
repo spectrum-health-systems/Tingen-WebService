@@ -68,28 +68,6 @@ namespace TingenWebService.Core.Session
             AppSetting appSetting = AppSetting.Load(Path.Combine(frameworkSetting.ConfigRoot, "TingenWebService.config"));
             string sessionFolder  = Path.Combine(frameworkSetting.SessionRoot, sentOptionObject.OptionUserId, runtimeSetting.CurrentDate, runtimeSetting.CurrentTime);
 
-            ////var s = new Sess();
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess1");
-            ////s.RuntimeSetting = runtimeSetting;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess2");
-            ////s.FrameworkSetting = frameworkSetting;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess3");
-            ////s.AppSetting = appSetting;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess4");
-            ////s.OptionObject = AvatarOptionObject.Build(sentOptionObject);
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess5");
-            ////s.SentScriptParameter = sentScriptParameter;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess6");
-            ////s.Trc = Tracer.Build(appSetting.TraceLimit, sessionFolder);
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess7");
-            ////s.SessionFolder = sessionFolder;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess8");
-            ////s.RunningLog = string.Empty;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess9");
-            ////s.RunningDetail = string.Empty;
-            ////Logger.//LogEvent.Primeval("PRELOG-TRACE-Sess10");
-            //return s;
-
             return new Sess
             {
                 RuntimeSetting      = runtimeSetting,
@@ -107,6 +85,8 @@ namespace TingenWebService.Core.Session
 
     internal class Tracer
     {
+        //LogEvent.Primeval("PRELOG-TRACE-Sess-StartSession");
+
         public int Lmt { get; set; }
         public string Fld { get; set; }
 
@@ -114,7 +94,7 @@ namespace TingenWebService.Core.Session
         {
             return new Tracer()
             {
-                Lmt   = traceLimit,
+                Lmt = traceLimit,
                 Fld = sessionFolder
             };
         }
@@ -123,8 +103,6 @@ namespace TingenWebService.Core.Session
     public class ModuleSetting
     {
         public OpenIncidentSetting OpenIncidentConfig { get; set; }
-
-
     }
 
 }

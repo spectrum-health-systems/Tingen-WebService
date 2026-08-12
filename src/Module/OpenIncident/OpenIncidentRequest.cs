@@ -31,11 +31,6 @@ namespace TingenWebService.Module.OpenIncident
             var configPath = Path.Combine(sess.FrameworkSetting.ConfigRoot, "OpenIncident.config");
 
             var openIncidentConfig = OpenIncidentSetting.Load(configPath, sess.Trc);
-            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
-            // var moduleEnabled = openIncidentConfig.Mode.Equals("enabled", System.StringComparison.OrdinalIgnoreCase);
-            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
-            //var bypassUser = openIncidentConfig.BypassList.Contains(sess.OptionObject.SentOptionObject.OptionUserId);
-            LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
 
             if (ModuleEnabled(openIncidentConfig.Mode, sess.Trc))
             {
@@ -52,10 +47,7 @@ namespace TingenWebService.Module.OpenIncident
             }
 
             LogEvent.Trace(1, sess.Trc.Lmt, sess.Trc.Fld);
-
-
         }
-
 
         private static bool ModuleEnabled(string mode, Tracer trc)
         {
@@ -85,9 +77,6 @@ namespace TingenWebService.Module.OpenIncident
 
             return false;
         }
-
-
-
         private static List<string> GetBypassList(List<string> bypassList, Tracer trc)
         {
             LogEvent.Trace(1, trc.Lmt, trc.Fld);

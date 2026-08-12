@@ -4,7 +4,7 @@
 namespace TingenWebService.Core.Session
 {
     /// <summary>Session maintenance logic.</summary>
-    internal class SessMaintenance
+    internal class SessUtility
     {
         /// <summary>Session maintenance.</summary>
         /// <remarks>

@@ -96,9 +96,9 @@ namespace TingenWebService
 
             FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
 
-            FrameworkMaintenance.DailyValidation(runtimeSetting, frameworkConfig);
+            FrameworkUtility.DailyValidation(runtimeSetting, frameworkConfig);
 
-            SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
+            SessUtility.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
         }

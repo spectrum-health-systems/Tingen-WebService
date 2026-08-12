@@ -139,9 +139,11 @@ namespace TingenWebService.Module.OpenIncident
 
                 Build(configPath, trc);
             }
+
             LogEvent.Trace(1, trc.Lmt, trc.Fld);
             OpenIncidentSetting t = DuJson.ImportFile<OpenIncidentSetting>(configPath);
             LogEvent.Trace(1, trc.Lmt, trc.Fld);
+
             return DuJson.ImportFile<OpenIncidentSetting>(configPath);
         }
 

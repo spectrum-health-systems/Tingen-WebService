@@ -283,10 +283,32 @@
             </code>
             </example>
         </member>
-        <member name="T:TingenWebService.Core.Logger.LogMaintenance">
-            <summary>Provides methods for maintaining system log files.</summary>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.WriteLocal(System.String,System.String,System.String)">
+            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to write.</param>
+            <param name="fileContent">The content to write to the file.</param>
+            <example>
+            <code>
+            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
+            </code>
+            </example>
         </member>
-        <member name="M:TingenWebService.Core.Logger.LogMaintenance.RecreateSystemLogs(TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.RuntimeSetting)">
+        <member name="M:TingenWebService.Core.Logger.LogUtility.AppendLocal(System.String,System.String,System.String)">
+            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
+            <param name="fileFolder">The folder where the file is located.</param>
+            <param name="fileName">The name of the file to append to.</param>
+            <param name="fileContent">The content to append to the file.</param>
+            <example>
+            <code>
+            LogUtility.AppendLocal(
+                @"C:\Tingen_Data\LIVE\AppData\History",
+                "2026-05-15.history",
+                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
+            </code>
+            </example>
+        </member>
+        <member name="M:TingenWebService.Core.Logger.LogUtility.RecreateSystemLogs(TingenWebService.Core.Framework.FrameworkSetting,TingenWebService.Core.RuntimeSetting)">
             <summary>Recreates the system log files.</summary>
             <param name="frameworkSetting">The framework settings.</param>
             <param name="runtimeSetting">The runtime settings.</param>
@@ -325,34 +347,6 @@
             // ```xml
             //     &lt;Settings&gt;&lt;Mode&gt;enabled&lt;/Mode&gt;&lt;/Settings&gt;
             // ```
-            </code>
-            </example>
-        </member>
-        <member name="T:TingenWebService.Core.Logger.LogWriter">
-            <summary>Provides methods for writing log messages to local files.</summary>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogWriter.WriteLocal(System.String,System.String,System.String)">
-            <summary>Writes the supplied content to a local file, overwriting any existing content.</summary>
-            <param name="fileFolder">The folder where the file is located.</param>
-            <param name="fileName">The name of the file to write.</param>
-            <param name="fileContent">The content to write to the file.</param>
-            <example>
-            <code>
-            LogUtility.WriteLocal(@"C:\Tingen_Data\LIVE\AppData\Log", "example.log", "Service started.");
-            </code>
-            </example>
-        </member>
-        <member name="M:TingenWebService.Core.Logger.LogWriter.AppendLocal(System.String,System.String,System.String)">
-            <summary>Appends the supplied content to a local file, creating it if it does not exist.</summary>
-            <param name="fileFolder">The folder where the file is located.</param>
-            <param name="fileName">The name of the file to append to.</param>
-            <param name="fileContent">The content to append to the file.</param>
-            <example>
-            <code>
-            LogUtility.AppendLocal(
-                @"C:\Tingen_Data\LIVE\AppData\History",
-                "2026-05-15.history",
-                $"[{HistoryLog.Timestamp()}] Service started.{Environment.NewLine}");
             </code>
             </example>
         </member>
@@ -819,13 +813,13 @@
         </member>
         <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the components for the session.</summary>
-            <param name="dailyLogFileName">The name of the daily log file.</param>
+            <param name="todayDate">The name of the daily log file.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
             <param name="frameworkSetting">The framework instance.</param>
         </member>
         <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyStructure(TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the Tingen Web Service framework.</summary>
-            <param name="frwkConfig">The framework instance containing the paths to verify.</param>
+            <param name="frameworkSetting">The framework instance containing the paths to verify.</param>
             <remarks>
             The reason why we hand this off is because while currently the configuration contains root paths, it may
             contain other data in the future.
@@ -1235,7 +1229,10 @@
                         <b><i>Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</i></b><br />
                         For some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
                         named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process
-                        the response.<br /> <br /> This is only the case for the<c> RunScript()</c> method.<br />
+                        the response.<br />
+                        <br />
+                        This is only the case for the<c> RunScript()</c> method.<br />
+                        <br />
                         If somebody knows why this is the case, please let me know.
                     </para>
                 </note>
@@ -1251,7 +1248,22 @@
             <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject" /> sent from Avatar.</param>
             <param name="sentScriptParameter">The <see cref="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter" /> sent from Avatar.</param>
             <remarks>
-            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDoc/TopicDoc.xml" path="Topics/Topic[@name=&quot;Asmx&quot;]/StartApp/*" />
+            <para>
+                <note type="information" title="The Magic of StartApp()">
+                    A lot of stuff happens in the <c>StartApp()</c> method,:
+                    <list>
+                        <item>1 - Loads the runtime settings</item>
+                        <item>2 - Loads the framework settings</item>
+                        <item>3 - Verifies/updates the framework</item>
+                        <item>4 - Initializes/starts a new session</item>
+                        <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
+                    </list>
+                    The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
+                    <list>
+                        <item>6 - Return a (potentially) modified <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> to <c>RunScript()</c></item>
+                    </list>
+                </note>
+            </para>
             This method is required by Avatar.
             </remarks>
         </member>

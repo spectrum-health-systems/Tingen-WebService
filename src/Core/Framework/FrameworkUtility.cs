@@ -14,7 +14,7 @@ namespace TingenWebService.Core.Framework
     /// The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
     /// Web Service to function properly.
     /// </remarks>
-    internal static class FrameworkMaintenance
+    internal static class FrameworkUtility
     {
         /// <summary>Validate the Tingen Web Service framework daily.</summary>
         /// <param name="runtimeSetting">The runtime configuration.</param>
@@ -32,7 +32,7 @@ namespace TingenWebService.Core.Framework
         }
 
         /// <summary>Verify the components for the session.</summary>
-        /// <param name="dailyLogFileName">The name of the daily log file.</param>
+        /// <param name="todayDate">The name of the daily log file.</param>
         /// <param name="runtimeSetting">The runtime configuration.</param>
         /// <param name="frameworkSetting">The framework instance.</param>
         private static void VerifyComponents(string todayDate, RuntimeSetting runtimeSetting, FrameworkSetting frameworkSetting)
@@ -45,7 +45,7 @@ namespace TingenWebService.Core.Framework
             VerifyStructure(frameworkSetting);
             string runningDailyLog = $"Framework: OK{Environment.NewLine}";
 
-            LogMaintenance.RecreateSystemLogs(frameworkSetting, runtimeSetting);
+            LogUtility.RecreateSystemLogs(frameworkSetting, runtimeSetting);
             runningDailyLog += $"System logs: OK{Environment.NewLine}";
 
             Blueprint.ExportBlueprints(frameworkSetting.BlueprintRoot);
@@ -54,8 +54,8 @@ namespace TingenWebService.Core.Framework
             Translation.ExportTranslations(frameworkSetting.TranslationRoot);
             runningDailyLog += $"Translation files: OK{Environment.NewLine}";
 
-            var endTime   = DateTime.Now.ToString("HHmmss");
-            var endMs     = DateTime.Now.ToString("fffffff");
+            var endTime = DateTime.Now.ToString("HHmmss");
+            var endMs   = DateTime.Now.ToString("fffffff");
 
             var duration = Utility.TimeDuration.GetDuration(startTime, startMs, endTime, endMs);
 
@@ -63,7 +63,7 @@ namespace TingenWebService.Core.Framework
         }
 
         /// <summary>Verify the Tingen Web Service framework.</summary>
-        /// <param name="frwkConfig">The framework instance containing the paths to verify.</param>
+        /// <param name="frameworkSetting">The framework instance containing the paths to verify.</param>
         /// <remarks>
         /// The reason why we hand this off is because while currently the configuration contains root paths, it may
         /// contain other data in the future.

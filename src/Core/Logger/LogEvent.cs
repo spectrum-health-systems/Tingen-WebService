@@ -31,7 +31,7 @@ namespace TingenWebService.Core.Logger
                                                    .Replace("~RUNNING~LOG~", runningLog)
                                                    .Replace("~DURATION~", duration);
 
-            LogWriter.WriteLocal(sysLogRoot, $"{todayDate}.daily", logContent);
+            LogUtility.WriteLocal(sysLogRoot, $"{todayDate}.daily", logContent);
         }
 
         /// <summary>Logs an error event with the specified details.</summary>
@@ -52,7 +52,7 @@ namespace TingenWebService.Core.Logger
                                               .Replace("~ERROR~CODE~", errCode)
                                               .Replace("~ERROR~MESSAGE~", errMsg);
 
-            LogWriter.WriteLocal(sysLogRoot, $"{sessStartDateTime}-[{errCode}].error", logContent);
+            LogUtility.WriteLocal(sysLogRoot, $"{sessStartDateTime}-[{errCode}].error", logContent);
         }
 
         /// <summary>Logs a primeval event with the specified name and content.</summary>
@@ -69,7 +69,7 @@ namespace TingenWebService.Core.Logger
 
             Thread.Sleep(5);
 
-            LogWriter.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:mmssfffffff}-{logName}.primeval", logContent);
+            LogUtility.WriteLocal(@"C:\Tingen_Data\Development\PrimevalLog", $"{DateTime.Now:mmssfffffff}-{logName}.primeval", logContent);
         }
 
         /// <summary>Logs a session event with the specified session details.</summary>
@@ -125,7 +125,7 @@ namespace TingenWebService.Core.Logger
                                              .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog)
                                              .Replace("~SESSION~DETAILS~", sess.RunningDetail);
 
-                LogWriter.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session", logContent); // simplify
+                LogUtility.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session", logContent); // simplify
             }
 
             LogEvent.Trace(9, sess.Trc.Lmt, sess.Trc.Fld);
@@ -146,7 +146,7 @@ namespace TingenWebService.Core.Logger
                                             .Replace("~SESSION~RUNNING~LOG~", sess.RunningLog)
                                             .Replace("~SESSION~DETAILS~", sess.RunningDetail);
 
-                LogWriter.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
+                LogUtility.WriteLocal(sess.SessionFolder, $"{sess.OptionObject.SentOptionObject.OptionUserId}.session.md", logContent); // simplify
             }
         }
 
@@ -158,7 +158,7 @@ namespace TingenWebService.Core.Logger
         {
             //LogEvent.Primeval("PRELOG-TRACE-LogEvent-SystemLog");
 
-            LogWriter.WriteLocal(logFolder, logName, logContent);
+            LogUtility.WriteLocal(logFolder, logName, logContent);
         }
 
         /// <summary>Writes a trace log entry when the supplied trace level is within the configured limit.</summary>
@@ -193,7 +193,7 @@ namespace TingenWebService.Core.Logger
 
                 var logName = $"{DateTime.Now:ssfffffff}-{LogUtility.GetClassName(classPath)}-{methodName}-{lineNumber}.trace";
 
-                LogWriter.WriteLocal(sessionFolder, logName);
+                LogUtility.WriteLocal(sessionFolder, logName);
             }
         }
     }
