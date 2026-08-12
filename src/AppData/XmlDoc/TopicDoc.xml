@@ -12,28 +12,8 @@
 
     <Topic name ="Asmx">
 
-        <!-- 260805 -->
-        <AppVersion>
-            <para>
-                Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
-                here, so that's why this comment exists. Hello future me (again).
-            </para>
-        </AppVersion>
-
-        <!-- 260805 -->
-        <Sess>
-            <para>
-                Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is
-                easier to read/understand than something like:<br/>
-                <br/>
-        <code>
-        twsSession = StartApp();
-        </code>
-            </para>
-        </Sess>
-
-        <!-- 260811 -->
-        <RunScript>
+        <!-- 260812 -->
+        <TheMagicOfRunScript>
             <para>
                 <note type="information" title="The Magic of RunScript()">
                     The <c>RunScript()</c> method:
@@ -49,13 +29,29 @@
                 </note>
             </para>
             <para>
-                The reason that all of this logic is <i>here</i> is because this way the <see cref="AvatarOptionObject.CompleteOptionObject">Completed OptionObject</see>
-                is returned to Avatar from a single location, regardless of whether the request was successful or not.
-            </para>
-        </RunScript>
 
-        <!-- 260805 -->
-        <StartApp>
+            </para>
+        </TheMagicOfRunScript>
+
+        <DontChangeTheNames>
+            <para>
+                <note type="caution" title="Don't Change the Parameter Names!">
+                    <para>
+                        <b><i>Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</i></b><br/>
+                        For some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
+                        named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process
+                        the response.<br/>
+                        <br/>
+                        This is only the case for the<c> RunScript()</c> method.<br/>
+                        <br/>
+                        If somebody knows why this is the case, please let me know.
+                    </para>
+                </note>
+            </para>
+        </DontChangeTheNames>
+
+        <!-- 260812 -->
+        <TheMagicOfStartApp>
             <para>
                 <note type="information" title="The Magic of StartApp()">
                     A lot of stuff happens in the <c>StartApp()</c> method,:
@@ -72,7 +68,7 @@
                     </list>
                 </note>
             </para>
-        </StartApp>
+        </TheMagicOfStartApp>
 
     </Topic>
 

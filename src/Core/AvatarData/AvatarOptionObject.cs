@@ -127,10 +127,10 @@ namespace TingenWebService.Core.Avatar
         /// <example>
         /// <code>
         /// AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\WebService\%AvatarSystem%\Export\");
+        /// //Exports:
+        /// //C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
+        /// //C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </code>
-        /// Exports:
-        /// C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
-        /// C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
         /// </example>
         internal static void ExportOptionObject(OptionObject2015 sentOptionObject, string exportPath, Tracer trc)
         {

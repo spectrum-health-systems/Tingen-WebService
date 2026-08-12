@@ -20,20 +20,26 @@ namespace TingenWebService
     {
         /// <summary>Gets the current version of the Tingen Web Service.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/AppVersion/*'/>
+        /// Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
+        /// here, so that's why this comment exists. Hello future me (again)!<br/>
+        /// <br/>
         /// This is set in <c>Properties.AssemblyInfo.cs</c>.
         /// </remarks>
         /// <returns>A string representing the current release.</returns>
-        /// <value>e.g., "R26.8"</value>
+        /// <value>e.g., "R26.8.0.0"</value>
         private static string _appVersion { get; set; } = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         /// <summary>Initializes a Tingen Web Service session instance.</summary>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/Sess/*'/>
+        /// Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is easier
+        /// to read/understand than something like:
+        /// <code>
+        ///     Sess sess = StartApp();
+        /// </code>
         /// </remarks>
         private Sess _sess { get; set; }
 
-        /// <summary>Display the current version of the Tingen Web Service.</summary>
+        /// <summary>Display the current <see cref="_appVersion"> version</see> of the Tingen Web Service.</summary>
         /// <remarks>This method is required by Avatar.</remarks>
         /// <returns>A string representing the current version.</returns>
         [WebMethod]
@@ -41,17 +47,13 @@ namespace TingenWebService
 
         /// <summary>The main entry method for the Tingen Web Service.</summary>
         /// <param name="sentOptObj">The OptionObject sent from Avatar.</param>
-        /// <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
+        /// <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/RunScript/*'/>
-        ///
-        /// <para><b><i>IMPORTANT</i>: Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</b><br/> For
-        /// some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
-        /// named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to
-        /// process the response.<br/> <br/> This is only the case for the<c> RunScript()</c> method.<br/> <br/> If
-        /// somebody knows why this is the case, please let me know. </para>
-        ///
-        /// This method is required by Avatar.
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/TheMagicOfRunScript/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/DontChangeTheNames/*'/>
+        /// The reason that all of this logic is <i>here</i> is because this way the
+        /// <see cref="AvatarOptionObject.CompleteOptionObject">Completed OptionObject</see> is returned to Avatar from a single location,
+        /// regardless of whether the request was successful or not. This method is required by Avatar.
         /// </remarks>
         /// <returns>A (potentially modified) completed OptionObject.</returns>
         [WebMethod]
@@ -66,11 +68,13 @@ namespace TingenWebService
             else
             {
                 StartApp(sentOptObj, sentScriptParam);
-                //LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
+
+                /* DEVNOTE: This is the first place where you can create a trace log.
+                 */
                 LogEvent.Trace(9, _sess.Trc.Lmt, _sess.Trc.Fld);
 
                 AvatarScriptParameter.Parse(_sess);
-                //LogEvent.Primeval("PRELOG-TRACE-TingenWebService1"); // TESTING
+
                 LogEvent.Session(_sess);
 
                 return _sess.OptionObject.WorkerOptionObject.ToReturnOptionObject(0, ""); // is this enough? Do we need CompleteOptObj?
@@ -81,14 +85,15 @@ namespace TingenWebService
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject.SentOptionObject"/> sent from Avatar.</param>
         /// <param name="sentScriptParameter">The <see cref="AvatarScriptParameter.SentScriptParameter"/> sent from Avatar.</param>
         /// <remarks>
-        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/StartApp/*'/>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="Asmx"]/TheMagicOfStartApp/*'/>
         /// This method is required by Avatar.
         /// </remarks>
         internal void StartApp(OptionObject2015 sentOptionObject, string sentScriptParameter)
         {
             //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StartApp");
 
-            RuntimeSetting runtimeSetting   = RuntimeSetting.Load(_appVersion);
+            RuntimeSetting runtimeSetting = RuntimeSetting.Load(_appVersion);
+
             FrameworkSetting frameworkConfig = FrameworkSetting.Load(runtimeSetting.DataRoot, runtimeSetting.AvatarSystem);
 
             FrameworkMaintenance.DailyValidation(runtimeSetting, frameworkConfig);
@@ -96,8 +101,6 @@ namespace TingenWebService
             SessMaintenance.InitializeNewSession(runtimeSetting, frameworkConfig); // TODO - is this really "initialize", or verify?
 
             _sess = Sess.StartSession(sentOptionObject, sentScriptParameter, runtimeSetting, frameworkConfig);
-
-            //LogEvent.Primeval("PRELOG-TRACE-TingenWebService-StopApp"); // TESTING
         }
     }
 }

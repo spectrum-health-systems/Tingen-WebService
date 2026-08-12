@@ -153,10 +153,10 @@
             <example>
             <code>
             AvatarOptionObject.ExportOptObj(sentOptionObject, @"C:\Tingen_Data\WebService\%AvatarSystem%\Export\");
+            //Exports:
+            //C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
+            //C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
             </code>
-            Exports:
-            C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.html
-            C:\Tingen_Data\WebService\%AvatarSystem%\Export\OptionObject\20260515_103045.json
             </example>
         </member>
         <member name="T:TingenWebService.Core.Avatar.AvatarScriptParameter">
@@ -1185,39 +1185,35 @@
         <member name="P:TingenWebService.TingenWebService._appVersion">
             <summary>Gets the current version of the Tingen Web Service.</summary>
             <remarks>
-            <para>
-                Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
-                here, so that's why this comment exists. Hello future me (again).
-            </para>
+            Defined here because it's used in multiple places in this class, but I keep forgetting that, and wondering why I define it
+            here, so that's why this comment exists. Hello future me (again)!<br/>
+            <br/>
             This is set in <c>Properties.AssemblyInfo.cs</c>.
             </remarks>
             <returns>A string representing the current release.</returns>
-            <value>e.g., "R26.8"</value>
+            <value>e.g., "R26.8.0.0"</value>
         </member>
         <member name="P:TingenWebService.TingenWebService._sess">
             <summary>Initializes a Tingen Web Service session instance.</summary>
             <remarks>
-            <para>
-                Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is
-                easier to read/understand than something like:<br />
-                <br />
-        <code>
-        twsSession = StartApp();
-        </code>
-            </para>
+            Defined here because it is <i>built</i> in <c>StartApp()</c>, but <i>used</i> in <c>RunScript()</c>, and I think this is easier
+            to read/understand than something like:
+            <code>
+                Sess sess = StartApp();
+            </code>
             </remarks>
         </member>
         <member name="M:TingenWebService.TingenWebService.GetVersion">
-            <summary>Display the current version of the Tingen Web Service.</summary>
+            <summary>Display the current <see cref="P:TingenWebService.TingenWebService._appVersion"> version</see> of the Tingen Web Service.</summary>
             <remarks>This method is required by Avatar.</remarks>
             <returns>A string representing the current version.</returns>
         </member>
         <member name="M:TingenWebService.TingenWebService.RunScript(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
-             <summary>The main entry method for the Tingen Web Service.</summary>
-             <param name="sentOptObj">The OptionObject sent from Avatar.</param>
-             <param name="sentScriptParameter">The Script Parameter sent from Avatar.</param>
-             <remarks>
-             <para>
+            <summary>The main entry method for the Tingen Web Service.</summary>
+            <param name="sentOptObj">The OptionObject sent from Avatar.</param>
+            <param name="sentScriptParam">The Script Parameter sent from Avatar.</param>
+            <remarks>
+            <para>
                 <note type="information" title="The Magic of RunScript()">
                     The <c>RunScript()</c> method:
                     <list>
@@ -1231,41 +1227,31 @@
                     </list>
                 </note>
             </para><para>
-                The reason that all of this logic is <i>here</i> is because this way the <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">Completed OptionObject</see>
-                is returned to Avatar from a single location, regardless of whether the request was successful or not.
+
             </para>
-            
-             <para><b><i>IMPORTANT</i>: Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</b><br /> For
-             some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
-             named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to
-             process the response.<br /> <br /> This is only the case for the<c> RunScript()</c> method.<br /> <br /> If
-             somebody knows why this is the case, please let me know. </para>
-            
-             This method is required by Avatar.
-             </remarks>
-             <returns>A (potentially modified) completed OptionObject.</returns>
+            <para>
+                <note type="caution" title="Don't Change the Parameter Names!">
+                    <para>
+                        <b><i>Don't change the parameter names 'sentOptObj' and 'sentScriptParam'!</i></b><br />
+                        For some unexplainable (at least to me) reason, the OptionObject and Script Parameter sent from Avatar must be
+                        named "<c>sentOptObj</c>" and "<c>sentScriptParam</c>", otherwise you'll get an error when Avatar tries to process
+                        the response.<br /> <br /> This is only the case for the<c> RunScript()</c> method.<br />
+                        If somebody knows why this is the case, please let me know.
+                    </para>
+                </note>
+            </para>
+            The reason that all of this logic is <i>here</i> is because this way the
+            <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.CompleteOptionObject">Completed OptionObject</see> is returned to Avatar from a single location,
+            regardless of whether the request was successful or not. This method is required by Avatar.
+            </remarks>
+            <returns>A (potentially modified) completed OptionObject.</returns>
         </member>
         <member name="M:TingenWebService.TingenWebService.StartApp(ScriptLinkStandard.Objects.OptionObject2015,System.String)">
             <summary>Start the Tingen Web Service.</summary>
             <param name="sentOptionObject">The <see cref="P:TingenWebService.Core.Avatar.AvatarOptionObject.SentOptionObject" /> sent from Avatar.</param>
             <param name="sentScriptParameter">The <see cref="P:TingenWebService.Core.Avatar.AvatarScriptParameter.SentScriptParameter" /> sent from Avatar.</param>
             <remarks>
-            <para>
-                <note type="information" title="The Magic of StartApp()">
-                    A lot of stuff happens in the <c>StartApp()</c> method,:
-                    <list>
-                        <item>1 - Loads the runtime settings</item>
-                        <item>2 - Loads the framework settings</item>
-                        <item>3 - Verifies/updates the framework</item>
-                        <item>4 - Initializes/starts a new session</item>
-                        <item>5 - Hands things off to <c>AvatarScriptParameter.Parse()</c> </item>
-                    </list>
-                    The <c>AvatarScriptParameter.Parse()</c> method will then do it's thing, after which we'll return to this method, and...
-                    <list>
-                        <item>6 - Return a (potentially) modified <see cref="T:TingenWebService.Core.Avatar.AvatarOptionObject">OptionObject</see> to <c>RunScript()</c></item>
-                    </list>
-                </note>
-            </para>
+            <!-- No matching elements were found for the following include tag --><include file="AppData/XmlDoc/TopicDoc.xml" path="Topics/Topic[@name=&quot;Asmx&quot;]/StartApp/*" />
             This method is required by Avatar.
             </remarks>
         </member>
