@@ -120,10 +120,9 @@
 
     <Topic name ="AvatarData">
 
-        <AboutAvatarData>
-            <!-- 260811 -->
+        <AboutAvatarData> <!-- 260811 -->
             <para>
-                <note type="note" title="About Avatar data">
+                <note type="tip" title="About Avatar data">
                     Avatar sends two pieces of data to the Tingen Web Service:
                     <list type="number">
                         <item>
@@ -138,10 +137,9 @@
             </para>
         </AboutAvatarData>
 
-        <AboutOptionObjects>
-            <!-- 260811 -->
+        <AboutOptionObjects> <!-- 260811 -->
             <para>
-                <note type="note" title="About OptionObjects">
+                <note type="tip" title="About OptionObjects">
                     An Avatar <see cref="AvatarOptionObject">OptionObject</see> defines the web service contract for use with Avatar.<br/>
                     <br/>
                     You can think of it as a box that contains all of the information that is in a form. Avatar sends that
@@ -169,10 +167,9 @@
             </para>
         </AboutOptionObjects>
 
-        <TypesOfOptionObjects>
-            <!-- 260811 -->
+        <TypesOfOptionObjects> <!-- 260811 -->
             <para>
-                <note type="note" title="Types of OptionObjects">
+                <note type="tip" title="Types of OptionObjects">
                     The Tingen Web Service defines three types of <see cref="AvatarOptionObject">OptionObjects</see>:<br/>
                     <br/>
                     The <see cref="AvatarOptionObject.SentOptionObject">SentOptionObject</see><br/>
@@ -191,6 +188,18 @@
                 </note>
             </para>
         </TypesOfOptionObjects>
+
+        <MissingOptionObject> <!-- 260811 -->
+            <para>
+                <note type="important" title="The OptionObject is required!">
+                    The <see cref="AvatarOptionObject">OptionObject</see> is required, so if Avatar doesn't send one, it's game over, man!
+                    <i>It's game over!</i><br/>
+                    <br/>
+                    And by "game over", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">OptionObject</see>
+                    back to Avatar.
+                </note>
+            </para>
+        </MissingOptionObject>
 
         <AboutTheScriptParameter>
             <!-- 260811 -->
@@ -246,45 +255,19 @@
 
     </Topic>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- ===== N:TingenWebService.Core.Framework ====================================================================================== -->
 
     <Topic name ="Framework">
 
-        <AboutTheFramework> <!-- 260806 -->
+        <AboutTheFramework> <!-- 260812 -->
             <para>
+                
             </para>
         </AboutTheFramework>
 
     </Topic>
 
-
-
-    <!--
-    ====================================================================================================================
-    LOGGER
-    ====================================================================================================================
-    -->
+    <!-- ===== N:TingenWebService.Core.Logger ========================================================================================= -->
 
     <Topic name = "Logger">
 
@@ -342,11 +325,7 @@
 
     </Topic>
 
-    <!--
-    ====================================================================================================================
-    TROVE
-    ====================================================================================================================
-    -->
+    <!-- ===== N:TingenWebService.Core.Trove ========================================================================================== -->
 
     <Topic name = "Trove">
 

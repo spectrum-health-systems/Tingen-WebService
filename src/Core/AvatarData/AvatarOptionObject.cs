@@ -37,9 +37,7 @@ namespace TingenWebService.Core.Avatar
 
         /// <summary>Initialize a new <see cref="AvatarOptionObject"/>.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> sent from Avatar.</param>
-        /// <remarks>
-        /// The <see cref="AvatarOptionObject">OptionObjects</see> that the Tingen Web Service needs are bundled into this single object.
-        /// </remarks>
+        /// <remarks>The <see cref="AvatarOptionObject">OptionObjects</see> that the Tingen Web Service needs are bundled into this single object.</remarks>
         /// <returns>A new instance of <see cref="AvatarOptionObject"/>.</returns>
         internal static AvatarOptionObject Build(OptionObject2015 sentOptionObject)
         {
@@ -62,12 +60,7 @@ namespace TingenWebService.Core.Avatar
         /// <summary>Verify whether an <see cref="AvatarOptionObject">OptionObject</see> was sent from Avatar.</summary>
         /// <param name="sentOptionObject">The <see cref="AvatarOptionObject">OptionObject</see> to verify.</param>
         /// <remarks>
-        /// <para>The <see cref="AvatarOptionObject">OptionObject</see> is required, so if Avatar doesn't send one, it's game over, man!
-        /// <i>It's game over!</i><br/>
-        /// <br/>
-        /// And by "game over", I mean that the Tingen Web Service will log an error return an unmodified <see cref="AvatarOptionObject">OptionObject</see>
-        /// back to Avatar.
-        /// </para>
+        /// <include file='AppData/XmlDoc/TopicDoc.xml' path='Topics/Topic[@name="AvatarData"]/MissingOptionObject/*'/>
         /// </remarks>
         /// <returns>True if an <see cref="AvatarOptionObject">OptionObject</see> was sent; otherwise, false.</returns>
         internal static bool WasSent(OptionObject2015 sentOptionObject)
