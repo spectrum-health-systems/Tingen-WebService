@@ -26,7 +26,7 @@
 
 <h6 align="center">
 
-  [MANUAL](docs/man/README.md)&nbsp;&bull;&nbsp;[CHANGELOG](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[ROADMAP](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[KNOWN ISSUES](docs/KNOWN-ISSUES.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)
+  [DOCUMENTATION](docs/README.md)&nbsp;&bull;&nbsp;[CHANGELOG](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[ROADMAP](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[KNOWN ISSUES](docs/KNOWN-ISSUES.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[SUPPORT](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[NOTICES](docs/NOTICES.md)
   
 </h6>
 
@@ -136,9 +136,3 @@ Distributed under the [Apache 2.0 License](LICENSE)
 Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProgram)
 
 ***
-
-<h6 align="center">
-
-  [DEVELOPMENT MANUAL](docs/devman/README.md)&nbsp;&bull;&nbsp;[API DOCUMENTATION](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)&nbsp;&bull;&nbsp;[SUPPORT](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[NOTICES](docs/NOTICES.md)
-  
-</h6>
