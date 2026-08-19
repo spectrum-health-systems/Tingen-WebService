@@ -1,20 +1,16 @@
 <div align="center">
 
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../.github/logo/dark/256x173/WebService.png">
-    <source media="(prefers-color-scheme: light)" srcset="../.github/logo/light/256x173/WebService.png">
-    <img alt="Fallback image description" src="../.github/logo/light/256x173/WebService.png">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/WebService.png">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/light/256x173/WebService.png">
+    <img alt="Fallback image description" src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/light/256x173/WebService.png">
   </picture>
 
-<h1>Documentation</h1>
+<h1>Tingen Web Service Documentation</h1>
 
 </div>
 
-<!--
-When this document changes, update the index.html file.
- -->
-
-* The [Tingen Web ServiceManual](man/README.md)  
+* [Manual](man/README.md)  
 Detailed information about the Tingen Web Service, including its features, how it works, and how to get started.
 
 * [API Documentation](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)  
