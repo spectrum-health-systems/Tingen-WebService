@@ -40,8 +40,27 @@ The Release branch contains the officially released versions of the Tingen Web S
 There may be other branches that are used for specific features, experiments, or hotfixes. These branches are typically temporary and may be merged into one of the main branches (Development, Testing, Stable, Release) once their purpose has been fulfilled.
 
 
+## HOW IT WORKS
+
+A very high level overview of how the Tingen Web Service works:
+
+1. Avatar sends an `OptionObject` and a `ScriptParameter` to the Tingen Web Service
+2. The Tingen Web Service processes the request and returns a modified `OptionObject` back to Avatar
+
+```mermaid
+flowchart TB
+  %% Components
+  Start@{shape: circle, label: "Avatar"}
+  TingenWebService@{shape: rounded, label: "Tingen Web Service"}
+  %% Layout
+  Start:::U3_ -- 1. Request --> TingenWebService:::E4_ -- 2. Response --> Start
+  %% Styles
+  classDef U3_ stroke:#eaf2f8,stroke-width:3px,fill:#2471a3,color:#eaf2f8
+  classDef E4_ stroke:#fdf2e9,stroke-width:3px,fill:#784212,color:#fdf2e9
+```
+
 
 
   <img src="./.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
-  
+
   <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">

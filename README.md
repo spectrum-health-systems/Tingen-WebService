@@ -24,7 +24,6 @@
 |:-------------------------------------- |
 | [About](#about-the-tingen-web-service) |
 | [Features](#features)                  |
-| [How It Works](#how-it-works)          |
 | [Getting Started](#getting-started)    |
 | [Built With](#built-with)              |
 | [Related Projects](#related-projects)  |
@@ -48,28 +47,7 @@ The **Tingen Web Service** is one such custom web service which includes various
 * Robust logging
 * ...and more!
 
-## HOW IT WORKS
-
-A very high level overview of how the Tingen Web Service works:
-
-1. Avatar sends an `OptionObject` and a `ScriptParameter` to the Tingen Web Service
-2. The Tingen Web Service processes the request and returns a modified `OptionObject` back to Avatar
-
-```mermaid
-flowchart TB
-  %% Components
-  Start@{shape: circle, label: "Avatar"}
-  TingenWebService@{shape: rounded, label: "Tingen Web Service"}
-  %% Layout
-  Start:::U3_ -- 1. Request --> TingenWebService:::E4_ -- 2. Response --> Start
-  %% Styles
-  classDef U3_ stroke:#eaf2f8,stroke-width:3px,fill:#2471a3,color:#eaf2f8
-  classDef E4_ stroke:#fdf2e9,stroke-width:3px,fill:#784212,color:#fdf2e9
-```
-
 ## GETTING STARTED
-
-### Requirements
 
 You can find all of the information you need to install and use the Tingen Web Service in the Tingen Web Service [Manual](docs/man/README.md).
 
