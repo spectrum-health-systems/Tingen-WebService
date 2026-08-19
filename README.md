@@ -20,14 +20,6 @@
 
 ***
 
-<h6 align="center">
-
-  [DOCUMENTATION](docs/README.md)&nbsp;&bull;&nbsp;[CHANGELOG](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[ROADMAP](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[KNOWN ISSUES](docs/KNOWN-ISSUES.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[SUPPORT](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[NOTICES](docs/NOTICES.md)
-  
-</h6>
-
-***
-
 | CONTENTS                               |
 |:-------------------------------------- |
 | [About](#about-the-tingen-web-service) |
@@ -138,3 +130,9 @@ Distributed under the [Apache 2.0 License](LICENSE)
 Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProgram)
 
 ***
+
+<h6 align="center">
+
+  [DOCUMENTATION](docs/README.md)&nbsp;&bull;&nbsp;[CHANGELOG](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[ROADMAP](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[KNOWN ISSUES](docs/KNOWN-ISSUES.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[SUPPORT](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[NOTICES](docs/NOTICES.md)
+  
+</h6>
