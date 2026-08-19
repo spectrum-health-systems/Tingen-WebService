@@ -66,8 +66,14 @@ flowchart LR
   Stable@{shape: rounded, label: "Stable"}
   Release@{shape: rounded, label: "Release"}
   %% Layout
-  Development --> Testing --> Stable --> Release
+  Development:::G0_ --> Testing:::G1_ --> Stable:::G2_ --> Release:::G3_
   %% Styles
+  %% Styles
+  classDef G0_ stroke:#e9f7ef,stroke-width:3px,fill:#eaf2f8,color:#154360
+  classDef G1_ stroke:#e9f7ef,stroke-width:3px,fill:#a9dfbf,color:#145a32
+  classDef G2_ stroke:#e9f7ef,stroke-width:3px,fill:#52be80,color:#e9f7ef
+  classDef G3_ stroke:#e9f7ef,stroke-width:3px,fill:#1d8348,color:#e9f7ef
+  
 ```
 
 </div>
