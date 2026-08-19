@@ -1,10 +1,6 @@
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/Tingen-WebService.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/light/256x173/Tingen-WebService.png">
-    <img alt="Fallback image description" src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/light/256x173/Tingen-WebService.png">
-  </picture>
+<img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/Tingen-WebService.png" alt="Tingen Web Service">
 
 </div>
 
