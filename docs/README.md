@@ -2,6 +2,8 @@
 
 <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/Tingen-WebService.png" alt="Tingen Web Service">
 
+<h1>Documentation</h1>
+
 </div>
 
 * [Manual](man/README.md)  
