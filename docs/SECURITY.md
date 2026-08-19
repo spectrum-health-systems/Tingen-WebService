@@ -1,15 +1,10 @@
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../.github/logo/dark/256x173/Tingen-WebService.png">
-    <source media="(prefers-color-scheme: light)" srcset="../.github/logo/light/256x173/Tingen-WebService.png">
-    <img alt="Fallback image description" src="../.github/logo/light/256x173/Tingen-WebService.png">
-  </picture>
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
 
-<h1>Security</h1>
+  <h1>Security</h1>
 
 </div>
-
 
 > Please do not report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <github@aprettycoolprogram.com>.
 
@@ -31,4 +26,4 @@ Please attach any relevant log files, screenshots, etc.
 
 ***
 
-<sub>Last updated: 260629 </sub>
+<sub>Last updated: 260819</sub>

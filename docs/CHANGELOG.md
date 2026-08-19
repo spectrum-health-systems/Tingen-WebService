@@ -1,10 +1,8 @@
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../.github/logo/dark/256x173/Changelog.png">
-    <source media="(prefers-color-scheme: light)" srcset="../.github/logo/light/256x173/Changelog.png">
-    <img alt="Fallback image description" src="../.github/logo/light/256x173/Changelog.png">
-  </picture>
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
+  <h1>Changelog</h1>
 
 </div>
 

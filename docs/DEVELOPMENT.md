@@ -1,7 +1,9 @@
 <div align="center">
 
-  <h1>Repository: Development</h1>
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
 
+  <h1>Development</h1>
+  
 </div>
 
 A blurb about development goes here.
@@ -35,4 +37,4 @@ Please follow these steps:
 
 ***
 
-<sub>Last updated: 260704</sub>
+<sub>Last updated: 260818</sub>
