@@ -799,25 +799,25 @@
             <param name="configPath">The path to the configuration file.</param>
             <remarks>Add to redprint.</remarks>
         </member>
-        <member name="T:TingenWebService.Core.Framework.FrameworkMaintenance">
+        <member name="T:TingenWebService.Core.Framework.FrameworkUtility">
             <summary>Framework maintenance logic.</summary>
             <remarks>
             The Tingen Web Service framework consists of required files, folders, and other data that are necessary for the Tingen
             Web Service to function properly.
             </remarks>
         </member>
-        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.DailyValidation(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
+        <member name="M:TingenWebService.Core.Framework.FrameworkUtility.DailyValidation(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Validate the Tingen Web Service framework daily.</summary>
             <param name="runtimeSetting">The runtime configuration.</param>
             <param name="frameworkSetting">The framework instance.</param>
         </member>
-        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
+        <member name="M:TingenWebService.Core.Framework.FrameworkUtility.VerifyComponents(System.String,TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the components for the session.</summary>
             <param name="todayDate">The name of the daily log file.</param>
             <param name="runtimeSetting">The runtime configuration.</param>
             <param name="frameworkSetting">The framework instance.</param>
         </member>
-        <member name="M:TingenWebService.Core.Framework.FrameworkMaintenance.VerifyStructure(TingenWebService.Core.Framework.FrameworkSetting)">
+        <member name="M:TingenWebService.Core.Framework.FrameworkUtility.VerifyStructure(TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Verify the Tingen Web Service framework.</summary>
             <param name="frameworkSetting">The framework instance containing the paths to verify.</param>
             <remarks>
@@ -881,10 +881,10 @@
             <remarks>Add to redprint.</remarks>
             <returns>A <see cref="T:TingenWebService.Core.Framework.FrameworkSetting"/> instance with the specified paths.</returns>
         </member>
-        <member name="T:TingenWebService.Core.Session.SessMaintenance">
+        <member name="T:TingenWebService.Core.Session.SessUtility">
             <summary>Session maintenance logic.</summary>
         </member>
-        <member name="M:TingenWebService.Core.Session.SessMaintenance.InitializeNewSession(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
+        <member name="M:TingenWebService.Core.Session.SessUtility.InitializeNewSession(TingenWebService.Core.RuntimeSetting,TingenWebService.Core.Framework.FrameworkSetting)">
             <summary>Session maintenance.</summary>
             <remarks>
             This maintenance is done for every session.
