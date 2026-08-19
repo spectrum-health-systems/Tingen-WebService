@@ -113,9 +113,9 @@ flowchart TB
   Start@{shape: circle, label: "Avatar"}
   TingenWebService@{shape: rounded, label: "Tingen Web Service"}
   %% Layout
-  Start:::G1_ -- 1. Request --> TingenWebService:::E4_ -- 2. Response --> Start
+  Start:::U3_ -- 1. Request --> TingenWebService:::E4_ -- 2. Response --> Start
   %% Styles
-  classDef G1_ stroke:#e9f7ef,stroke-width:3px,fill:#a9dfbf,color:#145a32
+  classDef U3_ stroke:#eaf2f8,stroke-width:3px,fill:#2471a3,color:#eaf2f8
   classDef E4_ stroke:#fdf2e9,stroke-width:3px,fill:#784212,color:#fdf2e9
 ```
 
