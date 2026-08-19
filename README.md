@@ -7,11 +7,7 @@
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/logo/dark/512x346/Tingen-WebService.png">
-    <source media="(prefers-color-scheme: light)" srcset=".github/logo/light/512x346/Tingen-WebService.png">
-    <img alt="Fallback image description" src=".github/logo/light/512x346/Tingen-WebService.png">
-  </picture>
+  <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/Tingen-WebService.png" alt="Tingen Web Service">
   
   <h3>A custom web service for Netsmart's AvatarNX™ EHR platform</h3>
 
