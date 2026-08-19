@@ -8,9 +8,9 @@
 <div align="center">
 
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/logo/dark/512x346/WebService.png">
-    <source media="(prefers-color-scheme: light)" srcset=".github/logo/light/512x346/WebService.png">
-    <img alt="Fallback image description" src=".github/logo/light/512x346/WebService.png">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/logo/dark/512x346/Tingen-WebService.png">
+    <source media="(prefers-color-scheme: light)" srcset=".github/logo/light/512x346/Tingen-WebService.png">
+    <img alt="Fallback image description" src=".github/logo/light/512x346/Tingen-WebService.png">
   </picture>
   
   <h3>A custom web service for Netsmart's AvatarNX™ EHR platform</h3>
