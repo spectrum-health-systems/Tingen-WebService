@@ -10,3 +10,14 @@ exclude:
   - sourcecode/
   - testing/
   - CHANGELOG.md
+  - CODEOWNERS
+  - CONTRIBUTORS.md
+  - DEVELOPMENT.md
+  - FAQ.md
+  - KNOWN-ISSUES.md
+  - NOTICES.md
+  - README.md
+  - ROADMAP.md
+  - SECURITY.md
+  - SUPPORT.md
+  - TROUBLESHOOTING.md
