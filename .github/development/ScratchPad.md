@@ -50,6 +50,9 @@ TingenWebService.NsDoc.cs
 
 Do not put trace logs here, it will cause havoc!
 
+Help Icon: <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Magnific - Flaticon</a>
+
+
 ## Error codes
 
 1124
