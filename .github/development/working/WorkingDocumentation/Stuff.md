@@ -38,3 +38,10 @@ The Stable branch contains the code that is considered stable and ready for rele
 The Release branch contains the officially released versions of the Tingen Web Service. Changes in this branch are minimal and typically only include critical bug fixes or updates that are necessary for the official release.
 
 There may be other branches that are used for specific features, experiments, or hotfixes. These branches are typically temporary and may be merged into one of the main branches (Development, Testing, Stable, Release) once their purpose has been fulfilled.
+
+
+
+
+  <img src="./.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+  
+  <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">

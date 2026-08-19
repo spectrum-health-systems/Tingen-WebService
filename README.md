@@ -7,7 +7,7 @@
 
 <div align="center">
 
-  <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+  <img src="./.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
 
   <h3>A custom web service for Netsmart's AvatarNX™ EHR platform</h3>
 
@@ -71,7 +71,7 @@ flowchart TB
 
 ### Requirements
 
-You can find all of the information you need to install and use the Tingen Web Service in the [Tingen Web Service Manual](docs/man/README.md).
+You can find all of the information you need to install and use the Tingen Web Service in the Tingen Web Service [Manual](docs/man/README.md).
 
 ## BUILT WITH
 
@@ -82,7 +82,6 @@ You can find all of the information you need to install and use the Tingen Web S
 ## RELATED PROJECTS
 
 * [Tingen Transmorger](https://github.com/spectrum-health-systems/Tingen-Transmorger) - Utilities for Netsmart's AvatarNX™ TeleHealth platform
-* [The Unofficial AvatarNX Runbook](https://github.com/spectrum-health-systems/The-Unofficial-AvartarNX-Runbook) - A collection of tips, tricks, and best practices for working with AvatarNX™
 
 ## LICENSE
 
