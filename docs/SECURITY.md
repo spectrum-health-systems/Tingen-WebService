@@ -1,9 +1,6 @@
 <div align="center">
-
   <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
-
   <h1>Security</h1>
-
 </div>
 
 > Please do not report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <github@aprettycoolprogram.com>.

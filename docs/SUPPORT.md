@@ -1,9 +1,6 @@
 <div align="center">
-
   <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
-
   <h1>Support</h1>
-
 </div>
 
 This project uses GitHub Issues to track bugs and feature requests. Please search the existing  issues before filing new issues to avoid duplicates.

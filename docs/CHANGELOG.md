@@ -1,12 +1,7 @@
 <div align="center">
-
   <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
-
   <h1>Changelog</h1>
-
 </div>
-
-***
 
 ## R26.8
 
