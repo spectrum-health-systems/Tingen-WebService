@@ -7,8 +7,8 @@
 
 <div align="center">
 
-  <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/dark/256x173/Tingen-WebService.png" alt="Tingen Web Service">
-  
+  <img src="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h3>A custom web service for Netsmart's AvatarNX™ EHR platform</h3>
 
   ![RELEASE](https://img.shields.io/badge/Release-26.8-teal)&nbsp;
