@@ -16,7 +16,6 @@ exclude:
   - FAQ.md
   - KNOWN-ISSUES.md
   - NOTICES.md
-  - README.md
   - ROADMAP.md
   - SECURITY.md
   - SUPPORT.md
