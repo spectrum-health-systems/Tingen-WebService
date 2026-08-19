@@ -1,0 +1,12 @@
+exclude:
+  - appendix/
+  - devman/
+  - diagram/
+  - glossary/
+  - madc/
+  - man/
+  - release-notes/
+  - source-code/
+  - sourcecode/
+  - testing/
+  - CHANGELOG.md

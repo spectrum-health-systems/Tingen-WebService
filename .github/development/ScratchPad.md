@@ -6,52 +6,33 @@
 
 ***
 
+```csharp
+foreach (var path in Catalog.RequiredFolders(frameworkSetting))
+{
+    try
+    {
+        DuDirectory.ForceExist(path);
+    }
+    catch (Exception ex)
+    {
+        LogEvent.Primeval("ERR1000-FrameworkValidationFailed", ErrorMessage.ERR1000(ex.Message));
+        //TODO - Should probably send an email notification.
+    }
+}
 
-            foreach (var path in Catalog.RequiredFolders(frameworkSetting))
-            {
-                try
-                {
-                    DuDirectory.ForceExist(path);
-                }
-                catch (Exception ex)
-                {
-                    LogEvent.Primeval("ERR1000-FrameworkValidationFailed", ErrorMessage.ERR1000(ex.Message));
-                    //TODO - Should probably send an email notification.
-                }
-            }
-
-            LogEvent.Primeval("ERR1000-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
+LogEvent.Primeval("ERR1000-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(ex.Message));
+```
 
 ***
 
-/* Use primeval logs here to debug, since logging functionality has not been initialized yet. */
-//LogEvent.Primeval("TingenWebServiceStarted", RedPrint.DebugStartMessage(sentScriptParam));
-
-*** 
-
-
-****
-
-### Netsmart Query web service URL
+## Netsmart Query web service URL
 
 The `TingenWebService_NtstWsvcQueryUat_Query` setting should be set to the URL of the Netsmart Query web service for your organization, which will look like this:
 
 `https://{YourOrganization}.netsmartcloud.com/csp/{YourOrganization}uat/avpm/WEBSVC.Query.cls`
-ps://shs-azu-nsws-01.spectrumhealthsystems.org/WebService/UAT/TingenWebService.asmx?WSDL
+`https://shs-azu-nsws-01.spectrumhealthsystems.org/WebService/UAT/TingenWebService.asmx?WSDL`
 
-
-Update these source code documents for the new version:
-
-TingenWebService.NsDoc.cs
-/// <seealso href="https://github.com/spectrum-health-systems/Tingen-WebService/blob/development/docs/man/dev/source-code/ns_TingenWebService.md">TingenWebService namespace</seealso>
-
-// 260811_code
-// 260811_documentation
-
-Do not put trace logs here, it will cause havoc!
-
-Help Icon: <a href="https://www.flaticon.com/free-icons/question" title="question icons">Question icons created by Magnific - Flaticon</a>
-
+***
 
 ## Error codes
 
@@ -147,3 +128,4 @@ Help Icon: <a href="https://www.flaticon.com/free-icons/question" title="questio
 3565
 6595
 
+***

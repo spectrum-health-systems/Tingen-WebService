@@ -1,7 +1,13 @@
 # .github/scratch
 
-Scratch/temporary data goes here.
+Bennings
+Blair
+Copper
+Nauls
+Norris
+Palmer
 
+***
 
 Spring March 1
 Summer June 1
