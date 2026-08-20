@@ -1,3 +1,5 @@
+❰ [Back to repository main page](../README.md)
+
 <div align="center">
   <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
   <h1>Security</h1>
@@ -19,8 +21,6 @@ Include the requested information listed below (as much as you can provide) to h
 
 Please attach any relevant log files, screenshots, etc.
 
-<br/>
-
 ***
 
-<sub>Last updated: 260819</sub>
+❰ [Back to repository main page](../README.md)

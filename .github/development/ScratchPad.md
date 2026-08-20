@@ -25,6 +25,10 @@ LogEvent.Primeval("ERR1000-FailedToLoadFrameworkSettings", ErrorMessage.ERR1000(
 
 ***
 
+❰ ❱   ❬  ❭
+
+***
+
 ## Netsmart Query web service URL
 
 The `TingenWebService_NtstWsvcQueryUat_Query` setting should be set to the URL of the Netsmart Query web service for your organization, which will look like this:

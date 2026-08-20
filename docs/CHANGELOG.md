@@ -1,3 +1,5 @@
+❰ [Back to repository main page](../README.md)
+
 <div align="center">
   <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
   <h1>Changelog</h1>
@@ -18,7 +20,7 @@
 * Security
   * None
 
-## R26.7
+## R26.7 (2026-07-24)
 
 > Please see the [release notes](./release-notes/R26.7-release-notes.md) for more details.
 
@@ -26,7 +28,7 @@ This release was a major refactor.
 
 ***
 
-## R26.6
+## R26.6 (2026-07-24)
 
 > Please see the [release notes](./release-notes/R26.6-release-notes.md) for more details.
 
@@ -47,24 +49,16 @@ This release was a major refactor.
 
 ***
 
-## R26.5
+## R26.5 (2026-07-24)
 
 > There are no release notes for R26.5.
 
-* New
-  * None
 * Updated
   * Project XML documentation
-* Fixed
-  * None
-* Removed
-  * None
-* Security
-  * None
 
 ***
 
-## R26.4
+## R26.4 (2026-07-24)
 
 > There are no release notes for R26.4.
 
@@ -81,41 +75,25 @@ This release was a major refactor.
 
 ***
 
-## R26.3
+## R26.3 (2026-07-24)
 
 > There are no release notes for R26.3.
 
-* New
-  * None
 * Updated
   * Project XML documentation
-* Fixed
-  * None
-* Removed
-  * None
-* Security
-  * None
 
 ***
 
-## R26.2
+## R26.2 (2026-07-24)
 
 > There are no release notes for R26.2.
 
-* New
-  * None
 * Updated
   * Project XML documentation
-* Fixed
-  * None
-* Removed
-  * None
-* Security
-  * None
 
 ***
 
-## R26.1
+## R26.1 (2026-07-24)
 
 > There are no release notes for R26.1.
 
@@ -132,7 +110,7 @@ This release was a major refactor.
 
 ***
 
-## R26.0
+## R26.0 (2026-07-24)
 
 > Please see the [release notes](./release-notes/R26.0-release-notes.md) for more details.
 
@@ -150,7 +128,7 @@ This release was a major refactor.
 
 ***
 
-## R25.12
+## R25.12 (2025-12-14)
 
 > There are no release notes for R25.12.
 
@@ -158,7 +136,7 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.11
+## R25.11 (2025-11-28)
 
 > Please see the [release notes](./release-notes/R25.11-release-notes.md) for more details.
 
@@ -176,7 +154,7 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.10
+## R25.10 (2025-10-24)
 
 > Please see the [release notes](./release-notes/R25.10-release-notes.md) for more details.
 
@@ -195,7 +173,7 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.9
+## R25.9 (2025-09-26)
 
 > Please see the [release notes](./release-notes/R25.9-release-notes.md) for more details.
 
@@ -214,7 +192,7 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.8
+## R25.8 (2025-08-22)
 
 > Please see the [release notes](./release-notes/R25.8-release-notes.md) for more details.
 
@@ -233,3 +211,7 @@ This release was a year-end wrap up without any changes.
 
 > [!INFO]  
 > The Tingen Web Service has gone through *many* iterations since 2018, and unfortunately, I don't have detailed release notes for the earlier versions.
+
+***
+
+❰ [Back to repository main page](../README.md)
