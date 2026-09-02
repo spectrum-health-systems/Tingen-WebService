@@ -10,6 +10,9 @@
 
 ***
 
+- [ ] Rename `Dependencies/`
+- [ ] Migrate to `Du`
+
 ## Code
 
 - [ ] Add error handling to where needed (e.g., "try...catch")
