@@ -8,7 +8,7 @@
     <img alt="Fallback image description" src="../../.github/logo/light/256x173/Man.png">
   </picture>
 
-  ![RELEASE](https://img.shields.io/badge/Release-26.8-teal)
+  ![RELEASE](https://img.shields.io/badge/Release-26.9-teal)
 
 <h1>Deploying the Tingen Web Service</h1>
 

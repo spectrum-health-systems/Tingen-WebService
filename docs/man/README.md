@@ -9,7 +9,7 @@
   <br/>
   <br/>
   
-  ![RELEASE](https://img.shields.io/badge/Release-26.8-teal)
+  ![RELEASE](https://img.shields.io/badge/Release-26.9-teal)
 
 </div>
 
