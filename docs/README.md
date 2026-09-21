@@ -8,7 +8,7 @@
 
 </div>
 
-## Tingen Web Service documentation
+## Tingen Web Service
 
 * [Release notes](rn/README.md)
 * [Manual](man/README.md)
@@ -16,7 +16,7 @@
 * [API documentation](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)
 * [Development resources](dev/README.md)
 
-# Repository documentation
+## Repository
 
 * [CHANGELOG](CHANGELOG.md)
 * [CODEOWNERS](CODEOWNERS)
