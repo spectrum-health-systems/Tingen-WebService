@@ -1,16 +1,19 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Notices
 
 <div align="center">
-  <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h1>Notices</h1>
+
 </div>
 
-Content.
-
-<br/>
+## Icons
 
 * API documentation [help icon](https://www.flaticon.com/free-icons/question)
 
+<br/>
+
 ***
 
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Notices

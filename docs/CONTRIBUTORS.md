@@ -1,18 +1,17 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Contributors
 
 <div align="center">
-  <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h1>Contributors</h1>
+
 </div>
 
-Content.
+None yet.
 
 <br/>
 
 ***
 
-<sub>Last updated: 260819</sub>
-
-***
-
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Contributors

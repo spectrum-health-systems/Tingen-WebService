@@ -1,8 +1,11 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ FAQ
 
 <div align="center">
-  <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h1>Frequently Asked Questions</h1>
+
 </div>
 
 Content.
@@ -11,7 +14,10 @@ Content.
 
 ***
 
-<sub>Last updated: 260819</sub>
+<sub>Last updated: 2026-09-21</sub>
+
+<br/>
 
 ***
-❰ [Back to repository main page](../README.md)
+
+❰ [Tingen Web Service](../README.md) ❬ FAQ

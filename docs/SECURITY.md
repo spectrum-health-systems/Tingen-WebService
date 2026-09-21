@@ -1,8 +1,11 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Security
 
 <div align="center">
-  <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h1>Security</h1>
+
 </div>
 
 > Please do not report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <github@aprettycoolprogram.com>.
@@ -23,4 +26,4 @@ Please attach any relevant log files, screenshots, etc.
 
 ***
 
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Security

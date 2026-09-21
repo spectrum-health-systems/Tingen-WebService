@@ -1,8 +1,11 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Support 
 
 <div align="center">
-  <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <img src="../.github/logo/Tingen-WebService-512x346.png" alt="Tingen Web Service">
+
   <h1>Support</h1>
+
 </div>
 
 This project uses GitHub Issues to track bugs and feature requests. Please search the existing  issues before filing new issues to avoid duplicates.
@@ -13,4 +16,4 @@ For new issues, file your bug or feature request as a new Issue.
 
 ***
 
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Support
