@@ -1,17 +1,18 @@
-❰ [Repository-Template](../../README.md) ❬ [Release notes](./README.md) ❬ Release XX.YY
+❰ [Tingen Web Service](../../README.md) ❬ [Release notes](./README.md) ❬ Release R26.8
 
 <div align="center">
 
-  <img src="../../.github/logo/RepositoryTemplate-336x220.png" alt="Repository-Template">
+  <img src="../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-  <h1>Release/Version XX.YY Release notes</h1>
+  <h1>R26.8 Release notes</h1>
 
 </div>
 
 | CONTENTS                                  |
 |:------------------------------------------|
 | [About this release](#about-this-release) |
-| [Known Issues](#known-issues)             |
+| [Known issues](#known-issues)             |
+| [Repository](#repository)                 |
 | [Miscellaneous](#miscellaneous)           |
 
 ***
@@ -55,4 +56,4 @@ Changes to the repository (non-source code).
 
 ***
 
-❰ [Repository-Template](../../README.md) ❬ [Release notes](./README.md) ❬ Release XX.YY
+❰ [Tingen Web Service](../../README.md) ❬ [Release notes](./README.md) ❬ Release R26.8
