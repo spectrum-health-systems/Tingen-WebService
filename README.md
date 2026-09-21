@@ -22,7 +22,7 @@
 
 <h4 align="center">
 
-  [Manual](docs/man/README.md)&nbsp;&bull;&nbsp;[Changelog](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[Roadmap](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[Known Issues](docs/KNOWN-ISSUES.md)
+  [Manual](docs/man/README.md)&nbsp;&bull;&nbsp;[Changelog](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[Roadmap](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[Known issues](docs/KNOWN-ISSUES.md)
   
 </h4>
 
@@ -78,7 +78,7 @@ Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProg
 
 <h6 align="center">
 
- [Development](docs/DEVELOPMENT.md)&nbsp;&bull;&nbsp;[API Documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)
+ [Development](docs/DEVELOPMENT.md)&nbsp;&bull;&nbsp;[API documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)
   
 </h6>
   
