@@ -16,9 +16,9 @@
 
 > Please see the [release notes](./rn/rn26.8.md) for more details.
 
-`CHANGED` Primeval log functionality
-`CHANGED` Session log functionality
-`CHANGED` Trace log functionality
+`CHANGED` Primeval log functionality  
+`CHANGED` Session log functionality  
+`CHANGED` Trace log functionality  
 `CHANGED` Various code refactors
 
 ## R26.7 - 2026-07-24
