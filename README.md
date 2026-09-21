@@ -32,9 +32,9 @@
 |:-------------------------------------- |
 | [About](#about-the-tingen-web-service) |
 | [Features](#features)                  |
-| [Getting Started](#getting-started)    |
-| [Built With](#built-with)              |
-| [Related Projects](#related-projects)  |
+| [Getting started](#getting-started)    |
+| [Built with](#built-with)              |
+| [Related projects](#related-projects)  |
 | [License](#license)                    |
 
 ***
@@ -55,17 +55,17 @@ The **Tingen Web Service** is one such custom web service which includes various
 * Robust logging
 * ...and more!
 
-## Getting Started
+## Getting started
 
 You can find all of the information you need to install and use the Tingen Web Service in the Tingen Web Service [Manual](docs/man/README.md).
 
-## Built With
+## Built with
 
 * [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 * [ScriptLink Standard](https://rcskids.github.io/ScriptLinkStandard/) - A class library for creating SOAP web services [AvatarNX™](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar)
 * [Sandcastle Help File Builder](https://github.com/EWSoftware/SHFB)  - Documentation generation
 
-## Related Projects
+## Related projects
 
 * [Tingen Transmorger](https://github.com/spectrum-health-systems/Tingen-Transmorger) - Utilities for Netsmart's AvatarNX™ TeleHealth platform
 
