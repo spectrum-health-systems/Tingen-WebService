@@ -8,6 +8,10 @@
 
 </div>
 
+## R26.9 - 2026-08-DD
+
+> Please see the [release notes](./rn/rn26.9.md) for more details.
+
 ## R26.8 - 2026-08-31
 
 > Please see the [release notes](./rn/rn26.8.md) for more details.
