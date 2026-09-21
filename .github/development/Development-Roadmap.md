@@ -12,6 +12,8 @@
 
 - [ ] Rename `Dependencies/`
 - [ ] Migrate to `Du`
+- [ ] Cleanup CANGELOG.md an remaining Release Notes
+
 
 ## Code
 
