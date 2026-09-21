@@ -9,11 +9,8 @@
 | [Features](#features) |
 
 ***
-
-- [ ] Rename `Dependencies/`
-- [ ] Migrate to `Du`
-- [ ] Cleanup CANGELOG.md an remaining Release Notes
-
+  
+- [ ] Cleanup CHANGELOG.md and remaining Release Notes
 
 ## Code
 
