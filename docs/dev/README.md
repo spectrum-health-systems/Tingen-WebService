@@ -1,13 +1,12 @@
+❰ [Tingen Web Service](../../README.md) ❬ [Documentation](../README.md) ❬ Development resources
+
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/DevMan.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/DevMan.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/DevMan.png">
-  </picture>
+  <img src="../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <h1>Development resources</h1>
 
 </div>
-
 ***
 
 > [!IMPORTANT]
@@ -36,4 +35,4 @@
 
 <br/>
 
-<sub>Last updated: 260709</sub>
+❰ [Tingen Web Service](../../README.md) ❬ [Documentation](../README.md) ❬ Development resources
