@@ -1,36 +1,33 @@
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Changelog
 
 <div align="center">
+
   <img src="../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
   <h1>Changelog</h1>
+
 </div>
 
-## R26.8
+## R26.8 - 2026-08-31
 
-> Please see the [release notes](./release-notes/R26.8-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn26.8.md) for more details.
 
-* New
-  * None
-* Updated
-  * None
-* Fixed
-  * None
-* Removed
-  * None
-* Security
-  * None
+`CHANGED` Primeval log functionality
+`CHANGED` Session log functionality
+`CHANGED` Trace log functionality
+`CHANGED` Various code refactors
 
-## R26.7 (2026-07-24)
+## R26.7 - 2026-07-24
 
-> Please see the [release notes](./release-notes/R26.7-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn26.7.md) for more details.
 
 This release was a major refactor.
 
 ***
 
-## R26.6 (2026-07-24)
+## R26.6 - 2026-07-24
 
-> Please see the [release notes](./release-notes/R26.6-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn26.6.md) for more details.
 
 * New
   * Tingen Web Service Manual
@@ -49,7 +46,7 @@ This release was a major refactor.
 
 ***
 
-## R26.5 (2026-07-24)
+## R26.5 - 2026-07-24
 
 > There are no release notes for R26.5.
 
@@ -58,7 +55,7 @@ This release was a major refactor.
 
 ***
 
-## R26.4 (2026-07-24)
+## R26.4 - 2026-07-24
 
 > There are no release notes for R26.4.
 
@@ -75,7 +72,7 @@ This release was a major refactor.
 
 ***
 
-## R26.3 (2026-07-24)
+## R26.3 - 2026-07-24
 
 > There are no release notes for R26.3.
 
@@ -84,7 +81,7 @@ This release was a major refactor.
 
 ***
 
-## R26.2 (2026-07-24)
+## R26.2 - 2026-07-24
 
 > There are no release notes for R26.2.
 
@@ -93,7 +90,7 @@ This release was a major refactor.
 
 ***
 
-## R26.1 (2026-07-24)
+## R26.1 - 2026-07-24
 
 > There are no release notes for R26.1.
 
@@ -110,9 +107,9 @@ This release was a major refactor.
 
 ***
 
-## R26.0 (2026-07-24)
+## R26.0 - 2026-07-24
 
-> Please see the [release notes](./release-notes/R26.0-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn26.0.md) for more details.
 
 * New
   * None.
@@ -128,7 +125,7 @@ This release was a major refactor.
 
 ***
 
-## R25.12 (2025-12-14)
+## R25.12 - 2025-12-14
 
 > There are no release notes for R25.12.
 
@@ -136,9 +133,9 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.11 (2025-11-28)
+## R25.11 - 2025-11-28
 
-> Please see the [release notes](./release-notes/R25.11-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn25.11.md) for more details.
 
 * New
   * Query UserId/User Roles  
@@ -154,9 +151,9 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.10 (2025-10-24)
+## R25.10 - 2025-10-24
 
-> Please see the [release notes](./release-notes/R25.10-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn25.10.md) for more details.
 
 * New
   * Daily maintenance function  
@@ -173,9 +170,9 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.9 (2025-09-26)
+## R25.9 - 2025-09-26
 
-> Please see the [release notes](./release-notes/R25.9-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn25.9.md) for more details.
 
 * New
   * web.config settings
@@ -192,9 +189,9 @@ This release was a year-end wrap up without any changes.
 
 ***
 
-## R25.8 (2025-08-22)
+## R25.8 - 2025-08-22
 
-> Please see the [release notes](./release-notes/R25.8-release-notes.md) for more details.
+> Please see the [release notes](./rn/rn25.8.md) for more details.
 
 * New
   * AdminMode 
@@ -212,6 +209,8 @@ This release was a year-end wrap up without any changes.
 > [!INFO]  
 > The Tingen Web Service has gone through *many* iterations since 2018, and unfortunately, I don't have detailed release notes for the earlier versions.
 
+<br/>
+
 ***
 
-❰ [Back to repository main page](../README.md)
+❰ [Tingen Web Service](../README.md) ❬ Changelog
