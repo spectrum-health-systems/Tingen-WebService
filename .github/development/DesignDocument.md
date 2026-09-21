@@ -13,7 +13,7 @@ The Tingen Web Service is a custom web service framework for Netsmart’s Avatar
 
 In addition:
 
-* Functionality can be tested and deployed without affecting existing functionality. 
+* Functionality can be tested and deployed without affecting existing functionality.
 * Configuration is stored in external, plain text files.
 * Everything is logged, and there are different levels of logging
 * Ability to enable/disable the entire framework, or individual components
@@ -23,10 +23,6 @@ In addition:
 * Log archiving
 * System health monitoring
 
-The Abatab Manual is updated with each Abatab release.
+The Tingen Web Service Manual is updated with each Tingen Web Service release.
 
-***
-
-<br>
-
-<sub>Last updated: 260604</sub>
+<sub>Last updated: 260921</sub>
