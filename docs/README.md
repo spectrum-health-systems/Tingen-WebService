@@ -12,7 +12,7 @@
 * [Manual](man/README.md)
 * [Glossary](glossary/README.md)
 * [API documentation](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)
-* [Development manual](devman/README.md)
+* [Development resources](dev/README.md)
 
 <br/>
 

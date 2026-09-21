@@ -1,9 +1,8 @@
 exclude:
-  - appendix/
   - dev/
-  - glossary/
   - man/
   - rn/
+  - supplement/
   - CHANGELOG.md
   - CODEOWNERS
   - CONTRIBUTORS.md
@@ -11,6 +10,7 @@ exclude:
   - FAQ.md
   - KNOWN-ISSUES.md
   - NOTICES.md
+  - README.md
   - ROADMAP.md
   - SECURITY.md
   - SUPPORT.md
