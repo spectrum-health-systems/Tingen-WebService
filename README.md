@@ -22,7 +22,7 @@
 
 <h6 align="center">
 
-  [MANUAL](docs/man/README.md)&nbsp;&bull;&nbsp;[CHANGELOG](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[ROADMAP](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[KNOWN ISSUES](docs/KNOWN-ISSUES.md)
+  [Manual](docs/man/README.md)&nbsp;&bull;&nbsp;[Changelog](docs/CHANGELOG.md)&nbsp;&bull;&nbsp;[Roadmap](docs/ROADMAP.md)&nbsp;&bull;&nbsp;[Known Issues](docs/KNOWN-ISSUES.md)
   
 </h6>
 
@@ -39,7 +39,7 @@
 
 ***
 
-## ABOUT THE TINGEN WEB SERVICE
+## About the Tingen Web Service
 
 Netsmart's [AvatarNX™ EHR](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar) is a behavioral health Electronic Health Records application that offers a recovery-focused suite of solutions that leverage real-time analytics and clinical decision support to drive value-based care.
 
@@ -47,7 +47,7 @@ While AvatarNX™ is a robust platform, it isn't perfect. The good news is that 
 
 The **Tingen Web Service** is one such custom web service which includes various tools and utilities for AvatarNX™ that aren't included in the official release, and provides a solid foundation for building additional functionality quickly and efficiently.
 
-## FEATURES
+## Features
 
 * Several built-in tools and utilities that extend the functionality of AvatarNX™
 * A solid foundation to build additional AvatarNX™ custom tools and utilities
@@ -55,21 +55,21 @@ The **Tingen Web Service** is one such custom web service which includes various
 * Robust logging
 * ...and more!
 
-## GETTING STARTED
+## Getting Started
 
 You can find all of the information you need to install and use the Tingen Web Service in the Tingen Web Service [Manual](docs/man/README.md).
 
-## BUILT WITH
+## Built With
 
 * [.NET Framework 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
 * [ScriptLink Standard](https://rcskids.github.io/ScriptLinkStandard/) - A class library for creating SOAP web services [AvatarNX™](https://www.ntst.com/Solutions-and-Services/Offerings/myAvatar)
 * [Sandcastle Help File Builder](https://github.com/EWSoftware/SHFB)  - Documentation generation
 
-## RELATED PROJECTS
+## Related Projects
 
 * [Tingen Transmorger](https://github.com/spectrum-health-systems/Tingen-Transmorger) - Utilities for Netsmart's AvatarNX™ TeleHealth platform
 
-## LICENSE
+## License
 
 Distributed under the [Apache 2.0 License](LICENSE)  
 Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProgram)
@@ -78,7 +78,7 @@ Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProg
 
 <h6 align="center">
 
- [DEVELOPMENT](docs/DEVELOPMENT.md)&nbsp;&bull;&nbsp;[API DOCUMENTATION](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[SUPPORT](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[NOTICES](docs/NOTICES.md)&nbsp;&bull;&nbsp;[SECURITY](docs/SECURITY.md)
+ [Development](docs/DEVELOPMENT.md)&nbsp;&bull;&nbsp;[API Documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)
   
 </h6>
   
