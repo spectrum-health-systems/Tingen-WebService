@@ -1,14 +1,9 @@
 exclude:
   - appendix/
-  - devman/
-  - diagram/
+  - dev/
   - glossary/
-  - madc/
   - man/
-  - release-notes/
-  - source-code/
-  - sourcecode/
-  - testing/
+  - rn/
   - CHANGELOG.md
   - CODEOWNERS
   - CONTRIBUTORS.md
