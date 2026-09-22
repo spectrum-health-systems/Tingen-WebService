@@ -8,6 +8,9 @@
 
 </div>
 
+* [Development guide](Guidelines.md)
+* [Development requirements](Requirements.md)
+
 * [Development manual](devman/README.md)
 
 
