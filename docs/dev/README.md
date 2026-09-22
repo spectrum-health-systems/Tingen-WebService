@@ -8,11 +8,11 @@
 
 </div>
 
-* [Development guide](Guidelines.md)
-* [Development requirements](Requirements.md)
-
 * [Development manual](devman/README.md)
-
+* [Diagrams and flowcharts](diagrams/README.md)
+* [Source code documentation](source-code/README.md)
+* [Testing procedures](testing/README.md)
+* [Creating a custom web service](madc/README.md)
 
 ***
 
