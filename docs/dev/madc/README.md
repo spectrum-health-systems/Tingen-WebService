@@ -1,12 +1,10 @@
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Creating/hosting a custom AvatarNX web service
+
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../../.github/repository/logo/dark/256x173/Man.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../../.github/repository/logo/light/256x173/Man.png">
-    <img alt="Fallback image description" src="../../../.github/repository/logo/light/256x173/Man.png">
-  </picture>
+  <img src="../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-<h1>myAvatar Development Community (MDAC) documentation </h1>
+  <h1>Creating/hosting a custom AvatarNX web service</h1>
 
 </div>
 
@@ -19,6 +17,4 @@
 
 ***
 
-[The Tingen Web Service Manual](../README.md) ❭ MDAC Documentation
-
-<sub>Last updated: 260624</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Creating/hosting a custom AvatarNX web service

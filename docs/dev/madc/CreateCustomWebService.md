@@ -1,19 +1,15 @@
-[The Tingen Web Service Manual](../README.md) ❭ [MDAC documentation](README.md) ❭ Create a Custom Web Service
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Creating a custom AvatarNX web service
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../../.github/logo/Tingen-WebService-Manual-Logo-Dark-256x256.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../../.github/logo/Tingen-WebService-Manual-Logo-Light-256x256.png">
-    <img alt="Fallback image description" src="../../../.github/logo/Tingen-WebService-Manual-Logo-Light-256x256.png">
-  </picture>
+  <img src="../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-  <h1>Create a custom web service for AvatarNX™</h1>
+  <h1>Creating a custom AvatarNX web service</h1>
 
 </div>
 
-| CONTENTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| CONTENTS |
+|:---------|
 | [Requirements](#requirements)                                                                       |
 | [Setup Visual Studio](#setup-visual-studio)                                                         |
 | [Create a new ASP.NET Web Application project](#create-a-new-aspnet-web-application-project)        |
