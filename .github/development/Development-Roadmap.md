@@ -11,6 +11,8 @@
 ***
   
 - [ ] Cleanup CHANGELOG.md and remaining Release Notes
+- [ ] Fix API documentation path in SHFB
+
 
 ## Code
 
