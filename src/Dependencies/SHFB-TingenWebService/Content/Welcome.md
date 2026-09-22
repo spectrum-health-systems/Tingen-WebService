@@ -4,8 +4,9 @@ title: Welcome to the Tingen Web Service API Documentation
 keywords: Welcome
 ---
 
-## Getting Started
+This is the API documentation for the Tingen Web Service [Tingen Web Service](https://github.com/spectrum-health-systems/Tingen-WebService).
 
+<!-- Original content
 To get started, add a documentation source to the project (a Visual Studio solution, project, or assembly and XML
 comments file).  See the **Getting Started** topics in the Sandcastle Help File Builder's help file for more
 information.  The following default items are included in this project:
@@ -31,3 +32,5 @@ See the **Conceptual Content** topics in the Sandcastle Help File Builder's help
 
 **Other Resources**  
 [](@VersionHistory)
+
+-->

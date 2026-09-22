@@ -78,7 +78,7 @@ Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProg
 
 <h6 align="center">
 
- [Development](docs/dev/README.md)&nbsp;&bull;&nbsp;[API documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)&nbsp;&bull;&nbsp;
+ [Development](docs/dev/README.md)&nbsp;&bull;&nbsp;[API documentation](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)&nbsp;&bull;&nbsp;
   
 </h6>
   
