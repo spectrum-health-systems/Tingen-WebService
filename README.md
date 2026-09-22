@@ -78,7 +78,7 @@ Copyright &copy; 2026 [A Pretty Cool Program](https://github.com/APrettyCoolProg
 
 <h6 align="center">
 
- [Development](docs/DEVELOPMENT.md)&nbsp;&bull;&nbsp;[API documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)
+ [Development](docs/dev/README.md)&nbsp;&bull;&nbsp;[API documentation](docs/api/README.md)&nbsp;&bull;&nbsp;[FAQ](docs/FAQ.md)&nbsp;&bull;&nbsp;[Support](docs/SUPPORT.md)&nbsp;&bull;&nbsp;[Notices](docs/NOTICES.md)&nbsp;&bull;&nbsp;[Security](docs/SECURITY.md)&nbsp;&bull;&nbsp;
   
 </h6>
   
