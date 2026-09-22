@@ -10,6 +10,7 @@
 
 * [Development manual](devman/README.md)
 * [Diagrams and flowcharts](diagrams/README.md)
+* [API documentation](https://spectrum-health-systems.github.io/Tingen-WebService/api/html/Welcome.htm)
 * [Source code documentation](source-code/README.md)
 * [Testing procedures](testing/README.md)
 * [Custom AvatarNX web services](madc/README.md)
