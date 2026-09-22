@@ -1,19 +1,16 @@
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Source code documentation
+
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/SrcDoc.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/SrcDoc.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/SrcDoc.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <h1>Source code documentation</h1>
 
 </div>
 
-* [TingenWebService](ns_TingenWebService.md)
-  * [TingenWebService.asmx.cs](cs_TingenWebService-asmx.md)
-* [TingenWebService.Core.Avatar](ns_Core-Avatar.md)
-  * [AvatarEnvironment.cs](cs_Core-Avatar-AvatarEnvironment.md)
-  * [AvatarOptionObject.cs](cs_Core-Avatar-AvatarOptionObject.md)
-  * [AvatarScriptParameter.cs](cs_Core-Avatar-AvatarScriptParameter.md)
+This document provides an overview of the source code structure and documentation for the Tingen Web Service project.
+
+* [Ns:TingenWebService](ns_TingenWebService.md)
 
 </details>
 
@@ -40,4 +37,4 @@
 
 ***
 
-<sub>Last updated: 260624</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Source code documentation
