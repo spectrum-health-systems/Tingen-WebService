@@ -1,14 +1,10 @@
-[Development Manual](README.md) ❭ Requirements
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development requirements
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/DevMan.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/DevMan.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/DevMan.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-<h1>Development Requirements</h1>
+  <h1>Development requirements</h1>
 
 </div>
 
@@ -31,6 +27,4 @@ You will also need to install the following Visual Studio workloads and componen
 
 ***
 
-[Development Manual](README.md) ❭ Requirements
-
-<sub>Last updated: 260629</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development requirements

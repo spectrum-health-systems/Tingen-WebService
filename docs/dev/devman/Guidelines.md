@@ -1,22 +1,18 @@
-[Development Manual](README.md) ❭ Development Guidelines
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development guidelines
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/DevMan.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/DevMan.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/DevMan.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-<h1>Development Guidelines</h1>
+  <h1>Development guidelines</h1>
 
 </div>
+
 
 | CONTENTS |
 |:---------|
 | [Coding Standards](#coding-standards) |
 | [Documentation](#documentation) |
-| [Testing](#testing) |
 
 ## Coding Standards
 
@@ -24,14 +20,8 @@
 
 ## Documentation
 
-## Testing
-
-* [Testing](../testing/README.md)
-
 <br/>
 
 ***
 
-[Development Manual](README.md) ❭ Development Guidelines
-
-<sub>Last updated: 063943</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development guidelines
