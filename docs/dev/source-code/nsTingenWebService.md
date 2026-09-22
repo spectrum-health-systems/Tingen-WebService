@@ -1,4 +1,4 @@
-❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Source code documentation](README.md) ❬ ns:TingenWebService
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Source code documentation](README.md) ❬ Ns:TingenWebService
 
 <div align="center">
 
@@ -12,4 +12,4 @@
 
 ***
 
-❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Source code documentation](README.md) ❬ ns:TingenWebService
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Source code documentation](README.md) ❬ Ns:TingenWebService

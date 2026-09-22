@@ -1,10 +1,10 @@
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Diagrams and flowcharts
+
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/Diagrams.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/Diagrams.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/Diagrams.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
+
+  <h1>Diagrams and flowcharts</h1>
 
 </div>
 
@@ -12,4 +12,4 @@
 
 ***
 
-<sub>Last updated: 260709</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Diagrams and flowcharts

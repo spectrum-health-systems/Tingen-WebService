@@ -10,7 +10,7 @@
 
 This document provides an overview of the source code structure and documentation for the Tingen Web Service project.
 
-* [Ns:TingenWebService](ns_TingenWebService.md)
+* [Ns:TingenWebService](nsTingenWebService.md)
 
 </details>
 
