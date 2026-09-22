@@ -12,7 +12,7 @@
 * [Diagrams and flowcharts](diagrams/README.md)
 * [Source code documentation](source-code/README.md)
 * [Testing procedures](testing/README.md)
-* [Creating/hosting a custom AvatarNX web service](mdac/README.md)
+* [Creating/hosting a custom AvatarNX web service](madc/README.md)
 
 ***
 
