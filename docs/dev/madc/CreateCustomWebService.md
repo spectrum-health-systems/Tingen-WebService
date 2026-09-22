@@ -1,15 +1,14 @@
 <!-- Last updated: 260610 -->
 
-❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Create a custom AvatarNX web service
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Create a custom web service
 
 <div align="center">
 
   <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-  <h1>Create a custom AvatarNX web service</h1>
+  <h1>Create a custom web service</h1>
 
 </div>
-
 
 | CONTENTS |
 |:---------|
@@ -333,4 +332,4 @@ namespace CustomAvatarWebService
 
 ***
 
-❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Create a custom AvatarNX web service
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Create a custom web service

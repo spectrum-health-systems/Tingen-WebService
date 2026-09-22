@@ -1,16 +1,15 @@
-﻿[The Tingen Web Service Manual](../README.md) ❭ [MDAC](README.md) ❭ Microsoft Internet Information Services (IIS)
+﻿<!-- Last updated: 260610 -->
+
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Microsoft IIS
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../../.github/logo/dark/256x173/Man.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../../.github/logo/light/256x173/Man.png">
-    <img alt="Fallback image description" src="../../../.github/logo/light/256x173/Man.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-  <h1>Internet Information Services</h1>
+  <h1>Internet Information Services (IIS)</h1>
 
 </div>
+
 
 | CONTENTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
 |:---------------------------------------------------------------------------------------------------------------------------------------------|
@@ -428,6 +427,4 @@ Clicking on **test-page.html** should display this page:
 
 ***
 
-[The Tingen Web Service Manual](../README.md) ❭ [MDAC](README.md) ❭ Microsoft Internet Information Services (IIS)
-
-<sub>Last updated: 260610</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Custom AvatarNX web services](README.md) ❬ Microsoft IIS
