@@ -1,27 +1,21 @@
-[The Tingen Web Service Development Manual](README.md) ❭ Testing
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Testing
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../../.github/logo/Tingen-WebService-Development-Manual-Logo-Dark-256x256.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../../.github/logo/Tingen-WebService-Development-Manual-Logo-Light-256x256.png">
-    <img alt="Fallback image description" src="../../../.github/logo/Tingen-WebService-Development-Manual-Logo-Light-256x256.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-<h1>Testing</h1>
+  <h1>Testing</h1>
 
 </div>
 
 ***
 
-| CONTENTS                                                                           |
-|:-----------------------------------------------------------------------------------|
-|                                          |
+| CONTENTS |
+|:---------|
+|          |
 
 <br/>
 
 ***
 
-[The Tingen Web Service Development Manual](README.md) ❭ Testing
-
-<sub>Last updated: 260609</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ Testing
