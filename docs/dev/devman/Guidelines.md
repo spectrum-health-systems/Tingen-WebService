@@ -8,7 +8,6 @@
 
 </div>
 
-
 | CONTENTS |
 |:---------|
 | [Coding Standards](#coding-standards) |

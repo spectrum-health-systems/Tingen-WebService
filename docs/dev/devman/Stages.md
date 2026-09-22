@@ -1,19 +1,10 @@
-<!--
-This documentation is a work in progress.
-The goal is to have this completed for R26.7
---->
-
-[Development Manual](README.md) ❭ Stages
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development stages
 
 <div align="center">
 
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="../../.github/logo/dark/256x173/DevMan.png">
-    <source media="(prefers-color-scheme: light)" srcset="../../.github/logo/light/256x173/DevMan.png">
-    <img alt="Fallback image description" src="../../.github/logo/light/256x173/DevMan.png">
-  </picture>
+  <img src="../../../.github/logo/Tingen-WebService-256x173.png" alt="Tingen Web Service">
 
-<h1>Development Stages</h1>
+  <h1>Development stages</h1>
 
 </div>
 
@@ -266,6 +257,4 @@ More information soon.
 
 ***
 
-[Development Manual](README.md) ❭ Stages
-
-<sub>Last updated: 260709</sub>
+❰ [Tingen Web Service](../../../README.md) ❬ [Documentation](../../README.md) ❬ [Development resources](../README.md) ❬ [Development manual](README.md) ❬ Development stages
